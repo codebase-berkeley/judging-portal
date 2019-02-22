@@ -6,7 +6,10 @@ import Toolbar from './toolbar';
 class App extends Component {
   constructor(p) {
     super(p);
-    this.state = { hello: 5, bye: 6 };
+    this.state = {
+      hello: 5,
+      bye: 6
+    };
   }
   render() {
     return (
