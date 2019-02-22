@@ -8,6 +8,7 @@ class App extends Component {
     super(p);
     this.state = {
       hello: 5,
+
       bye: 6
     };
   }
