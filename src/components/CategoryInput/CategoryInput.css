@@ -1,0 +1,35 @@
+#CategoryInputPage {
+  height: 100vh; /* Magic here */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #d5ebf6;
+  width: 100vw;
+}
+
+#title {
+  position: absolute;
+  color: #3b9bc2;
+  font-size: 60px;
+  text-align: left;
+  left: 200px;
+  top: 10px;
+}
+
+#body {
+  position: relative;
+  z-index: 1;
+  top: 10px;
+  width: 80vw;
+  height: 80vh;
+  background-color: white;
+}
+
+#nextButton {
+  position: absolute;
+  color: #3b9bc2;
+  bottom: 100px;
+  background-color: #d5ebf6;
+  text-transform: none;
+}
