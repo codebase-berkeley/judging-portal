@@ -1,0 +1,18 @@
+.view {
+  width: 100vw;
+  height: 100vh;
+  overflow-y: hidden;
+  background-color: #d5ebf6;
+}
+
+.pheader {
+  font-family: 'Muli', sans-serif;
+  font-weight: 600;
+  color: #3b9bc2;
+}
+
+.box {
+  width: 90vw;
+  height: 80vh;
+  background-color: white;
+}
