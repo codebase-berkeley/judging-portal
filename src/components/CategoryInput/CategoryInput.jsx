@@ -11,9 +11,7 @@ class CategoryInput extends Component {
         </div>
 
         <div id="body">
-          <Button variant="contained" color="secondary" id="nextButton">
-            Next
-          </Button>
+          <button id="next">Next</button>
         </div>
       </div>
     );
