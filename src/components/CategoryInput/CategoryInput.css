@@ -39,11 +39,3 @@
   height: 50px;
   box-shadow: 3px 3px #cdcdcd;
 }
-
-#nextButton {
-  position: absolute;
-  color: #3b9bc2;
-  bottom: 100px;
-  background-color: #d5ebf6;
-  text-transform: none;
-}

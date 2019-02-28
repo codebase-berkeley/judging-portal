@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './CategoryInput.css';
-import Button from '@material-ui/core/Button';
 
 class CategoryInput extends Component {
   render() {
