@@ -1,0 +1,49 @@
+#CategoryInputPage {
+  height: 100vh; /* Magic here */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #d5ebf6;
+  width: 100vw;
+}
+
+#title {
+  font-weight: bold;
+  position: absolute;
+  color: #3b9bc2;
+  font-size: 50px;
+  text-align: left;
+  left: 150px;
+  top: 15px;
+}
+
+#body {
+  position: relative;
+  z-index: 1;
+  top: 10px;
+  width: 90vw;
+  height: 80vh;
+  background-color: white;
+}
+
+#next {
+  font-weight: bold;
+  position: absolute;
+  background: #d5ebf6;
+  color: #3b9bc2;
+  font-size: 30px;
+  border-radius: 4px;
+  bottom: 50px;
+  width: 110px;
+  height: 50px;
+  box-shadow: 3px 3px #cdcdcd;
+}
+
+#nextButton {
+  position: absolute;
+  color: #3b9bc2;
+  bottom: 100px;
+  background-color: #d5ebf6;
+  text-transform: none;
+}

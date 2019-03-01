@@ -3,6 +3,8 @@ import logo from './logo.svg';
 // import './App.css';
 import Toolbar from './toolbar';
 import AwardList from './components/CategoryInput/AwardList.jsx';
+import './App.css';
+import CategoryInput from './components/CategoryInput/CategoryInput';
 
 class App extends Component {
   // constructor(p) {
@@ -14,6 +16,7 @@ class App extends Component {
     return (
       <div className="App">
        <AwardList listTitle="APIs" inputBackgroundText="+ add API"/>
+        <CategoryInput />
       </div>
     );
   }
