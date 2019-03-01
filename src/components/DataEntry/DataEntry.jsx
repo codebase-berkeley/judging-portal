@@ -58,27 +58,33 @@ class DataEntry extends Component {
             <div id="datatype">
               <h2>Number of Tables</h2>
             </div>
-            <div className="inputbox">
-              <input placeholder="Add Entry" onKeyPress={this.handleTable} />
-            </div>
+            <input
+              placeholder="Add Entry"
+              onKeyPress={this.handleTable}
+              class="inputbox "
+            />
           </div>
 
           <div className="c">
             <div id="datatype">
               <h2>Number of Clusters</h2>
             </div>
-            <div className="inputbox">
-              <input placeholder="Add Entry" onKeyPress={this.handleCluster} />
-            </div>
+            <input
+              placeholder="Add Entry"
+              onKeyPress={this.handleCluster}
+              class="inputbox"
+            />
           </div>
 
           <div className="c">
             <div id="datatype">
               <h2>Waves of Judges</h2>
             </div>
-            <div className="inputbox">
-              <input placeholder="Add Entry" onKeyPress={this.handleWave} />
-            </div>
+            <input
+              placeholder="Add Entry"
+              onKeyPress={this.handleWave}
+              class="inputbox"
+            />
           </div>
 
           <div className="c">

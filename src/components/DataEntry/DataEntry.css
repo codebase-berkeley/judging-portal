@@ -35,9 +35,19 @@
   margin: 20px;
 }
 
-#inputbox {
-  border-bottom-color: #3b9bc2;
-  border-top-color: #3b9bc2;
+.inputbox {
+  width: 50%;
+  padding: 12px 10px;
+  margin: 5px 0;
+  border: none;
+  border-bottom: 2.5px solid #d5ebf6;
+  border-top: 2.5px solid #d5ebf6;
+}
+
+::placeholder {
+  color: #d5ebf6;
+  font-size: 10px;
+  font-weight: 500;
 }
 
 .button {
@@ -57,7 +67,7 @@
 
 .uploadbutton {
   font-size: 20px;
-  padding: 0px 10px;
+  padding: 0px 0px;
   margin: 5px;
   margin-top: 0px;
 }
