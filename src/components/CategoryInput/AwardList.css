@@ -1,0 +1,44 @@
+.AwardList {
+
+}
+
+.list-content {
+
+}
+
+.list-name {
+    color: #3B9BC2;
+    position: relative;
+    display: inline-block;
+    left: 0%;
+}
+
+.input-field {
+
+}
+
+.list-input {
+    height: 40px;
+    width: 90%;
+    font-size: 16pt;
+    border: none;
+    border-bottom: 1px solid #8AC9E1;
+    border-top: 1px solid #8AC9E1;
+}
+
+::placeholder {
+    color: #8AC9E1;
+}
+
+:focus {
+    outline: none;
+}
+
+.blue-highlight {
+    position: absolute;
+    top: 45%;
+    width: 100%;
+    min-height: 20px;
+    background-color: #D5EBF6;
+    z-index: -1;
+}
