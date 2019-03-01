@@ -54,7 +54,7 @@ class DataEntry extends Component {
           <h1>Data Entry</h1>
         </div>
         <div className="box">
-          <div className="c1">
+          <div className="c">
             <div id="datatype">
               <h2>Number of Tables</h2>
             </div>
@@ -63,7 +63,7 @@ class DataEntry extends Component {
             </div>
           </div>
 
-          <div className="c2">
+          <div className="c">
             <div id="datatype">
               <h2>Number of Clusters</h2>
             </div>
@@ -72,7 +72,7 @@ class DataEntry extends Component {
             </div>
           </div>
 
-          <div className="c3">
+          <div className="c">
             <div id="datatype">
               <h2>Waves of Judges</h2>
             </div>
@@ -81,7 +81,7 @@ class DataEntry extends Component {
             </div>
           </div>
 
-          <div className="c4">
+          <div className="c">
             <div id="datatype">
               <h2>Upload Devpost</h2>
             </div>

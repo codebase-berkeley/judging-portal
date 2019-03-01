@@ -11,15 +11,33 @@
   font-weight: 600;
   color: #3b9bc2;
   text-align: left;
+  margin-left: 7vw;
 }
 
 .box {
+  font-family: 'Muli', sans-serif;
+  font-weight: 600;
   margin-left: auto;
   margin-right: auto;
   width: 90vw;
   height: 75vh;
   background-color: white;
   padding: 25px;
+}
+
+.c {
+  display: flex;
+  align-items: center;
+  margin-left: 25vw;
+}
+
+#datatype {
+  margin: 20px;
+}
+
+#inputbox {
+  border-bottom-color: #3b9bc2;
+  border-top-color: #3b9bc2;
 }
 
 .button {
@@ -39,7 +57,7 @@
 
 .uploadbutton {
   font-size: 20px;
-  padding: 0px 25px;
+  padding: 0px 10px;
   margin: 5px;
   margin-top: 0px;
 }
