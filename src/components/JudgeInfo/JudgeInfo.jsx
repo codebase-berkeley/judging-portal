@@ -40,6 +40,15 @@ class JudgeInfo extends Component {
     }
   }
 
+  addInfo() {
+    if (this.state.curr_name !== '') {
+      this.setState({
+        curr_name: '',
+        names: this.state.names.concat(this.state.curr_name)
+      });
+    }
+  }
+
   render() {
     const defaultOption = this.state.selected;
     const placeHolderValue =
@@ -48,20 +57,18 @@ class JudgeInfo extends Component {
         : this.state.selected.label;
 
     return (
-      <div className="judge-input-page">
-        <div className="judge-input-header">
-          <p>Judge Information</p>
-        </div>
+      <div className="judge-info-page">
+        <p className="judge-info-title">Judge Information</p>
 
         <div className="input-container">
-          <p>Judge Name</p>
+          <p className="input-name-header">Judge Name</p>
           <input
-            className="name-input"
+            className="input-name"
             placeholder="Judge Name"
             value={this.state.curr_name}
             onChange={this.handleName}
           />
-          <p>Judge API</p>
+          <p className="input-api-header">Judge API</p>
           <Dropdown
             options={options}
             onChange={this._onSelect}
