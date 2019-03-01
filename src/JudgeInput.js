@@ -1,77 +1,19 @@
-/* eslint-disable */
-
+/*eslint-disable*/
 import React, { Component } from 'react';
-import './JudgeName.css';
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
+import './JudgeInput.css';
 import Name from './Name';
-import Dropdown from './Dropdown';
 
-class JudgeName extends Component {
+class JudgeInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
       curr_name: '',
-      names: [],
-      api: [
-        {
-          id: 0,
-          title: 'one',
-          selected: false,
-          key: 'api'
-        },
-        {
-          id: 1,
-          title: 'two',
-          selected: false,
-          key: 'api'
-        },
-        {
-          id: 2,
-          title: 'three',
-          selected: false,
-          key: 'api'
-        },
-        {
-          id: 3,
-          title: 'four',
-          selected: false,
-          key: 'api'
-        },
-        {
-          id: 4,
-          title: 'five',
-          selected: false,
-          key: 'api'
-        },
-        {
-          id: 5,
-          title: 'six',
-          selected: false,
-          key: 'api'
-        }
-      ]
+      names: []
     };
-
     this.handleName = this.handleName.bind(this);
     this.addName = this.addName.bind(this);
-  }
-
-  resetThenSet = (id, key) => {
-    const temp = JSON.parse(JSON.stringify(this.state[key]));
-    temp.forEach(item => {
-      item.selected = false;
-    });
-    temp[id].selected = true;
-    this.setState({
-      [key]: temp
-    });
-  };
-
-  toggleSelected(id, key) {
-    const temp = this.state[key];
-    temp[id].selected = !temp[id].selected;
-    this.setState({
-      [key]: temp
-    });
   }
 
   handleName(event) {
@@ -90,6 +32,8 @@ class JudgeName extends Component {
   }
 
   render() {
+    const options = ['one', 'two', 'three'];
+    const defaultOption = 'Select API';
     return (
       <div className="judge-input-page">
         <div className="judge-input-header">
@@ -105,11 +49,11 @@ class JudgeName extends Component {
             onChange={this.handleName}
           />
           <p>Judge API</p>
-
           <Dropdown
-            title="Judge API"
-            list={this.state.api}
-            resetThenSet={this.resetThenSet}
+            options={options}
+            onChange={this._onSelect}
+            value={defaultOption}
+            placeholder="Select an option"
           />
 
           <button
@@ -131,4 +75,4 @@ class JudgeName extends Component {
   }
 }
 
-export default JudgeName;
+export default JudgeInput;

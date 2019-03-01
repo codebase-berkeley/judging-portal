@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './JudgeName.css';
+import './JudgeInput.css';
 
 class Toolbar extends Component {
   render() {
