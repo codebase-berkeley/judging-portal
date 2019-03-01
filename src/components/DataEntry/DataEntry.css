@@ -26,9 +26,11 @@
 }
 
 .c {
+  width: 40vw;
   display: flex;
   align-items: center;
-  margin-left: 25vw;
+  margin-left: 20vw;
+  justify-content: space-between;
 }
 
 #datatype {
@@ -36,7 +38,7 @@
 }
 
 .inputbox {
-  width: 50%;
+  width: 25%;
   padding: 12px 10px;
   margin: 5px 0;
   border: none;
