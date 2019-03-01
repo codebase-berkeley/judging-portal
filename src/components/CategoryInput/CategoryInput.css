@@ -27,6 +27,13 @@
   background-color: white;
 }
 
+#lists {
+  width:inherit;
+  height:inherit;
+  display: flex;
+  flex-direction: row;
+}
+
 #next {
   font-weight: bold;
   position: absolute;

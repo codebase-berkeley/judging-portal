@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 // import './App.css';
-import Toolbar from './toolbar';
-import AwardList from './components/CategoryInput/AwardList.jsx';
 import './App.css';
 import CategoryInput from './components/CategoryInput/CategoryInput';
 
