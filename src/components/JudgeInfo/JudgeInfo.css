@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css?family=Muli:regular,bold,light&subset=latin,latin-ext');
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+font,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+caption {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+@font-face {
+  font-family: 'Muli', sans-serif;
+}
+
+.judge-info-page {
+  /* display: block;
+  margin-left: auto;
+  margin-right: auto; 
+  align-content: center;
+  justify-content: center; */
+  background: #d5ebf6;
+  min-height: 100vh;
+  /* display: flex;
+  flex-direction: column; */
+}
+
+.judge-info-title {
+  font-family: 'Muli';
+  font-weight: bold;
+  color: #3b9bc2;
+  text-align: left;
+  font-size: 4.5vh;
+  margin-bottom: 2vh;
+  padding-top: 6vh;
+  padding-left: 22vh;
+}
+
+.input-container {
+  /* padding: 18%; */
+  background: white;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  align-content: center;
+  justify-content: center;
+  width: 80%;
+  height: 82vh;
+  /* margin-left: 10%;
+  margin-right: 10%; */
+  /* margin-top: 0vh; */
+}
+
+.input-name-header {
+  font-family: 'Muli';
+  font-weight: bold;
+  color: #3b9bc2;
+  font-size: 3.5vh;
+  padding-top: 3vh;
+  padding-left: 5vh;
+  /* margin-top: 3vh; */
+  /* margin-left: 8vh; */
+  text-align: left;
+}
+
+:focus {
+  outline: none;
+}
+
+::placeholder {
+  color: #98d0ec;
+}
+
+.input-name {
+  border: none;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  align-content: center;
+  justify-content: center;
+  color: #98d0ec;
+  margin-top: 2vh;
+  border-top: 2px solid #98d0ec;
+  border-bottom: 2px solid #98d0ec;
+  width: 93%;
+  height: 5.25%;
+  font-family: 'Muli';
+  font-weight: regular;
+  font-size: 2vh;
+}
+
+.input-api-header {
+  font-family: 'Muli';
+  font-weight: bold;
+  color: #3b9bc2;
+  font-size: 3.5vh;
+  padding-top: 3vh;
+  padding-left: 5vh;
+  text-align: left;
+  margin-bottom: 2vh;
+}
+
+.submit-button {
+  font-family: 'Muli';
+  font-weight: bold;
+  font-size: 2.5vh;
+  color: #3b9bc2;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  align-content: center;
+  justify-content: center;
+  margin-top: 3vh;
+  margin-left: 85%;
+  border: none;
+  background-color: #d5ebf6;
+  width: 14vh;
+  height: 6vh;
+  box-shadow: 0 0px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 3px 0 rgba(0, 0, 0, 0.19);
+}
+
+.submit-button:hover {
+  background-color: #c9e0ec;
+  box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.24), 0 4px 4px 0 rgba(0, 0, 0, 0.19);
+}
+
+.judge-name-list {
+  height: 50%;
+  text-align: center;
+  border-radius: 50px;
+  background: #d5ebf6;
+}
