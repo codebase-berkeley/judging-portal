@@ -3,16 +3,43 @@
   height: 100vh;
   overflow-y: hidden;
   background-color: #d5ebf6;
+  color: #3b9bc2;
 }
 
 .pheader {
   font-family: 'Muli', sans-serif;
   font-weight: 600;
   color: #3b9bc2;
+  text-align: left;
 }
 
 .box {
+  margin-left: auto;
+  margin-right: auto;
   width: 90vw;
-  height: 80vh;
+  height: 75vh;
   background-color: white;
+  padding: 25px;
+}
+
+.button {
+  background-color: #d5ebf6;
+  margin: 10px;
+  font-family: 'Muli', sans-serif;
+  font-size: 20px;
+  font-weight: 1000;
+  color: #3b9bc2;
+  padding: 15px 30px;
+  text-align: center;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 2.5px 2.5px 5px grey;
+}
+
+.uploadbutton {
+  font-size: 20px;
+  padding: 0px 25px;
+  margin: 5px;
+  margin-top: 0px;
 }

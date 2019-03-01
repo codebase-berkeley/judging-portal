@@ -6,29 +6,45 @@ class DataEntry extends Component {
     super(props);
 
     this.state = {
-      entries: [],
-      input: ''
+      tablenum: '',
+      clusternum: '',
+      wavenum: ''
     };
-
-    this.handleItem = this.handleItem.bind(this);
-    this.addItem = this.addItem.bind(this);
+    this.handleTable = this.handleTable.bind(this);
+    this.handleCluster = this.handleCluster.bind(this);
+    this.handleWave = this.handleWave.bind(this);
+    this.saveVals = this.saveVals.bind(this);
   }
 
-  handleItem(event) {
+  handleTable(event) {
+    this.setState({
+      tablenum: event.target.value
+    });
     if (event.key === 'Enter') {
-      this.setState({
-        input: event.target.value
-      });
+      console.log(this.state.tablenum);
     }
   }
-  z;
-  addItem(event) {
-    if (this.state.input !== '') {
-      this.setState({
-        input: '',
-        entries: this.state.entries.concat(this.state.input)
-      });
+
+  handleCluster(event) {
+    this.setState({
+      clusternum: event.target.value
+    });
+    if (event.key === 'Enter') {
+      console.log(this.state.clusternum);
     }
+  }
+
+  handleWave(event) {
+    this.setState({
+      wavenum: event.target.value
+    });
+    if (event.key === 'Enter') {
+      console.log(this.state.wavenum);
+    }
+  }
+
+  saveVals(event) {
+    console.log(this.state.tablenum, this.state.clusternum, this.state.wavenum);
   }
 
   render() {
@@ -43,12 +59,7 @@ class DataEntry extends Component {
               <h2>Number of Tables</h2>
             </div>
             <div className="inputbox">
-              <input
-                placeholder="Add Entry"
-                value={this.state.input}
-                onChange={this.handleItem}
-                onKeyPress={this.addItem}
-              />
+              <input placeholder="Add Entry" onKeyPress={this.handleTable} />
             </div>
           </div>
 
@@ -57,12 +68,7 @@ class DataEntry extends Component {
               <h2>Number of Clusters</h2>
             </div>
             <div className="inputbox">
-              <input
-                placeholder="Add Entry"
-                value={this.state.input}
-                onChange={this.handleItem}
-                onKeyPress={this.addItem}
-              />
+              <input placeholder="Add Entry" onKeyPress={this.handleCluster} />
             </div>
           </div>
 
@@ -71,14 +77,26 @@ class DataEntry extends Component {
               <h2>Waves of Judges</h2>
             </div>
             <div className="inputbox">
-              <input
-                placeholder="Add Entry"
-                value={this.state.input}
-                onChange={this.handleItem}
-                onKeyPress={this.addItem}
-              />
+              <input placeholder="Add Entry" onKeyPress={this.handleWave} />
             </div>
           </div>
+
+          <div className="c4">
+            <div id="datatype">
+              <h2>Upload Devpost</h2>
+            </div>
+            <button className="button">
+              <div className="uploadbutton">Upload File</div>
+            </button>
+          </div>
+
+          <button className="button" onClick={this.saveVals}>
+            Prev
+          </button>
+
+          <button className="button" onClick={this.saveVals}>
+            Next
+          </button>
         </div>
       </div>
     );
