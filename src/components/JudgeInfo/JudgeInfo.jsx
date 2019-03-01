@@ -1,11 +1,12 @@
 /*eslint-disable*/
 import React, { Component } from 'react';
 import Dropdown from 'react-dropdown';
-import Name from './Name';
+//import Name from './Name';
 import 'react-dropdown/style.css';
 import './JudgeInfo.css';
+import Judge from './Judge';
 
-const options = ['one', 'two', 'three'];
+const options = ['one', 'two', 'three', 'four'];
 
 class JudgeInfo extends Component {
   constructor(props) {
@@ -13,15 +14,15 @@ class JudgeInfo extends Component {
     this.state = {
       curr_name: '',
       names: [],
-      selected: ''
+      selected: '',
+      info: []
     };
     this.handleName = this.handleName.bind(this);
-    this.addName = this.addName.bind(this);
+    this.addInfo = this.addInfo.bind(this);
     this._onSelect = this._onSelect.bind(this);
   }
 
   _onSelect(option) {
-    console.log('You selected ', option.label);
     this.setState({ selected: option });
   }
 
@@ -31,21 +32,26 @@ class JudgeInfo extends Component {
     });
   }
 
-  addName() {
-    if (this.state.curr_name !== '') {
-      this.setState({
-        curr_name: '',
-        names: this.state.names.concat(this.state.curr_name)
-      });
-    }
-  }
-
   addInfo() {
     if (this.state.curr_name !== '') {
       this.setState({
         curr_name: '',
-        names: this.state.names.concat(this.state.curr_name)
+        info: this.state.info.push([
+          this.state.curr_name,
+          this.state.selected.label
+        ])
       });
+    }
+  }
+
+  createJudge() {
+    var i;
+    for (i = 0; i < info.length; i++) {
+      if (i % 2 == 0) {
+        <Judge name={this.curr_name} api={option.label} color={false} />;
+      } else {
+        <Judge name={this.curr_name} api={option.label} color={true} />;
+      }
     }
   }
 
@@ -68,28 +74,28 @@ class JudgeInfo extends Component {
             value={this.state.curr_name}
             onChange={this.handleName}
           />
+
           <p className="input-api-header">Judge API</p>
-          <Dropdown
-            options={options}
-            onChange={this._onSelect}
-            value={defaultOption}
-            placeholder="Select an option"
-          />
+
+          <div className="dropdown">
+            <Dropdown
+              options={options}
+              onChange={this._onSelect}
+              value={defaultOption}
+              placeholder="Select an option"
+            />
+          </div>
 
           <button
             className="submit-button"
             type="button"
-            onClick={this.addName}
+            onClick={this.addInfo}
           >
             Submit
           </button>
-        </div>
 
-        <ul className="judge-name-list">
-          {this.state.names.map(item => (
-            <Name key={item.id} text={item} />
-          ))}
-        </ul>
+          <div className="table" />
+        </div>
       </div>
     );
   }
