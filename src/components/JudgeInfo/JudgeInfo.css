@@ -64,6 +64,10 @@ caption {
   background: transparent;
 }
 
+@font-face {
+  font-family: 'Muli', sans-serif;
+}
+
 .judge-input-page {
   /* display: inline-block;
   margin-left: auto;
@@ -77,6 +81,15 @@ caption {
 
 .judge-input-header {
   text-align: left;
-  padding-top: 10vh;
-  padding-left: 20vh;
+  margin-bottom: 2vh;
+  padding-top: 15vh;
+  padding-left: 40vh;
+}
+
+.input-container {
+  padding: 15%;
+  background: white;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-top: 0vh;
 }
