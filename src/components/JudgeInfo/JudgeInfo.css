@@ -122,7 +122,7 @@ caption {
 
 .input-name {
   border: none;
-  width: 100%;
+  width: 104%;
   display: block;
   align-content: center;
   justify-content: center;
@@ -130,10 +130,13 @@ caption {
   margin-top: 2vh;
   border-top: 2px solid #98d0ec;
   border-bottom: 2px solid #98d0ec;
+  padding-top: 2%;
+  padding-bottom: 2%;
   height: 5.25%;
   font-family: 'Muli';
   font-weight: regular;
-  font-size: 3vh;
+  font-size: 2vh;
+  padding-left: 2%;
 }
 
 .input-api-header {
@@ -184,12 +187,13 @@ caption {
 
 .judge-info-list-border {
   position: fixed;
-  background: #98d0ec;
   width: 46%;
+  height: 75%;
   display: inline-block;
   margin-top: 4vh;
   margin-right: 4vh;
   align-content: center;
+  overflow: auto;
 }
 
 .name-list-header {
@@ -197,11 +201,15 @@ caption {
   font-family: 'Muli';
   font-weight: bold;
   color: #3b9bc2;
+  background-color: #98d0ec;
   font-size: 3.5vh;
   padding-top: 1vh;
   padding-bottom: 1vh;
+  padding-left: 3vh;
   text-align: left;
-  margin-left: 3vh;
+  /* margin-left: 3vh; */
+  width: 45%;
+  height: 100%;
 }
 
 .api-list-header {
@@ -209,10 +217,14 @@ caption {
   font-family: 'Muli';
   font-weight: bold;
   color: #3b9bc2;
+  width: 45%;
+  background-color: #98d0ec;
+  padding-left: 3vh;
   font-size: 3.5vh;
   padding-top: 1vh;
-  margin-left: 30vh;
   text-align: left;
+  height: 100%;
+  padding-bottom: 1vh;
 }
 
 .dropdown {
