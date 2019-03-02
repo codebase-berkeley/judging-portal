@@ -1,0 +1,30 @@
+.dark-color {
+  background-color: #d5ebf6;
+}
+
+.light-color {
+  background-color: white;
+}
+
+.judge-api {
+  position: absolute;
+  display: inline-block;
+  font-family: 'Muli';
+  font-weight: bold;
+  color: #3b9bc2;
+  font-size: 2.5vh;
+  padding-top: 1vh;
+  text-align: left;
+}
+
+.judge-name {
+  display: inline-block;
+  font-family: 'Muli';
+  font-weight: bold;
+  color: #3b9bc2;
+  font-size: 2.5vh;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  text-align: left;
+  margin-left: 3vh;
+}

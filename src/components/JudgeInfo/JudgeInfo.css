@@ -87,23 +87,19 @@ caption {
   text-align: left;
   font-size: 4.5vh;
   margin-bottom: 2vh;
-  padding-top: 6vh;
-  padding-left: 22vh;
+  padding-top: 10vh;
+  padding-left: 18vh;
 }
 
-.input-container {
-  /* padding: 18%; */
+.input-list {
   background: white;
   display: block;
   margin-left: auto;
   margin-right: auto;
   align-content: center;
   justify-content: center;
-  width: 80%;
+  width: 85%;
   height: 82vh;
-  /* margin-left: 10%;
-  margin-right: 10%; */
-  /* margin-top: 0vh; */
 }
 
 .input-name-header {
@@ -111,10 +107,8 @@ caption {
   font-weight: bold;
   color: #3b9bc2;
   font-size: 3.5vh;
-  padding-top: 3vh;
-  padding-left: 5vh;
-  /* margin-top: 3vh; */
-  /* margin-left: 8vh; */
+  padding-top: 4vh;
+
   text-align: left;
 }
 
@@ -128,20 +122,18 @@ caption {
 
 .input-name {
   border: none;
+  width: 100%;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
   align-content: center;
   justify-content: center;
   color: #98d0ec;
   margin-top: 2vh;
   border-top: 2px solid #98d0ec;
   border-bottom: 2px solid #98d0ec;
-  width: 93%;
   height: 5.25%;
   font-family: 'Muli';
   font-weight: regular;
-  font-size: 2vh;
+  font-size: 3vh;
 }
 
 .input-api-header {
@@ -149,8 +141,7 @@ caption {
   font-weight: bold;
   color: #3b9bc2;
   font-size: 3.5vh;
-  padding-top: 3vh;
-  padding-left: 5vh;
+  padding-top: 4vh;
   text-align: left;
   margin-bottom: 2vh;
 }
@@ -161,12 +152,10 @@ caption {
   font-size: 2.5vh;
   color: #3b9bc2;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
   align-content: center;
   justify-content: center;
   margin-top: 3vh;
-  margin-left: 85%;
+
   border: none;
   background-color: #d5ebf6;
   width: 14vh;
@@ -184,4 +173,56 @@ caption {
   text-align: center;
   border-radius: 50px;
   background: #d5ebf6;
+}
+
+.judge-info-list {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  align-content: center;
+}
+
+.judge-info-list-border {
+  position: fixed;
+  background: #98d0ec;
+  width: 46%;
+  display: inline-block;
+  margin-top: 4vh;
+  margin-right: 4vh;
+  align-content: center;
+}
+
+.name-list-header {
+  display: inline-block;
+  font-family: 'Muli';
+  font-weight: bold;
+  color: #3b9bc2;
+  font-size: 3.5vh;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  text-align: left;
+  margin-left: 3vh;
+}
+
+.api-list-header {
+  display: inline-block;
+  font-family: 'Muli';
+  font-weight: bold;
+  color: #3b9bc2;
+  font-size: 3.5vh;
+  padding-top: 1vh;
+  margin-left: 30vh;
+  text-align: left;
+}
+
+.dropdown {
+  display: block;
+  width: 105%;
+}
+
+.input-container {
+  width: 35%;
+  display: inline-block;
+  margin-left: 5vh;
+  margin-right: 7vh;
 }
