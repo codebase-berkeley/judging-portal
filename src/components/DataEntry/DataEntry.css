@@ -33,11 +33,11 @@
   justify-content: space-between;
 }
 
-#datatype {
+.datatype {
   margin: 20px;
 }
 
-.inputbox {
+.input-box {
   width: 25%;
   padding: 12px 10px;
   margin: 5px 0;
@@ -67,7 +67,7 @@
   box-shadow: 2.5px 2.5px 5px grey;
 }
 
-.uploadbutton {
+.upload-button {
   font-size: 20px;
   padding: 0px 0px;
   margin: 5px;
