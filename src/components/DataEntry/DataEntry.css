@@ -4,10 +4,10 @@
   overflow-y: scroll;
   background-color: #d5ebf6;
   color: #3b9bc2;
+  font-family: 'Muli', sans-serif;
 }
 
 .pheader {
-  font-family: 'Muli', sans-serif;
   font-weight: 600;
   color: #3b9bc2;
   text-align: left;
@@ -15,14 +15,14 @@
 }
 
 .box {
-  font-family: 'Muli', sans-serif;
   font-weight: 600;
   margin-left: auto;
   margin-right: auto;
-  width: 90vw;
+  width: 90%;
   height: 75%;
   background-color: white;
   padding: 25px;
+  overflow-y: auto;
 }
 
 .c {
@@ -72,9 +72,15 @@
   margin: auto;
 }
 
+.submit-button-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top: 5%;
+}
+
 .submit-button {
   font-size: 20px;
   padding: 15px 25px;
-  margin-left: auto;
-  margin-right: auto;
 }
