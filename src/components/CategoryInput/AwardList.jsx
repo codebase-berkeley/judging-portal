@@ -33,7 +33,7 @@ class AwardList extends Component {
 
   render() {
     return (
-        <div className="AwardList">
+        <div className="awardList">
             <div className="list-name">
                 <h1>{this.props.listTitle}</h1>
                 <div className="blue-highlight"></div>

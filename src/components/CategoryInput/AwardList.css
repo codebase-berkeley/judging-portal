@@ -1,4 +1,4 @@
-.AwardList {
+.awardList {
     text-align: left;
     width:33%;
 
@@ -7,7 +7,7 @@
 .list-content {
     position: relative;
     left:3vw;
-    font-size: 16pt;
+    font-size: 22px;
     color: #3B9BC2
 
 }
@@ -22,14 +22,13 @@
 .input-field {
     text-align:center;
     width:100%;
-
 }
 
 
 .list-input {
     height: 40px;
     width: 70%;
-    font-size: 16pt;
+    font-size: 22px;
     border: none;
     border-bottom: 1px solid #8AC9E1;
     border-top: 1px solid #8AC9E1;

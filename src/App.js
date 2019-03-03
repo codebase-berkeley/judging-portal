@@ -4,10 +4,6 @@ import './App.css';
 import CategoryInput from './components/CategoryInput/CategoryInput';
 
 class App extends Component {
-  // constructor(p) {
-  //   super(p);
-  //   this.state = {};
-  // }
 
   render() {
     return (

@@ -1,4 +1,4 @@
-#CategoryInputPage {
+.categoryInputPage {
   height: 100vh; /* Magic here */
   display: flex;
   justify-content: center;
@@ -18,7 +18,7 @@
   top: 15px;
 }
 
-#body {
+#category_body {
   position: relative;
   z-index: 1;
   top: 10px;
@@ -27,14 +27,14 @@
   background-color: white;
 }
 
-#lists {
+#category_lists {
   width:inherit;
   height:inherit;
   display: flex;
   flex-direction: row;
 }
 
-#next {
+.next_button {
   font-weight: bold;
   position: absolute;
   background: #d5ebf6;
