@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-// import './App.css';
+
 import './App.css';
 
 import CategoryInput from './components/CategoryInput/CategoryInput';
 import DataEntry from './components/DataEntry/DataEntry';
-import Toolbar from './toolbar';
+import JudgeInfo from './components/JudgeInfo/JudgeInfo';
+
+
 
 class App extends Component {
   render() {
@@ -12,6 +14,7 @@ class App extends Component {
       <div>
         <CategoryInput />
         <DataEntry />
+        <JudgeInfo />
       </div>
     );
   }
