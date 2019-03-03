@@ -1,7 +1,7 @@
-/*eslint-disable*/
+/* eslint-disable */
+
 import React, { Component } from 'react';
 import Dropdown from 'react-dropdown';
-//import Name from './Name';
 import 'react-dropdown/style.css';
 import './JudgeInfo.css';
 import Judge from './Judge';
@@ -13,7 +13,6 @@ class JudgeInfo extends Component {
     super(props);
     this.state = {
       curr_name: '',
-      names: [],
       selected: '',
       info: [],
       count: 0
@@ -43,16 +42,11 @@ class JudgeInfo extends Component {
         count: this.state.count + 1,
         selected: ''
       });
-      console.log(this.state.info);
     }
   }
 
   render() {
     const defaultOption = this.state.selected;
-    const placeHolderValue =
-      typeof this.state.selected === 'string'
-        ? this.state.selected
-        : this.state.selected.label;
 
     return (
       <div className="judge-info-page">
