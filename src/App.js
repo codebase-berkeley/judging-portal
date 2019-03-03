@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import DataEntry from './components/DataEntry/DataEntry';
 import Toolbar from './toolbar';
 
 class App extends Component {
-  constructor(p) {
-    super(p);
-    this.state = {};
-  }
-
   render() {
     return (
       <div className="App">
@@ -27,6 +23,7 @@ class App extends Component {
             Learn React
           </a>
         </header>
+        <DataEntry />
       </div>
     );
   }
