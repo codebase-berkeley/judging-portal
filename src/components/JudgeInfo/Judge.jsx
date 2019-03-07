@@ -7,12 +7,6 @@ class Judge extends Component {
       <div
         className={this.props.color % 2 === 0 ? 'dark-color' : 'light-color'}
       >
-        <button
-          className="delete-button"
-          type="button"
-          onClick={this.addInfo}
-        >
-        </button>
         <div className="judge-name">{this.props.name}</div>
         <div className="judge-api">{this.props.api}</div>
       </div>

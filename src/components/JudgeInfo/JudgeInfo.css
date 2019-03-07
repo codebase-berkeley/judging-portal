@@ -180,3 +180,15 @@ p {
   margin-left: 5vh;
   margin-right: 7vh;
 }
+
+.delete{
+  display: inline-block;
+     width: 19px;
+    height: 18px;
+    text-align: center;
+  background-color: #D2D2D2;
+    border-radius: 50%;
+  font-size: 12px;
+  line-height: 18px;
+  cursor: pointer;
+    }

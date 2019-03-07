@@ -19,11 +19,22 @@ class JudgeInfo extends Component {
     };
     this.handleName = this.handleName.bind(this);
     this.addInfo = this.addInfo.bind(this);
+    this.handleClickIndex = this.handleClickIndex.bind(this);
     this._onSelect = this._onSelect.bind(this);
   }
 
   _onSelect(option) {
     this.setState({ selected: option });
+  }
+
+  handleClickIndex(index, event){
+    eval(this[event.target.name]).bind(this)(index, event);
+  }
+
+  removeTask(index, event) {
+    const info = this.state.info
+    info.splice(index, 1)    
+    this.setState({info})
   }
 
   handleName(event) {
@@ -47,7 +58,18 @@ class JudgeInfo extends Component {
 
   render() {
     const defaultOption = this.state.selected;
-    
+    const info = (this.state.info||[]).map((name,index)=>(
+      <ul>
+        <button name="delete" onClick={event=>this.handleClickIndex(index,event)}>x</button> 
+        <Judge
+        name={name[0]}
+        api={this.state.info[index][1]}
+        color={this.state.info[index][2]}
+          />
+
+
+      </ul>
+    ))
 
     return (
       <div className="judge-info-page">
@@ -87,13 +109,11 @@ class JudgeInfo extends Component {
             <ul className="judge-info-list">
               <p className="name-list-header">Name</p>
               <p className="api-list-header">API</p>
-              {this.state.info.map((name, api) => (
-                  <Judge
-                  name={name[0]}
-                  api={this.state.info[api][1]}
-                  color={this.state.info[api][2]}
-                />
-              ))}
+              {info}
+              {
+                this.state.name &&
+                <li>{this.state.name}</li>
+              }
             </ul>
           </div>
         </div>
