@@ -47,6 +47,7 @@ class JudgeInfo extends Component {
 
   render() {
     const defaultOption = this.state.selected;
+    
 
     return (
       <div className="judge-info-page">
@@ -87,7 +88,7 @@ class JudgeInfo extends Component {
               <p className="name-list-header">Name</p>
               <p className="api-list-header">API</p>
               {this.state.info.map((name, api) => (
-                <Judge
+                  <Judge
                   name={name[0]}
                   api={this.state.info[api][1]}
                   color={this.state.info[api][2]}

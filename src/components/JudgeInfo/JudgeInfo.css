@@ -77,7 +77,7 @@ p {
   height: 5.25%;
   font-family: 'Muli';
   font-weight: regular;
-  font-size: 2vh;
+  font-size: 1vh;
   padding-left: 2%;
 }
 
@@ -128,8 +128,8 @@ p {
 }
 
 .judge-info-list-border {
-  position: fixed;
-  width: 46%;
+  position: absolute;
+  width: 48%;
   height: 75%;
   display: inline-block;
   margin-top: 4vh;
@@ -150,7 +150,7 @@ p {
   padding-left: 3vh;
   text-align: left;
   /* margin-left: 3vh; */
-  width: 45%;
+  width: 44%;
   height: 100%;
 }
 
@@ -159,7 +159,7 @@ p {
   font-family: 'Muli';
   font-weight: bold;
   color: #3b9bc2;
-  width: 45%;
+  width: 44%;
   background-color: #98d0ec;
   padding-left: 3vh;
   font-size: 3.5vh;
