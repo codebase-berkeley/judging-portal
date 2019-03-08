@@ -162,7 +162,7 @@ p {
   color: #3b9bc2;
   width: 44%;
   background-color: #98d0ec;
-  padding-left: 3vh;
+  padding-left: 2vh;
   font-size: 3.5vh;
   padding-top: 1vh;
   text-align: left;
@@ -225,4 +225,8 @@ p {
   justify-content: center;
   color: #d5ebf6;
   font-size: 3vh;
+}
+
+.delete-button:hover{
+  color: #91bcd1;
 }
