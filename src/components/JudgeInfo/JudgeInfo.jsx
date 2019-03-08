@@ -28,7 +28,7 @@ class JudgeInfo extends Component {
   }
 
   handleClickIndex(index, event){
-    eval(this[event.target.name]).bind(this)(index, event);
+    eval(this[event.target.name]).bind(this)(index, event)
   }
 
   removeTask(index, event) {
@@ -60,7 +60,7 @@ class JudgeInfo extends Component {
     const defaultOption = this.state.selected;
     const info = (this.state.info||[]).map((name,index)=>(
       <ul>
-        <button name="delete" onClick={event=>this.handleClickIndex(index,event)}>x</button> 
+        <button name="removeTask" onClick={event=>this.handleClickIndex(index,event)}>x</button>
         <Judge
         name={name[0]}
         api={this.state.info[index][1]}
