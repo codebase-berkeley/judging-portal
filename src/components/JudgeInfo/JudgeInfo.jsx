@@ -28,7 +28,7 @@ class JudgeInfo extends Component {
   }
 
   handleClickIndex(index, event){
-    eval(this[event.target.name]).bind(this)(index, event);
+    eval(this[event.target.value]).bind(this)(index, event);
   }
 
   removeTask(index, event) {
