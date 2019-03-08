@@ -66,8 +66,8 @@ class JudgeInfo extends Component {
           <button name="removeTask" className="delete-button" onClick={event=>this.handleClickIndex(index,event)}>
               ×
           </button>
-        </div>
-        <Judge
+        </div>       
+         <Judge
         name={name[0]}
         api={this.state.info[index][1]}
         color={this.state.info[index][2]}
@@ -114,7 +114,7 @@ class JudgeInfo extends Component {
 
           <div className="judge-info-list-border">
             <ul className="judge-info-list">
-              <div className="name-list-header">
+            <div className="name-list-header">
                 <p className = "name-text">
                 Name
                 </p>           
@@ -132,6 +132,10 @@ class JudgeInfo extends Component {
                 <li>{this.state.name}</li>
               }
             </ul>
+          </div>
+          <div className= "buttons">
+            <button className="judge-button" >Prev</button>
+            <button className="judge-button">Next</button>
           </div>
         </div>
       </div>
