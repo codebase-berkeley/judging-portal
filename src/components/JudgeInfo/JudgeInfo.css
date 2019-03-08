@@ -220,7 +220,9 @@ p {
 }
 
 .delete-button {
-  margin-top: 1%;
+  border: none;
+  margin-top: 0.5%;
   justify-content: center;
   color: #d5ebf6;
+  font-size: 3vh;
 }

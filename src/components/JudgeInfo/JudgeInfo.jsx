@@ -61,7 +61,7 @@ class JudgeInfo extends Component {
     const info = (this.state.info||[]).map((name,index)=>(
       <ul className="judge-item">
         <div className="delete-button">
-          <button name="removeTask" onClick={event=>this.handleClickIndex(index,event)}>
+          <button name="removeTask" className="delete-button" onClick={event=>this.handleClickIndex(index,event)}>
               ×
           </button>
         </div>
