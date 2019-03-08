@@ -213,9 +213,14 @@ p {
 }
 
 .name-text {
-  padding-left: 10%;
+  padding-left: 7%;
 }
 
 .api-text {
-  padding-left: 6%;
+}
+
+.delete-button {
+  margin-top: 1%;
+  justify-content: center;
+  color: #d5ebf6;
 }

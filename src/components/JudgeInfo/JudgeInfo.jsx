@@ -60,12 +60,11 @@ class JudgeInfo extends Component {
     const defaultOption = this.state.selected;
     const info = (this.state.info||[]).map((name,index)=>(
       <ul className="judge-item">
-
-        <button name="removeTask" className="remove-button" onClick={event=>this.handleClickIndex(index,event)}>  
-          <p className="button-icon">
-            ×
-          </p> 
-        </button>
+        <div className="delete-button">
+          <button name="removeTask" onClick={event=>this.handleClickIndex(index,event)}>
+              ×
+          </button>
+        </div>
         <Judge
         name={name[0]}
         api={this.state.info[index][1]}
