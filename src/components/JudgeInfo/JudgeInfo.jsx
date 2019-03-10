@@ -74,7 +74,6 @@ class JudgeInfo extends Component {
     return (
       <div className="judge-info-page">
         <p className="judge-info-title">Judge Information</p>
-
         <div className="input-list">
           <div className="entry-container">
             <div className="input-container">
@@ -105,6 +104,7 @@ class JudgeInfo extends Component {
               >
                 Submit
               </button>
+
             </div>
 
             <div className="judge-info-list-border">
@@ -113,29 +113,28 @@ class JudgeInfo extends Component {
                   <p className = "name-text">
                   Name
                   </p>           
-                </div>
+              </div>
 
-
-                <div className="api-list-header">
-                  <p className = "name-text">
+              <div className="api-list-header">
+                <p className = "name-text">
                   API
-                  </p>
-                </div>
-                <div className="list">
-                  {info}
-                </div>
-
+                </p>
+              </div>
+              <div className="list">
+                {info}
+              </div>
                 {
                   this.state.name &&
                   <li>{this.state.name}</li>
                 }
+              </div>
             </div>
-            </div>
+
           <div className= "buttons">
             <button className="judge-button" >Prev</button>
             <button className="judge-button">Next</button>
           </div>
-
+          
         </div>
       </div>
     );
