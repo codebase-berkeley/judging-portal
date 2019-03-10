@@ -89,7 +89,7 @@ p {
   margin-bottom: 2vh;
 }
 
-.submit-button {
+.submit-button-judge {
   font-family: 'Muli';
   font-weight: bold;
   font-size: 2.5vh;
@@ -105,7 +105,7 @@ p {
   box-shadow: 0 0px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 3px 0 rgba(0, 0, 0, 0.19);
 }
 
-.submit-button:hover {
+.submit-button-judge:hover {
   background-color: #c9e0ec;
   box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.24), 0 4px 4px 0 rgba(0, 0, 0, 0.19);
 }

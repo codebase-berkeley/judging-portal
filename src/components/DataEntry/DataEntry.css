@@ -46,7 +46,7 @@
   border-top: 2.5px solid #d5ebf6;
 }
 
-::placeholder {
+.input-box::placeholder {
   color: #d5ebf6;
   font-size: 10px;
   font-weight: 500;

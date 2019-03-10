@@ -99,7 +99,7 @@ class JudgeInfo extends Component {
               </div>
 
               <button
-                className="submit-button"
+                className="submit-button-judge"
                 type="button"
                 onClick={this.addInfo}
               >
