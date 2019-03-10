@@ -96,13 +96,16 @@ class DataEntry extends Component {
             </button>
           </div>
 
-          <button className="button" onClick={this.saveVals}>
-            Prev
-          </button>
+          <div className="submit-button-box">
+            <button className="button" onClick={this.saveVals}>
+              <div className="submit-button">Prev</div>
+            </button>
 
-          <button className="button" onClick={this.saveVals}>
-            Next
-          </button>
+            <button className="button" onClick={this.saveVals}>
+              <div className="submit-button">Next</div>
+            </button>
+          </div>
+
         </div>
       </div>
     );
