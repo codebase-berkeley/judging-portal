@@ -41,9 +41,8 @@ class AwardList extends Component {
   render() {
     return (
         <div className="awardList">
-            <div className="list-name">
-                <h1>{this.props.listTitle}</h1>
-                <div className="blue-highlight"></div>
+            <div className="">
+                <h1 className = "list-name"> {this.props.listTitle}</h1>
             </div>
             <div className="input-field">
                 <input id="list-input" placeholder={this.props.inputBackgroundText} value={this.state.currentAward} onChange={this.inputChange} onKeyPress={this.addToList}></input>
