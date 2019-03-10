@@ -77,7 +77,7 @@ p {
   font-family: 'Muli';
   font-weight: regular;
   font-size: 2vh;
-  padding-left:2%;
+  padding-left: 2%;
 }
 
 .input-api-header {
@@ -137,7 +137,7 @@ p {
   background-color: #98d0ec;
   font-size: 3.5vh;
   text-align: left;
-  padding:1%;
+  padding: 1%;
   padding-left: 5%;
   width: 44%;
 }
