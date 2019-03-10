@@ -40,7 +40,7 @@ p {
   margin-right: auto;
   align-content: center;
   justify-content: center;
-  width: 85%;
+  width: 84%;
   height: 82vh;
 }
 
@@ -50,7 +50,6 @@ p {
   color: #3b9bc2;
   font-size: 3.5vh;
   padding-top: 4vh;
-
   text-align: left;
 }
 
@@ -60,20 +59,19 @@ p {
 
 ::placeholder {
   color: #98d0ec;
+  font-size: 2vh;
 }
 
 .input-name {
   border: none;
-  width: 104%;
-  display: block;
+  width: 100%;
+  display: inline-block;
   align-content: center;
   justify-content: center;
   color: #98d0ec;
   margin-top: 2vh;
   border-top: 2px solid #98d0ec;
   border-bottom: 2px solid #98d0ec;
-  padding-top: 2%;
-  padding-bottom: 2%;
   height: 5.25%;
   font-family: 'Muli';
   font-weight: regular;
@@ -100,7 +98,6 @@ p {
   align-content: center;
   justify-content: center;
   margin-top: 3vh;
-
   border: none;
   background-color: #d5ebf6;
   width: 14vh;
@@ -120,22 +117,14 @@ p {
   background: #d5ebf6;
 }
 
-.judge-info-list {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  align-content: center;
-}
 
 .judge-info-list-border {
-  position: fixed;
-  width: 46%;
-  height: 75%;
+  padding: 4%;
+  position: relative;
   display: inline-block;
-  margin-top: 4vh;
-  margin-right: 4vh;
   align-content: center;
   overflow: auto;
+  width: 65%;
 }
 
 .name-list-header {
@@ -145,13 +134,10 @@ p {
   color: #3b9bc2;
   background-color: #98d0ec;
   font-size: 3.5vh;
-  padding-top: 1vh;
-  padding-bottom: 1vh;
-  padding-left: 3vh;
   text-align: left;
-  /* margin-left: 3vh; */
-  width: 45%;
-  height: 100%;
+  padding: 1%;
+  padding-left: 5%;
+  width: 44%;
 }
 
 .api-list-header {
@@ -159,24 +145,97 @@ p {
   font-family: 'Muli';
   font-weight: bold;
   color: #3b9bc2;
-  width: 45%;
   background-color: #98d0ec;
-  padding-left: 3vh;
   font-size: 3.5vh;
-  padding-top: 1vh;
   text-align: left;
-  height: 100%;
-  padding-bottom: 1vh;
+  padding: 1%;
+  padding-left: 5%;
+  width: 44%;
 }
 
 .dropdown {
   display: block;
-  width: 105%;
+  width: 100%;
 }
 
 .input-container {
   width: 35%;
   display: inline-block;
   margin-left: 5vh;
-  margin-right: 7vh;
+}
+
+.delete {
+  display: inline-block;
+  width: 19px;
+  height: 18px;
+  text-align: center;
+  background-color: #D2D2D2;
+  border-radius: 50%;
+  font-size: 12px;
+  line-height: 18px;
+  cursor: pointer;
+}
+
+ul {
+  padding:0;
+  margin:0;
+}
+
+.judge-item {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 2px solid #d5ebf6;
+}
+
+.remove-button {
+  border: none;
+  height: 50%;
+}
+
+.button-icon {
+  color: #d5ebf6;
+  font-size: 4vh;
+}
+
+.delete-button {
+  border: none;
+  justify-content: center;
+  color: #d5ebf6;
+  font-size: 3vh;
+}
+
+.delete-button:hover{
+  color: #91bcd1;
+}
+
+.judge-button {
+  background-color: #d5ebf6;
+  margin: 10px;
+  font-family: 'Muli', sans-serif;
+  font-size: 20px;
+  font-weight: 1000;
+  color: #3b9bc2;
+  padding: 15px 30px;
+  text-align: center;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 2.5px 2.5px 5px grey;
+}
+
+.buttons {
+  position: relative;
+  margin-left: 40%;
+}
+
+.entry-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  height:80%;
+}
+
+.list {
+  overflow:scroll; 
+  height:80%;
 }

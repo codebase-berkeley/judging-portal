@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './DataEntry.css';
 
+
 class DataEntry extends Component {
   constructor(props) {
     super(props);
@@ -8,12 +9,14 @@ class DataEntry extends Component {
     this.state = {
       tableNum: '',
       clusterNum: '',
-      waveNum: ''
+      waveNum: '',
+      fileName: 'Upload File'
     };
     this.handleTable = this.handleTable.bind(this);
     this.handleCluster = this.handleCluster.bind(this);
     this.handleWave = this.handleWave.bind(this);
     this.saveVals = this.saveVals.bind(this);
+    this.changeFileName = this.changeFileName.bind(this);
   }
 
   handleTable(event) {
@@ -45,6 +48,17 @@ class DataEntry extends Component {
 
   saveVals(event) {
     console.log(this.state.tableNum, this.state.clusterNum, this.state.waveNum);
+  }
+
+  changeFileName(event) {
+    let input = event.target.value;
+    let fileName = input.replace(/^.*[\\\/]/, '');
+    if (fileName == '') {
+      fileName = 'Upload File';
+    }
+    this.setState({
+      fileName: fileName
+    })
   }
 
   render() {
@@ -91,18 +105,20 @@ class DataEntry extends Component {
             <div className="datatype">
               <h2>Upload Devpost</h2>
             </div>
-            <button className="button">
-              <div className="upload-button">Upload File</div>
+            <input type="file" id="og-file" className="upload-file" onChange={this.changeFileName}/>
+            <label for="og-file">{this.state.fileName}</label>
+          </div>
+
+          <div className="submit-button-box">
+            <button className="button" onClick={this.saveVals}>
+              <div className="submit-button">Prev</div>
+            </button>
+
+            <button className="button" onClick={this.saveVals}>
+              <div className="submit-button">Next</div>
             </button>
           </div>
 
-          <button className="button" onClick={this.saveVals}>
-            Prev
-          </button>
-
-          <button className="button" onClick={this.saveVals}>
-            Next
-          </button>
         </div>
       </div>
     );
