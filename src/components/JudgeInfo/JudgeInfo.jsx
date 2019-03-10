@@ -82,61 +82,64 @@ class JudgeInfo extends Component {
         <p className="judge-info-title">Judge Information</p>
 
         <div className="input-list">
-          <div className="input-container">
-            <p className="input-name-header">Judge Name</p>
-            <input
-              className="input-name"
-              placeholder="Judge Name"
-              value={this.state.curr_name}
-              onChange={this.handleName}
-            />
-
-            <div className="input-api-header">
-            Judge API</div>
-
-            <div className="dropdown">
-              <Dropdown
-                options={options}
-                onChange={this._onSelect}
-                value={defaultOption}
-                placeholder="Select an option"
+          <div className="entry-container">
+            <div className="input-container">
+              <p className="input-name-header">Judge Name</p>
+              <input
+                className="input-name"
+                placeholder="Judge Name"
+                value={this.state.curr_name}
+                onChange={this.handleName}
               />
+
+              <div className="input-api-header">
+              Judge API</div>
+
+              <div className="dropdown">
+                <Dropdown
+                  options={options}
+                  onChange={this._onSelect}
+                  value={defaultOption}
+                  placeholder="Select an option"
+                />
+              </div>
+
+              <button
+                className="submit-button"
+                type="button"
+                onClick={this.addInfo}
+              >
+                Submit
+              </button>
             </div>
 
-            <button
-              className="submit-button"
-              type="button"
-              onClick={this.addInfo}
-            >
-              Submit
-            </button>
-          </div>
+            <div className="judge-info-list-border">
 
-          <div className="judge-info-list-border">
-            <ul className="judge-info-list">
-            <div className="name-list-header">
-                <p className = "name-text">
-                Name
-                </p>           
-              </div>
+              <div className="name-list-header">
+                  <p className = "name-text">
+                  Name
+                  </p>           
+                </div>
 
 
-              <div className="api-list-header">
-                <p className = "name-text">
-                API
-                </p>
-              </div>
-              {info}
-              {
-                this.state.name &&
-                <li>{this.state.name}</li>
-              }
-            </ul>
-          </div>
+                <div className="api-list-header">
+                  <p className = "name-text">
+                  API
+                  </p>
+                </div>
+
+                {info}
+                {
+                  this.state.name &&
+                  <li>{this.state.name}</li>
+                }
+            </div>
+            </div>
           <div className= "buttons">
             <button className="judge-button" >Prev</button>
             <button className="judge-button">Next</button>
           </div>
+
         </div>
       </div>
     );

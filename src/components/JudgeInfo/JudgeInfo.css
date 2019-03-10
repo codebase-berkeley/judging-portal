@@ -40,7 +40,7 @@ p {
   margin-right: auto;
   align-content: center;
   justify-content: center;
-  width: 85%;
+  width: 84%;
   height: 82vh;
 }
 
@@ -65,7 +65,7 @@ p {
 
 .input-name {
   border: none;
-  width: 102%;
+  width: 100%;
   display: block;
   align-content: center;
   justify-content: center;
@@ -79,7 +79,6 @@ p {
   font-family: 'Muli';
   font-weight: regular;
   font-size: 2vh;
-  padding-left: 2%;
 }
 
 .input-api-header {
@@ -121,23 +120,14 @@ p {
   background: #d5ebf6;
 }
 
-.judge-info-list {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  align-content: center;
-  padding: 0vh;
-}
 
 .judge-info-list-border {
-  position: absolute;
-  width: 48%;
-  height: 75%;
+  padding: 4%;
+  position: relative;
   display: inline-block;
-  margin-top: 4vh;
-  margin-right: 4vh;
   align-content: center;
   overflow: auto;
+  width: 65%;
 }
 
 .name-list-header {
@@ -147,13 +137,10 @@ p {
   color: #3b9bc2;
   background-color: #98d0ec;
   font-size: 3.5vh;
-  padding-top: 1vh;
-  padding-bottom: 1vh;
-  padding-left: 3vh;
   text-align: left;
-  /* margin-left: 3vh; */
+  padding:1%;
+  padding-left: 5%;
   width: 44%;
-  height: 100%;
 }
 
 .api-list-header {
@@ -161,26 +148,24 @@ p {
   font-family: 'Muli';
   font-weight: bold;
   color: #3b9bc2;
-  width: 44%;
   background-color: #98d0ec;
-  padding-left: 2vh;
   font-size: 3.5vh;
-  padding-top: 1vh;
   text-align: left;
-  height: 100%;
-  padding-bottom: 1vh;
+  padding:1%;
+  padding-left: 5%;
+  width: 44%;
 }
 
 .dropdown {
   display: block;
-  width: 105%;
+  width: 100%;
 }
 
 .input-container {
   width: 35%;
   display: inline-block;
   margin-left: 5vh;
-  margin-right: 7vh;
+
 }
 
 .delete{
@@ -195,12 +180,16 @@ p {
   cursor: pointer;
 }
 
+ul{
+  padding:0;
+  margin:0;
+}
+
 .judge-item {
-  padding: 0vh;
   display: flex;
   flex-direction: row;
   border-bottom:2px solid #d5ebf6;
-  width: 95.5%;
+  /* width: 95.5%; */
 }
 
 .remove-button {
@@ -214,15 +203,13 @@ p {
 }
 
 .name-text {
-  padding-left: 7%;
+  /* padding-left: 7%; */
 }
 
-.api-text {
-}
+
 
 .delete-button {
   border: none;
-  margin-top: 0.5%;
   justify-content: center;
   color: #d5ebf6;
   font-size: 3vh;
@@ -250,4 +237,10 @@ p {
 .buttons {
   margin-top: 20%;
   margin-left: 15%;
+}
+
+.entry-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
 }
