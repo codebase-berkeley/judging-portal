@@ -127,8 +127,10 @@ class JudgeInfo extends Component {
                   API
                   </p>
                 </div>
+                <div className="list">
+                  {info}
+                </div>
 
-                {info}
                 {
                   this.state.name &&
                   <li>{this.state.name}</li>

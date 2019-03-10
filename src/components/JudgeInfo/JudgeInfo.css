@@ -79,6 +79,7 @@ p {
   font-family: 'Muli';
   font-weight: regular;
   font-size: 2vh;
+  padding-left:2%;
 }
 
 .input-api-header {
@@ -202,12 +203,6 @@ ul{
   font-size: 4vh;
 }
 
-.name-text {
-  /* padding-left: 7%; */
-}
-
-
-
 .delete-button {
   border: none;
   justify-content: center;
@@ -235,6 +230,7 @@ ul{
 }
 
 .buttons {
+  position: fixed;
   margin-top: 20%;
   margin-left: 15%;
 }
@@ -243,4 +239,9 @@ ul{
   width: 100%;
   display: flex;
   flex-direction: row;
+}
+
+.list {
+  overflow:scroll; 
+  height:400px;
 }
