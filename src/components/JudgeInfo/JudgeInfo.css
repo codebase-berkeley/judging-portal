@@ -73,8 +73,6 @@ p {
   margin-top: 2vh;
   border-top: 2px solid #98d0ec;
   border-bottom: 2px solid #98d0ec;
-  padding-top: 2%;
-  padding-bottom: 2%;
   height: 5.25%;
   font-family: 'Muli';
   font-weight: regular;
@@ -243,5 +241,5 @@ ul{
 
 .list {
   overflow:scroll; 
-  height:400px;
+  height:600px;
 }
