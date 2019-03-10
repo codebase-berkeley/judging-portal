@@ -47,7 +47,7 @@ class AwardList extends Component {
                 <h1 className = "list-name"> {this.props.listTitle}</h1>
             </div>
             <div className="input-field">
-                <input id="list-input" placeholder={this.props.inputBackgroundText} value={this.state.currentAward} onChange={this.inputChange} onKeyPress={this.addToList}></input>
+                <input className="list-input" placeholder={this.props.inputBackgroundText} value={this.state.currentAward} onChange={this.inputChange} onKeyPress={this.addToList}></input>
             </div>
             <ol className="list-content">
                 {this.state.awardsList.map((item, index) => (

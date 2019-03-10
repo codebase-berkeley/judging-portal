@@ -9,7 +9,7 @@
   background-color: #d5ebf6;
 }
 
-#title {
+.title {
   font-weight: bold;
   position: relative;
   color: #3b9bc2;
@@ -20,7 +20,7 @@
   top: 1%;
 }
 
-#category_body {
+.category_body {
   position: relative;
   z-index: 1;
   top: 5%;
@@ -32,7 +32,7 @@
   background-color: white;
 }
 
-#category_lists {
+.category_lists {
   width:inherit;
   height:inherit;
   display: flex;
