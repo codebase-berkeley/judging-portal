@@ -53,6 +53,9 @@ class DataEntry extends Component {
   changeFileName(event) {
     let input = event.target.value;
     let fileName = input.replace(/^.*[\\\/]/, '');
+    if (fileName == '') {
+      fileName = 'Upload File';
+    }
     this.setState({
       fileName: fileName
     })
