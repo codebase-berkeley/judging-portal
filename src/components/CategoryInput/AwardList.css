@@ -22,6 +22,10 @@
 
 }
 
+.list-element {
+    display: flex;
+    flex-direction: row;
+}
 
 .input-field {
     position: relative;
@@ -58,4 +62,6 @@
   right: 20%;
   height: 30px;
   width: 30px;
+  cursor: pointer;
+
 }
