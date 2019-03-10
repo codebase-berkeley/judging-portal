@@ -11,6 +11,15 @@ class AwardList extends Component {
     };
     this.inputChange = this.inputChange.bind(this);
     this.addToList = this.addToList.bind(this);
+    this.removeItem = this.removeItem.bind(this);
+  }
+
+  removeItem(index) {
+    let awards = this.state.awardsList.slice();
+    awards.splice(index, 1);
+    this.setState({
+      awardsList: awards
+    });
   }
 
   inputChange(event) {
@@ -23,7 +32,7 @@ class AwardList extends Component {
     if (event.key == 'Enter') {
         if (this.state.curr_item !== "") {
             this.setState({
-                currentAward: "", 
+                currentAward: "",
                 awardsList: this.state.awardsList.concat(this.state.currentAward)
             })
             console.log("successfully added");
@@ -34,16 +43,20 @@ class AwardList extends Component {
   render() {
     return (
         <div className="awardList">
-            <div className="list-name">
-                <h1>{this.props.listTitle}</h1>
-                <div className="blue-highlight"></div>
+            <div className="">
+                <h1 className = "list-name"> {this.props.listTitle}</h1>
             </div>
-            <div className="input-field"> 
+            <div className="input-field">
                 <input className="list-input" placeholder={this.props.inputBackgroundText} value={this.state.currentAward} onChange={this.inputChange} onKeyPress={this.addToList}></input>
             </div>
             <ol className="list-content">
                 {this.state.awardsList.map((item, index) => (
+                  <div className="list-element">
                     <ListItem key={index} text={item}/>
+                    <div className="close-button" onClick={() => this.removeItem(index)}>
+                      x
+                    </div>
+                  </div>
                 ))}
             </ol>
         </div>

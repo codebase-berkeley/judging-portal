@@ -15,11 +15,21 @@
 .list-name {
     color: #3B9BC2;
     position: relative;
-    left: 4vw;
+
+    left: 4.3vw;
     display: inline-block;
+    background: -webkit-linear-gradient(white 50%,#D5EBF6)
+
+}
+
+.list-element {
+    display: flex;
+    flex-direction: row;
 }
 
 .input-field {
+    position: relative;
+    top: 0%;
     text-align:center;
     width:100%;
 }
@@ -28,25 +38,30 @@
 .list-input {
     height: 40px;
     width: 70%;
-    font-size: 22px;
+    font-size: 20px;
     border: none;
-    border-bottom: 1px solid #8AC9E1;
-    border-top: 1px solid #8AC9E1;
+    border-bottom: 2px solid #8AC9E1;
+    border-top: 2px solid #8AC9E1;
 }
 
 ::placeholder {
     color: #8AC9E1;
+
+
+
 }
 
 :focus {
     outline: none;
 }
 
-.blue-highlight {
-    position: absolute;
-    top: 45%;
-    width: 100%;
-    min-height: 20px;
-    background-color: #D5EBF6;
-    z-index: -1;
+.close-button {
+  width: 90%;
+  position: relative;
+  top: 0%;
+  right: 20%;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+
 }

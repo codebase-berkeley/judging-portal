@@ -1,33 +1,38 @@
 .categoryInputPage {
   height: 100vh; /* Magic here */
-  display: flex;
+  width: 100vw;
+
   justify-content: center;
   align-items: center;
+  text-align: center;
 
   background-color: #d5ebf6;
-  width: 100vw;
 }
 
-#title {
+.title {
   font-weight: bold;
-  position: absolute;
+  position: relative;
   color: #3b9bc2;
   font-size: 50px;
   text-align: left;
-  left: 150px;
-  top: 15px;
+
+  left:10%;
+  top: 1%;
 }
 
-#category_body {
+.category_body {
   position: relative;
   z-index: 1;
-  top: 10px;
+  top: 5%;
+  margin-left: auto;
+  margin-right: auto;
+
   width: 90vw;
   height: 80vh;
   background-color: white;
 }
 
-#category_lists {
+.category_lists {
   width:inherit;
   height:inherit;
   display: flex;

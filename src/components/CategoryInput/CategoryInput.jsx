@@ -7,12 +7,12 @@ class CategoryInput extends Component {
   render() {
     return (
       <div className="categoryInputPage">
-        <div id="title">
+        <div className="title">
           <h>Judging Categories</h>
         </div>
 
-        <div id="category_body">
-          <div id ="category_lists">
+        <div className="category_body">
+          <div className ="category_lists">
             <AwardList listTitle="APIs" inputBackgroundText="+ Add API"/>
             <AwardList listTitle="General Categories" inputBackgroundText="+ Add Category"/>
             <AwardList listTitle="Fellowships" inputBackgroundText="+ Add Fellowship"/>
