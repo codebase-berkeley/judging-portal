@@ -44,12 +44,3 @@
 :focus {
     outline: none;
 }
-
-.blue-highlight {
-    position: absolute;
-    top: 45%;
-    width: 100%;
-    min-height: 20px;
-    background-color: #D5EBF6;
-    z-index: -1;
-}

@@ -36,7 +36,6 @@ class AwardList extends Component {
         <div className="awardList">
             <div className="">
                 <h1 className = "list-name"> {this.props.listTitle}</h1>
-                {/* <div className="blue-highlight"></div> */}
             </div>
             <div className="input-field"> 
                 <input className="list-input" placeholder={this.props.inputBackgroundText} value={this.state.currentAward} onChange={this.inputChange} onKeyPress={this.addToList}></input>
