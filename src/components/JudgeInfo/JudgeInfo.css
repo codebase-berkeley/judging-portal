@@ -60,11 +60,12 @@ p {
 
 ::placeholder {
   color: #98d0ec;
+  font-size: 2vh;
 }
 
 .input-name {
   border: none;
-  width: 104%;
+  width: 102%;
   display: block;
   align-content: center;
   justify-content: center;
@@ -77,7 +78,7 @@ p {
   height: 5.25%;
   font-family: 'Muli';
   font-weight: regular;
-  font-size: 1vh;
+  font-size: 2vh;
   padding-left: 2%;
 }
 
