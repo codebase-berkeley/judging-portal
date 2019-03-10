@@ -5,7 +5,6 @@ import './App.css';
 import DataEntry from './components/DataEntry/DataEntry';
 
 
-
 class App extends Component {
   render() {
     return (
