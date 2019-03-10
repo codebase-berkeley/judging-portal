@@ -11,6 +11,13 @@ class AwardList extends Component {
     };
     this.inputChange = this.inputChange.bind(this);
     this.addToList = this.addToList.bind(this);
+    this.removeTodo = this.removeTodo.bind(this);
+  }
+
+  removeTodo(event) {
+    this.setState({
+      awardsList: this.state.awardsList.filter(item => item !== event)
+    })
   }
 
   inputChange(event) {
@@ -23,7 +30,7 @@ class AwardList extends Component {
     if (event.key == 'Enter') {
         if (this.state.curr_item !== "") {
             this.setState({
-                currentAward: "", 
+                currentAward: "",
                 awardsList: this.state.awardsList.concat(this.state.currentAward)
             })
             console.log("successfully added");
@@ -38,12 +45,12 @@ class AwardList extends Component {
                 <h1>{this.props.listTitle}</h1>
                 <div className="blue-highlight"></div>
             </div>
-            <div className="input-field"> 
-                <input className="list-input" placeholder={this.props.inputBackgroundText} value={this.state.currentAward} onChange={this.inputChange} onKeyPress={this.addToList}></input>
+            <div className="input-field">
+                <input id="list-input" placeholder={this.props.inputBackgroundText} value={this.state.currentAward} onChange={this.inputChange} onKeyPress={this.addToList}></input>
             </div>
             <ol className="list-content">
                 {this.state.awardsList.map((item, index) => (
-                    <ListItem key={index} text={item}/>
+                    <ListItem key={index} text={item} removeTodo={this.removeTodo}/>
                 ))}
             </ol>
         </div>

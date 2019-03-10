@@ -20,15 +20,17 @@
 }
 
 .input-field {
+    position: relative;
+    top: 0%;
     text-align:center;
     width:100%;
 }
 
 
-.list-input {
+#list-input {
     height: 40px;
     width: 70%;
-    font-size: 22px;
+    font-size: 20px;
     border: none;
     border-bottom: 1px solid #8AC9E1;
     border-top: 1px solid #8AC9E1;
