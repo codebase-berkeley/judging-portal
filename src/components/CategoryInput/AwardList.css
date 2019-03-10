@@ -19,7 +19,7 @@
     left: 4.3vw;
     display: inline-block;
     background: -webkit-linear-gradient(white 50%,#D5EBF6)
-    
+
 }
 
 
@@ -43,10 +43,19 @@
 ::placeholder {
     color: #8AC9E1;
 
-    
+
 
 }
 
 :focus {
     outline: none;
+}
+
+.close-button {
+  width: 90%;
+  position: relative;
+  top: 0%;
+  right: 20%;
+  height: 30px;
+  width: 30px;
 }

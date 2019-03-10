@@ -11,13 +11,15 @@ class AwardList extends Component {
     };
     this.inputChange = this.inputChange.bind(this);
     this.addToList = this.addToList.bind(this);
-    this.removeTodo = this.removeTodo.bind(this);
+    this.removeItem = this.removeItem.bind(this);
   }
 
-  removeTodo(event) {
+  removeItem(index) {
+    let awards = this.state.awardsList.slice();
+    awards.splice(index, 1);
     this.setState({
-      awardsList: this.state.awardsList.filter(item => item !== event)
-    })
+      awardsList: awards
+    });
   }
 
   inputChange(event) {
@@ -49,7 +51,12 @@ class AwardList extends Component {
             </div>
             <ol className="list-content">
                 {this.state.awardsList.map((item, index) => (
-                    <ListItem key={index} text={item} removeTodo={this.removeTodo}/>
+                  <div className="list-element">
+                    <ListItem key={index} text={item}/>
+                    <div className="close-button" onClick={() => this.removeItem(index)}>
+                      x
+                    </div>
+                  </div>
                 ))}
             </ol>
         </div>
