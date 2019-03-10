@@ -86,8 +86,9 @@ class JudgeInfo extends Component {
               />
 
               <div className="input-api-header">
-              Judge API</div>
-
+                Judge API
+              </div>
+              
               <div className="dropdown">
                 <Dropdown
                   options={options}
@@ -104,15 +105,13 @@ class JudgeInfo extends Component {
               >
                 Submit
               </button>
-
             </div>
 
             <div className="judge-info-list-border">
-
               <div className="name-list-header">
-                  <p className = "name-text">
+                <p className = "name-text">
                   Name
-                  </p>           
+                </p>           
               </div>
 
               <div className="api-list-header">
@@ -120,21 +119,21 @@ class JudgeInfo extends Component {
                   API
                 </p>
               </div>
+
               <div className="list">
                 {info}
               </div>
-                {
-                  this.state.name &&
-                  <li>{this.state.name}</li>
-                }
-              </div>
+              {
+                this.state.name &&
+                <li>{this.state.name}</li>
+              }
             </div>
+          </div>
 
           <div className= "buttons">
             <button className="judge-button" >Prev</button>
             <button className="judge-button">Next</button>
           </div>
-          
         </div>
       </div>
     );
