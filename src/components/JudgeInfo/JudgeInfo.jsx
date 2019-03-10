@@ -46,7 +46,7 @@ class JudgeInfo extends Component {
   }
 
   addInfo() {
-    if (this.state.curr_name !== '') {
+    if (this.state.curr_name !== '' && this.state.selected !== '') {
       this.setState({
         info: this.state.info.concat([
           [this.state.curr_name, this.state.selected.label, this.state.count]
