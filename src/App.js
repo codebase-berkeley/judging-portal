@@ -10,7 +10,7 @@ import JudgeInfo from './components/JudgeInfo/JudgeInfo';
 class App extends Component {
   render() {
     return (
-      <div>
+      <div className="App">
       	<CategoryInput />
         <DataEntry />
         <JudgeInfo />
