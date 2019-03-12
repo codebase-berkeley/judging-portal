@@ -5,6 +5,7 @@ import './App.css';
 import CategoryInput from './components/CategoryInput/CategoryInput';
 import DataEntry from './components/DataEntry/DataEntry';
 import JudgeInfo from './components/JudgeInfo/JudgeInfo';
+import Instructions from './components/JudgeLogin/Instructions';
 import JudgeLogin from './components/JudgeLogin/JudgeLogin';
 
 
@@ -15,6 +16,7 @@ class App extends Component {
       	<CategoryInput />
         <DataEntry />
         <JudgeInfo />
+        <Instructions/>
         <JudgeLogin/>
       </div>
     );

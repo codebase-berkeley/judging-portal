@@ -4,7 +4,7 @@
     font-family: 'Muli', sans-serif;
     height: 100vh;
     width: 100%;
-    text-align: center;
+    text-align: left;
     display: inline-block;
     justify-content: center;
     align-items: center; 
@@ -35,18 +35,12 @@
 .j-login-password {
     border: none;
     width: 50%;
-    display: inline-block;
-    align-content: center;
-    justify-content: center;
     color: #98d0ec;
     margin-top: 2vh;
     border-top: 2px solid #98d0ec;
     border-bottom: 2px solid #98d0ec;
-    height: 5.25%;
+    height: 4.5%;
     font-family: 'Muli';
-    font-weight: regular;
-    font-size: 2vh;
-    padding-left: 2%;
 }
 
 .j-login-button {
@@ -63,5 +57,19 @@
     width: 50%;
     height: 6vh;
     box-shadow: 0 0px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 3px 0 rgba(0, 0, 0, 0.19);
+}
+
+input {
+    color: #98d0ec;
+    font-size: 2vh;
+    padding: 0;
+}
+
+::-webkit-input-placeholder{
+    padding-left: 10px;
+}
+
+::-webkit-input-value {
+    padding-left: 10px;
 }
 

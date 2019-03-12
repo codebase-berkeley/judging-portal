@@ -33,8 +33,8 @@ class JudgeLogin extends Component {
 
     submitLogin() {
         this.setState({
-            logininfo: this.state.logininfo.concat([
-                [this.state.curr_password, this.state.selected.label]
+            logininfo: this.state.logininfo.push([
+                [this.state.selected.label, this.state.curr_password]
             ]),
             curr_password: '',
             selected: ''

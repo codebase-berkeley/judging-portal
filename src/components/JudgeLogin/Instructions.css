@@ -53,13 +53,17 @@ p {
 }
 
 .instructions-next {
-    font-family: 'Muli', sans-serif;
-    font-weight: bold;
-    font-size: 3vh;
+    font-family: 'Muli';
+    font-weight: bolder;
+    font-size: 2.5vh;
     color: white;
-    background: #3B9BC2;
-    margin-top: 5vh;
-    border-radius: 1vh;
-    width: 30vh;
-    height: 7vh;
+    display: block;
+    align-content: center;
+    justify-content: center;
+    margin-top: 3vh;
+    border: none;
+    background-color: #3B9BC2;
+    width: 50%;
+    height: 6vh;
+    box-shadow: 0 0px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 3px 0 rgba(0, 0, 0, 0.19);
 }

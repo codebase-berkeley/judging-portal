@@ -5,11 +5,6 @@ const instructions = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, s
 
 class Instructions extends Component {
 
-    constructor(props) {
-        super(props);
-
-    }
-
     render() {
         return (
             <div className="instructions">
