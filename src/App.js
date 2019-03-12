@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 
 import './App.css';
 
-import CategoryInput from './components/CategoryInput/CategoryInput';
-import DataEntry from './components/DataEntry/DataEntry';
-import JudgeInfo from './components/JudgeInfo/JudgeInfo';
+
 import ProjectInfo from './components/ProjectInfo/ProjectInfo';
 
 
