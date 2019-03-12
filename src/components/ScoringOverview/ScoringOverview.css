@@ -4,19 +4,21 @@
     color: #3B9Bc2; 
     display: block;
     height: 100vh;
+    padding-top: 10px;
 }
 
 .score-button-box {
     height: 60px;
     border-bottom: 1px solid #8AC9E1;
     margin: auto;
+    padding: auto;
 }
 
 .score-button {
     border-radius: 5px;
     text-align: center;  
     margin: auto;
-    margin-top: 25px;
+    margin-top: 20px;
     background-color: #8AC9E1;
     padding: 3px 4px;
     font-size: 15px;
