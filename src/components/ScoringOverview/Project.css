@@ -1,0 +1,34 @@
+.projectcmp {
+    display: block;
+    border-bottom: 1px solid #8AC9E1;
+    height: 55px;
+    text-align: left;
+}
+
+.project-text {
+    padding-left: 20px;
+}
+
+h2 {
+    margin: 0;
+}
+
+h3 {
+    margin: 2.5px;
+    margin-top: 10px;
+}
+
+p {
+    margin: 2.5px;
+    font-size: 12px;
+}
+
+.score {
+    display: absolute;
+    width: 30px;
+    text-align: center;
+    top: 0;
+    margin: 10px;
+    border-radius: 50%;
+    border: 5px solid #8AC9E1;
+}
