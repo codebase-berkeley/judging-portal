@@ -1,3 +1,16 @@
+html,
+body,
+div,
+p {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
 .j-login-container{
     height: 100vh;
     width: 100vh;
@@ -7,3 +20,4 @@
 .j-login-dropdown {
     width: 100%;
 }
+

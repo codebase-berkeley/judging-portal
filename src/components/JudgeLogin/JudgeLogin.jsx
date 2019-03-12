@@ -32,7 +32,6 @@ class JudgeLogin extends Component {
     }
 
     submitLogin() {
-        console.log(this.state.curr_password);
         this.setState({
             logininfo: this.state.logininfo.concat([
                 [this.state.curr_password, this.state.selected.label]
@@ -40,6 +39,7 @@ class JudgeLogin extends Component {
             curr_password: '',
             selected: ''
           });
+          console.log(this.state.logininfo);
     }
 
     render() {
