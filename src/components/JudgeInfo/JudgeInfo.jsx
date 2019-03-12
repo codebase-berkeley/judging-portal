@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Dropdown from 'react-dropdown';
-import 'react-dropdown/style.css';
+import Dropdown from 'react-dropdown-org';
+import 'react-dropdown-org/style-org.css';
 import './JudgeInfo.css';
 import Judge from './Judge';
 

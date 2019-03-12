@@ -1,0 +1,9 @@
+.j-login-container{
+    height: 100vh;
+    width: 100vh;
+    text-align: center;
+}
+
+.j-login-dropdown {
+    width: 100%;
+}
