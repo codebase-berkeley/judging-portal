@@ -3,8 +3,9 @@ import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import './JudgeInfo.css';
 import Judge from './Judge';
+import '../OrganizerPortal.css';
 
-const options = ['one', 'two', 'three', 'four'];
+const options = ['one', 'two', 'three', 'four', 'four', 'four', 'four', 'four', 'four', 'four', 'four', 'four', 'four', 'four', 'four', 'four', 'four', 'five'];
 
 class JudgeInfo extends Component {
   constructor(props) {
@@ -131,8 +132,8 @@ class JudgeInfo extends Component {
           </div>
 
           <div className= "buttons">
-            <button className="judge-button" >Prev</button>
-            <button className="judge-button">Next</button>
+            <button className="page-button" >Prev</button>
+            <button className="page-button">Next</button>
           </div>
         </div>
       </div>
