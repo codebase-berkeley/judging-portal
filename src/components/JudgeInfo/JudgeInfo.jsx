@@ -26,9 +26,8 @@ class JudgeInfo extends Component {
   }
 
   handleClickIndex(index, event){
-
+    console.log(eval(this[event.target.name]));
     eval(this[event.target.name]).bind(this)(index, event)
-
   }
 
   removeTask(index, event) {
@@ -70,8 +69,6 @@ class JudgeInfo extends Component {
         api={this.state.info[index][1]}
         color={this.state.info[index][2]}
           />
-
-
       </ul>
     ))
 
