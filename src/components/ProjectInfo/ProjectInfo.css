@@ -1,0 +1,87 @@
+.entirePage {
+    background-color: white;
+    color: #3b9bc2;
+    height: 100vh;
+    width: 100vw;
+    text-align: left;
+
+}
+.attribute-item {
+    margin-bottom: 10%;
+    height: 33%;
+    width:100%;
+}
+
+.projinfo-icon {
+    position: relative;
+    left: 0%;
+}
+
+.projHeader {
+    text-align: left;
+    position: relative; 
+    left: 0%;
+    top: 0%;
+}
+
+.projTitle{
+    font-size: 300%;
+    font-weight: bold;
+}
+.projID {
+    color: #8AC9E1;
+    font-size: 150%;
+
+}
+.projDetails {
+    position: relative; 
+    top: 10%;
+}
+
+.projInfo {
+    position: relative;
+    top: 10%;
+    width:100%;
+    height:70%;
+    left:10%;
+
+}
+
+.detail-header {
+    font-weight: bold;
+    font-size:180%;
+
+}
+
+.teamDetails {
+    position: relative;
+    display: inline-block;
+    top: 200%;
+    left:3%;
+
+}
+
+
+.score {
+    position: absolute;
+    text-align: center;
+    width:20vw;
+    height:20vw;
+    text-align: center;
+    z-index:1;
+    bottom:10%;
+    left:40%;
+}
+.scoreInput {
+    text-align: center;
+
+    border: 3px solid #3b9bc2;
+    border-radius: 100%;
+    width: 100%;
+    height:100%;
+    z-index:0;
+}
+
+::placeholder {
+    font-size:70%;
+}
