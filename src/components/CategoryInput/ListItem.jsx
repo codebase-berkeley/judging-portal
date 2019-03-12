@@ -1,11 +1,15 @@
 import React, {Component} from "react";
+import './ListItem.css';
 
 class ListItem extends Component {
+
     render() {
         return (
-            <li className="list-item">{this.props.text}</li>
-        )
+            <div className="ListItem">
+              <li>{this.props.text}</li>
+            </div>
+        );
     }
 }
 
-export default ListItem; 
+export default ListItem;

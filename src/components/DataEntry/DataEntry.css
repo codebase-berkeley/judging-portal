@@ -1,13 +1,13 @@
 .view {
   width: 100vw;
   height: 100vh;
-  overflow-y: hidden;
+  overflow-y: scroll;
   background-color: #d5ebf6;
   color: #3b9bc2;
+  font-family: 'Muli', sans-serif;
 }
 
 .pheader {
-  font-family: 'Muli', sans-serif;
   font-weight: 600;
   color: #3b9bc2;
   text-align: left;
@@ -15,14 +15,14 @@
 }
 
 .box {
-  font-family: 'Muli', sans-serif;
   font-weight: 600;
   margin-left: auto;
   margin-right: auto;
-  width: 90vw;
-  height: 75vh;
+  width: 90%;
+  height: 75%;
   background-color: white;
   padding: 25px;
+  overflow-y: auto;
 }
 
 .c {
@@ -34,7 +34,7 @@
 }
 
 .datatype {
-  margin: 20px;
+  margin: 10px;
 }
 
 .input-box {
@@ -46,7 +46,7 @@
   border-top: 2.5px solid #d5ebf6;
 }
 
-::placeholder {
+.input-box::placeholder {
   color: #d5ebf6;
   font-size: 10px;
   font-weight: 500;
@@ -56,10 +56,9 @@
   background-color: #d5ebf6;
   margin: 10px;
   font-family: 'Muli', sans-serif;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: 1000;
   color: #3b9bc2;
-  padding: 15px 30px;
   text-align: center;
   display: inline-block;
   cursor: pointer;
@@ -68,8 +67,44 @@
 }
 
 .upload-button {
-  font-size: 20px;
-  padding: 0px 0px;
-  margin: 5px;
+  padding: 10% 20px;
   margin-top: 0px;
+  margin: auto;
+}
+
+.upload-file {
+  width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+  position: absolute;
+	z-index: -1;
+}
+
+.upload-file + label {
+  background-color: #d5ebf6;
+  margin: 10px;
+  font-family: 'Muli', sans-serif;
+  font-size: 15px;
+  font-weight: 1000;
+  color: #3b9bc2;
+  text-align: center;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 2.5px 2.5px 5px grey;
+  padding: 15px 25px;
+}
+
+.submit-button-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top: 5%;
+}
+
+.submit-button {
+  font-size: 20px;
+  padding: 15px 25px;
 }

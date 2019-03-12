@@ -7,12 +7,11 @@ import DataEntry from './components/DataEntry/DataEntry';
 import JudgeInfo from './components/JudgeInfo/JudgeInfo';
 
 
-
 class App extends Component {
   render() {
     return (
-      <div>
-        <CategoryInput />
+      <div className="App">
+      	<CategoryInput />
         <DataEntry />
         <JudgeInfo />
       </div>

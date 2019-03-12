@@ -26,7 +26,6 @@ class JudgeInfo extends Component {
   }
 
   handleClickIndex(index, event){
-    console.log(eval(this[event.target.name]));
     eval(this[event.target.name]).bind(this)(index, event)
   }
 
@@ -75,7 +74,6 @@ class JudgeInfo extends Component {
     return (
       <div className="judge-info-page">
         <p className="judge-info-title">Judge Information</p>
-
         <div className="input-list">
           <div className="entry-container">
             <div className="input-container">
@@ -88,8 +86,9 @@ class JudgeInfo extends Component {
               />
 
               <div className="input-api-header">
-              Judge API</div>
-
+                Judge API
+              </div>
+              
               <div className="dropdown">
                 <Dropdown
                   options={options}
@@ -100,7 +99,7 @@ class JudgeInfo extends Component {
               </div>
 
               <button
-                className="submit-button"
+                className="submit-button-judge"
                 type="button"
                 onClick={this.addInfo}
               >
@@ -109,34 +108,32 @@ class JudgeInfo extends Component {
             </div>
 
             <div className="judge-info-list-border">
-
               <div className="name-list-header">
-                  <p className = "name-text">
+                <p className = "name-text">
                   Name
-                  </p>           
-                </div>
+                </p>           
+              </div>
 
-
-                <div className="api-list-header">
-                  <p className = "name-text">
+              <div className="api-list-header">
+                <p className = "name-text">
                   API
-                  </p>
-                </div>
-                <div className="list">
-                  {info}
-                </div>
+                </p>
+              </div>
 
-                {
-                  this.state.name &&
-                  <li>{this.state.name}</li>
-                }
+              <div className="list">
+                {info}
+              </div>
+              {
+                this.state.name &&
+                <li>{this.state.name}</li>
+              }
             </div>
-            </div>
+          </div>
+
           <div className= "buttons">
             <button className="judge-button" >Prev</button>
             <button className="judge-button">Next</button>
           </div>
-
         </div>
       </div>
     );
