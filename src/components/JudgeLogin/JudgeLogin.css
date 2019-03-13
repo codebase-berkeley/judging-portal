@@ -21,25 +21,26 @@
 }
 
 .j-login-dropdown {
-    width: 50%;
+    width: 70%;
     padding: 2vh;
     margin-top: 2vh;
 }
 
 .j-login-title {
-    font-weight: 1000;
+    font-weight: bolder;
     color: #3B9BC2;
-    font-size: 5vh;
+    font-size: 4vh;
+    margin-bottom: 3vh;
 }
 
 .j-login-password {
     border: none;
-    width: 50%;
+    width: 70%;
     color: #98d0ec;
     margin-top: 2vh;
     border-top: 2px solid #98d0ec;
     border-bottom: 2px solid #98d0ec;
-    height: 4.5%;
+    height: 5%;
     font-family: 'Muli';
 }
 
@@ -50,11 +51,12 @@
     color: white;
     display: block;
     align-content: center;
+    border-radius: 5px;
     justify-content: center;
-    margin-top: 3vh;
+    margin-top: 4vh;
     border: none;
     background-color: #3B9BC2;
-    width: 50%;
+    width: 70%;
     height: 6vh;
     box-shadow: 0 0px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 3px 0 rgba(0, 0, 0, 0.19);
 }

@@ -39,7 +39,6 @@ p {
     font-weight: bolder;
     color: #3B9BC2;
     font-size: 5vh;
-    font-style: italic;
 }
 
 .instructions-text {
@@ -48,8 +47,7 @@ p {
     font-weight: light;
     font-size: 2.5vh;
     color: black;
-    text-justify: inter-character;
-    text-align: justify;
+    text-align: left;
 }
 
 .instructions-next {
