@@ -73,7 +73,7 @@ class JudgeInfo extends Component {
 
     return (
       <div className="judge-info-page">
-        <p className="judge-info-title">Judge Information</p>
+        <p className="judge-info-title">JUDGE INFO</p>
         <div className="input-list">
           <div className="entry-container">
             <div className="input-container">

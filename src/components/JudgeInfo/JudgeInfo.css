@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Muli:regular,bold,light&subset=latin,latin-ext');
+@import url('https://fonts.googleapis.com/css?family=Overpass');
 
 html,
 body,
@@ -11,10 +11,6 @@ p {
   font-size: 100%;
   vertical-align: baseline;
   background: transparent;
-}
-
-@font-face {
-  font-family: 'Muli', sans-serif;
 }
 
 .judge-info-page {
@@ -75,11 +71,9 @@ input {
   border-top: 2px solid #98d0ec;
   border-bottom: 2px solid #98d0ec;
   height: 6%;
-  font-family: 'Muli';
 }
 
 .input-api-header {
-  font-family: 'Muli';
   font-weight: bold;
   color: #3b9bc2;
   font-size: 3.5vh;
@@ -89,7 +83,6 @@ input {
 }
 
 .submit-button-judge {
-  font-family: 'Muli';
   font-weight: bold;
   font-size: 2.5vh;
   color: #3b9bc2;
@@ -128,7 +121,6 @@ input {
 
 .name-list-header {
   display: inline-block;
-  font-family: 'Muli';
   font-weight: bold;
   color: #3b9bc2;
   background-color: #98d0ec;
@@ -141,7 +133,6 @@ input {
 
 .api-list-header {
   display: inline-block;
-  font-family: 'Muli';
   font-weight: bold;
   color: #3b9bc2;
   background-color: #98d0ec;
@@ -209,7 +200,6 @@ ul {
 }
 
 .judge-button {
-  font-family: 'Muli';
   font-weight: bold;
   font-size: 2.5vh;
   color: #3b9bc2;
