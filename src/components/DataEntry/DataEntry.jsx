@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './DataEntry.css';
+import '../OrganizerPortal.css';
 
 
 class DataEntry extends Component {
@@ -63,11 +64,11 @@ class DataEntry extends Component {
 
   render() {
     return (
-      <div className="view">
-        <div className="pheader">
-          <h1>Data Entry</h1>
+      <div className="page-background">
+        <div className="page-header">
+          <p>Data Entry</p>
         </div>
-        <div className="box">
+        <div className="content-background">
           <div className="c">
             <div className="datatype">
               <h2>Number of Tables</h2>
@@ -110,12 +111,12 @@ class DataEntry extends Component {
           </div>
 
           <div className="submit-button-box">
-            <button className="button" onClick={this.saveVals}>
-              <div className="submit-button">Prev</div>
+            <button className="page-button" onClick={this.saveVals}>
+              Prev
             </button>
 
-            <button className="button" onClick={this.saveVals}>
-              <div className="submit-button">Next</div>
+            <button className="page-button" onClick={this.saveVals}>
+              Next
             </button>
           </div>
 

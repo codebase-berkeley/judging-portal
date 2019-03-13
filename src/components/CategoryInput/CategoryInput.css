@@ -33,8 +33,9 @@
 }
 
 .category_lists {
+  height: 80%;
   width:inherit;
-  height:inherit;
+  /* height:inherit; */
   display: flex;
   flex-direction: row;
 }

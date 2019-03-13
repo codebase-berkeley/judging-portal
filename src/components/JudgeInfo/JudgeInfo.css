@@ -162,6 +162,8 @@ p {
   width: 35%;
   display: inline-block;
   margin-left: 5vh;
+  align-content: left;
+  text-align: left;
 }
 
 .delete {
@@ -208,7 +210,7 @@ ul {
   color: #91bcd1;
 }
 
-.judge-button {
+/* .judge-button {
   background-color: #d5ebf6;
   margin: 10px;
   font-family: 'Muli', sans-serif;
@@ -221,11 +223,12 @@ ul {
   cursor: pointer;
   border-radius: 10px;
   box-shadow: 2.5px 2.5px 5px grey;
-}
+} */
 
 .buttons {
   position: relative;
   margin-left: 40%;
+  margin-right: 4%;
 }
 
 .entry-container {

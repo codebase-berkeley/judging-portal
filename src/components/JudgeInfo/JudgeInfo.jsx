@@ -73,9 +73,9 @@ class JudgeInfo extends Component {
     ))
 
     return (
-      <div className="judge-info-page">
-        <p className="judge-info-title">Judge Information</p>
-        <div className="input-list">
+      <div className="page-background">
+        <p className="page-header">Judge Information</p>
+        <div className="content-background">
           <div className="entry-container">
             <div className="input-container">
               <p className="input-name-header">Judge Name</p>
