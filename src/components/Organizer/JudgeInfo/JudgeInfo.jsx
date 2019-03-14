@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
-import './JudgeInfo.css';
 import Judge from './Judge';
+import '../OrganizerPortal.css';
 
-const options = ['one', 'two', 'three', 'four'];
+const options = ['one', 'two', 'three', 'five'];
 
 class JudgeInfo extends Component {
   constructor(props) {
@@ -72,24 +72,22 @@ class JudgeInfo extends Component {
     ))
 
     return (
-      <div className="judge-info-page">
-        <p className="judge-info-title">JUDGE INFO</p>
-        <div className="input-list">
-          <div className="entry-container">
-            <div className="input-container">
-              <p className="input-name-header">Judge Name</p>
+      <div className="page-background" id= "JudgeInfo">
+        <div className="page-header">JUDGE INFORMATION</div>
+        <div className="content-background">
+          <div className="judge-input-list">
+            <div className="judge-input">
+
+              <div className="judge-name-title">JUDGE NAME</div>
               <input
-                className="input-name"
+                className="judge-name-input"
                 placeholder="Judge Name"
                 value={this.state.curr_name}
                 onChange={this.handleName}
               />
 
-              <div className="input-api-header">
-                Judge API
-              </div>
-              
-              <div className="dropdown">
+              <div className="judge-api-title">JUDGE API</div>
+              <div className="judge-dropdown">
                 <Dropdown
                   options={options}
                   onChange={this._onSelect}
@@ -99,40 +97,24 @@ class JudgeInfo extends Component {
               </div>
 
               <button
-                className="submit-button-judge"
+                className="button"
                 type="button"
                 onClick={this.addInfo}
               >
-                Submit
+                SUBMIT
               </button>
             </div>
 
-            <div className="judge-info-list-border">
-              <div className="name-list-header">
-                <p className = "name-text">
-                  Name
-                </p>           
-              </div>
-
-              <div className="api-list-header">
-                <p className = "name-text">
-                  API
-                </p>
-              </div>
-
-              <div className="list">
-                {info}
-              </div>
-              {
-                this.state.name &&
-                <li>{this.state.name}</li>
-              }
+            <div className="judge-list">
+              <div className="judge-list-name">NAME</div>
+              <div className="judge-list-api">API</div>
+              <div className="list">{info}</div>
             </div>
           </div>
 
-          <div className= "buttons">
-            <button className="judge-button" >Prev</button>
-            <button className="judge-button">Next</button>
+          <div className= "buttons nav judge-button">
+            <button className="button" >PREV</button>
+            <button className="button">NEXT</button>
           </div>
         </div>
       </div>
