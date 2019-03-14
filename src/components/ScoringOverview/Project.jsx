@@ -9,7 +9,7 @@ class Project extends Component {
                     <h3>{this.props.name}</h3>
                     <p>ID: {this.props.identification}</p>
                 </div>
-                <div className="score">
+                <div className="overview-score">
                     <h2>{this.props.score}</h2></div>
             </div>
         );
