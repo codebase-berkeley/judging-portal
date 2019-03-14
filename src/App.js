@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 
 import './App.css';
+import './components/Organizer/OrganizerPortal.css';
 
 import CategoryInput from './components/Organizer/CategoryInput/CategoryInput';
 import DataEntry from './components/Organizer/DataEntry/DataEntry';
