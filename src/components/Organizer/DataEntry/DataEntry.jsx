@@ -103,7 +103,7 @@ class DataEntry extends Component {
               <label for="og-file">{this.state.fileName}</label>
             </div>
 
-            <div className="nav">
+            <div className="data-button nav">
               <button className="button" onClick={this.saveVals}>PREV</button>
               <button className="button" onClick={this.saveVals}>NEXT</button>
             </div>

@@ -112,7 +112,7 @@ class JudgeInfo extends Component {
             </div>
           </div>
 
-          <div className= "buttons nav">
+          <div className= "buttons nav judge-button">
             <button className="button" >PREV</button>
             <button className="button">NEXT</button>
           </div>

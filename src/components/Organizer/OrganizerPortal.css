@@ -17,7 +17,7 @@
     color: #3b9bc2;
     text-align: left;
     font-size: 5vh;
-    padding-top: 15vh;
+    padding-top: 7vh;
     padding-bottom: 1vh;
     padding-left: 8vw;
 }
@@ -31,94 +31,13 @@
     align-content: center;
     justify-content: center;
     width: 90vw;
-    height: 70vh;
+    height: 75vh;
 }
 
 /********************* LISTS ********************/
 .list {
     overflow: scroll; 
     height: 75%;
-}
-
-/***************** DOT NAV BAR ******************/
-hr {
-    position: fixed;
-    top: 6.5vh;
-    width:100%;
-    border-top: 4px solid #98D0EC;
-    z-index: 0;
-  }
-  
-  .dot-navbar {
-    position:absolute;
-    right:0;
-  }
-  
-  .dot {
-    display:inline-block;
-    width:20px;
-    height:20px;
-    background-color:#D5EBF6;
-    border-radius: 100%;
-    border: 5px solid #98D0EC;
-    z-index:999;
-    content:'';
-    color:transparent;
-    font-size:14px;
-    line-height:17px;
-    margin:5px 100px 10px 0;
-    font-weight:300;
-    display: flex;
-    flex-direction: row;
-  }
-  
-  .dot:hover {
-    color:#98D0EC;
-    background-color:#98D0EC;
-  }
-  
-  nav {
-    width:200px;
-    height:200px;
-    padding:0 0px;
-    position:fixed;
-    top:8%;
-    right:35%;
-    transform: translate(0, -50%);
-    z-index: 10000;
-    display: flex;
-    flex-direction: row;
-  }
-  
-  nav ul li a {
-    text-decoration:none;
-    font-size: 10px;
-  }
-  
-  nav ul {
-    list-style-type:none;
-    margin:0;
-    padding:0;
-    display: flex;
-    flex-direction: row;
-    margin:auto;
-    text-align: center;
-  }
-  
-  .active {
-    color: #98D0EC;
-    background-color:#98D0EC;
-    text-align:right;
-  }
-
-/********************* INPUTS ********************/
-::placeholder {
-    color: #d5ebf6;
-    font-size: 2vh;
-}
-
-:focus {
-    outline: none;
 }
 
 /******************* BUTTONS ********************/
@@ -129,7 +48,7 @@ hr {
     display: block;
     align-content: center;
     justify-content: center;
-    margin-top: 3vh;
+    margin-top: 4vh;
     border: none;
     background-color: #d5ebf6;
     width: 14vh;
@@ -140,9 +59,11 @@ hr {
 }
 
 .nav {
-    text-align: center;
+    justify-content: center;
+    margin: auto;
     display: flex;
     flex-direction: row;
+    margin-top: 3vh;
 }
 
 .button:hover{
@@ -160,9 +81,19 @@ hr {
     color: #91bcd1;
 }
 
+/***************** INPUTS ****************/
+::placeholder{
+    color: #d5ebf6;
+    font-size: 2vh;
+}
+
+:focus {
+    outline: none;
+}
+
 /***************** CATEGORY INPUTS ****************/
 .category-lists {
-    height: 80%;
+    height: 75%;
     width: inherit;
     display: flex;
     flex-direction: row;
@@ -212,6 +143,7 @@ hr {
     border: none;
     border-bottom: 2px solid #8AC9E1;
     border-top: 2px solid #8AC9E1;
+    color: #d5ebf6;
 }
 
 .award-list-item {
@@ -219,6 +151,10 @@ hr {
 }
 
 /********************* DATA ENTRY ********************/
+.data-button {
+    margin-top: 8vh;
+}
+
 .data-entry-contents {
     padding-top: 9vh;
     margin-bottom: 3vh;
@@ -247,6 +183,7 @@ hr {
     border: none;
     border-bottom: 2px solid #8AC9E1;
     border-top: 2px solid #8AC9E1;
+    color: #d5ebf6;
 }
 
 .upload-file {
@@ -256,16 +193,18 @@ hr {
 }
 
 .upload-file + label{
+    cursor: pointer;
     font-weight: bold;
     font-size: 2vh;
     color: #3b9bc2;
     border: none;
     background-color: #d5ebf6;
     width: 22vh;
+    width: 200px;
+    height: 25px;
     box-shadow: 3px 3px #cdcdcd;
     border-radius: 4px;
-    margin: 2%;
-    margin-right: 0;
+    margin: 0;
     padding: 2%;
 }
 
@@ -302,6 +241,7 @@ hr {
     border: none;
     border-bottom: 2px solid #8AC9E1;
     border-top: 2px solid #8AC9E1;
+    color: #d5ebf6;
 }
 
 .judge-api-title {
@@ -356,6 +296,10 @@ hr {
 ul {
     padding: 0;
     margin: 0;
+}
+
+.judge-button {
+    margin: -4vh;
 }
   
 .judge-item {
