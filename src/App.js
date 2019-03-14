@@ -8,7 +8,6 @@ import DataEntry from './components/Organizer/DataEntry/DataEntry';
 import JudgeInfo from './components/Organizer/JudgeInfo/JudgeInfo';
 
 class App extends Component {
-
   render() {
     return (
       <div className="App">
