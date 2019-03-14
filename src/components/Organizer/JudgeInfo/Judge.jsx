@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Judge.css';
+import '../OrganizerPortal.css';
 
 class Judge extends Component {
   render() {

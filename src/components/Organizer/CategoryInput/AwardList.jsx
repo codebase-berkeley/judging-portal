@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import './AwardList.css';
 import ListItem from './ListItem';
+import '../OrganizerPortal.css';
 
 class AwardList extends Component {
   constructor(props) {
@@ -42,18 +42,18 @@ class AwardList extends Component {
 
   render() {
     return (
-        <div className="awardList">
-            <div className="">
-                <h1 className = "list-name"> {this.props.listTitle}</h1>
+        <div className="award-list">
+            <div className="award-list-name">
+              {this.props.listTitle}
             </div>
-            <div className="input-field">
-                <input className="list-input" placeholder={this.props.inputBackgroundText} value={this.state.currentAward} onChange={this.inputChange} onKeyPress={this.addToList}></input>
+            <div className="award-list-field">
+                <input className="award-list-input" placeholder={this.props.inputBackgroundText} value={this.state.currentAward} onChange={this.inputChange} onKeyPress={this.addToList}></input>
             </div>
-            <ol className="list-content">
+            <ol className="list award">
                 {this.state.awardsList.map((item, index) => (
-                  <div className="list-element">
+                  <div className="award-list-element ">
                     <ListItem key={index} text={item}/>
-                    <div className="close-button" onClick={() => this.removeItem(index)}>
+                    <div className="delete-button" onClick={() => this.removeItem(index)}>
                       x
                     </div>
                   </div>

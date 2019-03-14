@@ -1,11 +1,11 @@
 import React, {Component} from "react";
-import './ListItem.css';
+import '../OrganizerPortal.css';
 
 class ListItem extends Component {
 
     render() {
         return (
-            <div className="ListItem">
+            <div className="award-list-item">
               <li>{this.props.text}</li>
             </div>
         );
