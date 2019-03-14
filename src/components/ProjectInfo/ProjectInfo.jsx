@@ -51,10 +51,9 @@ class ProjectInfo extends Component{
                     </div>
                 
                 </div>
-
-                <div className = "score">
-                    <input className = "scoreInput" placeholder = "Add score"></input>
-                </div>
+            <div className = "score">
+                <input className = "scoreInput" placeholder = "Add score"></input>
+            </div>
 
             </div>
 
