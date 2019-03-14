@@ -26,7 +26,7 @@ class JudgeInfo extends Component {
   }
 
   handleClickIndex(index, event){
-    eval(this[event.target.name]).bind(this)(index, event)
+    this[event.target.name].bind(this)(index, event)
   }
 
   removeTask(index, event) {
@@ -73,7 +73,7 @@ class JudgeInfo extends Component {
 
     return (
       <div className="judge-info-page">
-        <p className="judge-info-title">Judge Information</p>
+        <p className="judge-info-title">JUDGE INFO</p>
         <div className="input-list">
           <div className="entry-container">
             <div className="input-container">
@@ -94,7 +94,7 @@ class JudgeInfo extends Component {
                   options={options}
                   onChange={this._onSelect}
                   value={defaultOption}
-                  placeholder="Select an option"
+                  placeholder="Select an API"
                 />
               </div>
 

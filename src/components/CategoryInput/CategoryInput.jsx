@@ -8,7 +8,7 @@ class CategoryInput extends Component {
     return (
       <div className="categoryInputPage">
         <div className="title">
-          <h>Judging Categories</h>
+          <h>JUDGING CATEGORIES</h>
         </div>
 
         <div className="category_body">

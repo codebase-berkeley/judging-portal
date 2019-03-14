@@ -15,10 +15,8 @@
 .list-name {
     color: #3B9BC2;
     position: relative;
-
     left: 4.3vw;
     display: inline-block;
-    background: -webkit-linear-gradient(white 50%,#D5EBF6)
 
 }
 
@@ -46,9 +44,6 @@
 
 ::placeholder {
     color: #8AC9E1;
-
-
-
 }
 
 :focus {

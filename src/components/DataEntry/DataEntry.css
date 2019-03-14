@@ -1,28 +1,34 @@
+@import url('https://fonts.googleapis.com/css?family=Overpass');
+
 .view {
+  font-family: 'Overpass', sans-serif;
+  height: 100vh; 
   width: 100vw;
-  height: 100vh;
-  overflow-y: scroll;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   background-color: #d5ebf6;
-  color: #3b9bc2;
-  font-family: 'Muli', sans-serif;
 }
 
 .pheader {
-  font-weight: 600;
+  font-weight: bold;
+  position: relative;
   color: #3b9bc2;
+  font-size: 50px;
   text-align: left;
-  margin-left: 7vw;
+  padding-top: 8%;
+  left: 6%;
 }
 
 .box {
-  font-weight: 600;
+  position: relative;
+  z-index: 1;
+  top: 1%;
   margin-left: auto;
   margin-right: auto;
   width: 90%;
-  height: 75%;
+  height: 70%;
   background-color: white;
-  padding: 25px;
-  overflow-y: auto;
 }
 
 .c {
