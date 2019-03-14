@@ -43,7 +43,7 @@
 /***************** DOT NAV BAR ******************/
 hr {
     position: fixed;
-    top: 7vh;
+    top: 6.5vh;
     width:100%;
     border-top: 4px solid #98D0EC;
     z-index: 0;
@@ -262,7 +262,6 @@ hr {
     border: none;
     background-color: #d5ebf6;
     width: 22vh;
-    height: 6vh;
     box-shadow: 3px 3px #cdcdcd;
     border-radius: 4px;
     margin: 2%;
