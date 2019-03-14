@@ -27,10 +27,10 @@ class ScoringOverview extends Component {
             let score = fetchedData[i][2];
             let component = [fetchedData[i]];
             if (score == "") {
-                scoredData = scoredData.concat(component);
+                unscoredData = unscoredData.concat(component);
             }
             else {
-                unscoredData = unscoredData.concat(component);
+                scoredData = scoredData.concat(component);
             }
         }
         console.log(unscoredData);
@@ -64,8 +64,8 @@ class ScoringOverview extends Component {
             <div className="scoring-view">
                 <div className="score-button-box">
                     <div className="score-button">
-                        <button className={this.state.showUnscored ? "unscored" : "scored"} onClick={this.fetchUnscored}>Unscored</button>
-                        <button className={this.state.showUnscored ? "scored" : "unscored"} onClick={this.fetchScored}>  Scored  </button>
+                        <button className={this.state.showUnscored ? "scored" : "unscored"} onClick={this.fetchUnscored}>Unscored</button>
+                        <button className={this.state.showUnscored ? "unscored" : "scored"} onClick={this.fetchScored}>  Scored  </button>
                     </div>
                 </div>
             <ul>

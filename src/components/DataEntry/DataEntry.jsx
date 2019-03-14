@@ -65,7 +65,7 @@ class DataEntry extends Component {
     return (
       <div className="view">
         <div className="pheader">
-          <h1>Data Entry</h1>
+          DATA ENTRY
         </div>
         <div className="box">
           <div className="c">

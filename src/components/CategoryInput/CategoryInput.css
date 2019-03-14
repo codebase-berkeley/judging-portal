@@ -1,11 +1,12 @@
-.categoryInputPage {
-  height: 100vh; /* Magic here */
-  width: 100vw;
+@import url('https://fonts.googleapis.com/css?family=Overpass');
 
+.categoryInputPage {
+  font-family: 'Overpass', sans-serif;
+  height: 100vh; 
+  width: 100vw;
   justify-content: center;
   align-items: center;
   text-align: center;
-
   background-color: #d5ebf6;
 }
 
@@ -15,26 +16,24 @@
   color: #3b9bc2;
   font-size: 50px;
   text-align: left;
-
-  left:10%;
-  top: 1%;
+  padding-top: 8%;
+  left: 6%;
 }
 
 .category_body {
   position: relative;
   z-index: 1;
-  top: 5%;
+  top: 1%;
   margin-left: auto;
   margin-right: auto;
-
-  width: 90vw;
-  height: 80vh;
+  width: 90%;
+  height: 70%;
   background-color: white;
 }
 
 .category_lists {
-  width:inherit;
-  height:inherit;
+  width: inherit;
+  height: inherit;
   display: flex;
   flex-direction: row;
 }
