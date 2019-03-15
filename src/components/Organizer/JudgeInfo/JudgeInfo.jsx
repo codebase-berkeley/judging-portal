@@ -19,6 +19,7 @@ class JudgeInfo extends Component {
     this.addInfo = this.addInfo.bind(this);
     this.handleClickIndex = this.handleClickIndex.bind(this);
     this._onSelect = this._onSelect.bind(this);
+    this.routeToPrev = this.routeToPrev.bind(this);
   }
 
   _onSelect(option) {
@@ -54,6 +55,11 @@ class JudgeInfo extends Component {
     }
   }
 
+  routeToPrev() {
+    let path = "/data-entry";
+    this.props.history.push(path);
+  }
+
   render() {
     const defaultOption = this.state.selected;
     const info = (this.state.info||[]).map((name,index)=>(
@@ -64,10 +70,10 @@ class JudgeInfo extends Component {
           </button>
         </div>       
          <Judge
-        name={name[0]}
-        api={this.state.info[index][1]}
-        color={this.state.info[index][2]}
-          />
+          name={name[0]}
+          api={this.state.info[index][1]}
+          color={this.state.info[index][2]}
+        />
       </ul>
     ))
 
@@ -113,7 +119,7 @@ class JudgeInfo extends Component {
           </div>
 
           <div className= "buttons nav judge-button">
-            <button className="button" >PREV</button>
+            <button className="button" onClick={this.routeToPrev}>PREV</button>
             <button className="button">NEXT</button>
           </div>
         </div>
