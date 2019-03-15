@@ -8,15 +8,15 @@ self.__precacheManifest = [
     "url": "/judging-portal/static/js/runtime~main.4bf85146.js"
   },
   {
-    "revision": "69543affd4765504477e",
-    "url": "/judging-portal/static/js/main.69543aff.chunk.js"
+    "revision": "492cba7ba337a8efa495",
+    "url": "/judging-portal/static/js/main.492cba7b.chunk.js"
   },
   {
     "revision": "9f76ac4bb2ff0333d085",
     "url": "/judging-portal/static/js/1.9f76ac4b.chunk.js"
   },
   {
-    "revision": "69543affd4765504477e",
+    "revision": "492cba7ba337a8efa495",
     "url": "/judging-portal/static/css/main.205caba7.chunk.css"
   },
   {
@@ -24,7 +24,7 @@ self.__precacheManifest = [
     "url": "/judging-portal/static/css/1.9c98d246.chunk.css"
   },
   {
-    "revision": "7f7bfb506ff9f27213bdccd07ea682ba",
+    "revision": "8bd74f14ffcbaca5d43b1f2fe54d550f",
     "url": "/judging-portal/index.html"
   }
 ];
