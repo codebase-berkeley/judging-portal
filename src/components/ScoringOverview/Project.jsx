@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Project.css';
+import { withRouter } from "react-router-dom";
 
 class Project extends Component {
     render() {
@@ -17,4 +18,4 @@ class Project extends Component {
 
 }
 
-export default Project;
+export default withRouter(Project);
