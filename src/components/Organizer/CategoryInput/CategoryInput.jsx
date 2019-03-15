@@ -3,7 +3,6 @@ import '../OrganizerPortal.css';
 import AwardList from './AwardList';
 
 class CategoryInput extends Component {
-
   constructor(props) {
     super(props);
     this.routeToNext = this.routeToNext.bind(this);
