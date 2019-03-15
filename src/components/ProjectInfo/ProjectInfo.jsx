@@ -11,11 +11,8 @@ class ProjectInfo extends Component{
     render() {
         return (
             <div className = "entirePage">
-                {/* <button className = "backButton" onClick = {this.back}> 
-                    <img className = "backButton" src = {back_icon}></img>
-                </button> */}
                 <NavLink to="/overview"> 
-                    <input type="image" className="backButton" src={back_icon}/>
+                    <img type="image" className="backButton" src={back_icon}/>
                 </NavLink>
 
                 <div className = "projInfo">
