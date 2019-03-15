@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/judging-portal/precache-manifest.b555cbdae49e5d2cc1853e526b3cf4b0.js"
+  "/judging-portal/precache-manifest.18daa0bde0baf0b7a988a15c85421991.js"
 );
 
 workbox.clientsClaim();
