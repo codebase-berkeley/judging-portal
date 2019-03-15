@@ -3,7 +3,7 @@ import team_icon from "./src/team_icon.png";
 import api_icon from "./src/API_icon.png";
 import table_icon from "./src/table_icon.png";
 import back_icon from "./src/back_icon.png"
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import "./ProjectInfo.css";
 
 
@@ -14,10 +14,9 @@ class ProjectInfo extends Component{
                 {/* <button className = "backButton" onClick = {this.back}> 
                     <img className = "backButton" src = {back_icon}></img>
                 </button> */}
-                <Link to="/overview"> 
+                <NavLink to="/overview"> 
                     <input type="image" className="backButton" src={back_icon}/>
-                </Link>
-
+                </NavLink>
 
                 <div className = "projInfo">
                     <div className = "projHeader">
