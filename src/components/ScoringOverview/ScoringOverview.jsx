@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './ScoringOverview.css';
 import Project from './Project.jsx'
-
+import { Link } from 'react-router-dom';
 
 class ScoringOverview extends Component {
   constructor(props) {
@@ -70,7 +70,9 @@ class ScoringOverview extends Component {
                 </div>
             <ul>
             {this.state.renderedList.map((item, index) => (
-                <Project key={index} name={item[0]} identification={item[1]} score={item[2]}/>
+                <Link style={{ textDecoration: 'none', color: '#3B9Bc2' }}to="/project-info">
+                    <Project key={index} name={item[0]} identification={item[1]} score={item[2]}/>
+                </Link>
             ))}
             </ul>
             </div>
