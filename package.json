@@ -20,5 +20,8 @@
   "homepage": "https://github.com/codebase-berkeley/judging-portal#readme",
   "dependencies": {
     "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "husky": "^1.3.1"
   }
 }

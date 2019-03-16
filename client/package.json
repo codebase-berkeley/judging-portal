@@ -51,10 +51,5 @@
     "lint-staged": "^8.1.4",
     "prettier": "^1.16.4",
     "pretty-quick": "^1.10.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "SET NODE_ENV=production lint-staged; eslint ./src/**.js"
-    }
   }
 }
