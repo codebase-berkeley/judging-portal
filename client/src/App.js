@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
 
+import Home from './components/Home';
 import CategoryInput from './components/Organizer/CategoryInput/CategoryInput';
 import DataEntry from './components/Organizer/DataEntry/DataEntry';
 import JudgeInfo from './components/Organizer/JudgeInfo/JudgeInfo';
@@ -16,6 +17,7 @@ class App extends Component {
     return (
       <div className="App">
         <Switch>
+          <Route exact path='/' component={Home} />
           <Route path="/categories" component={CategoryInput} />
           <Route path="/data-entry" component={DataEntry} />
           <Route path="/judge-info" component={JudgeInfo} />
