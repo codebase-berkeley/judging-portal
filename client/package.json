@@ -2,7 +2,6 @@
   "name": "judging-portal",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://codebase-berkeley.github.io/judging-portal",
   "dependencies": {
     "filepond": "^4.2.0",
     "gh-pages": "^2.0.1",
@@ -23,8 +22,6 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "lint": "eslint ./src --ext .js --ext .jsx",
     "eject": "react-scripts eject"
   },
