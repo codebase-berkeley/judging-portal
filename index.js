@@ -6,14 +6,20 @@ const app = express();
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
 
-// Put all API endpoints under '/api'
-app.get('/api/dummy', (req, res) => {
-  const passwords = ['hello world', 'hello world 2']
+// API endpoint for projects
+app.get('/api/projects', (req, res) => {
+  const projects = [
+  	{
+	  	"id": 1234,
+	  	"team": "Mulan and Warren",
+	  	"API": "Google Vision",
+	  	"Table": "45"
+	}
+  ]
 
   // Return them as json
-  res.json(passwords);
-
-  console.log(`Sent info`);
+  res.json(projects);
+  console.log(`Sent projects`);
 });
 
 // The "catchall" handler: for any request that doesn't

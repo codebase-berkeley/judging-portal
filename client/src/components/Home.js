@@ -21,13 +21,15 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    this.getDummyAPIData();
+    this.getProjectName().then(result => this.setState({
+      dummyAPIdata: result[0]['id']
+    }))
   }
 
-  getDummyAPIData = () => {
-    fetch('/api/dummy')
-      .then(res => res.json())
-      .then(dummyAPIdata => this.setState({ dummyAPIdata: dummyAPIdata }))
+  async getProjectName() {
+    let res = await fetch('/api/projects');
+    let res_json = res.json();
+    return res_json
   }
 
   render() {
