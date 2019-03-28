@@ -22,6 +22,43 @@ app.get('/api/projects', (req, res) => {
   console.log(`Sent projects`);
 });
 
+// API endpoint for judge names
+app.get('/api/judgenames', (req, res) => {
+  const judgeNames = [
+    {
+      "name": 'Parth',
+      "api": 'none'
+    },
+    {
+      "name": 'Lawrence',
+      "api": 'none'
+    },
+    {
+      "name":'Julia',
+      "api": 'none'
+    },
+    {
+      "name": 'Andrew',
+      "api": 'none'
+    },
+    {
+      "name": 'Anant',
+      "api": 'ee'
+    },
+    {
+      "name": 'Kris',
+      "api": '16b'
+    },
+    {
+      "name": 'Jaijeet',
+      "api": 'MS'
+    }
+  ]
+  
+  res.json(judgeNames);
+  console.log(`Sent judge names`);
+});
+
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
 app.get('*', (req, res) => {
