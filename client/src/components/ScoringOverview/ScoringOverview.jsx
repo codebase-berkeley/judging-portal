@@ -8,33 +8,35 @@ class ScoringOverview extends Component {
     super(props);
 
     this.state = {
+        APIdata: [],
         renderedList: [],
         scoredList: [],
         unscoredList: [],
         showUnscored: true
     };
 
-
     this.fetchUnscored = this.fetchUnscored.bind(this);
     this.fetchScored = this.fetchScored.bind(this);
     }
 
     componentDidMount() {
-        let fetchedData = [["Chancellor", "42024", "5"], ["Christ", "31413", "4"], ["Oski", "01134", "4"], ["GoBears", "58008", ""]];
+        this.fetchAPIdata().then(result => this.setState({
+            APIdata: result
+        }))
+        
+        // let fetchedData = [["Chancellor", "42024", "5"], ["Christ", "31413", "4"], ["Oski", "01134", "4"], ["GoBears", "58008", ""]];
         let scoredData = [];
         let unscoredData = [];
-        for (let i = 0; i < fetchedData.length; i++) {
-            let score = fetchedData[i][2];
-            let component = [fetchedData[i]];
-            if (score == "") {
+        for (let i = 0; i < this.APIdata.length; i++) {
+            let score = this.APIdata[i].score;
+            let component = [this.APIdata[i]];
+            if (score == -1) {
                 unscoredData = unscoredData.concat(component);
             }
             else {
                 scoredData = scoredData.concat(component);
             }
         }
-        console.log(unscoredData);
-        console.log(scoredData);
 
         this.setState ({
             unscoredList: unscoredData,
@@ -43,6 +45,12 @@ class ScoringOverview extends Component {
         });
     }
 
+    async fetchAPIdata() {
+        let res = await fetch('/api/projects');
+        let res_json = res.json();
+        console.log(res_json);
+        return res_json
+    }
 
     fetchUnscored() {
         this.setState ({
@@ -51,7 +59,7 @@ class ScoringOverview extends Component {
         });
     }
 
-    fetchScored() {
+    async fetchScored() {
         this.setState ({
             renderedList: this.state.scoredList,
             showUnscored: false
