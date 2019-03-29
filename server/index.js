@@ -10,10 +10,11 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 app.get('/api/projects', (req, res) => {
   const projects = [
   	{
-	  	"id": 1234,
+	  	"id": 12345,
 	  	"team": "Mulan and Warren",
 	  	"API": "Google Vision",
-	  	"Table": "45"
+      "Table": "45",
+      "score": -1
 	}
   ]
 
