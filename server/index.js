@@ -2,6 +2,9 @@ const express = require('express');
 const path = require('path');
 
 const app = express();
+const cors = require('cors');
+
+app.use(cors());
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
@@ -20,6 +23,14 @@ app.get('/api/projects', (req, res) => {
   // Return them as json
   res.json(projects);
   console.log(`Sent projects`);
+});
+
+app.get('/api/apis', (req, res) => {
+  const apis = ["METHIS ", "UpName", "Fake Name Generator", "Behind the Name"]
+
+  // Return them as json
+  res.json(apis);
+  console.log(`Sent APIs`);
 });
 
 // The "catchall" handler: for any request that doesn't
