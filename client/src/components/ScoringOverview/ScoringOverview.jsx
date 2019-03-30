@@ -18,47 +18,30 @@ class ScoringOverview extends Component {
     this.fetchUnscored = this.fetchUnscored.bind(this);
     this.fetchScored = this.fetchScored.bind(this);
     this.sortData = this.sortData.bind(this);
-
-
     }
 
     async componentDidMount() {
         const res = await fetch('/api/projects');
         const res_json = await res.json();
-        console.log("FETCH JSON: " + JSON.stringify(res_json));
-        console.log(this.state.APIdata);
         this.setState({
             APIdata: res_json
         });
-
-
-        console.log(JSON.stringify(this.state.APIdata));
         this.sortData(res_json);
-    
     }
 
     sortData(data) {
-        
-        // let fetchedData = [["Chancellor", "42024", "5"], ["Christ", "31413", "4"], ["Oski", "01134", "4"], ["GoBears", "58008", ""]];
         let scoredData = [];
         let unscoredData = [];
-        console.log("APIdata INSIDE SORTDATA: " + JSON.stringify(data));
         for (let i = 0; i < data.length; i++) {
             let score = data[i].score;
             let component = [data[i]];
-            console.log("THE COMPONENT: " + component);
-            if (score == -1) {
-                data[i].score = 0;
+            if (score === "") {
                 unscoredData = unscoredData.concat(component);
             }
             else {
                 scoredData = scoredData.concat(component);
             }
         }
-
-        console.log("UNSCORED: " + JSON.stringify(unscoredData));
-        console.log("SCORED: " + JSON.stringify(scoredData));
-
 
         this.setState ({
             unscoredList: unscoredData,
@@ -67,7 +50,6 @@ class ScoringOverview extends Component {
         });
     }
 
-
     fetchUnscored() {
         this.setState ({
             renderedList: this.state.unscoredList,
@@ -75,13 +57,12 @@ class ScoringOverview extends Component {
         });
     }
 
-    async fetchScored() {
+    fetchScored() {
         this.setState ({
             renderedList: this.state.scoredList,
             showUnscored: false
         });
     }
-
 
     render() {
         return (
@@ -95,7 +76,16 @@ class ScoringOverview extends Component {
             <ul>
                 {console.log(this.state.renderedList)}
             {this.state.renderedList.map((item, index) => (
-                <Link style={{ textDecoration: 'none', color: '#3B9Bc2' }}to="/project-info">
+                <Link style={{ textDecoration: 'none', color: '#3B9Bc2' }} to={{
+                    pathname: "/project-info",
+                    state: {
+                        team: item.team,
+                        id: item.id,
+                        api: item.api,
+                        table: item.table,
+                        score: item.score
+                    }
+                }}>
                     <Project key={index} name={item["team"]} identification={item["id"]} score={item["score"]}/>
                 </Link>
             ))}

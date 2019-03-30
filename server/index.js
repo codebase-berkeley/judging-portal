@@ -10,19 +10,33 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 app.get('/api/projects', (req, res) => {
   const projects = [
   	{
-	  	"id": 12345,
-	  	"team": "Mulan and Warren",
-	  	"API": "Google Vision",
-      "Table": "45",
-      "score": -1
-  }, 
-  {
-    "id": 3455,
-    "team": "Another one",
-    "API": "Android",
-    "Table": "48",
-    "score": 7
-}
+      "id": 12345,
+      "team": "Mulan and Warren",
+      "api": "Google Vision",
+      "table": "45",
+      "score": ""
+    }, 
+    {
+      "id": 13579,
+      "team": "Andrew and Julia",
+      "api": "Joke Generator",
+      "table": "48",
+      "score": "9"
+    },
+    {
+      "id": 24680,
+      "team": "Francesca and Rachel",
+      "api": "Venmo",
+      "table": "42",
+      "score": "5"
+    }, 
+    {
+      "id": 09876,
+      "team": "Parth and Lawrence",
+      "api": "Codecademy",
+      "table": "69",
+      "score": ""
+    }
   ]
 
   // Return them as json

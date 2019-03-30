@@ -16,7 +16,6 @@ class Project extends Component {
             </div>
         );
     }
-
 }
 
 export default withRouter(Project);

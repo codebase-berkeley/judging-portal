@@ -8,7 +8,12 @@ import "./ProjectInfo.css";
 
 
 class ProjectInfo extends Component{
+    constructor(props) {
+        super(props);
+    }
+
     render() {
+        console.log("team: " + this.props.location.state.table);
         return (
             <div className = "entirePage">
                 <NavLink to="/overview"> 
@@ -18,7 +23,7 @@ class ProjectInfo extends Component{
                 <div className = "projInfo">
                     <div className = "projHeader">
                      <h className = "projTitle">{this.props.title}</h>
-                     <p className = "projID"><b>ID:</b> {this.props.id}</p>
+                     <p className = "projID"><b>ID:</b> {this.props.location.state.id}</p>
                     </div>
 
                     <div className = "projDetails">
@@ -27,7 +32,7 @@ class ProjectInfo extends Component{
                                 <img className="projinfo-icon" src = {team_icon}></img>
                                 <h className="detail-header attribute-align-left">Team</h>
                             </div>
-                            <p className="actual-info attribute-align-left">Mulan and Warren</p>
+                            <p className="actual-info attribute-align-left">{this.props.location.state.team}</p>
                         </div>
 
                         <div className = "attribute-item">
@@ -35,7 +40,7 @@ class ProjectInfo extends Component{
                                 <img className="projinfo-icon" src = {api_icon}></img>
                                 <h className="detail-header attribute-align-left">API</h>
                             </div>
-                            <p className="actual-info attribute-align-left">Google Vision</p>
+                            <p className="actual-info attribute-align-left">{this.props.location.state.api}</p>
                         </div>
 
                         <div className = "attribute-item">
@@ -43,14 +48,19 @@ class ProjectInfo extends Component{
                                 <img className="projinfo-icon" src = {table_icon}></img>
                                 <h className="detail-header attribute-align-left">Table</h>
                             </div>
-                           <p className="actual-info attribute-align-left">45</p>
+                           <p className="actual-info attribute-align-left">{this.props.location.state.table}</p>
                         </div>
 
                     </div>
                 
                 </div>
             <div className = "score">
-                <input className = "scoreInput" placeholder = "Add score"></input>
+                <input
+                    keyboardType = "phone-pad"
+                    className = "scoreInput" 
+                    placeholder = "Add score"
+                >
+                </input>
             </div>
 
             </div>
