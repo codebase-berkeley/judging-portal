@@ -26,7 +26,7 @@ class CategoryInput extends Component {
             <AwardList listTitle="GENERAL CATEGORIES" inputBackgroundText="+ Add Category"/>
             <AwardList listTitle="FELLOWSHIPS" inputBackgroundText="+ Add Fellowship"/>
           </div>
-          <button className="button nav" onClick={this.routeToNext}>NEXT</button>
+          <button className="button nav category-button" onClick={this.routeToNext}>NEXT</button>
         </div>
       </div>
     );
