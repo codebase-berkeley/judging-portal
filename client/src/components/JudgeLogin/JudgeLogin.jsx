@@ -7,8 +7,6 @@ import './JudgeLogin.css';
 const options = ['Parth', 'Lawrence', 'Julia', 'Andrew', 'Anant', 'Kris', 'Jaijeet'];
 
 class JudgeLogin extends Component {
-
-    
     constructor(props) {
         super(props);
         this.state = {
@@ -19,6 +17,12 @@ class JudgeLogin extends Component {
         this._onSelect = this._onSelect.bind(this);
         this.handlePassword = this.handlePassword.bind(this);
         this.submitLogin = this.submitLogin.bind(this);
+        this.routeToNext = this.routeToNext.bind(this);
+    }
+
+    routeToNext() {
+        let path = "/instructions";
+        this.props.history.push(path);
     }
 
     _onSelect(option) {
@@ -33,7 +37,7 @@ class JudgeLogin extends Component {
 
     submitLogin() {
         this.setState({
-            logininfo: this.state.logininfo.push([
+            logininfo: this.state.logininfo.concat([
                 [this.state.selected.label, this.state.curr_password]
             ]),
             curr_password: '',
@@ -69,7 +73,7 @@ class JudgeLogin extends Component {
                     <button
                     className="j-login-button"
                     type="button"
-                    onClick={this.submitLogin}
+                    onClick={(event) => {this.submitLogin(event); this.routeToNext();}}
                     >
                     LOGIN
                     </button>

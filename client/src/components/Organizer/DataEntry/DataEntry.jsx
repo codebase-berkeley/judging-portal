@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import '../OrganizerPortal.css';
 
-
 class DataEntry extends Component {
   constructor(props) {
     super(props);
@@ -17,6 +16,8 @@ class DataEntry extends Component {
     this.handleWave = this.handleWave.bind(this);
     this.saveVals = this.saveVals.bind(this);
     this.changeFileName = this.changeFileName.bind(this);
+    this.routeToPrev = this.routeToPrev.bind(this);
+    this.routeToNext = this.routeToNext.bind(this);
   }
 
   handleTable(event) {
@@ -48,6 +49,14 @@ class DataEntry extends Component {
 
   saveVals(event) {
     console.log(this.state.tableNum, this.state.clusterNum, this.state.waveNum);
+  }
+
+  routeToPrev() {
+    this.props.history.push("/categories");
+  }
+
+  routeToNext() {
+    this.props.history.push("/judge-info");
   }
 
   changeFileName(event) {
@@ -104,8 +113,8 @@ class DataEntry extends Component {
             </div>
 
             <div className="data-button nav">
-              <button className="button" onClick={this.saveVals}>PREV</button>
-              <button className="button" onClick={this.saveVals}>NEXT</button>
+              <button className="button" onClick={(event) => {this.saveVals(event); this.routeToPrev();}}>PREV</button>
+              <button className="button" onClick={(event) => {this.saveVals(event); this.routeToNext();}}>NEXT</button>
             </div>
           </div>
         </div>

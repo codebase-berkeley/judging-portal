@@ -67,11 +67,11 @@ input {
     padding: 0;
 }
 
-::-webkit-input-placeholder{
+.j-login-password::-webkit-input-placeholder{
     padding-left: 10px;
 }
 
-::-webkit-input-value {
+.j-login-password::-webkit-input-value {
     padding-left: 10px;
 }
 
