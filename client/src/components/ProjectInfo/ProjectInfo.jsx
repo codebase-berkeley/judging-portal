@@ -54,13 +54,22 @@ class ProjectInfo extends Component{
                     </div>
                 
                 </div>
+
             <div className = "score">
-                <input
-                    keyboardType = "phone-pad"
-                    className = "scoreInput" 
-                    placeholder = "Add score"
-                >
-                </input>
+                {this.props.location.state.score === "" ? 
+                    <input
+                        keyboardType = "phone-pad"
+                        className = "scoreInput" 
+                        placeholder = "Add score"
+                    >
+                    </input> : 
+                    <input
+                        keyboardType = "phone-pad"
+                        className = "scoreInput" 
+                        placeholder = {this.props.location.state.score}
+                    >
+                    </input>
+                }
             </div>
 
             </div>
