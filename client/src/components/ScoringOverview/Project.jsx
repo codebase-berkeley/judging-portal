@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 
 class Project extends Component {
     render() {
+        console.log("INSIDE PROJECT: " + this.props.key);
         return(
             <div className="projectcmp">
                 <div className="project-text">

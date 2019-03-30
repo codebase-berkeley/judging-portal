@@ -15,7 +15,14 @@ app.get('/api/projects', (req, res) => {
 	  	"API": "Google Vision",
       "Table": "45",
       "score": -1
-	}
+  }, 
+  {
+    "id": 3455,
+    "team": "Another one",
+    "API": "Android",
+    "Table": "48",
+    "score": 7
+}
   ]
 
   // Return them as json

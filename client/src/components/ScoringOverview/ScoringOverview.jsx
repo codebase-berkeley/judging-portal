@@ -8,7 +8,7 @@ class ScoringOverview extends Component {
     super(props);
 
     this.state = {
-        APIdata: [],
+        APIdata: {},
         renderedList: [],
         scoredList: [],
         unscoredList: [],
@@ -17,26 +17,48 @@ class ScoringOverview extends Component {
 
     this.fetchUnscored = this.fetchUnscored.bind(this);
     this.fetchScored = this.fetchScored.bind(this);
+    this.sortData = this.sortData.bind(this);
+
+
     }
 
-    componentDidMount() {
-        this.fetchAPIdata().then(result => this.setState({
-            APIdata: result
-        }))
+    async componentDidMount() {
+        const res = await fetch('/api/projects');
+        const res_json = await res.json();
+        console.log("FETCH JSON: " + JSON.stringify(res_json));
+        console.log(this.state.APIdata);
+        this.setState({
+            APIdata: res_json
+        });
+
+
+        console.log(JSON.stringify(this.state.APIdata));
+        this.sortData(res_json);
+    
+    }
+
+    sortData(data) {
         
         // let fetchedData = [["Chancellor", "42024", "5"], ["Christ", "31413", "4"], ["Oski", "01134", "4"], ["GoBears", "58008", ""]];
         let scoredData = [];
         let unscoredData = [];
-        for (let i = 0; i < this.APIdata.length; i++) {
-            let score = this.APIdata[i].score;
-            let component = [this.APIdata[i]];
+        console.log("APIdata INSIDE SORTDATA: " + JSON.stringify(data));
+        for (let i = 0; i < data.length; i++) {
+            let score = data[i].score;
+            let component = [data[i]];
+            console.log("THE COMPONENT: " + component);
             if (score == -1) {
+                data[i].score = 0;
                 unscoredData = unscoredData.concat(component);
             }
             else {
                 scoredData = scoredData.concat(component);
             }
         }
+
+        console.log("UNSCORED: " + JSON.stringify(unscoredData));
+        console.log("SCORED: " + JSON.stringify(scoredData));
+
 
         this.setState ({
             unscoredList: unscoredData,
@@ -45,12 +67,6 @@ class ScoringOverview extends Component {
         });
     }
 
-    async fetchAPIdata() {
-        let res = await fetch('/api/projects');
-        let res_json = res.json();
-        console.log(res_json);
-        return res_json
-    }
 
     fetchUnscored() {
         this.setState ({
@@ -77,9 +93,10 @@ class ScoringOverview extends Component {
                     </div>
                 </div>
             <ul>
+                {console.log(this.state.renderedList)}
             {this.state.renderedList.map((item, index) => (
                 <Link style={{ textDecoration: 'none', color: '#3B9Bc2' }}to="/project-info">
-                    <Project key={index} name={item[0]} identification={item[1]} score={item[2]}/>
+                    <Project key={index} name={item["team"]} identification={item["id"]} score={item["score"]}/>
                 </Link>
             ))}
             </ul>
