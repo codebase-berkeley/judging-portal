@@ -7,7 +7,7 @@ class JudgeLogin extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            APIdata: [],
+            options: [],
             selected: '',
             curr_password: '',
             logininfo: []
@@ -18,23 +18,17 @@ class JudgeLogin extends Component {
         this.routeToNext = this.routeToNext.bind(this);
     }
 
-    componentDidMount() {
-        this.getJudgeName().then(result => this.setState({
-            APIdata: result.name
-        }))
-    }
-
-    async getJudgeName() {
-        let res = await fetch('/api/judgenames');
-        let res_json = res.json();
+    async componentDidMount() {
+        let res = await fetch(`http://localhost:5000/api/judgenames`);
+        let res_json = await res.json();
         console.log(res_json);
-        console.log(res_json);
-        let name = [];
+        let names = [];
         for (let i = 0; i < res_json.length; i++) {
-            name.push(res_json[i].name);
-        }
-        console.log(name);
-        return name
+                names.push(res_json[i].name);
+            }
+        console.log(names);
+
+        this.setState({ options: names });
     }
 
     routeToNext() {
@@ -72,7 +66,7 @@ class JudgeLogin extends Component {
 
                     <div className="j-login-dropdown">
                     <Dropdown
-                    options={this.state.APIdata}
+                    options={this.state.options}
                     onChange={this._onSelect}
                     value={defaultOption}
                     placeholder="Name"
