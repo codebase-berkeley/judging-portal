@@ -4,8 +4,6 @@ import 'react-dropdown/style.css';
 import Judge from './Judge';
 import '../OrganizerPortal.css';
 
-const options = ['one', 'two', 'three', 'five'];
-
 class JudgeInfo extends Component {
   constructor(props) {
     super(props);
@@ -13,13 +11,20 @@ class JudgeInfo extends Component {
       curr_name: '',
       selected: '',
       info: [],
-      count: 0
+      count: 0,
+      options: []
     };
     this.handleName = this.handleName.bind(this);
     this.addInfo = this.addInfo.bind(this);
     this.handleClickIndex = this.handleClickIndex.bind(this);
     this._onSelect = this._onSelect.bind(this);
     this.routeToPrev = this.routeToPrev.bind(this);
+  }
+
+  async componentDidMount() {
+    const response = await fetch(`http://localhost:5000/api/apis`);
+    const json_options = await response.json();
+    this.setState({ options: json_options });
   }
 
   _onSelect(option) {
@@ -95,7 +100,7 @@ class JudgeInfo extends Component {
               <div className="judge-api-title">JUDGE API</div>
               <div className="judge-dropdown">
                 <Dropdown
-                  options={options}
+                  options={this.state.options}
                   onChange={this._onSelect}
                   value={defaultOption}
                   placeholder="Select an API"

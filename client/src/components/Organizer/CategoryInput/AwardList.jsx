@@ -54,7 +54,7 @@ class AwardList extends Component {
                   <div className="award-list-element ">
                     <ListItem key={index} text={item}/>
                     <div className="delete-button" onClick={() => this.removeItem(index)}>
-                      x
+                      ×
                     </div>
                   </div>
                 ))}

@@ -4,6 +4,9 @@ var bodyParser = require('body-parser')
 
 
 const app = express();
+const cors = require('cors');
+
+app.use(cors());
 
 const db = {
   'apis': [],
@@ -37,6 +40,15 @@ app.get('/api/projects', (req, res) => {
   console.log(`Sent projects`);
 });
 
+app.get('/api/apis', (req, res) => {
+  const apis = ["METHIS ", "UpName", "Fake Name Generator", "Behind the Name"]
+
+  // Return them as json
+  res.json(apis);
+  console.log(`Sent APIs`);
+  
+  
+  
 app.post('/api/dummy', (req, res) => {
   const {dummy} = req.body;
   res.json("You successfully posted: ".concat(dummy));  
