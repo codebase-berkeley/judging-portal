@@ -1,14 +1,29 @@
 const express = require('express');
 const path = require('path');
+var bodyParser = require('body-parser')
+
 
 const app = express();
 const cors = require('cors');
 
 app.use(cors());
 
+const db = {
+  'apis': [],
+  'general_categories': [],
+  'fellowships': [],
+  'tables': 0,
+  'clusters': 0,
+  'waves': 0,
+  'filename': "empty",
+  "judge_list": [],
+  "projects": []
+}
+
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
 
+app.use(bodyParser.json());
 // API endpoint for projects
 app.get('/api/projects', (req, res) => {
   const projects = [
@@ -31,6 +46,12 @@ app.get('/api/apis', (req, res) => {
   // Return them as json
   res.json(apis);
   console.log(`Sent APIs`);
+  
+  
+  
+app.post('/api/dummy', (req, res) => {
+  const {dummy} = req.body;
+  res.json("You successfully posted: ".concat(dummy));  
 });
 
 // The "catchall" handler: for any request that doesn't
