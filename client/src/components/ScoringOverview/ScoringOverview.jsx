@@ -8,33 +8,40 @@ class ScoringOverview extends Component {
     super(props);
 
     this.state = {
+        APIdata: {},
         renderedList: [],
         scoredList: [],
         unscoredList: [],
         showUnscored: true
     };
 
-
     this.fetchUnscored = this.fetchUnscored.bind(this);
     this.fetchScored = this.fetchScored.bind(this);
+    this.sortData = this.sortData.bind(this);
     }
 
-    componentDidMount() {
-        let fetchedData = [["Chancellor", "42024", "5"], ["Christ", "31413", "4"], ["Oski", "01134", "4"], ["GoBears", "58008", ""]];
+    async componentDidMount() {
+        const res = await fetch('/api/projects');
+        const res_json = await res.json();
+        this.setState({
+            APIdata: res_json
+        });
+        this.sortData(res_json);
+    }
+
+    sortData(data) {
         let scoredData = [];
         let unscoredData = [];
-        for (let i = 0; i < fetchedData.length; i++) {
-            let score = fetchedData[i][2];
-            let component = [fetchedData[i]];
-            if (score == "") {
+        for (let i = 0; i < data.length; i++) {
+            let score = data[i].score;
+            let component = [data[i]];
+            if (score === "") {
                 unscoredData = unscoredData.concat(component);
             }
             else {
                 scoredData = scoredData.concat(component);
             }
         }
-        console.log(unscoredData);
-        console.log(scoredData);
 
         this.setState ({
             unscoredList: unscoredData,
@@ -42,7 +49,6 @@ class ScoringOverview extends Component {
             renderedList: unscoredData
         });
     }
-
 
     fetchUnscored() {
         this.setState ({
@@ -58,7 +64,6 @@ class ScoringOverview extends Component {
         });
     }
 
-
     render() {
         return (
             <div className="scoring-view">
@@ -70,8 +75,17 @@ class ScoringOverview extends Component {
                 </div>
             <ul>
             {this.state.renderedList.map((item, index) => (
-                <Link style={{ textDecoration: 'none', color: '#3B9Bc2' }}to="/project-info">
-                    <Project key={index} name={item[0]} identification={item[1]} score={item[2]}/>
+                <Link style={{ textDecoration: 'none', color: '#3B9Bc2' }} to={{
+                    pathname: "/project-info",
+                    state: {
+                        team: item.team,
+                        id: item.id,
+                        api: item.api,
+                        table: item.table,
+                        score: item.score
+                    }
+                }}>
+                    <Project key={index} name={item["team"]} identification={item["id"]} score={item["score"]}/>
                 </Link>
             ))}
             </ul>
