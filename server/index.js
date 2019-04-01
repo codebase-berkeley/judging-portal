@@ -5,6 +5,18 @@ var bodyParser = require('body-parser')
 
 const app = express();
 
+const db = {
+  'apis': [],
+  'general_categories': [],
+  'fellowships': [],
+  'tables': 0,
+  'clusters': 0,
+  'waves': 0,
+  'filename': "empty",
+  "judge_list": [],
+  "projects": []
+}
+
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
 
