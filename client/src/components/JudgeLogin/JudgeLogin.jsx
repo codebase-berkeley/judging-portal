@@ -21,13 +21,10 @@ class JudgeLogin extends Component {
     async componentDidMount() {
         let res = await fetch(`http://localhost:5000/api/judgenames`);
         let res_json = await res.json();
-        console.log(res_json);
         let names = [];
         for (let i = 0; i < res_json.length; i++) {
                 names.push(res_json[i].name);
-            }
-        console.log(names);
-
+        }
         this.setState({ options: names });
     }
 
@@ -54,7 +51,6 @@ class JudgeLogin extends Component {
             curr_password: '',
             selected: ''
           });
-          console.log(this.state.logininfo);
     }
 
     render() {
