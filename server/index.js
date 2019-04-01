@@ -45,7 +45,8 @@ app.get('/api/apis', (req, res) => {
 
   // Return them as json
   res.json(apis);
-  console.log(`Sent APIs`);
+  console.log(`Sent APIs`)
+});
   
   
   
