@@ -4,8 +4,6 @@ import 'react-dropdown/style.css';
 import Judge from './Judge';
 import '../OrganizerPortal.css';
 
-//const options = ['one', 'two', 'three', 'five'];
-
 class JudgeInfo extends Component {
   constructor(props) {
     super(props);
