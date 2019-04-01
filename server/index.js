@@ -40,6 +40,43 @@ app.get('/api/projects', (req, res) => {
   console.log(`Sent projects`);
 });
 
+// API endpoint for judge names
+app.get('/api/judgenames', (req, res) => {
+  const judgeNames = [
+    {
+      "name": 'Parth',
+      "api": 'none'
+    },
+    {
+      "name": 'Lawrence',
+      "api": 'none'
+    },
+    {
+      "name":'Julia',
+      "api": 'none'
+    },
+    {
+      "name": 'Andrew',
+      "api": 'none'
+    },
+    {
+      "name": 'Anant',
+      "api": 'ee'
+    },
+    {
+      "name": 'Kris',
+      "api": '16b'
+    },
+    {
+      "name": 'Jaijeet',
+      "api": 'MS'
+    }
+  ]
+  
+  res.json(judgeNames);
+  console.log(`Sent judge names`);
+});
+
 app.get('/api/apis', (req, res) => {
   const apis = ["METHIS ", "UpName", "Fake Name Generator", "Behind the Name"]
 
