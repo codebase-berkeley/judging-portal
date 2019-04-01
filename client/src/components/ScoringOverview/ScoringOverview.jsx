@@ -74,7 +74,6 @@ class ScoringOverview extends Component {
                     </div>
                 </div>
             <ul>
-                {console.log(this.state.renderedList)}
             {this.state.renderedList.map((item, index) => (
                 <Link style={{ textDecoration: 'none', color: '#3B9Bc2' }} to={{
                     pathname: "/project-info",
