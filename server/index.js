@@ -9,7 +9,7 @@ const cors = require('cors');
 app.use(cors());
 
 const db = {
-  'apis': [],
+  'apis': ["api1"],
   'general_categories': [],
   'fellowships': [],
   'tables': 0,
@@ -99,19 +99,32 @@ app.get('/api/judgenames', (req, res) => {
   console.log(`Sent judge names`);
 });
 
-app.get('/api/apis', (req, res) => {
-  const apis = ["METHIS ", "UpName", "Fake Name Generator", "Behind the Name"]
+app.get('/api/lists', (req, res) => {
+  //const apis = ["api1", "api2", "api3"]
+  // const apis = db.apis;
 
   // Return them as json
-  res.json(apis);
-  console.log(`Sent APIs`)
+  res.json(db);
 });
-  
-  
+
+app.get('/api/apis', (req, res) => {
+  //const apis = ["api1", "api2", "api3"]
+  const apis = db.apis;
+
+  // Return them as json
+  res.json(db);
+});
   
 app.post('/api/dummy', (req, res) => {
   const {dummy} = req.body;
   res.json("You successfully posted: ".concat(dummy));  
+});
+
+app.post('/api/apis', (req, res) => {
+  console.log("entered api posting in server");
+  const {apiData} = req.body;
+  db.apis = apiData.APIList;
+  res.json("You successfully posted: ".concat(db.apis));  
 });
 
 // The "catchall" handler: for any request that doesn't

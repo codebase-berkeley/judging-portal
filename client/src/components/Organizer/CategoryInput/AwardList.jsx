@@ -7,11 +7,46 @@ class AwardList extends Component {
     super(props);
     this.state = {
         currentAward: "",
+        APIData: {},
         awardsList: []
     };
     this.inputChange = this.inputChange.bind(this);
     this.addToList = this.addToList.bind(this);
     this.removeItem = this.removeItem.bind(this);
+    this.postItem = this.postItem.bind(this);
+    // this.getListFromData = this.getListFromData.bind(this);
+  }
+
+  componentDidMount() {
+    let listName = this.props.listTitle;
+    if (listName === "APIS") {
+      this.getAPIList();
+    } //else if (listName === "GENERAL CATEGORIES") {
+    //   this.postCategoriesValue();
+    // } else if (listName === "FELLOWSHIPS") {
+    //   this.postFellowshipsValue();
+    // }
+  }
+
+  // getListFromData(data) {
+  //   let aList = []
+  //   for (let i = 0; i < data.length; i++) {
+  //     let score = data[i].score;
+  //     let component = [data[i]];
+  //     aList.concat(component);
+  //   }
+
+  //   this.setState ({
+  //       awardList: aList
+  //   });
+  // }
+
+  async getAPIList() {
+    const res = await fetch('/api/apis');
+    const res_json = await res.json();
+    this.setState({
+      awardsList: res_json.apis
+    });
   }
 
   removeItem(index) {
@@ -35,8 +70,63 @@ class AwardList extends Component {
                 currentAward: "",
                 awardsList: this.state.awardsList.concat(this.state.currentAward)
             })
-            console.log("successfully added");
+            this.postItem();
         }
+    }
+  }
+
+  async postAPIValue(){
+    console.log("entered posting method");
+    let res = await fetch('/api/apis', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        APIList: this.state.awardsList
+      })
+    });
+    let res_json = res.json();
+    return res_json;
+  }
+
+  async postCategoriesValue(){
+    let res = await fetch('/api/general_categories', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        general_categories: this.state.awardsList
+      })
+    });
+    let res_json = res.json();
+    return res_json;
+  }
+
+  async postFellowshipsValue(){
+    let res = await fetch('/api/fellowships', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        fellowships: this.state.fellowships
+      })
+    });
+    let res_json = res.json();
+    return res_json;
+  }
+
+  postItem() {
+    let listName = this.props.listTitle;
+    if (listName === "APIS") {
+      console.log("posting API Value");
+      this.postAPIValue();
+    } else if (listName === "GENERAL CATEGORIES") {
+      this.postCategoriesValue();
+    } else if (listName === "FELLOWSHIPS") {
+      this.postFellowshipsValue();
     }
   }
 
