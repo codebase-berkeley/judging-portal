@@ -14,7 +14,6 @@ class AwardList extends Component {
     this.addToList = this.addToList.bind(this);
     this.removeItem = this.removeItem.bind(this);
     this.postItem = this.postItem.bind(this);
-    // this.getListFromData = this.getListFromData.bind(this);
   }
 
   componentDidMount() {
@@ -72,7 +71,7 @@ class AwardList extends Component {
             })
             this.postItem();
         }
-    }
+    }a
   }
 
   async postAPIValue(){
