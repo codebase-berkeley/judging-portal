@@ -1,0 +1,13 @@
+DROP DATABASE IF EXISTS portal;
+
+CREATE DATABASE portal;
+
+CREATE USER root
+WITH ENCRYPTED PASSWORD 'password';
+
+\c portal;
+CREATE TABLE projects
+(
+  id SERIAL PRIMARY KEY,
+  email VARCHAR(254),
+);
