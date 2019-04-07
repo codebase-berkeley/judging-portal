@@ -17,6 +17,7 @@ class CategoryInput extends Component {
   }
 
   routeToNext() {
+    this.postLists();
     let path = "/data-entry";
     this.props.history.push(path);
   }
@@ -49,6 +50,34 @@ class CategoryInput extends Component {
     });
   }
 
+  // async postItem() {
+  //   let listName = this.props.listTitle;
+  //   if (listName === "APIS") {
+  //     console.log("posting API Value");
+  //     await this.postAPIValue();
+  //   } else if (listName === "GENERAL CATEGORIES") {
+  //     await this.postCategoriesValue();
+  //   } else if (listName === "FELLOWSHIPS") {
+  //     await this.postFellowshipsValue();
+  //   }
+  // }
+
+  async postLists() {
+      console.log("entered posting method");
+      let res = await fetch('/api/lists', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          apis: this.state.apis,
+          categories: this.state.categories,
+          fellowships: this.state.fellowships
+        })
+      });
+      let res_json = res.json();
+      return res_json;
+  }
 
   render() {
     return (

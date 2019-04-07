@@ -118,11 +118,20 @@ app.post('/api/dummy', (req, res) => {
 
 app.post('/api/apis', (req, res) => {
   console.log("entered api posting in server");
-  // const {APIList} = req.body;
+  const {APIList} = req.body;
   // console.log("APIData: " + APIList);
   console.log(req.body);
-  // db.apis = apiData.APIList;
-  // res.json("You successfully posted: ".concat(db.apis));  
+  db.apis = apiData.APIList;
+  res.json("You successfully posted: ".concat(db.apis));  
+});
+
+app.post('api/lists', (req, res) => {
+  console.log("entered posting");
+  const {apis, categories, fellowships} = req.body;
+  console.log("APIS: " + apis);
+  db.apis = apis;
+  db.general_categories = categories;
+  db.fellowships = fellowships;
 });
 
 // The "catchall" handler: for any request that doesn't

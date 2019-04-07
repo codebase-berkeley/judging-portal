@@ -114,6 +114,13 @@ class AwardList extends Component {
 
   render() {
     console.log("inside awardlist component: " + this.state.awardsList);
+    let list;
+    if (this.props.list) {
+      list = this.props.list
+    } else {
+      list = []
+    }
+
     return (
         <div className="award-list">
             <div className="award-list-name">
@@ -122,16 +129,16 @@ class AwardList extends Component {
             <div className="award-list-field">
                 <input className="award-list-input" placeholder={this.props.inputBackgroundText} value={this.state.currentAward} onChange={this.inputChange} onKeyPress={this.addToList}></input>
             </div>
-            <ol className="list award">
-                {this.props.list.map((item, index) => (
-                  <div className="award-list-element ">
-                    <ListItem key={index} text={item}/>
-                    <div className="delete-button" onClick={() => this.removeItem(index)}>
-                      ×
+              <ol className="list award">
+                  {list.map((item, index) => (
+                    <div className="award-list-element ">
+                      <ListItem key={index} text={item}/>
+                      <div className="delete-button" onClick={() => this.removeItem(index)}>
+                        ×
+                      </div>
                     </div>
-                  </div>
-                ))}
-            </ol>
+                  ))}
+              </ol>
         </div>
     );
   }
