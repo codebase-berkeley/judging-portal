@@ -21,10 +21,25 @@ class JudgeInfo extends Component {
     this.routeToPrev = this.routeToPrev.bind(this);
   }
 
-  async componentDidMount() {
-    const response = await fetch(`http://localhost:5000/api/apis`);
-    const json_options = await response.json();
-    this.setState({ options: json_options });
+  componentDidMount() {
+    this.getJudgeInfo().then(result => this.setState({
+      info: result
+    }))
+    this.getAPI().then(result => this.setState({
+      options: result
+    }))
+  }
+
+  async getJudgeInfo() {
+    let res = await fetch('/api/judgeinfo');
+    let res_json = res.json();
+    return res_json
+  }
+
+  async getAPI() {
+    const res = await fetch(`/api/apis`);
+    const res_json = res.json();
+    return res_json
   }
 
   _onSelect(option) {
@@ -37,7 +52,7 @@ class JudgeInfo extends Component {
 
   removeTask(index, event) {
     const info = this.state.info
-    info.splice(index, 1)    
+    info.splice(index, 1)
     this.setState({info})
   }
 
@@ -60,7 +75,22 @@ class JudgeInfo extends Component {
     }
   }
 
+  async postJudgeInfo() {
+    let res = await fetch('/api/judgeinfo', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        info: this.state.info
+      })
+    });
+    let res_json = res.json();
+    return res_json;
+  }
+
   routeToPrev() {
+    this.postJudgeInfo().then(result => console.log(result));
     let path = "/data-entry";
     this.props.history.push(path);
   }
@@ -73,7 +103,7 @@ class JudgeInfo extends Component {
           <button name="removeTask" className="delete-button" onClick={event=>this.handleClickIndex(index,event)}>
               ×
           </button>
-        </div>       
+        </div>
          <Judge
           name={name[0]}
           api={this.state.info[index][1]}

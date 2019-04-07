@@ -118,6 +118,14 @@ app.get('/api/apis', (req, res) => {
   console.log(`Sent APIs`)
 });
 
+app.get('/api/judgeinfo', (req, res) => {
+  const judgeinfo = db['judge_list']
+
+  // Return them as json
+  res.json(judgeinfo);
+  console.log(`Sent APIs`)
+});
+
 app.post('/api/data', (req, res) => {
   console.log(req.body)
   const dict = req.body;
@@ -126,6 +134,12 @@ app.post('/api/data', (req, res) => {
   db.waves = dict['waves']
   db.filename = dict['filename']
   res.json("You successfully posted: ".concat(dict['tables']));
+});
+
+app.post('/api/judgeinfo', (req, res) => {
+  const info = req.body;
+  db.judge_list = info['info']
+  res.json("You successfully posted: ".concat(info));
 });
 
 app.post('/api/dummy', (req, res) => {
