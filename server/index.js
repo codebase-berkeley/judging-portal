@@ -9,7 +9,7 @@ const cors = require('cors');
 app.use(cors());
 
 const db = {
-  'apis': ["api1", "api2"],
+  'apis': [],
   'general_categories': [],
   'fellowships': [],
   'tables': 0,
@@ -27,13 +27,13 @@ app.use(bodyParser.json());
 // API endpoint for projects
 app.get('/api/projects', (req, res) => {
   const projects = [
-  	{
+    {
       "id": 12345,
       "team": "Mulan and Warren",
       "api": "Google Vision",
       "table": "45",
       "score": ""
-    }, 
+    },
     {
       "id": 13579,
       "team": "Andrew and Julia",
@@ -47,7 +47,7 @@ app.get('/api/projects', (req, res) => {
       "api": "Venmo",
       "table": "42",
       "score": "5"
-    }, 
+    },
     {
       "id": 09876,
       "team": "Parth and Lawrence",
@@ -74,7 +74,7 @@ app.get('/api/judgenames', (req, res) => {
       "api": 'none'
     },
     {
-      "name":'Julia',
+      "name": 'Julia',
       "api": 'none'
     },
     {
@@ -94,7 +94,7 @@ app.get('/api/judgenames', (req, res) => {
       "api": 'MS'
     }
   ]
-  
+
   res.json(judgeNames);
   console.log(`Sent judge names`);
 });
@@ -103,41 +103,22 @@ app.get('/api/lists', (req, res) => {
   res.json(db);
 });
 
-app.get('/api/apis', (req, res) => {
-  //const apis = ["api1", "api2", "api3"]
-  const apis = db.apis;
-
-  // Return them as json
-  res.json(db);
-});
-  
 app.post('/api/dummy', (req, res) => {
-  const {dummy} = req.body;
-  res.json("You successfully posted: ".concat(dummy));  
+  const { dummy } = req.body;
+  res.json("You successfully posted: ".concat(dummy));
 });
 
-app.post('/api/apis', (req, res) => {
-  console.log("entered api posting in server");
-  const {APIList} = req.body;
-  // console.log("APIData: " + APIList);
-  console.log(req.body);
-  db.apis = apiData.APIList;
-  res.json("You successfully posted: ".concat(db.apis));  
-});
-
-app.post('api/lists', (req, res) => {
-  console.log("entered posting");
-  const {apis, categories, fellowships} = req.body;
-  console.log("APIS: " + apis);
+app.post('/api/lists', (req, res) => {
+  const { apis, general_categories, fellowships } = req.body;
   db.apis = apis;
-  db.general_categories = categories;
+  db.general_categories = general_categories;
   db.fellowships = fellowships;
 });
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname+'/client/build/index.html'));
+  res.sendFile(path.join(__dirname + '/client/build/index.html'));
 });
 
 const port = process.env.PORT || 5000;
