@@ -38,7 +38,7 @@ app.get('/api/data', (req, res) => {
 // API endpoint for projects
 app.get('/api/projects', (req, res) => {
   const projects = [
-  	{
+    {
       "id": 12345,
       "team": "Mulan and Warren",
       "api": "Google Vision",
@@ -85,7 +85,7 @@ app.get('/api/judgenames', (req, res) => {
       "api": 'none'
     },
     {
-      "name":'Julia',
+      "name": 'Julia',
       "api": 'none'
     },
     {
@@ -110,13 +110,20 @@ app.get('/api/judgenames', (req, res) => {
   console.log(`Sent judge names`);
 });
 
-app.get('/api/apis', (req, res) => {
-  const apis = ["METHIS ", "UpName", "Fake Name Generator", "Behind the Name"]
-
-  // Return them as json
-  res.json(apis);
-  console.log(`Sent APIs`)
+app.get('/api/lists', (req, res) => {
+  res.json(db);
 });
+
+app.post('/api/dummy', (req, res) => {
+  const { dummy } = req.body;
+  res.json("You successfully posted: ".concat(dummy));
+});
+
+app.post('/api/lists', (req, res) => {
+  const { apis, general_categories, fellowships } = req.body;
+  db.apis = apis;
+  db.general_categories = general_categories;
+  db.fellowships = fellowships; });
 
 app.get('/api/judgeinfo', (req, res) => {
   const judgeinfo = db['judge_list']
@@ -142,15 +149,11 @@ app.post('/api/judgeinfo', (req, res) => {
   res.json("You successfully posted: ".concat(info));
 });
 
-app.post('/api/dummy', (req, res) => {
-  const {dummy} = req.body;
-  res.json("You successfully posted: ".concat(dummy));
-});
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname+'/client/build/index.html'));
+  res.sendFile(path.join(__dirname + '/client/build/index.html'));
 });
 
 const port = process.env.PORT || 5000;
