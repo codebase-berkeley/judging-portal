@@ -12,10 +12,10 @@ const db = {
   'apis': [],
   'general_categories': [],
   'fellowships': [],
-  'tables': 0,
-  'clusters': 0,
-  'waves': 0,
-  'filename': "empty",
+  'tables': '',
+  'clusters': '',
+  'waves': '',
+  'filename': 'UPLOAD FILE',
   "judge_list": [],
   "projects": []
 }
@@ -24,6 +24,17 @@ const db = {
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.use(bodyParser.json());
+app.get('/api/data', (req, res) => {
+  const data = {
+    'tables': db['tables'],
+    'clusters': db['clusters'],
+    'waves': db['waves'],
+    'filename': db['filename']
+  }
+  res.json(data);
+  console.log(`Sent data`);
+})
+
 // API endpoint for projects
 app.get('/api/projects', (req, res) => {
   const projects = [
@@ -33,7 +44,7 @@ app.get('/api/projects', (req, res) => {
       "api": "Google Vision",
       "table": "45",
       "score": ""
-    }, 
+    },
     {
       "id": 13579,
       "team": "Andrew and Julia",
@@ -47,7 +58,7 @@ app.get('/api/projects', (req, res) => {
       "api": "Venmo",
       "table": "42",
       "score": "5"
-    }, 
+    },
     {
       "id": 09876,
       "team": "Parth and Lawrence",
@@ -94,7 +105,7 @@ app.get('/api/judgenames', (req, res) => {
       "api": 'MS'
     }
   ]
-  
+
   res.json(judgeNames);
   console.log(`Sent judge names`);
 });
@@ -106,12 +117,34 @@ app.get('/api/apis', (req, res) => {
   res.json(apis);
   console.log(`Sent APIs`)
 });
-  
-  
-  
+
+app.get('/api/judgeinfo', (req, res) => {
+  const judgeinfo = db['judge_list']
+
+  // Return them as json
+  res.json(judgeinfo);
+  console.log(`Sent APIs`)
+});
+
+app.post('/api/data', (req, res) => {
+  console.log(req.body)
+  const dict = req.body;
+  db.tables = dict['tables']
+  db.clusters = dict['clusters']
+  db.waves = dict['waves']
+  db.filename = dict['filename']
+  res.json("You successfully posted: ".concat(dict['tables']));
+});
+
+app.post('/api/judgeinfo', (req, res) => {
+  const info = req.body;
+  db.judge_list = info['info']
+  res.json("You successfully posted: ".concat(info));
+});
+
 app.post('/api/dummy', (req, res) => {
   const {dummy} = req.body;
-  res.json("You successfully posted: ".concat(dummy));  
+  res.json("You successfully posted: ".concat(dummy));
 });
 
 // The "catchall" handler: for any request that doesn't
