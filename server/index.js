@@ -12,10 +12,10 @@ const db = {
   'apis': [],
   'general_categories': [],
   'fellowships': [],
-  'tables': 0,
-  'clusters': 0,
-  'waves': 0,
-  'filename': "empty",
+  'tables': '',
+  'clusters': '',
+  'waves': '',
+  'filename': 'UPLOAD FILE',
   "judge_list": [],
   "projects": []
 }
@@ -24,6 +24,17 @@ const db = {
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.use(bodyParser.json());
+app.get('/api/data', (req, res) => {
+  const data = {
+    'tables': db['tables'],
+    'clusters': db['clusters'],
+    'waves': db['waves'],
+    'filename': db['filename']
+  }
+  res.json(data);
+  console.log(`Sent data`);
+})
+
 // API endpoint for projects
 app.get('/api/projects', (req, res) => {
   const projects = [
@@ -112,8 +123,32 @@ app.post('/api/lists', (req, res) => {
   const { apis, general_categories, fellowships } = req.body;
   db.apis = apis;
   db.general_categories = general_categories;
-  db.fellowships = fellowships;
+  db.fellowships = fellowships; });
+
+app.get('/api/judgeinfo', (req, res) => {
+  const judgeinfo = db['judge_list']
+
+  // Return them as json
+  res.json(judgeinfo);
+  console.log(`Sent APIs`)
 });
+
+app.post('/api/data', (req, res) => {
+  console.log(req.body)
+  const dict = req.body;
+  db.tables = dict['tables']
+  db.clusters = dict['clusters']
+  db.waves = dict['waves']
+  db.filename = dict['filename']
+  res.json("You successfully posted: ".concat(dict['tables']));
+});
+
+app.post('/api/judgeinfo', (req, res) => {
+  const info = req.body;
+  db.judge_list = info['info']
+  res.json("You successfully posted: ".concat(info));
+});
+
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
