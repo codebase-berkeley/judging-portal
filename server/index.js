@@ -1,27 +1,34 @@
 const express = require('express');
+const Router = require('express-promise-router');
 const path = require('path');
-var bodyParser = require('body-parser')
-
+var bodyParser = require('body-parser');
+const db = require('./db/index');
 
 const app = express();
 const cors = require('cors');
 
 app.use(cors());
 
-const db = {
-  'apis': [],
-  'general_categories': [],
-  'fellowships': [],
-  'tables': '',
-  'clusters': '',
-  'waves': '',
-  'filename': 'UPLOAD FILE',
-  "judge_list": [],
-  "projects": []
-}
+// const db = {
+//   'apis': [],
+//   'general_categories': [],
+//   'fellowships': [],
+//   'tables': '',
+//   'clusters': '',
+//   'waves': '',
+//   'filename': 'UPLOAD FILE',
+//   "judge_list": [],
+//   "projects": []
+// }
 
-// Serve static files from the React app
-app.use(express.static(path.join(__dirname, 'client/build')));
+app.get('/api/home', async (req, res) => {
+  try {
+    const query = await db.query('SELECT * FROM judges;');
+    res.send(query.rows);
+  } catch (error) {
+    console.log(error.stack);
+  }
+});
 
 app.use(bodyParser.json());
 app.get('/api/data', (req, res) => {
@@ -149,14 +156,7 @@ app.post('/api/judgeinfo', (req, res) => {
   res.json("You successfully posted: ".concat(info));
 });
 
-
-// The "catchall" handler: for any request that doesn't
-// match one above, send back React's index.html file.
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/client/build/index.html'));
-});
-
 const port = process.env.PORT || 5000;
 app.listen(port);
 
-console.log(`Password generator listening on ${port}`);
+console.log(`Database listening on ${port}`);
