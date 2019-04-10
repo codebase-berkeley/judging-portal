@@ -11,7 +11,6 @@ class JudgeInfo extends Component {
       curr_name: '',
       selected: '',
       info: [],
-      count: 0,
       options: []
     };
     this.handleName = this.handleName.bind(this);
@@ -21,10 +20,32 @@ class JudgeInfo extends Component {
     this.routeToPrev = this.routeToPrev.bind(this);
   }
 
-  async componentDidMount() {
-    const response = await fetch(`http://localhost:5000/api/apis`);
-    const json_options = await response.json();
-    this.setState({ options: json_options });
+  componentDidMount() {
+    this.getJudgeInfo().then(result => this.setState({
+      curr_name: result['name'],
+      selected: result['api'],
+    }))
+  }
+
+  async getJudgeInfo() {
+    let res = await fetch('/api/judgelist');
+    let res_json = res.json();
+    return res_json
+  }
+
+  async postJudgeInfo(){
+    let res = await fetch('/db/judgelist', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: this.state.curr_name,
+        api: this.state.selected
+      })
+    });
+    let res_json = res.json();
+    return res_json;
   }
 
   _onSelect(option) {
@@ -48,21 +69,21 @@ class JudgeInfo extends Component {
   }
 
   addInfo() {
-    if (this.state.curr_name !== '' && this.state.selected !== '') {
-      this.setState({
-        info: this.state.info.concat([
-          [this.state.curr_name, this.state.selected.label, this.state.count]
-        ]),
-        curr_name: '',
-        count: this.state.count + 1,
-        selected: ''
-      });
-    }
+      if (this.state.curr_name !== '' && this.state.selected !== '') {
+        this.setState({
+          info: this.state.info.concat([
+            [this.state.curr_name, this.state.selected.label, this.state.count]
+          ]),
+          curr_name: '',
+          count: this.state.count + 1,
+          selected: ''
+        });
+      }
   }
 
   routeToPrev() {
-    let path = "/data-entry";
-    this.props.history.push(path);
+    this.postJudge().then(result => console.log(result));
+    this.props.history.push("/data-entry");
   }
 
   render() {
@@ -111,6 +132,7 @@ class JudgeInfo extends Component {
                 className="button"
                 type="button"
                 onClick={this.addInfo}
+                onClick={this.postJudge}
               >
                 SUBMIT
               </button>

@@ -2,14 +2,13 @@ const express = require('express');
 const path = require('path');
 var bodyParser = require('body-parser')
 
-
 const app = express();
 const cors = require('cors');
 
 app.use(cors());
 
 const db = {
-  'apis': [],
+  'apis': ["hi", "yo"],
   'general_categories': [],
   'fellowships': [],
   'tables': 0,
@@ -100,15 +99,28 @@ app.get('/api/judgenames', (req, res) => {
 });
 
 app.get('/api/apis', (req, res) => {
-  const apis = ["METHIS ", "UpName", "Fake Name Generator", "Behind the Name"]
+  const apis = db.apis;
 
   // Return them as json
   res.json(apis);
   console.log(`Sent APIs`)
 });
-  
-  
-  
+
+app.get('/api/judgelist', (req, res) => {
+  const judgelist = db.judge_list;
+
+  // Return them as json
+  res.json(judgelist);
+  console.log(`Sent judgelist`)
+});
+
+app.post('/api/judgelist', (req, res) => {
+  console.log(req.body)
+  const dict = req.body;
+  db.judge_list.push(dict);
+  res.json("You successfully posted: ".concat(dict));
+});
+
 app.post('/api/dummy', (req, res) => {
   const {dummy} = req.body;
   res.json("You successfully posted: ".concat(dummy));  
