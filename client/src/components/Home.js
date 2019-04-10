@@ -48,7 +48,7 @@ class Home extends Component {
   }
 
   async postDummyValue(){
-    let res = await fetch('/api/dummy', {
+    let res = await fetch('/api/home', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -60,7 +60,6 @@ class Home extends Component {
     let res_json = res.json();
     return res_json;
   }
-
 
   postItem() {
     this.postDummyValue().then(result => console.log(result)); 

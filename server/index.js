@@ -30,6 +30,16 @@ app.get('/api/home', async (req, res) => {
   }
 });
 
+app.post('/api/home', (req, res) => {
+  const { dummy } = req.body;
+  db.query('INSERT INTO judges(name, API, projects) VALUES($1 ,$2, $3)', [
+      dummy,
+      "mentoredAPI",
+      []
+    ]);
+  res.json("You successfully posted: ".concat(dummy));
+});
+
 app.use(bodyParser.json());
 app.get('/api/data', (req, res) => {
   const data = {
@@ -119,11 +129,6 @@ app.get('/api/judgenames', (req, res) => {
 
 app.get('/api/lists', (req, res) => {
   res.json(db);
-});
-
-app.post('/api/dummy', (req, res) => {
-  const { dummy } = req.body;
-  res.json("You successfully posted: ".concat(dummy));
 });
 
 app.post('/api/lists', (req, res) => {
