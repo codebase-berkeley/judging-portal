@@ -8,6 +8,7 @@ const app = express();
 const cors = require('cors');
 
 app.use(cors());
+app.use(bodyParser.json());
 
 // const db = {
 //   'apis': [],
@@ -21,6 +22,8 @@ app.use(cors());
 //   "projects": []
 // }
 
+// ########### HOME API EXAMPLES BEGIN ###########
+
 app.get('/api/home', async (req, res) => {
   try {
     const query = await db.query('SELECT * FROM judges;');
@@ -30,17 +33,31 @@ app.get('/api/home', async (req, res) => {
   }
 });
 
-app.post('/api/home', (req, res) => {
+app.post('/api/dummy', async (req, res) => {
   const { dummy } = req.body;
-  db.query('INSERT INTO judges(name, API, projects) VALUES($1 ,$2, $3)', [
+  db.query('INSERT INTO judges(name, API, projectId, score) VALUES($1 ,$2, $3, $4)', [
       dummy,
       "mentoredAPI",
-      []
+      1,
+      -1
     ]);
   res.json("You successfully posted: ".concat(dummy));
 });
 
-app.use(bodyParser.json());
+app.put('/api/score/:judgeName', async (req, res) => {
+  const { judgeName } = req.params;
+  const { projectId, score } = req.body;
+  console.log(judgeName, projectId, score);
+  db.query('UPDATE judges SET score = $1 WHERE name = $2 AND projectId = $3;', [
+    score,
+    judgeName,
+    projectId
+  ]);
+  res.json('Score update successfully');
+});
+
+// ########### HOME API EXAMPLES END ###########
+
 app.get('/api/data', (req, res) => {
   const data = {
     'tables': db['tables'],
