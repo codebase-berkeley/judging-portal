@@ -1,38 +1,73 @@
 const express = require('express');
+const Router = require('express-promise-router');
 const path = require('path');
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
+const db = require('./db/index');
 
 const app = express();
 const cors = require('cors');
 
 app.use(cors());
-
-const db = {
-  'apis': ["hi", "yo"],
-  'general_categories': [],
-  'fellowships': [],
-  'tables': 0,
-  'clusters': 0,
-  'waves': 0,
-  'filename': "empty",
-  "judge_list": [],
-  "projects": []
-}
-
-// Serve static files from the React app
-app.use(express.static(path.join(__dirname, 'client/build')));
-
 app.use(bodyParser.json());
+
+// const db = {
+//   'apis': [],
+//   'general_categories': [],
+//   'fellowships': [],
+//   'tables': '',
+//   'clusters': '',
+//   'waves': '',
+//   'filename': 'UPLOAD FILE',
+//   "judge_list": [],
+//   "projects": []
+// }
+
+// ########### HOME API EXAMPLES BEGIN ###########
+
+app.get('/api/home', async (req, res) => {
+  try {
+    const query = await db.query('SELECT * FROM judges;');
+    res.send(query.rows);
+  } catch (error) {
+    console.log(error.stack);
+  }
+});
+
+app.post('/api/dummy', async (req, res) => {
+  const { dummy } = req.body;
+  db.query('INSERT INTO judges(name, API, projectId, score) VALUES($1 ,$2, $3, $4)', [
+      dummy,
+      "mentoredAPI",
+      1,
+      -1
+    ]);
+  res.json("You successfully posted: ".concat(dummy));
+});
+
+app.put('/api/score/:judgeName', async (req, res) => {
+  const { judgeName } = req.params;
+  const { projectId, score } = req.body;
+  console.log(judgeName, projectId, score);
+  db.query('UPDATE judges SET score = $1 WHERE name = $2 AND projectId = $3;', [
+    score,
+    judgeName,
+    projectId
+  ]);
+  res.json('Score update successfully');
+});
+
+// ########### HOME API EXAMPLES END ###########
+
 // API endpoint for projects
 app.get('/api/projects', (req, res) => {
   const projects = [
-  	{
+    {
       "id": 12345,
       "team": "Mulan and Warren",
       "api": "Google Vision",
       "table": "45",
       "score": ""
-    }, 
+    },
     {
       "id": 13579,
       "team": "Andrew and Julia",
@@ -46,7 +81,7 @@ app.get('/api/projects', (req, res) => {
       "api": "Venmo",
       "table": "42",
       "score": "5"
-    }, 
+    },
     {
       "id": 09876,
       "team": "Parth and Lawrence",
@@ -73,7 +108,7 @@ app.get('/api/judgenames', (req, res) => {
       "api": 'none'
     },
     {
-      "name":'Julia',
+      "name": 'Julia',
       "api": 'none'
     },
     {
@@ -93,46 +128,58 @@ app.get('/api/judgenames', (req, res) => {
       "api": 'MS'
     }
   ]
-  
+
   res.json(judgeNames);
   console.log(`Sent judge names`);
 });
 
-app.get('/api/apis', (req, res) => {
-  const apis = db.apis;
-
-  // Return them as json
-  res.json(apis);
-  console.log(`Sent APIs`)
+app.get('/api/lists', (req, res) => {
+  res.json(db);
 });
 
-app.get('/api/judgelist', (req, res) => {
-  const judgelist = db.judge_list;
-
-  // Return them as json
-  res.json(judgelist);
-  console.log(`Sent judgelist`)
+app.post('/api/lists', (req, res) => {
+  const { apis, general_categories, fellowships } = req.body;
+  db.apis = apis;
+  db.general_categories = general_categories;
+  db.fellowships = fellowships; 
 });
 
-app.post('/api/judgelist', (req, res) => {
-  console.log(req.body)
+app.get('/api/data', async (req, res) => {
+  try {
+    const query = await db.query('SELECT * FROM dataentry;');
+    res.send(query.rows);
+  } catch (error) {
+    console.log(error.stack);
+  }
+})
+
+app.post('/api/data', (req, res) => {
   const dict = req.body;
-  db.judge_list.push(dict);
-  res.json("You successfully posted: ".concat(dict));
+
+  db.tables = dict['tables']
+  db.clusters = dict['clusters']
+  db.waves = dict['waves']
+  db.filename = dict['filename']
+
+  res.json("You successfully posted: ".concat(dict['tables']));
 });
 
-app.post('/api/dummy', (req, res) => {
-  const {dummy} = req.body;
-  res.json("You successfully posted: ".concat(dummy));  
+app.get('/api/judgeinfo', async (req, res) => {
+  try {
+    const query = await db.query('SELECT * FROM judges;');
+    res.send(query.rows);
+  } catch (error) {
+    console.log(error.stack);
+  }
 });
 
-// The "catchall" handler: for any request that doesn't
-// match one above, send back React's index.html file.
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname+'/client/build/index.html'));
+app.post('/api/judgeinfo', (req, res) => {
+  const info = req.body;
+  db.judge_list = info['info']
+  res.json("You successfully posted: ".concat(info));
 });
 
 const port = process.env.PORT || 5000;
 app.listen(port);
 
-console.log(`Password generator listening on ${port}`);
+console.log(`Database listening on ${port}`);
