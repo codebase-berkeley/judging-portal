@@ -22,6 +22,7 @@ class CategoryInput extends Component {
   async componentDidMount() {
     const res = await window.fetch('/api/lists');
     const resJson = await res.json();
+    console.log(resJson);
     await this.setState({
       apis: resJson.apis,
       general_categories: resJson.general_categories,

@@ -144,9 +144,16 @@ app.get('/api/judgenames', (req, res) => {
   console.log(`Sent judge names`);
 });
 
-app.get('/api/lists', (req, res) => {
-  res.json(db);
+app.get('/api/lists', async (req, res) => {
+  try {
+    const query = await db.query('SELECT * FROM lists');
+    res.send(query.rows);
+
+  } catch (error) {
+    console.log(error.stack)
+  }
 });
+
 
 app.post('/api/lists', (req, res) => {
   const { apis, general_categories, fellowships } = req.body;
