@@ -22,30 +22,23 @@ class JudgeInfo extends Component {
 
   componentDidMount() {
     this.getJudgeInfo().then(result => this.setState({
-      curr_name: result['name'],
-      selected: result['api'],
+      info: result
+    }))
+    this.getAPI().then(result => this.setState({
+      options: result
     }))
   }
 
   async getJudgeInfo() {
-    let res = await fetch('/api/judgelist');
+    let res = await fetch('/api/judgeinfo');
     let res_json = res.json();
     return res_json
   }
 
-  async postJudgeInfo(){
-    let res = await fetch('/db/judgelist', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        name: this.state.curr_name,
-        api: this.state.selected
-      })
-    });
-    let res_json = res.json();
-    return res_json;
+  async getAPI() {
+    const res = await fetch(`/api/apis`);
+    const res_json = res.json();
+    return res_json
   }
 
   _onSelect(option) {
@@ -58,7 +51,7 @@ class JudgeInfo extends Component {
 
   removeTask(index, event) {
     const info = this.state.info
-    info.splice(index, 1)    
+    info.splice(index, 1)
     this.setState({info})
   }
 
@@ -81,9 +74,24 @@ class JudgeInfo extends Component {
       }
   }
 
+  async postJudgeInfo() {
+    let res = await fetch('/api/judgeinfo', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        info: this.state.info
+      })
+    });
+    let res_json = res.json();
+    return res_json;
+  }
+
   routeToPrev() {
-    this.postJudge().then(result => console.log(result));
-    this.props.history.push("/data-entry");
+    this.postJudgeInfo().then(result => console.log(result));
+    let path = "/data-entry";
+    this.props.history.push(path);
   }
 
   render() {
@@ -94,7 +102,7 @@ class JudgeInfo extends Component {
           <button name="removeTask" className="delete-button" onClick={event=>this.handleClickIndex(index,event)}>
               ×
           </button>
-        </div>       
+        </div>
          <Judge
           name={name[0]}
           api={this.state.info[index][1]}

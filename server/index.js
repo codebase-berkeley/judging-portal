@@ -11,10 +11,10 @@ const db = {
   'apis': ["hi", "yo"],
   'general_categories': [],
   'fellowships': [],
-  'tables': 0,
-  'clusters': 0,
-  'waves': 0,
-  'filename': "empty",
+  'tables': '',
+  'clusters': '',
+  'waves': '',
+  'filename': 'UPLOAD FILE',
   "judge_list": [],
   "projects": []
 }
@@ -23,16 +23,27 @@ const db = {
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.use(bodyParser.json());
+app.get('/api/data', (req, res) => {
+  const data = {
+    'tables': db['tables'],
+    'clusters': db['clusters'],
+    'waves': db['waves'],
+    'filename': db['filename']
+  }
+  res.json(data);
+  console.log(`Sent data`);
+})
+
 // API endpoint for projects
 app.get('/api/projects', (req, res) => {
   const projects = [
-  	{
+    {
       "id": 12345,
       "team": "Mulan and Warren",
       "api": "Google Vision",
       "table": "45",
       "score": ""
-    }, 
+    },
     {
       "id": 13579,
       "team": "Andrew and Julia",
@@ -46,7 +57,7 @@ app.get('/api/projects', (req, res) => {
       "api": "Venmo",
       "table": "42",
       "score": "5"
-    }, 
+    },
     {
       "id": 09876,
       "team": "Parth and Lawrence",
@@ -73,7 +84,7 @@ app.get('/api/judgenames', (req, res) => {
       "api": 'none'
     },
     {
-      "name":'Julia',
+      "name": 'Julia',
       "api": 'none'
     },
     {
@@ -93,43 +104,55 @@ app.get('/api/judgenames', (req, res) => {
       "api": 'MS'
     }
   ]
-  
+
   res.json(judgeNames);
   console.log(`Sent judge names`);
 });
 
-app.get('/api/apis', (req, res) => {
-  const apis = db.apis;
-
-  // Return them as json
-  res.json(apis);
-  console.log(`Sent APIs`)
-});
-
-app.get('/api/judgelist', (req, res) => {
-  const judgelist = db.judge_list;
-
-  // Return them as json
-  res.json(judgelist);
-  console.log(`Sent judgelist`)
-});
-
-app.post('/api/judgelist', (req, res) => {
-  console.log(req.body)
-  const dict = req.body;
-  db.judge_list.push(dict);
-  res.json("You successfully posted: ".concat(dict));
+app.get('/api/lists', (req, res) => {
+  res.json(db);
 });
 
 app.post('/api/dummy', (req, res) => {
-  const {dummy} = req.body;
-  res.json("You successfully posted: ".concat(dummy));  
+  const { dummy } = req.body;
+  res.json("You successfully posted: ".concat(dummy));
 });
+
+app.post('/api/lists', (req, res) => {
+  const { apis, general_categories, fellowships } = req.body;
+  db.apis = apis;
+  db.general_categories = general_categories;
+  db.fellowships = fellowships; });
+
+app.get('/api/judgeinfo', (req, res) => {
+  const judgeinfo = db['judge_list']
+
+  // Return them as json
+  res.json(judgeinfo);
+  console.log(`Sent APIs`)
+});
+
+app.post('/api/data', (req, res) => {
+  console.log(req.body)
+  const dict = req.body;
+  db.tables = dict['tables']
+  db.clusters = dict['clusters']
+  db.waves = dict['waves']
+  db.filename = dict['filename']
+  res.json("You successfully posted: ".concat(dict['tables']));
+});
+
+app.post('/api/judgeinfo', (req, res) => {
+  const info = req.body;
+  db.judge_list = info['info']
+  res.json("You successfully posted: ".concat(info));
+});
+
 
 // The "catchall" handler: for any request that doesn't
 // match one above, send back React's index.html file.
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname+'/client/build/index.html'));
+  res.sendFile(path.join(__dirname + '/client/build/index.html'));
 });
 
 const port = process.env.PORT || 5000;
