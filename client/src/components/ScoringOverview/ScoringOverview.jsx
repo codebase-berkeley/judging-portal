@@ -21,8 +21,8 @@ class ScoringOverview extends Component {
     }
 
     async componentDidMount() {
-        const res = await fetch('/api/projects');
-        const res_json = await res.json();
+        let res = await fetch('/api/projects');
+        let res_json = await res.json();
         this.setState({
             APIdata: res_json
         });

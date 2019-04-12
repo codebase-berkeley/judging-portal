@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import './JudgeLogin.css';
+import { constants } from 'fs';
 
 class JudgeLogin extends Component {
     constructor(props) {
@@ -19,8 +20,8 @@ class JudgeLogin extends Component {
     }
 
     async componentDidMount() {
-        let res = await fetch(`http://localhost:5000/api/judgenames`);
-        let res_json = await res.json();
+        const res = await fetch(`/api/judgenames`);
+        const res_json = await res.json();
         let names = [];
         for (let i = 0; i < res_json.length; i++) {
                 names.push(res_json[i].name);
@@ -29,7 +30,7 @@ class JudgeLogin extends Component {
     }
 
     routeToNext() {
-        let path = "/instructions";
+        const path = "/instructions";
         this.props.history.push(path);
     }
 
