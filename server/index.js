@@ -133,8 +133,13 @@ app.get('/api/judgenames', (req, res) => {
   console.log(`Sent judge names`);
 });
 
-app.get('/api/lists', (req, res) => {
-  res.json(db);
+app.get('/api/lists', async (req, res) => {
+  try {
+    const query = await db.query('SELECT * FROM lists;');
+    res.send(query.rows);
+  } catch (error) {
+    console.log(error.stack)
+  }
 });
 
 app.post('/api/lists', (req, res) => {
@@ -142,6 +147,14 @@ app.post('/api/lists', (req, res) => {
   db.apis = apis;
   db.general_categories = general_categories;
   db.fellowships = fellowships; 
+});
+
+app.get('/api/judgeinfo', (req, res) => {
+  const judgeinfo = db['judge_list']
+
+  // Return them as json
+  res.json(judgeinfo);
+  console.log(`Sent APIs`)
 });
 
 app.get('/api/data', async (req, res) => {
