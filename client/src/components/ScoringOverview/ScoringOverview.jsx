@@ -21,8 +21,8 @@ class ScoringOverview extends Component {
     }
 
     async componentDidMount() {
-        const res = await fetch('/api/projects');
-        const res_json = await res.json();
+        let res = await fetch('/api/projects');
+        let res_json = await res.json();
         this.setState({
             APIdata: res_json
         });
@@ -78,7 +78,7 @@ class ScoringOverview extends Component {
                 <Link style={{ textDecoration: 'none', color: '#3B9Bc2' }} to={{
                     pathname: "/project-info",
                     state: {
-                        team: item.team,
+                        team: item.name,
                         id: item.id,
                         api: item.api,
                         table: item.table,

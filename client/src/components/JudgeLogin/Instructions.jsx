@@ -10,7 +10,7 @@ class Instructions extends Component {
     }
 
     routeToNext() {
-        let path = "/overview"
+        const path = "/overview"
         this.props.history.push(path);
     }
 
