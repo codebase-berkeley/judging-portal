@@ -24,7 +24,7 @@ CREATE TABLE judges
 
 CREATE TABLE lists 
 (
-  API VARCHAR(254),
+  api VARCHAR(254),
   fellowships VARCHAR(254),
   general VARCHAR(254)
 );
