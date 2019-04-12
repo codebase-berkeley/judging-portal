@@ -11,7 +11,6 @@ class JudgeInfo extends Component {
       curr_name: '',
       selected: '',
       info: [],
-      count: 0,
       options: []
     };
     this.handleName = this.handleName.bind(this);
@@ -22,9 +21,14 @@ class JudgeInfo extends Component {
   }
 
   componentDidMount() {
-    this.getJudgeInfo().then(result => this.setState({
-      info: result
-    }))
+    this.getJudgeInfo().then(result => {
+      let i;
+      let judgeinfo = [];
+      for (i = 0; i < result.length; i++) { 
+        judgeinfo[i] = [result[i].name, result[i].api];
+      }
+      this.setState({ info: judgeinfo });
+    });
     this.getAPI().then(result => this.setState({
       options: result
     }))
@@ -63,16 +67,15 @@ class JudgeInfo extends Component {
   }
 
   addInfo() {
-    if (this.state.curr_name !== '' && this.state.selected !== '') {
-      this.setState({
-        info: this.state.info.concat([
-          [this.state.curr_name, this.state.selected.label, this.state.count]
-        ]),
-        curr_name: '',
-        count: this.state.count + 1,
-        selected: ''
-      });
-    }
+      if (this.state.curr_name !== '' && this.state.selected !== '') {
+        this.setState({
+          info: this.state.info.concat([
+            [this.state.curr_name, this.state.selected.label]
+          ]),
+          curr_name: '',
+          selected: ''
+        });
+      }
   }
 
   async postJudgeInfo() {
@@ -107,7 +110,6 @@ class JudgeInfo extends Component {
          <Judge
           name={name[0]}
           api={this.state.info[index][1]}
-          color={this.state.info[index][2]}
         />
       </ul>
     ))
@@ -141,6 +143,7 @@ class JudgeInfo extends Component {
                 className="button"
                 type="button"
                 onClick={this.addInfo}
+                onClick={this.postJudge}
               >
                 SUBMIT
               </button>

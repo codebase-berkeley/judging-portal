@@ -53,11 +53,12 @@ class DataEntry extends Component {
 
   componentDidMount() {
     this.getDataEntry().then(result => this.setState({
-      tableNum: result['tables'],
-      clusterNum: result['clusters'],
-      waveNum: result['waves'],
-      fileName: result['filename']
+      tableNum: result[0]['tables'],
+      clusterNum: result[0]['clusters'],
+      waveNum: result[0]['waves'],
+      fileName: result[0]['filename']
     }))
+    console.log(this.state.tableNum);
   }
 
   async getDataEntry() {
