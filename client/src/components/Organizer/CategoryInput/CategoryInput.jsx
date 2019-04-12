@@ -86,7 +86,7 @@ class CategoryInput extends Component {
   removeAPIItem(index) {
     this.setState((prevState) => {
       const awards = prevState.apis.slice();
-      var item = awards[index];
+      const item = awards[index];
       awards.splice(index, 1);
       return {
         apis: awards,
@@ -98,13 +98,12 @@ class CategoryInput extends Component {
   removeCategoryItem(index) {
     this.setState((prevState) => {
       const awards = prevState.general_categories.slice()
-      var item = awards[index];
+      const item = awards[index];
 
       awards.splice(index, 1)
       return {
         general_categories: awards,
         deleted: prevState.deleted.concat([['general', item]])
-
       } 
     });
   }
@@ -112,7 +111,7 @@ class CategoryInput extends Component {
   removeFellowshipItem(index) {
     this.setState((prevState) => {
       const awards = prevState.fellowships.slice();
-      var item = awards[index];
+      const item = awards[index];
       awards.splice(index, 1);
       return {
         fellowships: awards,
@@ -129,9 +128,6 @@ class CategoryInput extends Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        // apis: this.state.apis,
-        // general_categories: this.state.general_categories,
-        // fellowships: this.state.fellowships,
         deleted: this.state.deleted,
         added: this.state.added
       })
