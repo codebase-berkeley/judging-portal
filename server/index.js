@@ -79,10 +79,24 @@ app.get('/api/projects', async (req, res) => {
   }
 });
 
+// API endpoint for each judge's list of projects
+app.get('/api/projects/:judgeId', async (req, res) => {
+  console.log(req.params);
+  const { judgeId } = req.params;
+  try {
+    const query = await db.query('SELECT * FROM projects WHERE judgeId = $1;', [
+      judgeId
+    ]);
+    res.send(query.rows);
+  } catch (error) {
+      console.log(error.stack);
+  }
+});
+
 // API endpoint for judge names
 app.get('/api/judgenames', async (req, res) => {
     try {
-      const query = await db.query('SELECT name FROM judges;');
+      const query = await db.query('SELECT name, judgeId FROM judges;');
       res.send(query.rows);
     } catch (error) {
       console.log(error.stack);

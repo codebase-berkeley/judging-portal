@@ -21,10 +21,11 @@ class ScoringOverview extends Component {
     }
 
     async componentDidMount() {
-        let res = await fetch('/api/projects');
+    
+        let res = await fetch('/api/projects/' + this.props.location.state.judgeId + '/');
         let res_json = await res.json();
         this.setState({
-            APIdata: res_json
+            APIdata: res_json,
         });
         this.sortData(res_json);
     }

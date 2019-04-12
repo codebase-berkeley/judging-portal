@@ -10,9 +10,11 @@ class JudgeLogin extends Component {
         this.state = {
             options: [],
             selected: '',
+            id: '',
+            dict: {},
             curr_password: '',
             logininfo: []
-        };
+        } 
         this._onSelect = this._onSelect.bind(this);
         this.handlePassword = this.handlePassword.bind(this);
         this.submitLogin = this.submitLogin.bind(this);
@@ -22,20 +24,32 @@ class JudgeLogin extends Component {
     async componentDidMount() {
         const res = await fetch(`/api/judgenames`);
         const res_json = await res.json();
-        let names = [];
+        let pairs = {}
+        let names = []
         for (let i = 0; i < res_json.length; i++) {
                 names.push(res_json[i].name);
+                pairs[res_json[i].name] = res_json[i].judgeid;
         }
-        this.setState({ options: names });
+        this.setState({ 
+            options: names,
+            dict: pairs
+         });
     }
 
     routeToNext() {
-        const path = "/instructions";
-        this.props.history.push(path);
+        this.props.history.push({
+            pathname: '/instructions',
+            state: {
+                judgeId: this.state.id
+            }
+        });
     }
 
     _onSelect(option) {
-        this.setState({ selected: option });
+        this.setState({ 
+            id: this.state.dict[option.value],
+            selected: option.value
+        });
     }
 
     handlePassword(event) {

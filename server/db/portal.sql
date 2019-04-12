@@ -10,20 +10,20 @@ CREATE TABLE judges
 (
   name VARCHAR(254),
   API VARCHAR(254),
-  judgeId integer PRIMARY KEY,
-  score integer
+  judgeId INTEGER PRIMARY KEY,
+  score INTEGER
 );
 
 CREATE TABLE projects
 (
-  id integer PRIMARY KEY,
+  id INTEGER PRIMARY KEY,
   name VARCHAR(254),
   github VARCHAR(254),
   categories VARCHAR(254)[],
-  judgeId REFERENCES judges(judgeId)
+  judgeId INTEGER REFERENCES judges(judgeId)
 );
 
-CREATE TABLE lists 
+CREATE TABLE lists
 (
   api VARCHAR(254),
   fellowships VARCHAR(254),
