@@ -19,14 +19,33 @@ class CategoryInput extends Component {
     this.removeFellowshipItem = this.removeFellowshipItem.bind(this);
   }
 
-  async componentDidMount() {
-    const res = await window.fetch('/api/lists');
-    const resJson = await res.json();
-    await this.setState({
-      apis: resJson.apis,
-      general_categories: resJson.general_categories,
-      fellowships: resJson.fellowships
+  componentDidMount() {
+    this.getLists().then(result => {
+      let i;
+      let apiData = [];
+      let categoryData = [];
+      let fellowshipData = [];
+      for (i = 0; i < result.length; i++) { 
+        if (result[i].api) {
+          apiData.push(result[i].api);
+        } else if (result[i].fellowships) {
+          fellowshipData.push(result[i].fellowships);
+        } else if (result[i].general) {
+          categoryData.push(result[i].general);
+        }
+      }
+      this.setState({
+        apis: apiData,
+        general_categories: categoryData,
+        fellowships: fellowshipData
+      });
     });
+  }
+
+  async getLists() {
+    let res = await fetch('/api/lists');
+    let res_json = res.json();
+    return res_json
   }
 
   routeToNext() {
