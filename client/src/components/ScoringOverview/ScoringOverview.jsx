@@ -78,7 +78,7 @@ class ScoringOverview extends Component {
                 <Link style={{ textDecoration: 'none', color: '#3B9Bc2' }} to={{
                     pathname: "/project-info",
                     state: {
-                        team: item.team,
+                        team: item.name,
                         id: item.id,
                         api: item.api,
                         table: item.table,
