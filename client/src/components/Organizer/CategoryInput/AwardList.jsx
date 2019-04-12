@@ -35,7 +35,11 @@ class AwardList extends Component {
   }
 
   render() {
-    const list = Object(this.props.list)
+    let list = [];
+    if (this.props.list) {
+      list = Object(this.props.list);
+    } 
+
 
     return (
       <div className="award-list">
