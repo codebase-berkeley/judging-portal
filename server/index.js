@@ -87,11 +87,23 @@ app.get('/api/lists', async (req, res) => {
   }
 });
 
-app.post('/api/lists', (req, res) => {
-  const { apis, general_categories, fellowships } = req.body;
-  db.apis = apis;
-  db.general_categories = general_categories;
-  db.fellowships = fellowships; 
+app.post('/api/lists', async (req, res) => {
+  const {deleted, added } = req.body;
+  console.log(deleted);
+  var i;
+  for (i = 0; i < deleted.length; i++) {
+    console.log("DELETING: " + deleted[i]);
+    db.query('DELETE FROM lists WHERE type=\'' + deleted[i][0] +'\' AND name=\'' + deleted[i][1]+'\';');
+    console.log('DELETE FROM lists WHERE type=\'' + deleted[i][0] +'\' AND name=\'' + deleted[i][1]+'\';');
+  }
+  for (i = 0; i < added.length; i++) {
+    console.log("ADDING: " + added[i]);
+    db.query('INSERT INTO lists VALUES(\'' + added[i][0] + '\', \'' + added[i][1] +'\');');
+    console.log('INSERT INTO lists VALUES(\'' + added[i][0] + '\', \'' + added[i][1] +'\');');
+  }
+  
+  res.json("Databse has been updated");
+
 });
 
 app.get('/api/judgeinfo', (req, res) => {
