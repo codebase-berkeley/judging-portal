@@ -353,3 +353,93 @@ ul {
 .delete-button {
     background-color: #F9F9F9;
 }
+
+/********************* PROJECT BREAKDOWN ********************/
+
+.scored-section {
+    width: 50%;
+}
+
+.unscored-section {
+    width:50%;
+}
+
+.scored-header {
+    text-align: left;
+}
+
+.content-breakdown {
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    width:100vw;
+    height: 70vh;
+}
+
+.project-list {
+    padding-left: 4%;
+    /* padding-right: 4%; */
+    padding-top: 3%;
+    /* padding-left: 4%;
+    padding-right: 4%; */
+    /* margin: 4%; */
+    position: relative;
+    display: inline-block;
+    align-content: center;
+    overflow: auto;
+    margin-top: -1%;
+    width: 80%;
+}
+
+.project-list-name {
+    display: inline-block;
+    font-weight: bold;
+    color: #0A7191;
+    background-color: #98D0EC;
+    font-size: 2.5vh;
+    text-align: left;
+    padding: 1%;
+    padding-left: 5%;
+    width: 44%;
+    height: 100%;
+}
+
+.project-list-score {
+    display: inline-block;
+    font-weight: bold;
+    color: #0A7191;
+    background-color: #98D0EC;
+    font-size: 2.5vh;
+    text-align: left;
+    padding: 1%;
+    padding-left: 5%;
+    width: 44%;
+    height: 100%;
+}
+
+.project-item {
+    height: 100%;
+    display: inline-block;
+    margin-left: 5%;
+    width: 80%;
+    /* margin-top: 1%; */
+    margin-bottom: 1%;
+    border-bottom: 2px solid #98D0EC;
+    justify-content: center;
+}
+
+.project-name {
+    display: inline-block;
+    padding-left: 5%;
+    width: 45%;
+    text-align: left;
+    color: #0A7191;
+}
+
+.project-score {
+    width: 45%;
+    padding-left: 5%;
+    text-align: left;
+    display: inline-block;
+    color: #0A7191;
+}
