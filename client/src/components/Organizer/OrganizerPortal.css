@@ -449,5 +449,35 @@ ul {
 }
 
 .progress {
-    padding-bottom: 4%;
+    padding-bottom: 2vh;
+    color: #0A7191;
+    font-size: 4vh;
+    font-weight: bold;
+}
+
+.project-list-name-unscored {
+    display: inline-block;
+    font-weight: bold;
+    color: #0A7191;
+    background-color: #98D0EC;
+    font-size: 2.5vh;
+    text-align: left;
+    padding: 1%;
+    padding-left: 5%;
+    width: 100%;
+    height: 100%;
+}
+
+.headers {
+    width: 100%;
+    margin-top: 2vh;
+    display: inline-block;
+    color:#0A7191;
+    font-size: 3vh;
+    font-weight: bold;
+}
+
+.scoring-header {
+    display: inline-block;
+    width: 50%;
 }

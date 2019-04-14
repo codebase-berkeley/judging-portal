@@ -9,7 +9,13 @@ class ProjectBreakdown extends Component {
           scored: [['SyncUp', 25], ['Codecademy', 100]],
           unscored: [['Github', 0]]
         };
+        this.routeToPrev = this.routeToPrev.bind(this);
     }
+
+    routeToPrev() {
+        let path = "/judge-info";
+        this.props.history.push(path);
+      }
 
     render() {
         const scoredProjects = (this.state.scored||[]).map((name,index)=>(
@@ -31,11 +37,12 @@ class ProjectBreakdown extends Component {
             <div className="page-background" id= "projBreakdown">
                 <div className="page-header">SCORING BREAKDOWN</div>
                 <div className="content-background">
+                    <div className="headers"> 
+                            <header className="scoring-header">SCORED</header>
+                            <header className="scoring-header">UNSCORED</header> 
+                    </div>
                     <div className="content-breakdown">
                         <div className="scored-section">
-                        {/* <header className="scored-header"> 
-                            SCORED
-                        </header> */}
                             <div className="project-list">
                                 <div className="project-list-name">NAME</div>
                                 <div className="project-list-score">SCORE</div>
@@ -44,22 +51,15 @@ class ProjectBreakdown extends Component {
                             <div className="breakdown-list">{scoredProjects}</div>
                         </div>
                         <div className = "unscored-section">
-                        {/* <header className="scored-header"> 
-                            UNSCORED
-                        </header> */}
                             <div className="project-list">
-                                <div className="judge-list-name">NAME</div>
-                                <div className="judge-list-api">UNSCORED</div>
+                                <div className="project-list-name-unscored">NAME</div>
                             </div>
                     
                             <div className="breakdown-list">{unscoredProjects}</div>
                         </div>
                     </div>
-                    {/* <div className="progress-bar" style={{ width: (this.state.scored.length/(this.state.unscored.length + this.state.unscored.length))*2000, background: '#32CD32' }}>
-                    50%
-                    </div> */}
                     <div className="progress" >
-                    {(this.state.scored.length/(this.state.scored.length + this.state.unscored.length)*100).toFixed(2)}% Scored
+                        {(this.state.scored.length/(this.state.scored.length + this.state.unscored.length)*100).toFixed(2)}% Scored
                     </div>
 
                     <div className= "buttons nav judge-button">

@@ -98,7 +98,7 @@ class JudgeInfo extends Component {
     this.props.history.push(path);
   }
 
-  routeToPrev() {
+  routeToNext() {
     this.postJudgeInfo().then(result => console.log(result));
     let path = "/project-breakdown";
     this.props.history.push(path);
