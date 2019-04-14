@@ -111,7 +111,6 @@ class DataEntry extends Component {
   }
 
   routeToNext() {
-    console.log(this.state.fileReader.result);
     this.postData().then(result => console.log(result));
     this.props.history.push("/judge-info");
   }

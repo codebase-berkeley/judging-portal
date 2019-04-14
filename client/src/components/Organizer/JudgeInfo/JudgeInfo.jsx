@@ -11,7 +11,8 @@ class JudgeInfo extends Component {
       curr_name: '',
       selected: '',
       info: [],
-      options: []
+      options: [],
+      deleted: []
     };
     this.handleName = this.handleName.bind(this);
     this.addInfo = this.addInfo.bind(this);
@@ -61,10 +62,19 @@ class JudgeInfo extends Component {
     this[event.target.name].bind(this)(index, event)
   }
 
-  removeTask(index, event) {
-    const info = this.state.info
-    info.splice(index, 1)
-    this.setState({info})
+  removeTask(index) {
+    this.setState((prevState) => {
+      const del_info = prevState.info.slice();
+      const judge = del_info[index];
+
+      del_info.splice(index, 1)
+      console.log(judge);
+      return {
+        info: del_info,
+        deleted: prevState.deleted.concat([judge])
+      } 
+    });
+    console.log(this.state.deleted);
   }
 
   handleName(event) {
@@ -92,7 +102,8 @@ class JudgeInfo extends Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        info: [this.state.curr_name, this.state.selected.label]
+        info: [this.state.curr_name, this.state.selected.label],
+        deleted: this.state.deleted
       })
     });
     let res_json = res.json();

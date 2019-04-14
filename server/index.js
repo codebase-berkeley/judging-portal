@@ -159,16 +159,24 @@ app.get('/api/data', async (req, res) => {
 })
 
 app.post('/api/data', async (req, res) => {
+  // const dict = req.body;
+  // res.json(dict);
+
+  // db.tables = dict['tables']
+  // db.clusters = dict['clusters']
+  // db.waves = dict['waves']
+  // db.filename = dict['filename']
+
+  // res.json("You successfully posted: ".concat(dict['tables']));
+
   const { dict } = req.body;
-  res.json("heelllooo");
-  res.json(dict);
   db.query('INSERT INTO dataentry(tables, clusters, waves, filename) VALUES($1 ,$2, $3, $4)', [
-      dict.tables,
-      dict.clusters,
-      dict.waves,
-      dict.filename
+      tables,
+      clusters,
+      waves,
+      filename
     ]);
-  res.json("You successfully posted: ".concat(dict));
+  res.json("You successfully posted to dataentry");
 });
 
 app.get('/api/apis', async (req, res) => {
@@ -190,11 +198,17 @@ app.get('/api/judgeinfo', async (req, res) => {
 });
 
 app.post('/api/judgeinfo', async (req, res) => {
-  const { info } = req.body;
+  const { info, deleted } = req.body;
+  res.json()
   db.query('INSERT INTO judges(name, API) VALUES($1 ,$2)', [
       info[0],
       info[1]
-    ]);
+  ]);
+  var i;
+  for (i = 0; i < deleted.length; i++) {
+    db.query('DELETE FROM judges WHERE name=\'' + deleted[i][0] +'\' AND API=\'' + deleted[i][1]+'\';');
+    console.log('DELETE FROM lists WHERE type=\'' + deleted[i][0] +'\' AND name=\'' + deleted[i][1]+'\';');
+  }
   res.json("You successfully posted: ".concat(info));
 });
 
