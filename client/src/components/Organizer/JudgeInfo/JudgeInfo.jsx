@@ -18,9 +18,13 @@ class JudgeInfo extends Component {
     this.handleClickIndex = this.handleClickIndex.bind(this);
     this._onSelect = this._onSelect.bind(this);
     this.routeToPrev = this.routeToPrev.bind(this);
+    this.routeToNext = this.routeToNext.bind(this);
+
+    this.postJudgeInfo = this.postJudgeInfo.bind(this);
+
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this.getJudgeInfo().then(result => {
       let i;
       let judgeinfo = [];
@@ -41,7 +45,7 @@ class JudgeInfo extends Component {
   }
 
   async getAPI() {
-    const res = await fetch(`/api/apis`);
+    const res = await fetch(`/api/lists`);
     const res_json = res.json();
     return res_json
   }
