@@ -56,17 +56,12 @@ INSERT INTO projects VALUES (2, 'calhacks', 'https://github.com/codebase-berkele
 -- INSERT INTO judges VALUES ('parth', 'codebaseAPI', '2', '-1');
 -- INSERT INTO judges VALUES ('calhacks', 'calhacksAPI', '1', '-1');
 
-INSERT INTO dataentry VALUES ('5', '3', '10', 'devpost');
+-- INSERT INTO dataentry VALUES ('5', '3', '10', 'devpost');
 
 INSERT INTO judges VALUES ('rachel', 'myAPI');
 INSERT INTO judges VALUES ('parth', 'codebaseAPI');
 INSERT INTO judges VALUES ('andrew', 'yoooAPI');
 INSERT INTO judges VALUES ('julia', 'bestAPI');
-
-INSERT INTO apis VALUES ('myAPI');
-INSERT INTO apis VALUES ('codebaseAPI');
-INSERT INTO apis VALUES ('yoooAPI');
-INSERT INTO apis VALUES ('bestAPI');
 
 INSERT INTO lists (API) VALUES ('Google Vision');
 INSERT INTO lists (API) VALUES ('Uber Autopilot');

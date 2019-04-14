@@ -149,14 +149,6 @@ app.post('/api/lists', (req, res) => {
   db.fellowships = fellowships; 
 });
 
-app.get('/api/judgeinfo', (req, res) => {
-  const judgeinfo = db['judge_list']
-
-  // Return them as json
-  res.json(judgeinfo);
-  console.log(`Sent APIs`)
-});
-
 app.get('/api/data', async (req, res) => {
   try {
     const query = await db.query('SELECT * FROM dataentry;');
@@ -166,15 +158,26 @@ app.get('/api/data', async (req, res) => {
   }
 })
 
-app.post('/api/data', (req, res) => {
-  const dict = req.body;
+app.post('/api/data', async (req, res) => {
+  const { dict } = req.body;
+  res.json("heelllooo");
+  res.json(dict);
+  db.query('INSERT INTO dataentry(tables, clusters, waves, filename) VALUES($1 ,$2, $3, $4)', [
+      dict.tables,
+      dict.clusters,
+      dict.waves,
+      dict.filename
+    ]);
+  res.json("You successfully posted: ".concat(dict));
+});
 
-  db.tables = dict['tables']
-  db.clusters = dict['clusters']
-  db.waves = dict['waves']
-  db.filename = dict['filename']
-
-  res.json("You successfully posted: ".concat(dict['tables']));
+app.get('/api/apis', async (req, res) => {
+  try {
+    const query = await db.query('SELECT (api) FROM lists;');
+    res.send(query.rows);
+  } catch (error) {
+    console.log(error.stack)
+  }
 });
 
 app.get('/api/judgeinfo', async (req, res) => {
@@ -186,9 +189,12 @@ app.get('/api/judgeinfo', async (req, res) => {
   }
 });
 
-app.post('/api/judgeinfo', (req, res) => {
-  const info = req.body;
-  db.judge_list = info['info']
+app.post('/api/judgeinfo', async (req, res) => {
+  const { info } = req.body;
+  db.query('INSERT INTO judges(name, API) VALUES($1 ,$2)', [
+      info[0],
+      info[1]
+    ]);
   res.json("You successfully posted: ".concat(info));
 });
 

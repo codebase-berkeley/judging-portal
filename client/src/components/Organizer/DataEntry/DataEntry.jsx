@@ -9,11 +9,16 @@ class DataEntry extends Component {
       tableNum: '',
       clusterNum: '',
       waveNum: '',
-      fileName: 'UPLOAD FILE'
+      fileName: 'UPLOAD FILE',
+      fileReader: null,
+      file: null
     };
     this.handleTable = this.handleTable.bind(this);
     this.handleCluster = this.handleCluster.bind(this);
     this.handleWave = this.handleWave.bind(this);
+    this.handleFileUpload = this.handleFileUpload.bind(this);
+    this.handleFileRead = this.handleFileRead.bind(this);
+    this.readFile = this.readFile.bind(this);
     this.changeFileName = this.changeFileName.bind(this);
     this.routeToPrev = this.routeToPrev.bind(this);
     this.routeToNext = this.routeToNext.bind(this);
@@ -37,6 +42,26 @@ class DataEntry extends Component {
     });
   }
 
+  handleFileUpload(event) {
+    this.changeFileName(event);
+    this.handleFileRead(event.target.files[0]);
+  }
+
+  handleFileRead(file) {
+    let fileReader = new FileReader();
+    fileReader.readAsText(file); 
+    fileReader.onloadend = this.readFile(fileReader); 
+    this.setState({
+      fileReader: fileReader
+    })
+  }
+
+  readFile(fileReader) {
+    this.setState({
+      file: fileReader.result
+    });
+  }
+
   changeFileName(event) {
     let input = event.target.value;
     let fileName = input.replace(/^.*[\\\/]/, '');
@@ -46,19 +71,15 @@ class DataEntry extends Component {
     this.setState({
       fileName: fileName
     })
-    console.log(this.state.tableNum);
-    console.log(this.state.clusterNum);
-    console.log(this.state.waveNum);
   }
 
   componentDidMount() {
     this.getDataEntry().then(result => this.setState({
-      tableNum: result[0]['tables'],
-      clusterNum: result[0]['clusters'],
-      waveNum: result[0]['waves'],
-      fileName: result[0]['filename']
+      tableNum: result[0].tables,
+      clusterNum: result[0].clusters,
+      waveNum: result[0].waves,
+      fileName: result[0].filename
     }))
-    console.log(this.state.tableNum);
   }
 
   async getDataEntry() {
@@ -90,6 +111,7 @@ class DataEntry extends Component {
   }
 
   routeToNext() {
+    console.log(this.state.fileReader.result);
     this.postData().then(result => console.log(result));
     this.props.history.push("/judge-info");
   }
@@ -138,7 +160,7 @@ class DataEntry extends Component {
               <input
                 type="file"
                 id="og-file"
-                onChange={this.changeFileName}
+                onChange={this.handleFileUpload}
                 className="upload-file"
               />
               <label for="og-file">{this.state.fileName}</label>
