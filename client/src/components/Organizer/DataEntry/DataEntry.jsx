@@ -74,12 +74,24 @@ class DataEntry extends Component {
   }
 
   componentDidMount() {
-    this.getDataEntry().then(result => this.setState({
-      tableNum: result[0].tables,
-      clusterNum: result[0].clusters,
-      waveNum: result[0].waves,
-      fileName: result[0].filename
-    }))
+    this.getDataEntry().then(result => {
+      console.log(result);
+      if (result.length == 0) {
+        this.setState({
+          tableNum: '',
+          clusterNum: '',
+          waveNum: '',
+          fileName: 'UPLOAD FILE'
+        })
+      } else {
+          this.setState({
+            tableNum: result[0].tables,
+            clusterNum: result[0].clusters,
+            waveNum: result[0].waves,
+            fileName: result[0].filename
+          })
+      }
+    });
   }
 
   async getDataEntry() {
@@ -88,7 +100,7 @@ class DataEntry extends Component {
     return res_json
   }
 
-  async postData(){
+  async postData() {
     let res = await fetch('/api/data', {
       method: 'POST',
       headers: {
@@ -104,6 +116,20 @@ class DataEntry extends Component {
     let res_json = res.json();
     return res_json;
   }
+
+  // async postCSV() {
+  //   let res = await fetch('/api/data', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify({
+        
+  //     })
+  //   });
+  //   let res_json = res.json();
+  //   return res_json;
+  // }
 
   routeToPrev() {
     this.postData().then(result => console.log(result));
