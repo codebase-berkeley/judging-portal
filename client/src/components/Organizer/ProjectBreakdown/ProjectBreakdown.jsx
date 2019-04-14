@@ -41,19 +41,25 @@ class ProjectBreakdown extends Component {
                                 <div className="project-list-score">SCORE</div>
                             </div>
 
-                            <div className="list">{scoredProjects}</div>
+                            <div className="breakdown-list">{scoredProjects}</div>
                         </div>
                         <div className = "unscored-section">
                         {/* <header className="scored-header"> 
                             UNSCORED
                         </header> */}
-                            <div className="judge-list">
+                            <div className="project-list">
                                 <div className="judge-list-name">NAME</div>
                                 <div className="judge-list-api">UNSCORED</div>
                             </div>
                     
-                            <div className="list">{unscoredProjects}</div>
+                            <div className="breakdown-list">{unscoredProjects}</div>
                         </div>
+                    </div>
+                    {/* <div className="progress-bar" style={{ width: (this.state.scored.length/(this.state.unscored.length + this.state.unscored.length))*2000, background: '#32CD32' }}>
+                    50%
+                    </div> */}
+                    <div className="progress" >
+                    {(this.state.scored.length/(this.state.scored.length + this.state.unscored.length)*100).toFixed(2)}% Scored
                     </div>
 
                     <div className= "buttons nav judge-button">

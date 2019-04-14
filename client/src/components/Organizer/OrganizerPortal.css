@@ -373,7 +373,7 @@ ul {
     display: flex;
     flex-direction: row;
     width:100vw;
-    height: 70vh;
+    height: 60vh;
 }
 
 .project-list {
@@ -435,6 +435,10 @@ ul {
     text-align: left;
     color: #0A7191;
 }
+.breakdown-list {
+    overflow: scroll; 
+    height: 80%;
+}
 
 .project-score {
     width: 45%;
@@ -442,4 +446,8 @@ ul {
     text-align: left;
     display: inline-block;
     color: #0A7191;
+}
+
+.progress {
+    padding-bottom: 4%;
 }
