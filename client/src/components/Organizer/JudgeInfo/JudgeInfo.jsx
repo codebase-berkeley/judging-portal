@@ -98,6 +98,12 @@ class JudgeInfo extends Component {
     this.props.history.push(path);
   }
 
+  routeToNext() {
+    this.postJudgeInfo().then(result => console.log(result));
+    let path = "/project-breakdown";
+    this.props.history.push(path);
+  }
+
   render() {
     const defaultOption = this.state.selected;
     const info = (this.state.info||[]).map((name,index)=>(
@@ -158,7 +164,7 @@ class JudgeInfo extends Component {
 
           <div className= "buttons nav judge-button">
             <button className="button" onClick={this.routeToPrev}>PREV</button>
-            <button className="button">NEXT</button>
+            <button className="button" onClick={this.routeToNext}>NEXT</button>
           </div>
         </div>
       </div>
