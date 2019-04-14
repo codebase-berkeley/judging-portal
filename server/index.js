@@ -144,7 +144,7 @@ app.get('/api/judgeinfo', async (req, res) => {
 });
 
 app.post('/api/judgeinfo', (req, res) => {
-  const info = req.body;
+  const {info} = req.body;
   db.judge_list = info['info']
   res.json("You successfully posted: ".concat(info));
 });
