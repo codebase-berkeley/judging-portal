@@ -19,7 +19,7 @@ class ProjectBreakdown extends Component {
 
     render() {
         const scoredProjects = (this.state.scored||[]).map((name,index)=>(
-            <ul>
+            <ul className="proj-item">
                <ProjectItem
                 name={name[0]}
                 score={this.state.scored[index][1]}
@@ -27,7 +27,7 @@ class ProjectBreakdown extends Component {
             </ul>
           ))
           const unscoredProjects = (this.state.unscored||[]).map((name,index)=>(
-            <ul>
+            <ul className="proj-item">
                <ProjectItem
                 name={name[0]}
               />
@@ -59,7 +59,7 @@ class ProjectBreakdown extends Component {
                         </div>
                     </div>
                     <div className="progress" >
-                        {(this.state.scored.length/(this.state.scored.length + this.state.unscored.length)*100).toFixed(2)}% Scored
+                        {(this.state.scored.length/(this.state.scored.length + this.state.unscored.length)*100).toFixed(2)}% SCORED
                     </div>
 
                     <div className= "buttons nav judge-button">

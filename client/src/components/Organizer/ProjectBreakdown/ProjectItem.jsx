@@ -11,7 +11,7 @@ class ProjectItem extends Component {
 
     render() {
         return (
-            <div className = "project-item">
+            <div>
                 <div className="project-name">{this.props.name}</div>
                 <div className="project-score">{this.props.score}</div>
             </div>
