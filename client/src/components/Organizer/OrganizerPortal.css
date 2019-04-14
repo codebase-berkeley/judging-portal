@@ -358,7 +358,6 @@ ul {
 
 .scored-section {
     width: 50%;
-    /* position: relative; */
     text-align: center;
 }
 
@@ -379,36 +378,12 @@ ul {
 }
 
 .project-list {
-    /* padding-left: 2%;
-    padding-top: 3%;
-    position: relative;
-    display: inline-block;
-    align-content: center;
-    overflow: auto;
-    margin-top: -1%;
-    width: 80%; */
-    /* position: relative;
-    display: inline-block;
-    align-content: center; */
     width: 80%;
     display: inline-block;
     background-color: #98D0EC;
-    /* align-content: center; */
-
 }
 
 .project-list-name {
-    /* display: inline-block;
-    font-weight: bold;
-    color: #0A7191;
-    background-color: #98D0EC;
-    font-size: 2.5vh;
-    text-align: left;
-    padding-top: 1%;
-    padding-bottom: 1%;
-    padding-left: 5%;
-    width: 45%;
-    height: 100%; */
     display: inline-block;
     text-align: center;
     width: 50%;
@@ -416,17 +391,6 @@ ul {
 }
 
 .project-list-score {
-    /* display: inline-block;
-    font-weight: bold;
-    color: #0A7191;
-    background-color: #98D0EC;
-    font-size: 2.5vh;
-    text-align: left;
-    padding-top: 1%;
-    padding-bottom:1%;
-    padding-left: 5%;
-    width: 44%;
-    height: 100%; */
     display: inline-block;
     text-align: center;
     width: 50%;
@@ -434,43 +398,19 @@ ul {
 }
 
 .project-item {
-    /* height: 100%;
-    display: inline-block;
-    margin-left: 5%;
-    width: 80%;
-    margin-bottom: 1%;
-    border-bottom: 2px solid #98D0EC;
-    justify-content: center; */
-    /* width: 100%; */
     display: inline-block;
     text-align: center;
     width: 50%;
 }
 
 .project-name {
-    /* display: inline-block;
-    padding-left: 5%;
-    width: 45%;
-    text-align: left;
-    color: #0A7191; */
     display: inline-block;
     width: 50%;
     color: #0A7191;
 
 }
-.breakdown-list {
-    /* overflow: scroll; 
-    height: 80%;
-    width: 80%;
-    display: inline-block; */
-}
 
 .project-score {
-    /* width: 45%;
-    padding-left: 5%;
-    text-align: left;
-    display: inline-block;
-    color: #0A7191; */
     width: 50%;
     display: inline-block;
     color: #0A7191;
@@ -484,16 +424,6 @@ ul {
 }
 
 .project-list-name-unscored {
-    /* display: inline-block;
-    font-weight: bold;
-    color: #0A7191;
-    background-color: #98D0EC;
-    font-size: 2.5vh;
-    text-align: left;
-    padding: 1%;
-    padding-left: 5%;
-    width: 94%;
-    height: 100%; */
     width: 50%;
     color: #0A7191;
 }
@@ -519,9 +449,3 @@ ul {
     width: 80%;
     display: inline-block;
 }
-
-/* ul {
-    padding-right: none;
-    padding-left: none;
-    list-style: none;
-} */

@@ -13,7 +13,7 @@ class ProjectBreakdown extends Component {
     }
 
     routeToPrev() {
-        let path = "/judge-info";
+        const path = "/judge-info";
         this.props.history.push(path);
       }
 
@@ -26,7 +26,7 @@ class ProjectBreakdown extends Component {
               />
             </ul>
           ))
-          const unscoredProjects = (this.state.unscored||[]).map((name,index)=>(
+          const unscoredProjects = (this.state.unscored||[]).map((name)=>(
             <ul className="proj-item">
                <ProjectItem
                 name={name[0]}
@@ -63,7 +63,7 @@ class ProjectBreakdown extends Component {
                     </div>
 
                     <div className= "buttons nav judge-button">
-                        <button className="button" onClick={this.routeToPrev}>PREV</button>
+                        <button type="button" className="button" onClick={this.routeToPrev}>PREV</button>
                     </div>
 
                 </div>
