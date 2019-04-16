@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import '../OrganizerPortal.css';
 
+var Papa = require('papaparse');
+
 class DataEntry extends Component {
   constructor(props) {
     super(props);
@@ -11,7 +13,7 @@ class DataEntry extends Component {
       waveNum: '',
       fileName: 'UPLOAD FILE',
       fileReader: null,
-      file: null
+      jsonfile: null,
     };
     this.handleTable = this.handleTable.bind(this);
     this.handleCluster = this.handleCluster.bind(this);
@@ -75,7 +77,6 @@ class DataEntry extends Component {
 
   componentDidMount() {
     this.getDataEntry().then(result => {
-      console.log(result);
       if (result.length == 0) {
         this.setState({
           tableNum: '',
@@ -102,7 +103,7 @@ class DataEntry extends Component {
 
   async postData() {
     let res = await fetch('/api/data', {
-      method: 'POST',
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       },
@@ -117,26 +118,42 @@ class DataEntry extends Component {
     return res_json;
   }
 
-  // async postCSV() {
-  //   let res = await fetch('/api/data', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify({
+  async postCSV() {
+    var results = Papa.parse(this.state.fileReader.result);
+    console.log(results.data);
+
+    var list = [];
+
+    for (let i = 1; i < results.data.length; i++) {
+      for (let n = 0; n < results.data[0].length; n++) {
+        //list.concat()
+        dict[results.data[0][n]] = results.data[i][n]
+      }
+    }
+
+    console.log(dict);
+
+    let res = await fetch('/api/data', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
         
-  //     })
-  //   });
-  //   let res_json = res.json();
-  //   return res_json;
-  // }
+      })
+    });
+    let res_json = res.json();
+    return res_json;
+  }
 
   routeToPrev() {
+    this.postCSV().then(result => console.log(result));
     this.postData().then(result => console.log(result));
     this.props.history.push("/categories");
   }
 
   routeToNext() {
+    this.postCSV().then(result => console.log(result));
     this.postData().then(result => console.log(result));
     this.props.history.push("/judge-info");
   }
