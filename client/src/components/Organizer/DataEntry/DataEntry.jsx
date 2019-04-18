@@ -120,18 +120,18 @@ class DataEntry extends Component {
 
   async postCSV() {
     var results = Papa.parse(this.state.fileReader.result);
-    console.log(results.data);
 
     var list = [];
 
     for (let i = 1; i < results.data.length; i++) {
+      var dict = {};
       for (let n = 0; n < results.data[0].length; n++) {
-        //list.concat()
         dict[results.data[0][n]] = results.data[i][n]
       }
+      list[i] = dict;
     }
-
-    console.log(dict);
+    
+    console.log(list);
 
     let res = await fetch('/api/data', {
       method: 'PUT',
