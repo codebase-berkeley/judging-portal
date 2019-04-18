@@ -102,58 +102,46 @@ class DataEntry extends Component {
   }
 
   async postData() {
-    let res = await fetch('/api/data', {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        tables: this.state.tableNum,
-        clusters: this.state.clusterNum,
-        waves: this.state.waveNum,
-        filename: this.state.fileName
-      })
-    });
-    let res_json = res.json();
-    return res_json;
-  }
+      var results = Papa.parse(this.state.fileReader.result);
 
-  async postCSV() {
-    var results = Papa.parse(this.state.fileReader.result);
+      var list = [];
 
-    var list = [];
-
-    for (let i = 1; i < results.data.length; i++) {
-      var dict = {};
-      for (let n = 0; n < results.data[0].length; n++) {
-        dict[results.data[0][n]] = results.data[i][n]
+      for (let i = 1; i < results.data.length; i++) {
+        var dict = {};
+        for (let n = 0; n < results.data[0].length; n++) {
+          const key = results.data[0][n];
+          if (key == "Submission Title" || key == "Submission Url" || key.substring(0, 4) == "Best") {
+            dict[results.data[0][n]] = results.data[i][n]
+          }
+        }
+        list[i] = dict;
       }
-      list[i] = dict;
+
+      console.log(list);
+
+      let res = await fetch('/api/data', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          tables: this.state.tableNum,
+          clusters: this.state.clusterNum,
+          waves: this.state.waveNum,
+          filename: this.state.fileName,
+          csv: list
+        })
+      });
+      let res_json = res.json();
+      return res_json;
     }
 
-    console.log(list);
-
-    let res = await fetch('/api/data', {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        projects: list
-      })
-    });
-    let res_json = res.json();
-    return res_json;
-  }
-
   routeToPrev() {
-    this.postCSV().then(result => console.log(result));
     this.postData().then(result => console.log(result));
     this.props.history.push("/categories");
   }
 
   routeToNext() {
-    this.postCSV().then(result => console.log(result));
     this.postData().then(result => console.log(result));
     this.props.history.push("/judge-info");
   }
