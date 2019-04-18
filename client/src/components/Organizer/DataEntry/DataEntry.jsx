@@ -19,12 +19,6 @@ class DataEntry extends Component {
     this.routeToNext = this.routeToNext.bind(this);
   }
 
-  handleTable(event) {
-    this.setState({
-      tableNum: event.target.value
-    });
-  }
-
   handleCluster(event) {
     this.setState({
       clusterNum: event.target.value
@@ -38,36 +32,39 @@ class DataEntry extends Component {
   }
 
   changeFileName(event) {
-    let input = event.target.value;
+    const input = event.target.value;
     let fileName = input.replace(/^.*[\\\/]/, '');
-    if (fileName == '') {
+    if (fileName === '') {
       fileName = 'UPLOAD FILE';
     }
     this.setState({
       fileName: fileName
     })
-    console.log(this.state.tableNum);
-    console.log(this.state.clusterNum);
-    console.log(this.state.waveNum);
   }
 
   componentDidMount() {
     this.getDataEntry().then(result => this.setState({
-      tableNum: result['tables'],
-      clusterNum: result['clusters'],
-      waveNum: result['waves'],
-      fileName: result['filename']
+      tableNum: result.tables,
+      clusterNum: result.clusters,
+      waveNum: result.waves,
+      fileName: result.filename
     }))
   }
 
   async getDataEntry() {
-    let res = await fetch('/api/data');
-    let res_json = res.json();
-    return res_json
+    const res = await fetch('/api/data');
+    const resJson = res.json();
+    return resJson
+  }
+
+  handleTable(event) {
+    this.setState({
+      tableNum: event.target.value
+    });
   }
 
   async postData(){
-    let res = await fetch('/api/data', {
+    const res = await fetch('/api/data', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -79,17 +76,17 @@ class DataEntry extends Component {
         filename: this.state.fileName
       })
     });
-    let res_json = res.json();
-    return res_json;
+    const resJson = res.json();
+    return resJson;
   }
 
   routeToPrev() {
-    this.postData().then(result => console.log(result));
+    this.postData();
     this.props.history.push("/categories");
   }
 
   routeToNext() {
-    this.postData().then(result => console.log(result));
+    this.postData();
     this.props.history.push("/judge-info");
   }
 
@@ -140,12 +137,12 @@ class DataEntry extends Component {
                 onChange={this.changeFileName}
                 className="upload-file"
               />
-              <label for="og-file">{this.state.fileName}</label>
+              <label htmlFor="og-file">{this.state.fileName}</label>
             </div>
 
             <div className="data-button nav">
-              <button className="button" onClick={this.routeToPrev}>PREV</button>
-              <button className="button" onClick={this.routeToNext}>NEXT</button>
+              <button className="button" type="submit" onClick={this.routeToPrev}>PREV</button>
+              <button className="button" type="submit" onClick={this.routeToNext}>NEXT</button>
             </div>
           </div>
         </div>

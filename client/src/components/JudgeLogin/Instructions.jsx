@@ -37,7 +37,7 @@ class Instructions extends Component {
                     <p className="instructions-text">
                         {instructions}
                     </p>
-                    <button className="instructions-next" onClick={this.routeToNext}>Got it!</button>
+                    <button className="instructions-next" type="submit" onClick={this.routeToNext}>Got it!</button>
                 </div>
             </div>
         )

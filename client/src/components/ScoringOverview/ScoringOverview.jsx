@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import './ScoringOverview.css';
-import Project from './Project.jsx'
 import { Link } from 'react-router-dom';
+import Project from './Project.jsx'
+import './ScoringOverview.css';
 
 class ScoringOverview extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-        APIdata: {},
         renderedList: [],
         scoredList: [],
         unscoredList: [],
@@ -22,21 +21,20 @@ class ScoringOverview extends Component {
     }
 
     async componentDidMount() {
-        let res = await fetch('/api/projects/' + this.props.location.state.judgeId + '/');
-        let res_json = await res.json();
+        const res = await fetch('/api/projects/' + this.props.location.state.judgeId + '/');
+        const resJson = await res.json();
         this.setState({
-            judgeId: this.props.location.state.judgeId,
-            APIdata: res_json
+            judgeId: this.props.location.state.judgeId
         });
-        this.sortData(res_json);
+        this.sortData(resJson);
     }
 
     sortData(data) {
         let scoredData = [];
         let unscoredData = [];
-        for (let i = 0; i < data.length; i++) {
-            let score = data[i].score;
-            let component = [data[i]];
+        for (let i = 0; i < data.length; i += 1) {
+            const score = data[i].score;
+            const component = [data[i]];
             if (score === null) {
                 unscoredData = unscoredData.concat(component);
             }
@@ -71,8 +69,8 @@ class ScoringOverview extends Component {
             <div className="scoring-view">
                 <div className="score-button-box">
                     <div className="score-button">
-                        <button className={this.state.showUnscored ? "scored" : "unscored"} onClick={this.fetchUnscored}>Unscored</button>
-                        <button className={this.state.showUnscored ? "unscored" : "scored"} onClick={this.fetchScored}>  Scored  </button>
+                        <button className={this.state.showUnscored ? "scored" : "unscored"} type="submit" onClick={this.fetchUnscored}>Unscored</button>
+                        <button className={this.state.showUnscored ? "unscored" : "scored"} type="submit" onClick={this.fetchScored}>  Scored  </button>
                     </div>
                 </div>
             <ul>
@@ -87,7 +85,7 @@ class ScoringOverview extends Component {
                         score: item.score
                     }
                 }}>
-                    <Project key={index} name={item["name"]} identification={item["projectid"]} score={item["score"]}/>
+                    <Project key={index} name={item.name} identification={item.projectId} score={item.score}/>
                 </Link>
             ))}
             </ul>

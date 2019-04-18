@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import team_icon from "./src/team_icon.png";
-import api_icon from "./src/API_icon.png";
-import table_icon from "./src/table_icon.png";
-import back_icon from "./src/back_icon.png"
-import { NavLink } from 'react-router-dom';
+import teamIcon from "./src/team_icon.png";
+import apiIcon from "./src/API_icon.png";
+import tableIcon from "./src/table_icon.png";
+import backIcon from "./src/back_icon.png"
 import "./ProjectInfo.css";
 
 
@@ -28,9 +27,9 @@ class ProjectInfo extends Component{
     }
 
     async updateScore() {
-        let judgeId = this.state.judgeId;
-        let projectId = this.state.projectId;
-        let res = await fetch('/api/scoreupdate/judge/' + judgeId + '/project/' + projectId, {
+        const judgeId = this.state.judgeId;
+        const projectId = this.state.projectId;
+        const res = await fetch('/api/scoreupdate/judge/' + judgeId + '/project/' + projectId, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json'
@@ -39,8 +38,8 @@ class ProjectInfo extends Component{
                 score: parseInt(this.state.score, 10)
             })
         });
-        let res_json = res.json();
-        return res_json;
+        const resJson = res.json();
+        return resJson;
     };
 
     handleScore(event) {
@@ -63,8 +62,8 @@ class ProjectInfo extends Component{
     render() {
         return (
             <div className = "entirePage">
-                <button onClick={this.routeToPrev}>
-                    <img type="image" className="backButton" src={back_icon}/>
+                <button type="submit" onClick={this.routeToPrev}>
+                    <img type="image" className="backButton" src={backIcon}/>
                 </button>
 
                 <div className = "projInfo">
@@ -76,7 +75,7 @@ class ProjectInfo extends Component{
                     <div className = "projDetails">
                         <div className = "attribute-item">
                             <div className="head-and-icon">
-                                <img className="projinfo-icon" src = {team_icon}></img>
+                                <img className="projinfo-icon" src = {teamIcon}></img>
                                 <h className="detail-header attribute-align-left">Team</h>
                             </div>
                             <p className="actual-info attribute-align-left">{this.props.location.state.team}</p>
@@ -84,7 +83,7 @@ class ProjectInfo extends Component{
 
                         <div className = "attribute-item">
                             <div className="head-and-icon">
-                                <img className="projinfo-icon" src = {api_icon}></img>
+                                <img className="projinfo-icon" src = {apiIcon}></img>
                                 <h className="detail-header attribute-align-left">API</h>
                             </div>
                             <p className="actual-info attribute-align-left">{this.props.location.state.api}</p>
@@ -92,7 +91,7 @@ class ProjectInfo extends Component{
 
                         <div className = "attribute-item">
                             <div className="head-and-icon">
-                                <img className="projinfo-icon" src = {table_icon}></img>
+                                <img className="projinfo-icon" src = {tableIcon}></img>
                                 <h className="detail-header attribute-align-left">Table</h>
                             </div>
                            <p className="actual-info attribute-align-left">{this.props.location.state.table}</p>

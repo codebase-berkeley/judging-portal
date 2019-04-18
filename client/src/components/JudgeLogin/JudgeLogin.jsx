@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import './JudgeLogin.css';
-import { constants } from 'fs';
 
 class JudgeLogin extends Component {
     constructor(props) {
@@ -23,12 +22,12 @@ class JudgeLogin extends Component {
 
     async componentDidMount() {
         const res = await fetch(`/api/judgenames`);
-        const res_json = await res.json();
-        let pairs = {}
-        let names = []
-        for (let i = 0; i < res_json.length; i++) {
-                names.push(res_json[i].name);
-                pairs[res_json[i].name] = res_json[i].judgeid;
+        const resJson = await res.json();
+        const pairs = {}
+        const names = []
+        for (let i = 0; i < resJson.length; i += 1) {
+                names.push(resJson[i].name);
+                pairs[resJson[i].name] = resJson[i].judgeid;
         }
         this.setState({ 
             options: names,
