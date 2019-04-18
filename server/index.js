@@ -146,7 +146,7 @@ app.post('/api/lists', (req, res) => {
   const { apis, general_categories, fellowships } = req.body;
   db.apis = apis;
   db.general_categories = general_categories;
-  db.fellowships = fellowships; 
+  db.fellowships = fellowships;
 });
 
 app.get('/api/data', async (req, res) => {
@@ -158,7 +158,7 @@ app.get('/api/data', async (req, res) => {
   }
 })
 
-app.post('/api/data', async (req, res) => {
+app.put('/api/data', async (req, res) => {
   // const dict = req.body;
   // res.json(dict);
 
@@ -170,7 +170,7 @@ app.post('/api/data', async (req, res) => {
   // res.json("You successfully posted: ".concat(dict['tables']));
 
   const { dict } = req.body;
-  db.query('INSERT INTO dataentry(tables, clusters, waves, filename) VALUES($1 ,$2, $3, $4)', [
+  db.query('UPDATE dataentry SET tables = $1, clusters = $2, waves = $3, filename = $4;', [
       tables,
       clusters,
       waves,

@@ -51,8 +51,8 @@ class DataEntry extends Component {
 
   handleFileRead(file) {
     let fileReader = new FileReader();
-    fileReader.readAsText(file); 
-    fileReader.onloadend = this.readFile(fileReader); 
+    fileReader.readAsText(file);
+    fileReader.onloadend = this.readFile(fileReader);
     this.setState({
       fileReader: fileReader
     })
@@ -130,7 +130,7 @@ class DataEntry extends Component {
       }
       list[i] = dict;
     }
-    
+
     console.log(list);
 
     let res = await fetch('/api/data', {
@@ -139,7 +139,7 @@ class DataEntry extends Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        
+        projects: list
       })
     });
     let res_json = res.json();
