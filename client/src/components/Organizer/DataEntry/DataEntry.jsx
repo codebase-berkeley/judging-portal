@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../OrganizerPortal.css';
 
-var Papa = require('papaparse');
+const Papa = require('papaparse');
 
 class DataEntry extends Component {
   constructor(props) {
@@ -12,8 +12,7 @@ class DataEntry extends Component {
       clusterNum: '',
       waveNum: '',
       fileName: 'UPLOAD FILE',
-      fileReader: null,
-      jsonfile: null,
+      fileReader: null
     };
     this.handleTable = this.handleTable.bind(this);
     this.handleCluster = this.handleCluster.bind(this);
@@ -24,6 +23,32 @@ class DataEntry extends Component {
     this.changeFileName = this.changeFileName.bind(this);
     this.routeToPrev = this.routeToPrev.bind(this);
     this.routeToNext = this.routeToNext.bind(this);
+  }
+
+  componentDidMount() {
+    this.getDataEntry().then(result => {
+      if (result.length === 0) {
+        this.setState({
+          tableNum: '',
+          clusterNum: '',
+          waveNum: '',
+          fileName: 'UPLOAD FILE'
+        })
+      } else {
+          this.setState({
+            tableNum: result[0].tables,
+            clusterNum: result[0].clusters,
+            waveNum: result[0].waves,
+            fileName: result[0].filename
+          })
+      }
+    });
+  }
+
+  async getDataEntry() {
+    const res = await fetch('/api/data');
+    const res_json = res.json();
+    return res_json
   }
 
   handleTable(event) {
@@ -50,24 +75,17 @@ class DataEntry extends Component {
   }
 
   handleFileRead(file) {
-    let fileReader = new FileReader();
+    const fileReader = new FileReader();
     fileReader.readAsText(file);
-    fileReader.onloadend = this.readFile(fileReader);
     this.setState({
       fileReader: fileReader
     })
   }
 
-  readFile(fileReader) {
-    this.setState({
-      file: fileReader.result
-    });
-  }
-
   changeFileName(event) {
-    let input = event.target.value;
+    const input = event.target.value;
     let fileName = input.replace(/^.*[\\\/]/, '');
-    if (fileName == '') {
+    if (fileName === '') {
       fileName = 'UPLOAD FILE';
     }
     this.setState({
@@ -75,42 +93,16 @@ class DataEntry extends Component {
     })
   }
 
-  componentDidMount() {
-    this.getDataEntry().then(result => {
-      if (result.length == 0) {
-        this.setState({
-          tableNum: '',
-          clusterNum: '',
-          waveNum: '',
-          fileName: 'UPLOAD FILE'
-        })
-      } else {
-          this.setState({
-            tableNum: result[0].tables,
-            clusterNum: result[0].clusters,
-            waveNum: result[0].waves,
-            fileName: result[0].filename
-          })
-      }
-    });
-  }
-
-  async getDataEntry() {
-    let res = await fetch('/api/data');
-    let res_json = res.json();
-    return res_json
-  }
-
   async postData() {
-      var results = Papa.parse(this.state.fileReader.result);
+      const results = Papa.parse(this.state.fileReader.result);
 
-      var list = [];
+      const list = [];
 
-      for (let i = 1; i < results.data.length; i++) {
-        var dict = {};
-        for (let n = 0; n < results.data[0].length; n++) {
+      for (let i = 1; i < results.data.length; i += 1) {
+        const dict = {};
+        for (let n = 0; n < results.data[0].length; n += 1) {
           const key = results.data[0][n];
-          if (key == "Submission Title" || key == "Submission Url" || key.substring(0, 4) == "Best") {
+          if (key === "Submission Title" || key === "Submission Url" || key.substring(0, 4) === "Best") {
             dict[results.data[0][n]] = results.data[i][n]
           }
         }
@@ -119,7 +111,7 @@ class DataEntry extends Component {
 
       console.log(list);
 
-      let res = await fetch('/api/data', {
+      const res = await fetch('/api/data', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
@@ -132,7 +124,7 @@ class DataEntry extends Component {
           csv: list
         })
       });
-      let res_json = res.json();
+      const res_json = res.json();
       return res_json;
     }
 
