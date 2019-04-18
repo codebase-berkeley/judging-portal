@@ -33,7 +33,7 @@ CREATE TABLE dataentry
   filename VARCHAR(254)
 );
 
-CREATE TABLE lists 
+CREATE TABLE lists
 (
   api VARCHAR(254),
   fellowships VARCHAR(254),
@@ -42,13 +42,23 @@ CREATE TABLE lists
 
 CREATE TABLE csv
 (
-  content VARCHAR(254)
+  name VARCHAR(254),
+  url VARCHAR(254),
+  BestMobileApp VARCHAR(254),
+  BestWebApp VARCHAR(254),
+  BestHardwareHack VARCHAR(254),
+  BestVRHack VARCHAR(254),
+  BestMLHack VARCHAR(254),
+  BestHealthHack VARCHAR(254),
+  BestEducationHack VARCHAR(254),
+  BestEntertainmentHack VARCHAR(254),
+  BestBeginnerHack VARCHAR(254)
 );
 
 INSERT INTO projects VALUES (1, 'mentored', 'https://github.com/codebase-berkeley/judging-portal', '{"best team", "funnest team", "coolest team"}');
 INSERT INTO projects VALUES (2, 'calhacks', 'https://github.com/codebase-berkeley/', '{"biggest hackathon"}');
 
-INSERT INTO dataentry VALUES ('', '', '', '');
+INSERT INTO dataentry VALUES (0, 0, 0, '');
 
 INSERT INTO judges VALUES ('rachel', 'myAPI');
 INSERT INTO judges VALUES ('parth', 'codebaseAPI');
