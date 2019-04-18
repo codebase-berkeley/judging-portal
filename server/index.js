@@ -169,7 +169,7 @@ app.put('/api/data', async (req, res) => {
 
   // res.json("You successfully posted: ".concat(dict['tables']));
 
-  const { dict } = req.body;
+  const { tables, clusters, waves, filename } = req.body;
   db.query('UPDATE dataentry SET tables = $1, clusters = $2, waves = $3, filename = $4;', [
       tables,
       clusters,
