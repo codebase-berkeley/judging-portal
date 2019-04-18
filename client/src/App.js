@@ -12,6 +12,7 @@ import JudgeLogin from './components/JudgeLogin/JudgeLogin';
 import Instructions from './components/JudgeLogin/Instructions';
 import ScoringOverview from './components/ScoringOverview/ScoringOverview';
 import ProjectInfo from './components/ProjectInfo/ProjectInfo';
+import Spreadsheet from './components/Organizer/HackerSpreadsheet/Spreadsheet';
 
 class App extends Component {
   render() {
@@ -27,6 +28,7 @@ class App extends Component {
           <Route path="/judge-login" component={JudgeLogin} />
           <Route path="/project-info" component={ProjectInfo} />
           <Route path="/project-breakdown" component={ProjectBreakdown} />
+          <Route path="/hacker-spreadsheet" component={Spreadsheet} />
         </Switch>
       </div>
     );
