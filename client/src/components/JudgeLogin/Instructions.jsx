@@ -7,14 +7,14 @@ class Instructions extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            id: ''
+            judgeId: ''
         }
         this.routeToNext = this.routeToNext.bind(this);
     }
 
     componentDidMount() {
         this.setState({
-            id: this.props.location.state.judgeId
+            judgeId: this.props.location.state.judgeId
         })
     }
 
@@ -22,7 +22,7 @@ class Instructions extends Component {
         this.props.history.push({
             pathname: '/overview',
             state: {
-                judgeId: this.state.id
+                judgeId: this.state.judgeId
             }
         })
     }

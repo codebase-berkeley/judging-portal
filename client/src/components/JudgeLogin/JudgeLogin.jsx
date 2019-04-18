@@ -10,7 +10,7 @@ class JudgeLogin extends Component {
         this.state = {
             options: [],
             selected: '',
-            id: '',
+            judgeId: '',
             dict: {},
             curr_password: '',
             logininfo: []
@@ -40,14 +40,14 @@ class JudgeLogin extends Component {
         this.props.history.push({
             pathname: '/instructions',
             state: {
-                judgeId: this.state.id
+                judgeId: this.state.judgeId
             }
         });
     }
 
     _onSelect(option) {
         this.setState({ 
-            id: this.state.dict[option.value],
+            judgeId: this.state.dict[option.value],
             selected: option.value
         });
     }

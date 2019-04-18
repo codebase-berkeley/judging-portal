@@ -12,7 +12,8 @@ class ScoringOverview extends Component {
         renderedList: [],
         scoredList: [],
         unscoredList: [],
-        showUnscored: true
+        showUnscored: true,
+        judgeId: ''
     };
 
     this.fetchUnscored = this.fetchUnscored.bind(this);
@@ -21,11 +22,11 @@ class ScoringOverview extends Component {
     }
 
     async componentDidMount() {
-    
         let res = await fetch('/api/projects/' + this.props.location.state.judgeId + '/');
         let res_json = await res.json();
         this.setState({
-            APIdata: res_json,
+            judgeId: this.props.location.state.judgeId,
+            APIdata: res_json
         });
         this.sortData(res_json);
     }
@@ -36,7 +37,7 @@ class ScoringOverview extends Component {
         for (let i = 0; i < data.length; i++) {
             let score = data[i].score;
             let component = [data[i]];
-            if (score === "") {
+            if (score === null) {
                 unscoredData = unscoredData.concat(component);
             }
             else {
@@ -79,14 +80,14 @@ class ScoringOverview extends Component {
                 <Link style={{ textDecoration: 'none', color: '#3B9Bc2' }} to={{
                     pathname: "/project-info",
                     state: {
+                        judgeId: this.state.judgeId,
                         team: item.name,
-                        id: item.id,
-                        api: item.api,
-                        table: item.table,
+                        projectId: item.projectid,
+                        api: item.categories,
                         score: item.score
                     }
                 }}>
-                    <Project key={index} name={item["team"]} identification={item["id"]} score={item["score"]}/>
+                    <Project key={index} name={item["name"]} identification={item["projectid"]} score={item["score"]}/>
                 </Link>
             ))}
             </ul>

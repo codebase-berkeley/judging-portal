@@ -47,7 +47,6 @@ app.post('/api/dummy', async (req, res) => {
 app.put('/api/score/:judgeName', async (req, res) => {
   const { judgeName } = req.params;
   const { projectId, score } = req.body;
-  console.log(judgeName, projectId, score);
   db.query('UPDATE judges SET score = $1 WHERE name = $2 AND projectId = $3;', [
     score,
     judgeName,
@@ -81,16 +80,27 @@ app.get('/api/projects', async (req, res) => {
 
 // API endpoint for each judge's list of projects
 app.get('/api/projects/:judgeId', async (req, res) => {
-  console.log(req.params);
   const { judgeId } = req.params;
   try {
-    const query = await db.query('SELECT * FROM projects WHERE judgeId = $1;', [
+    const query = await db.query('SELECT projects.*, filtered.score FROM projects INNER JOIN (SELECT * FROM scores WHERE scores.judgeId = $1) AS filtered ON projects.projectId=filtered.projectId', [
       judgeId
     ]);
     res.send(query.rows);
   } catch (error) {
       console.log(error.stack);
   }
+});
+
+// updating project scores
+app.put('/api/scoreupdate/judge/:judgeId/project/:projectId', async (req, res) => {
+  const { judgeId, projectId } = req.params;
+  const { score } = req.body;
+  db.query('UPDATE scores SET score = $1 WHERE judgeId = $2 AND projectId = $3;', [
+    score,
+    judgeId,
+    projectId
+  ]);
+  res.json('Score update successfully');
 });
 
 // API endpoint for judge names
