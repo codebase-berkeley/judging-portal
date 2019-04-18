@@ -353,3 +353,106 @@ ul {
 .delete-button {
     background-color: #F9F9F9;
 }
+
+/********************* PROJECT BREAKDOWN ********************/
+
+.scored-section {
+    width: 50%;
+    text-align: center;
+}
+
+.unscored-section {
+    width:50%;
+}
+
+.scored-header {
+    text-align: left;
+}
+
+.content-breakdown {
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    width:100vw;
+    height: 60vh;
+}
+
+.breakdown-list {
+    display: inline-block;
+    overflow: auto;
+    width: 80%;
+    height: 55vh;
+}
+
+.project-list {
+    width: 80%;
+    display: inline-block;
+    background-color: #98D0EC;
+}
+
+.project-list-name {
+    display: inline-block;
+    text-align: center;
+    width: 50%;
+    color: #0A7191;
+}
+
+.project-list-score {
+    display: inline-block;
+    text-align: center;
+    width: 50%;
+    color: #0A7191;
+}
+
+.project-item {
+    display: inline-block;
+    text-align: center;
+    width: 50%;
+}
+
+.project-name {
+    display: inline-block;
+    width: 50%;
+    color: #0A7191;
+
+}
+
+.project-score {
+    width: 50%;
+    display: inline-block;
+    color: #0A7191;
+}
+
+.progress {
+    padding-bottom: 2vh;
+    color: #0A7191;
+    font-size: 3vh;
+    font-weight: bold;
+}
+
+.project-list-name-unscored {
+    width: 50%;
+    color: #0A7191;
+}
+
+.headers {
+    width: 100%;
+    margin-top: 2vh;
+    display: inline-block;
+    color:#0A7191;
+    font-size: 3vh;
+    font-weight: bold;
+}
+
+.scoring-header {
+    display: inline-block;
+    width: 50%;
+}
+
+.proj-item {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 2px solid #98D0EC;
+    width: 100%;
+    display: inline-block;
+}

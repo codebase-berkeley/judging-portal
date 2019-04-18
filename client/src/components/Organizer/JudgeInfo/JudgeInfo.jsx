@@ -19,9 +19,13 @@ class JudgeInfo extends Component {
     this.handleClickIndex = this.handleClickIndex.bind(this);
     this._onSelect = this._onSelect.bind(this);
     this.routeToPrev = this.routeToPrev.bind(this);
+    this.routeToNext = this.routeToNext.bind(this);
+
+    this.postJudgeInfo = this.postJudgeInfo.bind(this);
+
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this.getJudgeInfo().then(result => {
       let i;
       let judgeinfo = [];
@@ -49,7 +53,7 @@ class JudgeInfo extends Component {
   }
 
   async getAPI() {
-    const res = await fetch(`/api/apis`);
+    const res = await fetch(`/api/lists`);
     const res_json = res.json();
     return res_json
   }
@@ -119,6 +123,12 @@ class JudgeInfo extends Component {
     this.props.history.push(path);
   }
 
+  routeToNext() {
+    this.postJudgeInfo().then(result => console.log(result));
+    let path = "/project-breakdown";
+    this.props.history.push(path);
+  }
+
   render() {
     const defaultOption = this.state.selected;
     const info = (this.state.info||[]).map((name,index)=>(
@@ -178,7 +188,7 @@ class JudgeInfo extends Component {
 
           <div className= "buttons nav judge-button">
             <button className="button" onClick={this.routeToPrev}>PREV</button>
-            <button className="button">NEXT</button>
+            <button className="button" onClick={this.routeToNext}>NEXT</button>
           </div>
         </div>
       </div>

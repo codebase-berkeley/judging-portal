@@ -35,9 +35,8 @@ CREATE TABLE dataentry
 
 CREATE TABLE lists
 (
-  api VARCHAR(254),
-  fellowships VARCHAR(254),
-  general VARCHAR(254)
+  type VARCHAR(254),
+  name VARCHAR(254)
 );
 
 CREATE TABLE csv
@@ -65,14 +64,19 @@ INSERT INTO judges VALUES ('parth', 'codebaseAPI');
 INSERT INTO judges VALUES ('andrew', 'yoooAPI');
 INSERT INTO judges VALUES ('julia', 'bestAPI');
 
-INSERT INTO lists (API) VALUES ('Google Vision');
-INSERT INTO lists (API) VALUES ('Uber Autopilot');
-INSERT INTO lists (API) VALUES ('API #23');
+INSERT INTO apis VALUES ('myAPI');
+INSERT INTO apis VALUES ('codebaseAPI');
+INSERT INTO apis VALUES ('yoooAPI');
+INSERT INTO apis VALUES ('bestAPI');
 
-INSERT INTO lists (fellowships) VALUES ('UCB Golden Bear Fellowship');
+INSERT INTO lists VALUES ('api', 'Google Vision');
+INSERT INTO lists VALUES ('api', 'Uber Autopilot');
+INSERT INTO lists VALUES ('api', 'API #23');
 
-INSERT INTO lists (general) VALUES ('worst project');
-INSERT INTO lists (general) VALUES ('most average project');
+INSERT INTO lists VALUES ('fellowships', 'UCB Golden Bear Fellowship');
+
+INSERT INTO lists VALUES ('general', 'worst project');
+INSERT INTO lists VALUES ('general', 'most average project');
 
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO root;
 

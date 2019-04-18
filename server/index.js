@@ -59,78 +59,23 @@ app.put('/api/score/:judgeName', async (req, res) => {
 // ########### HOME API EXAMPLES END ###########
 
 // API endpoint for projects
-app.get('/api/projects', (req, res) => {
-  const projects = [
-    {
-      "id": 12345,
-      "team": "Mulan and Warren",
-      "api": "Google Vision",
-      "table": "45",
-      "score": ""
-    },
-    {
-      "id": 13579,
-      "team": "Andrew and Julia",
-      "api": "Joke Generator",
-      "table": "48",
-      "score": "9"
-    },
-    {
-      "id": 24680,
-      "team": "Francesca and Rachel",
-      "api": "Venmo",
-      "table": "42",
-      "score": "5"
-    },
-    {
-      "id": 09876,
-      "team": "Parth and Lawrence",
-      "api": "Codecademy",
-      "table": "69",
-      "score": ""
-    }
-  ]
-
-  // Return them as json
-  res.json(projects);
-  console.log(`Sent projects`);
+app.get('/api/projects', async (req, res) => {
+  try {
+    const query = await db.query('SELECT * FROM projects;');
+    res.send(query.rows);
+  } catch (error) {
+      console.log(error.stack);
+  }
 });
 
 // API endpoint for judge names
-app.get('/api/judgenames', (req, res) => {
-  const judgeNames = [
-    {
-      "name": 'Parth',
-      "api": 'none'
-    },
-    {
-      "name": 'Lawrence',
-      "api": 'none'
-    },
-    {
-      "name": 'Julia',
-      "api": 'none'
-    },
-    {
-      "name": 'Andrew',
-      "api": 'none'
-    },
-    {
-      "name": 'Anant',
-      "api": 'ee'
-    },
-    {
-      "name": 'Kris',
-      "api": '16b'
-    },
-    {
-      "name": 'Jaijeet',
-      "api": 'MS'
+app.get('/api/judgenames', async (req, res) => {
+    try {
+      const query = await db.query('SELECT name FROM judges;');
+      res.send(query.rows);
+    } catch (error) {
+      console.log(error.stack);
     }
-  ]
-
-  res.json(judgeNames);
-  console.log(`Sent judge names`);
 });
 
 app.get('/api/lists', async (req, res) => {
@@ -142,11 +87,32 @@ app.get('/api/lists', async (req, res) => {
   }
 });
 
-app.post('/api/lists', (req, res) => {
-  const { apis, general_categories, fellowships } = req.body;
-  db.apis = apis;
-  db.general_categories = general_categories;
-  db.fellowships = fellowships;
+
+app.post('/api/lists', async (req, res) => {
+  const {deleted, added } = req.body;
+  console.log(deleted);
+  var i;
+  for (i = 0; i < deleted.length; i++) {
+    console.log("DELETING: " + deleted[i]);
+    db.query('DELETE FROM lists WHERE type=\'' + deleted[i][0] +'\' AND name=\'' + deleted[i][1]+'\';');
+    console.log('DELETE FROM lists WHERE type=\'' + deleted[i][0] +'\' AND name=\'' + deleted[i][1]+'\';');
+  }
+  for (i = 0; i < added.length; i++) {
+    console.log("ADDING: " + added[i]);
+    db.query('INSERT INTO lists VALUES(\'' + added[i][0] + '\', \'' + added[i][1] +'\');');
+    console.log('INSERT INTO lists VALUES(\'' + added[i][0] + '\', \'' + added[i][1] +'\');');
+  }
+  
+  res.json("Databse has been updated");
+
+});
+
+app.get('/api/judgeinfo', (req, res) => {
+  const judgeinfo = db['judge_list']
+
+  // Return them as json
+  res.json(judgeinfo);
+  console.log(`Sent APIs`)
 });
 
 app.get('/api/data', async (req, res) => {
