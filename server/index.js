@@ -158,19 +158,21 @@ app.get('/api/data', async (req, res) => {
   }
 })
 
-app.post('/api/data', async (req, res) => {
-  // const dict = req.body;
-  // res.json(dict);
+app.put('/api/data', async (req, res) => {
+  const { tables, clusters, waves, filename } = req.body;
+  db.query('UPDATE dataentry SET tables=$1, clusters=$2, waves=$3, filename=$4', [
+      tables,
+      clusters,
+      waves,
+      filename
+    ]);
+  res.json("You successfully posted to dataentry");
+});
 
-  // db.tables = dict['tables']
-  // db.clusters = dict['clusters']
-  // db.waves = dict['waves']
-  // db.filename = dict['filename']
-
-  // res.json("You successfully posted: ".concat(dict['tables']));
-
-  const { dict } = req.body;
-  db.query('INSERT INTO dataentry(tables, clusters, waves, filename) VALUES($1 ,$2, $3, $4)', [
+//this is the put statement for putting the csv data
+app.put('/api/csv', async (req, res) => {
+  const { tables, clusters, waves, filename } = req.body;
+  db.query('UPDATE dataentry SET tables=$1, clusters=$2, waves=$3, filename=$4', [
       tables,
       clusters,
       waves,

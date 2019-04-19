@@ -42,13 +42,23 @@ CREATE TABLE lists
 
 CREATE TABLE csv
 (
-  content VARCHAR(254)
+  projectname VARCHAR(254),
+  projecturl VARCHAR(254),
+  bestmobileapp VARCHAR(254),
+  bestwebapp VARCHAR(254),
+  besthardware VARCHAR(254),
+  bestvr VARCHAR(254),
+  bestml VARCHAR(254),
+  besthealth VARCHAR(254),
+  besteducation VARCHAR(254),
+  bestentertainment VARCHAR(254),
+  bestbeginner VARCHAR(254)
 );
 
 INSERT INTO projects VALUES (1, 'mentored', 'https://github.com/codebase-berkeley/judging-portal', '{"best team", "funnest team", "coolest team"}');
 INSERT INTO projects VALUES (2, 'calhacks', 'https://github.com/codebase-berkeley/', '{"biggest hackathon"}');
 
-INSERT INTO dataentry VALUES ('', '', '', '');
+INSERT INTO dataentry VALUES (0, 0, 0, 'UPLOAD FILE');
 
 INSERT INTO judges VALUES ('rachel', 'myAPI');
 INSERT INTO judges VALUES ('parth', 'codebaseAPI');
