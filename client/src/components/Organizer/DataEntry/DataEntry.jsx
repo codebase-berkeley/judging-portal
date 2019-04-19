@@ -45,12 +45,6 @@ class DataEntry extends Component {
     });
   }
 
-  async getDataEntry() {
-    const res = await fetch('/api/data');
-    const res_json = res.json();
-    return res_json
-  }
-
   handleTable(event) {
     this.setState({
       tableNum: event.target.value
@@ -93,6 +87,12 @@ class DataEntry extends Component {
     })
   }
 
+  async getDataEntry() {
+    const res = await fetch('/api/data');
+    const resJson = res.json();
+    return resJson
+  }
+
   async postData() {
       const results = Papa.parse(this.state.fileReader.result);
 
@@ -129,12 +129,12 @@ class DataEntry extends Component {
     }
 
   routeToPrev() {
-    this.postData().then(result => console.log(result));
+    this.postData();
     this.props.history.push("/categories");
   }
 
   routeToNext() {
-    this.postData().then(result => console.log(result));
+    this.postData();
     this.props.history.push("/judge-info");
   }
 
@@ -185,12 +185,12 @@ class DataEntry extends Component {
                 onChange={this.handleFileUpload}
                 className="upload-file"
               />
-              <label for="og-file">{this.state.fileName}</label>
+              <label htmlFor="og-file">{this.state.fileName}</label>
             </div>
 
             <div className="data-button nav">
-              <button className="button" onClick={this.routeToPrev}>PREV</button>
-              <button className="button" onClick={this.routeToNext}>NEXT</button>
+              <button className="button" type="submit" onClick={this.routeToPrev}>PREV</button>
+              <button className="button" type="submit" onClick={this.routeToNext}>NEXT</button>
             </div>
           </div>
         </div>

@@ -6,12 +6,25 @@ const instructions = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, s
 class Instructions extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            judgeId: ''
+        }
         this.routeToNext = this.routeToNext.bind(this);
     }
 
+    componentDidMount() {
+        this.setState({
+            judgeId: this.props.location.state.judgeId
+        })
+    }
+
     routeToNext() {
-        const path = "/overview"
-        this.props.history.push(path);
+        this.props.history.push({
+            pathname: '/overview',
+            state: {
+                judgeId: this.state.judgeId
+            }
+        })
     }
 
     render() {
@@ -24,7 +37,7 @@ class Instructions extends Component {
                     <p className="instructions-text">
                         {instructions}
                     </p>
-                    <button className="instructions-next" onClick={this.routeToNext}>Got it!</button>
+                    <button className="instructions-next" type="submit" onClick={this.routeToNext}>Got it!</button>
                 </div>
             </div>
         )
