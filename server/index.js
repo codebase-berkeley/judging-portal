@@ -169,10 +169,6 @@ app.put('/api/csv', async (req, res) => {
   const {filename, csv} = req.body;
   let i;
   for (i = 1; i < csv.length; i++) {
-<<<<<<< HEAD
-    const project = csv[i];
-    db.query('INSERT INTO csv VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11);', [
-=======
     console.log(csv[i]); // to check that theyve all been put in
 
     const project = csv[i];
@@ -181,7 +177,6 @@ app.put('/api/csv', async (req, res) => {
     ]);
 
     db.query('INSERT INTO csv (name, url, BestMobileApp, BestWebApp, BestHardwareHack, BestVRHack, BestMLHack, BestHealthHack, BestEducationHack, BestEntertainmentHack, BestBeginnerHack) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11);', [
->>>>>>> 0875bd951c359f41c80c2afc17a5de191b8f17b0
       project['Submission Title'],
       project['Submission Url'],
       project['Best Mobile App'],

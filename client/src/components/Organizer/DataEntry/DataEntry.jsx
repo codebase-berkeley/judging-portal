@@ -26,7 +26,7 @@ class DataEntry extends Component {
 
   componentDidMount() {
     this.getDataEntry().then(result => {
-      if (result.length === 0) {
+      if (result[0].filename === "") {
         this.setState({
           tableNum: '',
           clusterNum: '',
@@ -95,9 +95,10 @@ class DataEntry extends Component {
   async postData() {
     let results;
 
-    if (this.state.fileReader) {
+    if (this.state.fileReader != null) {
       results = Papa.parse(this.state.fileReader.result);
       const list = [];
+      const keys = [];
 
       for (let i = 1; i < results.data.length; i += 1) {
         const dict = {};
@@ -124,21 +125,21 @@ class DataEntry extends Component {
       });
 
     }
-      const res = await fetch('/api/data', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          tables: this.state.tableNum,
-          clusters: this.state.clusterNum,
-          waves: this.state.waveNum,
-        })
-      });
-      
-      const res_json = res.json();
-      return res_json;
-    }
+    const res = await fetch('/api/data', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        tables: this.state.tableNum,
+        clusters: this.state.clusterNum,
+        waves: this.state.waveNum,
+      })
+    });
+    
+    const res_json = res.json();
+    return res_json;
+  }
 
   routeToPrev() {
     this.postData();

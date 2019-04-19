@@ -100,18 +100,22 @@ class JudgeInfo extends Component {
   }
 
   async postJudgeInfo() {
-    const res = await fetch('/api/judgeinfo', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        info: [this.state.curr_name, this.state.selected.label],
-        deleted: this.state.deleted
-      })
-    });
-    const resJson = res.json();
-    return resJson;
+    try {
+      const res = await fetch('/api/judgeinfo', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          info: [this.state.curr_name, this.state.selected.label],
+          deleted: this.state.deleted
+        })
+      });
+      const resJson = res.json();
+      return resJson;
+    } catch (error) {
+      console.log("error");
+    }
   }
 
   postJudge() {
