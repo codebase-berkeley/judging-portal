@@ -4,7 +4,7 @@
   background-color: white;
   font-family: 'Overpass', sans-serif;
   font-size: 20px;
-  font-weight: 900;
+  font-weight: bold;
   color: #0A7191;
   height: 100%;
   width: 100%;
@@ -51,24 +51,22 @@
   height: 55vh;
 }
 
-.proj-info {
-  padding: 3vh;
-  padding-bottom: 0;
-}
-
 .proj-title{
-  font-size: 300%;
+  font-size: 52px;
   font-weight: bold;
+  padding-left: 3vh;
 }
 
 .proj-id {
-  font-size: 40px;
-  margin-top: 5%;
-  margin-bottom: 5%;
+  padding-left: 4vh;
+  font-size: 18px;
+  font-weight: 100;
 }
 
-.api-list {
-  margin-left: 5vw;
+.proj-info {
+  padding-left: 4vh;
+  font-size: 18px;
+  font-weight: 100;
 }
 
 .score-timer {
@@ -80,6 +78,7 @@
   font-size: 30px;
   font-weight: 50;
   margin-top: 1vh;
+  margin-bottom: 0;
 }
 
 .scoring-time {

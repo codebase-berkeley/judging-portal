@@ -65,16 +65,14 @@ class ProjectInfo extends Component{
             </button>
 
             <div className="score-box">
-              <div className="proj-info">
-                <p className="proj-title">{this.props.title}</p>
-                <h className="proj-id">ID: {this.props.location.state.projectId}</h>
-                <br /><br />
-                <h>Team: {this.props.location.state.team}</h> <br />
-                <h>Table: {this.props.location.state.table}</h> <br />
-                <h>API:</h> <br />
-                <h className="api-list">{this.props.location.state.api}</h>
-
-              </div>
+              <p className="proj-title">Temp Title {this.props.title}</p>
+              <p className="proj-id">ID: {this.props.location.state.projectId}</p>
+              <br />
+              <p className="proj-info">
+                Team: {this.props.location.state.team} <br />
+                Table: {this.props.location.state.table} <br />
+                API: {this.props.location.state.api}
+              </p>
             </div>
 
             <div className="score-timer">
