@@ -10,36 +10,42 @@ class DataEntry extends Component {
 
     this.state = {
       tableNum: '',
-      clusterNum: '',
+      maxNum: '',
       waveNum: '',
-      fileName: 'UPLOAD FILE',
-      fileReader: null
+      tablesName: 'UPLOAD FILE',
+      tablesReader: null,
+      projectsName: 'UPLOAD FILE',
+      projectsReader: null
     };
     this.handleTable = this.handleTable.bind(this);
-    this.handleCluster = this.handleCluster.bind(this);
+    this.handleMax = this.handleMax.bind(this);
     this.handleWave = this.handleWave.bind(this);
-    this.handleFileUpload = this.handleFileUpload.bind(this);
-    this.handleFileRead = this.handleFileRead.bind(this);
-    this.changeFileName = this.changeFileName.bind(this);
+    this.handleTablesFileUpload = this.handleTablesFileUpload.bind(this);
+    this.handleTablesFileRead = this.handleTablesFileRead.bind(this);
+    this.changeTablesFileName = this.changeTablesFileName.bind(this);
+    this.handleProjectsFileUpload = this.handleProjectsFileUpload.bind(this);
+    this.handleProjectsFileRead = this.handleProjectsFileRead.bind(this);
+    this.changeProjectsFileName = this.changeProjectsFileName.bind(this);
     this.routeToNext = this.routeToNext.bind(this);
-    this.assignWave = this.assignWave.bind(this);
   }
 
   componentDidMount() {
     this.getDataEntry().then(result => {
-      if (result.length === 0) {
+      if (result[0].tablesname === '') {
         this.setState({
           tableNum: '',
-          clusterNum: '',
+          maxNum: '',
           waveNum: '',
-          fileName: 'UPLOAD FILE'
+          tablesName: 'UPLOAD FILE',
+          projectsName: 'UPLOAD FILE'
         })
       } else {
           this.setState({
             tableNum: result[0].tables,
-            clusterNum: result[0].clusters,
+            maxNum: result[0].max,
             waveNum: result[0].waves,
-            fileName: result[0].filename
+            tablesName: result[0].tablesname,
+            projectsName: result[0].projectsname
           })
       }
     });
@@ -57,9 +63,9 @@ class DataEntry extends Component {
     });
   }
 
-  handleCluster(event) {
+  handleMax(event) {
     this.setState({
-      clusterNum: event.target.value
+      maxNum: event.target.value
     });
   }
 
@@ -69,80 +75,105 @@ class DataEntry extends Component {
     });
   }
 
-  handleFileUpload(event) {
-    this.changeFileName(event);
-    this.handleFileRead(event.target.files[0]);
+  handleTablesFileUpload(event) {
+    this.changeTablesFileName(event);
+    this.handleTablesFileRead(event.target.files[0]);
   }
 
-  handleFileRead(file) {
+  handleTablesFileRead(file) {
     const fileReader = new FileReader();
     fileReader.readAsText(file);
     this.setState({
-      fileReader: fileReader
+      projectsReader: fileReader
     })
   }
 
-  changeFileName(event) {
+  changeTablesFileName(event) {
     const input = event.target.value;
     let fileName = input.replace(/^.*[\\\/]/, '');
     if (fileName === '') {
       fileName = 'UPLOAD FILE';
     }
     this.setState({
-      fileName: fileName
+      projectsName: fileName
+    })
+  }
+
+  handleProjectsFileUpload(event) {
+    this.changeProjectsFileName(event);
+    this.handleProjectsFileRead(event.target.files[0]);
+  }
+
+  handleProjectsFileRead(file) {
+    const fileReader = new FileReader();
+    fileReader.readAsText(file);
+    this.setState({
+      projectsReader: fileReader
+    })
+  }
+
+  changeProjectsFileName(event) {
+    const input = event.target.value;
+    let fileName = input.replace(/^.*[\\\/]/, '');
+    if (fileName === '') {
+      fileName = 'UPLOAD FILE';
+    }
+    this.setState({
+      projectsName: fileName
     })
   }
 
   async postData() {
-    let results;
+    let tablesName = this.state.tablesName;
+    if (this.state.tablesName === 'UPLOAD FILE') {
+      tablesName = '';
+    }
+    let projectsName = this.state.projectsName;
+    if (this.state.projectsName === 'UPLOAD FILE') {
+      projectsName = '';
+    }
 
-    if (this.state.fileReader) {
+    let results;
+    const list = [];
+    const keys = [];
+    if (this.state.fileReader != null) {
       results = Papa.parse(this.state.fileReader.result);
-      const list = [];
 
       for (let i = 1; i < results.data.length; i += 1) {
         const dict = {};
         for (let n = 0; n < results.data[0].length; n += 1) {
           const key = results.data[0][n];
           if (key === 'Submission Title' || key === 'Submission Url' || key.substring(0, 4) === 'Best') {
-            dict[results.data[0][n]] = results.data[i][n]
+            keys[i] = key;
+            dict[results.data[0][n]] = results.data[i][n];
           }
         }
         list[i] = dict;
       }
-
-      const res = await fetch('/api/csv', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          filename: this.state.fileName,
-          csv: list
-        })
-      });
-
+      console.log(list);
     }
-      const res = await fetch('/api/data', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          tables: this.state.tableNum,
-          clusters: this.state.clusterNum,
-          waves: this.state.waveNum,
-        })
-      });
-      
-      const res_json = res.json();
-      return res_json;
-    }
+    const res = await fetch('/api/data', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        tables: this.state.tableNum,
+        max: this.state.maxNum,
+        waves: this.state.waveNum,
+        tablesname: tablesName,
+        projectsname: projectsName,
+        csvkeys: keys,
+        csv: list
+      })
+    });
+    const res_json = res.json();
+    return res_json;
+  }
 
   routeToNext() {
     if (this.state.tableNum != '' && this.state.clusterNum != '' && this.state.waveNum != '' && this.state.fileName != 'UPLOAD FILE') {
       this.postData();
-      this.assignWave();
       this.props.history.push('/judge-info');
     }
   }
@@ -157,7 +188,7 @@ class DataEntry extends Component {
         <div className="content-background">
           <div className="data-entry-contents">
             <div className="data-entry-element">
-              <div className="data-element-title">NUMBER OF TABLES</div>
+              <div className="data-element-title">PROJECTS PER TABLE</div>
               <input
                 placeholder="Add Entry"
                 onChange={this.handleTable}
@@ -167,12 +198,12 @@ class DataEntry extends Component {
             </div>
 
             <div className="data-entry-element">
-              <div className="data-element-title">NUMBER OF CLUSTERS</div>
+              <div className="data-element-title">MAX PROJECTS PER JUDGE</div>
               <input
                 placeholder="Add Entry"
-                onChange={this.handleCluster}
+                onChange={this.handleMax}
                 className="data-entry-input"
-                value={this.state.clusterNum}
+                value={this.state.maxNum}
               />
             </div>
 
@@ -187,14 +218,25 @@ class DataEntry extends Component {
             </div>
 
             <div className="data-entry-element">
-              <div className="data-element-title">UPLOAD DEVPOST</div>
+              <div className="data-element-title">UPLOAD TABLES</div>
               <input
                 type="file"
                 id="og-file"
-                onChange={this.handleFileUpload}
+                onChange={this.handleTablesFileUpload}
                 className="upload-file"
               />
-              <label htmlFor="og-file">{this.state.fileName}</label>
+              <label htmlFor="og-file">{this.state.tablesName}</label>
+            </div>
+
+            <div className="data-entry-element">
+              <div className="data-element-title">UPLOAD PROJECTS</div>
+              <input
+                type="file"
+                id="og-file"
+                onChange={this.handleProjectsFileUpload}
+                className="upload-file"
+              />
+              <label htmlFor="og-file">{this.state.projectsName}</label>
             </div>
 
             <div className="data-button nav">

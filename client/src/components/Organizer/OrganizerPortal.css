@@ -3,7 +3,7 @@
 /**************** PAGE SETUP ****************/
 .page-background {
     font-family: 'Overpass', sans-serif;
-    height: 100vh; 
+    height: 100vh;
     width: 100vw;
     justify-content: center;
     align-items: center;
@@ -35,7 +35,7 @@
 
 /********************* LISTS ********************/
 .list {
-    overflow: scroll; 
+    overflow: scroll;
     height: 70%;
 }
 
@@ -76,7 +76,7 @@
     color: #98D0EC;
     font-size: 3vh;
   }
-  
+
 .delete-button:hover{
     color: #0A7191;
 }
@@ -164,13 +164,13 @@
 /********************* DATA ENTRY ********************/
 .data-button {
     margin: -4vh;
-    margin-top: 12vh;
+    margin-top: 5vh;
 }
 
 .data-entry-contents {
     margin: auto;
     width: 80vw;
-    padding-top: 9vh;
+    padding-top: 2.5vh;
     margin-bottom: 3vh;
 }
 
@@ -285,7 +285,7 @@
     overflow: auto;
     width: 65%;
 }
-  
+
 .judge-list-name {
     display: inline-block;
     font-weight: bold;
@@ -318,17 +318,17 @@ ul {
 .judge-button {
     margin-top: -4vh;
 }
-  
+
 .judge-item {
     display: flex;
     flex-direction: row;
     border-bottom: 2px solid #98D0EC;
 }
-  
+
 .judge {
     width: 100%;
 }
-  
+
 .judge-api {
     position: relative;
     display: inline-block;
@@ -339,7 +339,7 @@ ul {
     padding: 0.5%;
     padding-left: 7%;
 }
-  
+
 .judge-name {
     position: relative;
     display: inline-block;
