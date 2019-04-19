@@ -21,11 +21,23 @@ CREATE TABLE projects
   categories VARCHAR(254)[]
 );
 
+CREATE TABLE apis
+(
+  API VARCHAR(254)
+);
+
+CREATE TABLE dataentry
+(
+  tables integer,
+  clusters integer,
+  waves integer,
+  filename VARCHAR(254)
+);
+
 CREATE TABLE lists
 (
-  api VARCHAR(254),
-  fellowships VARCHAR(254),
-  general VARCHAR(254)
+  type VARCHAR(254),
+  name VARCHAR(254)
 );
 
 CREATE TABLE scores
@@ -43,12 +55,19 @@ INSERT INTO projects VALUES (1, 'mentored', 'https://github.com/codebase-berkele
 INSERT INTO projects VALUES (2, 'calhacks', 'https://github.com/codebase-berkeley/', '{"biggest hackathon"}');
 INSERT INTO projects VALUES (3, 'atlassian', 'https://github.com/codebase-berkeley/', '{"lit team"}');
 
-INSERT INTO lists (API) VALUES ('Google Vision');
-INSERT INTO lists (API) VALUES ('Uber Autopilot');
-INSERT INTO lists (API) VALUES ('API #23');
-INSERT INTO lists (fellowships) VALUES ('UCB Golden Bear Fellowship');
-INSERT INTO lists (general) VALUES ('worst project');
-INSERT INTO lists (general) VALUES ('most average project');
+INSERT INTO dataentry VALUES ('5', '3', '10', 'devpost');
+
+INSERT INTO apis VALUES ('myAPI');
+INSERT INTO apis VALUES ('codebaseAPI');
+INSERT INTO apis VALUES ('yoooAPI');
+INSERT INTO apis VALUES ('bestAPI');
+
+INSERT INTO lists VALUES ('api', 'Google Vision');
+INSERT INTO lists VALUES ('api', 'Uber Autopilot');
+INSERT INTO lists VALUES ('api', 'API #23');
+INSERT INTO lists VALUES ('fellowships', 'UCB Golden Bear Fellowship');
+INSERT INTO lists VALUES ('general', 'worst project');
+INSERT INTO lists VALUES ('general', 'most average project');
 
 INSERT INTO scores VALUES (10, 1, NULL);
 INSERT INTO scores VALUES (20, 2, NULL);

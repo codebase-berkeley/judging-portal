@@ -11,7 +11,6 @@ class JudgeInfo extends Component {
       curr_name: '',
       selected: '',
       info: [],
-      count: 0,
       options: []
     };
     this.handleName = this.handleName.bind(this);
@@ -19,12 +18,21 @@ class JudgeInfo extends Component {
     this.handleClickIndex = this.handleClickIndex.bind(this);
     this._onSelect = this._onSelect.bind(this);
     this.routeToPrev = this.routeToPrev.bind(this);
+    this.routeToNext = this.routeToNext.bind(this);
+
+    this.postJudgeInfo = this.postJudgeInfo.bind(this);
+
   }
 
-  componentDidMount() {
-    this.getJudgeInfo().then(result => this.setState({
-      info: result
-    }))
+  async componentDidMount() {
+    this.getJudgeInfo().then(result => {
+      let i;
+      let judgeinfo = [];
+      for (i = 0; i < result.length; i++) { 
+        judgeinfo[i] = [result[i].name, result[i].api];
+      }
+      this.setState({ info: judgeinfo });
+    });
     this.getAPI().then(result => this.setState({
       options: result
     }))
@@ -63,16 +71,15 @@ class JudgeInfo extends Component {
   }
 
   addInfo() {
-    if (this.state.curr_name !== '' && this.state.selected !== '') {
-      this.setState({
-        info: this.state.info.concat([
-          [this.state.curr_name, this.state.selected.label, this.state.count]
-        ]),
-        curr_name: '',
-        count: this.state.count + 1,
-        selected: ''
-      });
-    }
+      if (this.state.curr_name !== '' && this.state.selected !== '') {
+        this.setState({
+          info: this.state.info.concat([
+            [this.state.curr_name, this.state.selected.label]
+          ]),
+          curr_name: '',
+          selected: ''
+        });
+      }
   }
 
   async postJudgeInfo() {
@@ -95,6 +102,12 @@ class JudgeInfo extends Component {
     this.props.history.push(path);
   }
 
+  routeToNext() {
+    this.postJudgeInfo().then(result => console.log(result));
+    let path = "/project-breakdown";
+    this.props.history.push(path);
+  }
+
   render() {
     const defaultOption = this.state.selected;
     const info = (this.state.info||[]).map((name,index)=>(
@@ -107,7 +120,6 @@ class JudgeInfo extends Component {
          <Judge
           name={name[0]}
           api={this.state.info[index][1]}
-          color={this.state.info[index][2]}
         />
       </ul>
     ))
@@ -141,6 +153,7 @@ class JudgeInfo extends Component {
                 className="button"
                 type="submit"
                 onClick={this.addInfo}
+                onClick={this.postJudge}
               >
                 SUBMIT
               </button>
@@ -155,7 +168,7 @@ class JudgeInfo extends Component {
 
           <div className= "buttons nav judge-button">
             <button className="button" type="submit" onClick={this.routeToPrev}>PREV</button>
-            <button className="button" type="submit">NEXT</button>
+            <button className="button" type="submit" onClick={this.routeToNext}>NEXT</button>
           </div>
         </div>
       </div>

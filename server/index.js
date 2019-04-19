@@ -57,17 +57,6 @@ app.put('/api/score/:judgeName', async (req, res) => {
 
 // ########### HOME API EXAMPLES END ###########
 
-app.get('/api/data', (req, res) => {
-  const data = {
-    'tables': db['tables'],
-    'clusters': db['clusters'],
-    'waves': db['waves'],
-    'filename': db['filename']
-  }
-  res.json(data);
-  console.log(`Sent data`);
-})
-
 // API endpoint for projects
 app.get('/api/projects', async (req, res) => {
   try {
@@ -122,11 +111,23 @@ app.get('/api/lists', async (req, res) => {
   }
 });
 
-app.post('/api/lists', (req, res) => {
-  const { apis, general_categories, fellowships } = req.body;
-  db.apis = apis;
-  db.general_categories = general_categories;
-  db.fellowships = fellowships; 
+app.post('/api/lists', async (req, res) => {
+  const {deleted, added } = req.body;
+  console.log(deleted);
+  var i;
+  for (i = 0; i < deleted.length; i++) {
+    console.log("DELETING: " + deleted[i]);
+    db.query('DELETE FROM lists WHERE type=\'' + deleted[i][0] +'\' AND name=\'' + deleted[i][1]+'\';');
+    console.log('DELETE FROM lists WHERE type=\'' + deleted[i][0] +'\' AND name=\'' + deleted[i][1]+'\';');
+  }
+  for (i = 0; i < added.length; i++) {
+    console.log("ADDING: " + added[i]);
+    db.query('INSERT INTO lists VALUES(\'' + added[i][0] + '\', \'' + added[i][1] +'\');');
+    console.log('INSERT INTO lists VALUES(\'' + added[i][0] + '\', \'' + added[i][1] +'\');');
+  }
+  
+  res.json("Databse has been updated");
+
 });
 
 app.get('/api/judgeinfo', (req, res) => {
@@ -137,18 +138,37 @@ app.get('/api/judgeinfo', (req, res) => {
   console.log(`Sent APIs`)
 });
 
+app.get('/api/data', async (req, res) => {
+  try {
+    const query = await db.query('SELECT * FROM dataentry;');
+    res.send(query.rows);
+  } catch (error) {
+    console.log(error.stack);
+  }
+})
+
 app.post('/api/data', (req, res) => {
-  console.log(req.body)
   const dict = req.body;
+
   db.tables = dict['tables']
   db.clusters = dict['clusters']
   db.waves = dict['waves']
   db.filename = dict['filename']
+
   res.json("You successfully posted: ".concat(dict['tables']));
 });
 
+app.get('/api/judgeinfo', async (req, res) => {
+  try {
+    const query = await db.query('SELECT * FROM judges;');
+    res.send(query.rows);
+  } catch (error) {
+    console.log(error.stack);
+  }
+});
+
 app.post('/api/judgeinfo', (req, res) => {
-  const info = req.body;
+  const {info} = req.body;
   db.judge_list = info['info']
   res.json("You successfully posted: ".concat(info));
 });

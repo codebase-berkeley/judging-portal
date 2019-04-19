@@ -49,6 +49,7 @@ class DataEntry extends Component {
       waveNum: result.waves,
       fileName: result.filename
     }))
+    console.log(this.state.tableNum);
   }
 
   async getDataEntry() {

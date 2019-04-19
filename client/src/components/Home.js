@@ -32,7 +32,7 @@ class Home extends Component {
       let i;
       let judgeNames = [];
       for (i = 0; i < result.length; i++) { 
-        judgeNames += result[i].name + " ";
+        judgeNames += result[i].api + " ";
       }
       this.setState({ judges: judgeNames });
     });

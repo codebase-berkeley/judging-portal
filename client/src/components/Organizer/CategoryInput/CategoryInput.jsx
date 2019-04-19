@@ -8,7 +8,9 @@ class CategoryInput extends Component {
     this.state = {
       apis: [],
       general_categories: [],
-      fellowships: []
+      fellowships: [],
+      deleted: [],
+      added: []
     };
     this.routeToNext = this.routeToNext.bind(this);
     this.addAPI = this.addAPI.bind(this);
@@ -56,60 +58,87 @@ class CategoryInput extends Component {
 
   addAPI(api) {
     this.setState((prevState) => {
-      return {apis: prevState.apis.concat(api)}
+      return {
+        apis: prevState.apis.concat(api),
+        added: prevState.added.concat([['api', api]])
+      }
     });
   }
 
   addCategory(category) {
     this.setState((prevState) => {
-      return {general_categories: prevState.general_categories.concat(category)}
+      return {
+        general_categories: prevState.general_categories.concat(category),
+        added: prevState.added.concat([['general', category]])
+      }
     });
   }
 
   addFellowship(fellowship) {
     this.setState((prevState) => {
-      return {fellowships: prevState.fellowships.concat(fellowship)}
+      return {
+        fellowships: prevState.fellowships.concat(fellowship),
+        added: prevState.added.concat([['fellowships', fellowship]])
+      }
     });
   }
 
   removeAPIItem(index) {
     this.setState((prevState) => {
       const awards = prevState.apis.slice();
+      const item = awards[index];
       awards.splice(index, 1);
-      return {apis: awards}
+      return {
+        apis: awards,
+        deleted: prevState.deleted.concat([['api', item]])
+      }
     });
   }
 
   removeCategoryItem(index) {
     this.setState((prevState) => {
       const awards = prevState.general_categories.slice()
+      const item = awards[index];
+
       awards.splice(index, 1)
-      return {general_categories: awards} 
+      return {
+        general_categories: awards,
+        deleted: prevState.deleted.concat([['general', item]])
+      } 
     });
   }
 
   removeFellowshipItem(index) {
     this.setState((prevState) => {
       const awards = prevState.fellowships.slice();
+      const item = awards[index];
       awards.splice(index, 1);
-      return {fellowships: awards}
+      return {
+        fellowships: awards,
+        deleted: prevState.deleted.concat([['fellowships', item]])
+      }
     });
   }
 
   async postLists() {
+
     const res = await window.fetch('/api/lists', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        apis: this.state.apis,
-        general_categories: this.state.general_categories,
-        fellowships: this.state.fellowships
+        deleted: this.state.deleted,
+        added: this.state.added
       })
     });
     const resJson = res.json();
     return resJson;
+  }
+  async getLists() {
+    let res = await fetch('/api/lists');
+    let res_json = res.json();
+    return res_json
   }
 
   render() {
