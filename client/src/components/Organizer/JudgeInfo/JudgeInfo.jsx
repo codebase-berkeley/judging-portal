@@ -11,7 +11,8 @@ class JudgeInfo extends Component {
       curr_name: '',
       selected: '',
       info: [],
-      options: []
+      options: [],
+      deleted: []
     };
     this.handleName = this.handleName.bind(this);
     this.addInfo = this.addInfo.bind(this);
@@ -33,9 +34,16 @@ class JudgeInfo extends Component {
       }
       this.setState({ info: judgeinfo });
     });
-    this.getAPI().then(result => this.setState({
-      options: result
-    }))
+    this.getAPI().then(result => {
+      let i;
+      let apis = [];
+      for (i = 0; i < result.length; i++) { 
+        if (result[i].api != null) {
+          apis[i] = result[i].api;
+        }
+      }
+      this.setState({ options: apis });
+    });
   }
 
   async getJudgeInfo() {
@@ -58,10 +66,19 @@ class JudgeInfo extends Component {
     this[event.target.name].bind(this)(index, event)
   }
 
-  removeTask(index, event) {
-    const info = this.state.info
-    info.splice(index, 1)
-    this.setState({info})
+  removeTask(index) {
+    this.setState((prevState) => {
+      const del_info = prevState.info.slice();
+      const judge = del_info[index];
+
+      del_info.splice(index, 1)
+      console.log(judge);
+      return {
+        info: del_info,
+        deleted: prevState.deleted.concat([judge])
+      } 
+    });
+    console.log(this.state.deleted);
   }
 
   handleName(event) {
@@ -89,15 +106,19 @@ class JudgeInfo extends Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        info: this.state.info
+        info: [this.state.curr_name, this.state.selected.label],
+        deleted: this.state.deleted
       })
     });
     let res_json = res.json();
     return res_json;
   }
 
-  routeToPrev() {
+  postJudge() {
     this.postJudgeInfo().then(result => console.log(result));
+  }
+
+  routeToPrev() {
     let path = "/data-entry";
     this.props.history.push(path);
   }
@@ -152,8 +173,7 @@ class JudgeInfo extends Component {
               <button
                 className="button"
                 type="button"
-                onClick={this.addInfo}
-                onClick={this.postJudge}
+                onClick={(event) => { this.addInfo(); this.postJudge();}}
               >
                 SUBMIT
               </button>

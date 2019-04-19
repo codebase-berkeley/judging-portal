@@ -14,14 +14,6 @@ CREATE TABLE projects
   categories VARCHAR(254)[]
 );
 
--- CREATE TABLE judges
--- (
---   name VARCHAR(254),
---   API VARCHAR(254),
---   projectId integer,
---   score integer
--- );
-
 CREATE TABLE judges
 (
   name VARCHAR(254),
@@ -41,21 +33,31 @@ CREATE TABLE dataentry
   filename VARCHAR(254)
 );
 
-CREATE TABLE lists 
+CREATE TABLE lists
 (
   type VARCHAR(254),
   name VARCHAR(254)
 );
 
+CREATE TABLE csv
+(
+  name VARCHAR(254),
+  url VARCHAR(254),
+  BestMobileApp VARCHAR(254),
+  BestWebApp VARCHAR(254),
+  BestHardwareHack VARCHAR(254),
+  BestVRHack VARCHAR(254),
+  BestMLHack VARCHAR(254),
+  BestHealthHack VARCHAR(254),
+  BestEducationHack VARCHAR(254),
+  BestEntertainmentHack VARCHAR(254),
+  BestBeginnerHack VARCHAR(254)
+);
+
 INSERT INTO projects VALUES (1, 'mentored', 'https://github.com/codebase-berkeley/judging-portal', '{"best team", "funnest team", "coolest team"}');
 INSERT INTO projects VALUES (2, 'calhacks', 'https://github.com/codebase-berkeley/', '{"biggest hackathon"}');
 
--- INSERT INTO judges VALUES ('lawrence', 'codebaseAPI', '1', '-1');
--- INSERT INTO judges VALUES ('lawrence', 'codebaseAPI', '2', '-1');
--- INSERT INTO judges VALUES ('parth', 'codebaseAPI', '2', '-1');
--- INSERT INTO judges VALUES ('calhacks', 'calhacksAPI', '1', '-1');
-
-INSERT INTO dataentry VALUES ('5', '3', '10', 'devpost');
+INSERT INTO dataentry VALUES (0, 0, 0, '');
 
 INSERT INTO judges VALUES ('rachel', 'myAPI');
 INSERT INTO judges VALUES ('parth', 'codebaseAPI');
