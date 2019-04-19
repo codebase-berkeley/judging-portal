@@ -21,10 +21,6 @@ CREATE TABLE projects
   categories VARCHAR(254)[]
 );
 
-CREATE TABLE lists
-  API VARCHAR(254)
-);
-
 CREATE TABLE apis
 (
   API VARCHAR(254)
