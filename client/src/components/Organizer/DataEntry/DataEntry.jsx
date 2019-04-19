@@ -31,7 +31,6 @@ class DataEntry extends Component {
 
   componentDidMount() {
     this.getDataEntry().then(result => {
-      console.log(result[0].tablesname === "")
       if (result[0].tablesname === "") {
         this.setState({
           tableNum: '',
@@ -50,7 +49,6 @@ class DataEntry extends Component {
           })
       }
     });
-    console.log(this.state.tablesName)
   }
 
   handleTable(event) {
