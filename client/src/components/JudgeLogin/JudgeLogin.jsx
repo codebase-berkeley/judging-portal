@@ -45,9 +45,12 @@ class JudgeLogin extends Component {
     }
 
     _onSelect(option) {
-        this.setState({ 
-            judgeId: this.state.dict[option.value],
-            selected: option.value
+        this.setState((prevState) => { 
+            const id = prevState.dict[option.value];
+            return {
+                judgeId: id,
+                selected: option.value
+            }
         });
     }
 
@@ -58,12 +61,15 @@ class JudgeLogin extends Component {
     }
 
     submitLogin() {
-        this.setState({
-            logininfo: this.state.logininfo.concat([
-                [this.state.selected.label, this.state.curr_password]
-            ]),
-            curr_password: '',
-            selected: ''
+        this.setState((prevState) => {
+            const newlogininfo = prevState.logininfo.concat([
+                [prevState.selected.label, prevState.curr_password]
+            ])
+            return {
+                logininfo: newlogininfo,
+                curr_password: '',
+                selected: ''
+            }
           });
     }
 
