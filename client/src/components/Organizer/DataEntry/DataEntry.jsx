@@ -96,6 +96,7 @@ class DataEntry extends Component {
   async postData() {
       const results = Papa.parse(this.state.fileReader.result);
 
+      const keys = [];
       const list = [];
 
       for (let i = 1; i < results.data.length; i += 1) {
@@ -103,7 +104,8 @@ class DataEntry extends Component {
         for (let n = 0; n < results.data[0].length; n += 1) {
           const key = results.data[0][n];
           if (key === "Submission Title" || key === "Submission Url" || key.substring(0, 4) === "Best") {
-            dict[results.data[0][n]] = results.data[i][n]
+            keys[i] = key;
+            dict[results.data[0][n]] = results.data[i][n];
           }
         }
         list[i] = dict;
@@ -121,6 +123,7 @@ class DataEntry extends Component {
           clusters: this.state.clusterNum,
           waves: this.state.waveNum,
           filename: this.state.fileName,
+          csvkeys: keys,
           csv: list
         })
       });
