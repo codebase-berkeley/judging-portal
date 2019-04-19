@@ -40,6 +40,21 @@ CREATE TABLE lists
   name VARCHAR(254)
 );
 
+CREATE TABLE csv
+(
+  name VARCHAR(254),
+  url VARCHAR(254),
+  BestMobileApp VARCHAR(254),
+  BestWebApp VARCHAR(254),
+  BestHardwareHack VARCHAR(254),
+  BestVRHack VARCHAR(254),
+  BestMLHack VARCHAR(254),
+  BestHealthHack VARCHAR(254),
+  BestEducationHack VARCHAR(254),
+  BestEntertainmentHack VARCHAR(254),
+  BestBeginnerHack VARCHAR(254)
+);
+
 CREATE TABLE scores
 (
   judgeId INTEGER REFERENCES judges(judgeId),

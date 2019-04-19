@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import '../OrganizerPortal.css';
 
+const Papa = require('papaparse');
+
 class DataEntry extends Component {
   constructor(props) {
     super(props);
@@ -9,14 +11,50 @@ class DataEntry extends Component {
       tableNum: '',
       clusterNum: '',
       waveNum: '',
-      fileName: 'UPLOAD FILE'
+      fileName: 'UPLOAD FILE',
+      fileReader: null
     };
     this.handleTable = this.handleTable.bind(this);
     this.handleCluster = this.handleCluster.bind(this);
     this.handleWave = this.handleWave.bind(this);
+    this.handleFileUpload = this.handleFileUpload.bind(this);
+    this.handleFileRead = this.handleFileRead.bind(this);
+    this.readFile = this.readFile.bind(this);
     this.changeFileName = this.changeFileName.bind(this);
     this.routeToPrev = this.routeToPrev.bind(this);
     this.routeToNext = this.routeToNext.bind(this);
+  }
+
+  componentDidMount() {
+    this.getDataEntry().then(result => {
+      if (result.length === 0) {
+        this.setState({
+          tableNum: '',
+          clusterNum: '',
+          waveNum: '',
+          fileName: 'UPLOAD FILE'
+        })
+      } else {
+          this.setState({
+            tableNum: result[0].tables,
+            clusterNum: result[0].clusters,
+            waveNum: result[0].waves,
+            fileName: result[0].filename
+          })
+      }
+    });
+  }
+
+  async getDataEntry() {
+    const res = await fetch('/api/data');
+    const res_json = res.json();
+    return res_json
+  }
+
+  handleTable(event) {
+    this.setState({
+      tableNum: event.target.value
+    });
   }
 
   handleCluster(event) {
@@ -31,6 +69,19 @@ class DataEntry extends Component {
     });
   }
 
+  handleFileUpload(event) {
+    this.changeFileName(event);
+    this.handleFileRead(event.target.files[0]);
+  }
+
+  handleFileRead(file) {
+    const fileReader = new FileReader();
+    fileReader.readAsText(file);
+    this.setState({
+      fileReader: fileReader
+    })
+  }
+
   changeFileName(event) {
     const input = event.target.value;
     let fileName = input.replace(/^.*[\\\/]/, '');
@@ -42,44 +93,40 @@ class DataEntry extends Component {
     })
   }
 
-  componentDidMount() {
-    this.getDataEntry().then(result => this.setState({
-      tableNum: result.tables,
-      clusterNum: result.clusters,
-      waveNum: result.waves,
-      fileName: result.filename
-    }))
-    console.log(this.state.tableNum);
-  }
+  async postData() {
+      const results = Papa.parse(this.state.fileReader.result);
 
-  async getDataEntry() {
-    const res = await fetch('/api/data');
-    const resJson = res.json();
-    return resJson
-  }
+      const list = [];
 
-  handleTable(event) {
-    this.setState({
-      tableNum: event.target.value
-    });
-  }
+      for (let i = 1; i < results.data.length; i += 1) {
+        const dict = {};
+        for (let n = 0; n < results.data[0].length; n += 1) {
+          const key = results.data[0][n];
+          if (key === "Submission Title" || key === "Submission Url" || key.substring(0, 4) === "Best") {
+            dict[results.data[0][n]] = results.data[i][n]
+          }
+        }
+        list[i] = dict;
+      }
 
-  async postData(){
-    const res = await fetch('/api/data', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        tables: this.state.tableNum,
-        clusters: this.state.clusterNum,
-        waves: this.state.waveNum,
-        filename: this.state.fileName
-      })
-    });
-    const resJson = res.json();
-    return resJson;
-  }
+      console.log(list);
+
+      const res = await fetch('/api/data', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          tables: this.state.tableNum,
+          clusters: this.state.clusterNum,
+          waves: this.state.waveNum,
+          filename: this.state.fileName,
+          csv: list
+        })
+      });
+      const res_json = res.json();
+      return res_json;
+    }
 
   routeToPrev() {
     this.postData();
@@ -135,7 +182,7 @@ class DataEntry extends Component {
               <input
                 type="file"
                 id="og-file"
-                onChange={this.changeFileName}
+                onChange={this.handleFileUpload}
                 className="upload-file"
               />
               <label htmlFor="og-file">{this.state.fileName}</label>
