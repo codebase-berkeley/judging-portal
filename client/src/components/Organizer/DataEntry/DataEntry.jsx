@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../OrganizerPortal.css';
+import { formatWithOptions } from 'util';
 
 const Papa = require('papaparse');
 
@@ -22,6 +23,7 @@ class DataEntry extends Component {
     this.changeFileName = this.changeFileName.bind(this);
     this.routeToPrev = this.routeToPrev.bind(this);
     this.routeToNext = this.routeToNext.bind(this);
+    this.assignWave = this.assignWave.bind(this);
   }
 
   componentDidMount() {
@@ -109,7 +111,6 @@ class DataEntry extends Component {
         }
         list[i] = dict;
       }
-      console.log(list);
 
       const res = await fetch('/api/csv', {
         method: 'PUT',
@@ -140,13 +141,19 @@ class DataEntry extends Component {
     }
 
   routeToPrev() {
-    this.postData();
-    this.props.history.push("/categories");
+    if (this.state.tableNum != '' && this.state.clusterNum != '' && this.state.waveNum != '' && this.state.fileName != 'UPLOAD FILE') {
+      this.postData();
+      this.assignWave();
+      this.props.history.push("/categories");
+    }
   }
 
   routeToNext() {
-    this.postData();
-    this.props.history.push("/judge-info");
+    if (this.state.tableNum != '' && this.state.clusterNum != '' && this.state.waveNum != '' && this.state.fileName != 'UPLOAD FILE') {
+      this.postData();
+      this.assignWave();
+      this.props.history.push("/judge-info");
+    }
   }
 
   render() {
