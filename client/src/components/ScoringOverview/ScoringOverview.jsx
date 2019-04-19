@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Project from './Project.jsx'
+import Project from './Project'
 import './ScoringOverview.css';
 
 class ScoringOverview extends Component {
@@ -21,7 +21,9 @@ class ScoringOverview extends Component {
     }
 
     async componentDidMount() {
-        const res = await fetch('/api/projects/' + this.props.location.state.judgeId + '/');
+        const id = this.props.location.state.judgeId;
+        const path = `/api/projects/${id}/`;
+        const res = await fetch(path);
         const resJson = await res.json();
         this.setState({
             judgeId: this.props.location.state.judgeId
@@ -33,7 +35,7 @@ class ScoringOverview extends Component {
         let scoredData = [];
         let unscoredData = [];
         for (let i = 0; i < data.length; i += 1) {
-            const score = data[i].score;
+            const { score } = data[i];
             const component = [data[i]];
             if (score === null) {
                 unscoredData = unscoredData.concat(component);
