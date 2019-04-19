@@ -12,6 +12,8 @@ CREATE TABLE projects
   name VARCHAR(254),
   github VARCHAR(254),
   categories VARCHAR(254)[]
+  waves VARCHAR(254)
+  tables VARCHAR(254)
 );
 
 CREATE TABLE judges

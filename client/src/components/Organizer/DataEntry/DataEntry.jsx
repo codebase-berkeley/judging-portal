@@ -19,7 +19,7 @@ class DataEntry extends Component {
     this.handleWave = this.handleWave.bind(this);
     this.handleFileUpload = this.handleFileUpload.bind(this);
     this.handleFileRead = this.handleFileRead.bind(this);
-    this.readFile = this.readFile.bind(this);
+    // this.readFile = this.readFile.bind(this);
     this.changeFileName = this.changeFileName.bind(this);
     this.routeToPrev = this.routeToPrev.bind(this);
     this.routeToNext = this.routeToNext.bind(this);
