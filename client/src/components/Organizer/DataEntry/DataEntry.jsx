@@ -84,7 +84,7 @@ class DataEntry extends Component {
     const fileReader = new FileReader();
     fileReader.readAsText(file);
     this.setState({
-      projectsReader: fileReader
+      tablesReader: fileReader
     })
   }
 
@@ -95,7 +95,7 @@ class DataEntry extends Component {
       fileName = 'UPLOAD FILE';
     }
     this.setState({
-      projectsName: fileName
+      tablesName: fileName
     })
   }
 

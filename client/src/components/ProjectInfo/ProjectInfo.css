@@ -1,114 +1,108 @@
-.projID {
-    margin-top: 5%;
-    margin-bottom: 5%;
-}
+@import url('https://fonts.googleapis.com/css?family=Overpass');
+
 .entirePage {
-    background-color: white;
-    color: #3b9bc2;
-    height: 100%;
-    width: 100%;
-    text-align: left;
-
-}
-.attribute-item {
-    position: relative;
-    height: 33%;
-    width:100%;
-    padding: 2%;
+  background-color: white;
+  font-family: 'Overpass', sans-serif;
+  font-size: 20px;
+  font-weight: 900;
+  color: #0A7191;
+  height: 100%;
+  width: 100%;
+  text-align: left;
 }
 
-.projinfo-icon {
-    left: 0%;
-    top: 0%;
-    position: relative;
+.back-button {
+  font-family: 'Overpass', sans-serif;
+  color: #0A7191;
+  position: relative;
+  background-color: white;
+  border: none;
+  margin: 5%;
+  margin-bottom: 5vh;
+  cursor: pointer;
 }
 
-.projHeader {
-    font-size: 2.5vh;
-    text-align: left;
-    position: relative; 
-    left: 0%;
-    top: 0%;
+.arrow {
+  width: 0;
+	height: 0;
+	border-top: 20px solid transparent;
+	border-right: 40px solid #0A7191;
+	border-bottom: 20px solid transparent;
+  border-radius: 5%;
+  position: absolute;
 }
 
-.projTitle{
-    font-size: 300%;
-    font-weight: bold;
-}
-.projID {
-    color: #8AC9E1;
-    font-size: 150%;
-
-}
-.projDetails {
-    position: relative; 
-    top: 4%;
-    left: 0%;
+.white-arrow {
+  margin-left: 10px;
+	border-right: 40px solid white;
 }
 
-.projInfo {
-    position: relative;
-    padding-top: 10vh;
-    width:auto;
-    height:70%;
-    padding-left: 10vh;
-
+.back-button-text {
+  font-size: 25px;
+  float: left;
+  margin-left: 55px;
 }
 
-.detail-header {
-    font-weight: bold;
-    font-size:5vh;
-    position: relative;
-    padding-left: 3%;
+.score-box {
+  background-color: #98D0EC;
+  border-radius: 5px;
+  margin: auto;
+  width: 80vw;
+  height: 55vh;
 }
 
-
-.score {
-    position: relative;
-    text-align: center;
-    width: 20vw;
-    height: 20vw;
-    z-index: 1;
-    bottom: 10%;
-    left: 40%;
+.proj-info {
+  padding: 3vh;
+  padding-bottom: 0;
 }
 
-.actual-info {
-    position: relative; 
-    margin: 0%;
-    left: 14%;
-    font-size: 3vh;
+.proj-title{
+  font-size: 300%;
+  font-weight: bold;
 }
 
-.scoreInput {
-    text-align: center;
-    border: 3px solid #3b9bc2;
-    border-radius: 100%;
-    width: 10vh;
-    height:10vh;
-    z-index:0;
+.proj-id {
+  font-size: 40px;
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
 
-.head-and-icon {
-    position: relative;
-    display: flex;
-    align-items: center;
+.api-list {
+  margin-left: 5vw;
+}
+
+.score-timer {
+  display: inline-block;
+  margin-left: 12.5vw;
+}
+
+.score-text {
+  font-size: 30px;
+  font-weight: 50;
+  margin-top: 1vh;
+}
+
+.scoring-time {
+  font-size: 50px;
+  font-weight: 1000;
+  margin-top: 0;
+}
+
+.score-input {
+  position: absolute;
+  text-align: center;
+  border: 5px solid #98D0EC;
+  border-radius: 5px;
+  width: 100px;
+  height: 100px;
+  right: 10vw;
+  float: right;
+  bottom: 2.5vh;
+  font-size: 50px;
+  color: #98D0EC;
 }
 
 ::placeholder {
-    font-size: 1.5vh;
-    color: #3b9bc2
-}
-
-.backButton {
-    position: relative;
-    top: 3vh;
-    left: 3vh;
-    width: 12vw;
-    height: 12vw;
-    border:none;
-    background-color:transperant;
-    outline:none;
-
-    cursor:'pointer';
+  font-size: 20px;
+  color: #98D0EC;
 }

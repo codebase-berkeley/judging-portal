@@ -1,8 +1,4 @@
 import React, { Component } from 'react';
-import teamIcon from "./src/team_icon.png";
-import apiIcon from "./src/API_icon.png";
-import tableIcon from "./src/table_icon.png";
-import backIcon from "./src/back_icon.png"
 import "./ProjectInfo.css";
 
 
@@ -61,67 +57,50 @@ class ProjectInfo extends Component{
 
     render() {
         return (
-            <div className = "entirePage">
-                <button type="submit" onClick={this.routeToPrev}>
-                    <img type="image" className="backButton" src={backIcon}/>
-                </button>
+          <div className="entirePage">
+            <button type="submit" className="back-button" onClick={this.routeToPrev}>
+                <div className="arrow"></div>
+                <div className="arrow white-arrow"></div>
+                <h2 className="back-button-text">BACK</h2>
+            </button>
 
-                <div className = "projInfo">
-                    <div className = "projHeader">
-                     <h className = "projTitle">{this.props.title}</h>
-                     <p className = "projID"><b>ID:</b> {this.props.location.state.projectId}</p>
-                    </div>
+            <div className="score-box">
+              <div className="proj-info">
+                <p className="proj-title">{this.props.title}</p>
+                <h className="proj-id">ID: {this.props.location.state.projectId}</h>
+                <br /><br />
+                <h>Team: {this.props.location.state.team}</h> <br />
+                <h>Table: {this.props.location.state.table}</h> <br />
+                <h>API:</h> <br />
+                <h className="api-list">{this.props.location.state.api}</h>
 
-                    <div className = "projDetails">
-                        <div className = "attribute-item">
-                            <div className="head-and-icon">
-                                <img className="projinfo-icon" src = {teamIcon}></img>
-                                <h className="detail-header attribute-align-left">Team</h>
-                            </div>
-                            <p className="actual-info attribute-align-left">{this.props.location.state.team}</p>
-                        </div>
+              </div>
+            </div>
 
-                        <div className = "attribute-item">
-                            <div className="head-and-icon">
-                                <img className="projinfo-icon" src = {apiIcon}></img>
-                                <h className="detail-header attribute-align-left">API</h>
-                            </div>
-                            <p className="actual-info attribute-align-left">{this.props.location.state.api}</p>
-                        </div>
+            <div className="score-timer">
+              <p className="score-text">TIME LEFT</p>
+              <h1 className="scoring-time">2:00</h1>
+            </div>
 
-                        <div className = "attribute-item">
-                            <div className="head-and-icon">
-                                <img className="projinfo-icon" src = {tableIcon}></img>
-                                <h className="detail-header attribute-align-left">Table</h>
-                            </div>
-                           <p className="actual-info attribute-align-left">{this.props.location.state.table}</p>
-                        </div>
-
-                    </div>
-                
-                </div>
-
-            <div className = "score">
-                {this.props.location.state.score === null ? 
+            <div>
+                {this.props.location.state.score === null ?
                     <input
-                        keyboardType = "phone-pad"
-                        className = "scoreInput" 
-                        placeholder = "Add score"
+                        keyboardType="phone-pad"
+                        className="score-input"
+                        placeholder={this.props.location.state.score}
                         onChange={this.handleScore}
                     >
-                    </input> : 
+                    </input> :
                     <input
-                        keyboardType = "phone-pad"
-                        className = "scoreInput" 
-                        placeholder = {this.props.location.state.score}
+                        keyboardType="phone-pad"
+                        className="score-input"
+                        placeholder="Add Score"
                         onChange={this.handleScore}
                     >
                     </input>
                 }
             </div>
-
-            </div>
-
+          </div>
         );
     }
 
