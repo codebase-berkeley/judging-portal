@@ -18,7 +18,9 @@ CREATE TABLE projects
   projectId INTEGER PRIMARY KEY,
   name VARCHAR(254),
   github VARCHAR(254),
-  categories VARCHAR(254)[]
+  categories VARCHAR(254)[],
+  wave VARCHAR(254)[],
+  tableNumber VARCHAR(254)[]
 );
 
 CREATE TABLE lists
