@@ -19,7 +19,6 @@ class DataEntry extends Component {
     this.handleWave = this.handleWave.bind(this);
     this.handleFileUpload = this.handleFileUpload.bind(this);
     this.handleFileRead = this.handleFileRead.bind(this);
-    this.readFile = this.readFile.bind(this);
     this.changeFileName = this.changeFileName.bind(this);
     this.routeToPrev = this.routeToPrev.bind(this);
     this.routeToNext = this.routeToNext.bind(this);
@@ -43,12 +42,6 @@ class DataEntry extends Component {
           })
       }
     });
-  }
-
-  async getDataEntry() {
-    const res = await fetch('/api/data');
-    const res_json = res.json();
-    return res_json
   }
 
   handleTable(event) {
@@ -93,10 +86,17 @@ class DataEntry extends Component {
     })
   }
 
-  async postData() {
-      const results = Papa.parse(this.state.fileReader.result);
+  async getDataEntry() {
+    const res = await fetch('/api/data');
+    const resJson = res.json();
+    return resJson
+  }
 
-      const keys = [];
+  async postData() {
+    let results;
+
+    if (this.state.fileReader) {
+      results = Papa.parse(this.state.fileReader.result);
       const list = [];
 
       for (let i = 1; i < results.data.length; i += 1) {
@@ -110,9 +110,20 @@ class DataEntry extends Component {
         }
         list[i] = dict;
       }
-
       console.log(list);
 
+      const res = await fetch('/api/csv', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          filename: this.state.fileName,
+          csv: list
+        })
+      });
+
+    }
       const res = await fetch('/api/data', {
         method: 'PUT',
         headers: {
@@ -122,22 +133,20 @@ class DataEntry extends Component {
           tables: this.state.tableNum,
           clusters: this.state.clusterNum,
           waves: this.state.waveNum,
-          filename: this.state.fileName,
-          csvkeys: keys,
-          csv: list
         })
       });
+      
       const res_json = res.json();
       return res_json;
     }
 
   routeToPrev() {
-    this.postData().then(result => console.log(result));
+    this.postData();
     this.props.history.push("/categories");
   }
 
   routeToNext() {
-    this.postData().then(result => console.log(result));
+    this.postData();
     this.props.history.push("/judge-info");
   }
 
@@ -188,12 +197,12 @@ class DataEntry extends Component {
                 onChange={this.handleFileUpload}
                 className="upload-file"
               />
-              <label for="og-file">{this.state.fileName}</label>
+              <label htmlFor="og-file">{this.state.fileName}</label>
             </div>
 
             <div className="data-button nav">
-              <button className="button" onClick={this.routeToPrev}>PREV</button>
-              <button className="button" onClick={this.routeToNext}>NEXT</button>
+              <button className="button" type="submit" onClick={this.routeToPrev}>PREV</button>
+              <button className="button" type="submit" onClick={this.routeToNext}>NEXT</button>
             </div>
           </div>
         </div>
