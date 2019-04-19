@@ -26,9 +26,7 @@ class DataEntry extends Component {
     this.handleProjectsFileUpload = this.handleProjectsFileUpload.bind(this);
     this.handleProjectsFileRead = this.handleProjectsFileRead.bind(this);
     this.changeProjectsFileName = this.changeProjectsFileName.bind(this);
-    this.routeToPrev = this.routeToPrev.bind(this);
     this.routeToNext = this.routeToNext.bind(this);
-    this.assignWave = this.assignWave.bind(this);
   }
 
   componentDidMount() {
@@ -176,7 +174,6 @@ class DataEntry extends Component {
   routeToNext() {
     if (this.state.tableNum != '' && this.state.clusterNum != '' && this.state.waveNum != '' && this.state.fileName != 'UPLOAD FILE') {
       this.postData();
-      this.assignWave();
       this.props.history.push('/judge-info');
     }
   }
