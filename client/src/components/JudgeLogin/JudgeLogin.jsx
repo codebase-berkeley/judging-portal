@@ -13,7 +13,7 @@ class JudgeLogin extends Component {
             dict: {},
             curr_password: '',
             logininfo: []
-        } 
+        };
         this._onSelect = this._onSelect.bind(this);
         this.handlePassword = this.handlePassword.bind(this);
         this.submitLogin = this.submitLogin.bind(this);
