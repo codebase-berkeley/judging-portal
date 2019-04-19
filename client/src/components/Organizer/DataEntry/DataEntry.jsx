@@ -21,7 +21,6 @@ class DataEntry extends Component {
     this.handleFileUpload = this.handleFileUpload.bind(this);
     this.handleFileRead = this.handleFileRead.bind(this);
     this.changeFileName = this.changeFileName.bind(this);
-    this.routeToPrev = this.routeToPrev.bind(this);
     this.routeToNext = this.routeToNext.bind(this);
     this.assignWave = this.assignWave.bind(this);
   }
@@ -44,6 +43,12 @@ class DataEntry extends Component {
           })
       }
     });
+  }
+
+  async getDataEntry() {
+    const res = await fetch('/api/data');
+    const resJson = res.json();
+    return resJson
   }
 
   handleTable(event) {
@@ -86,12 +91,6 @@ class DataEntry extends Component {
     this.setState({
       fileName: fileName
     })
-  }
-
-  async getDataEntry() {
-    const res = await fetch('/api/data');
-    const resJson = res.json();
-    return resJson
   }
 
   async postData() {
@@ -139,14 +138,6 @@ class DataEntry extends Component {
       const res_json = res.json();
       return res_json;
     }
-
-  routeToPrev() {
-    if (this.state.tableNum != '' && this.state.clusterNum != '' && this.state.waveNum != '' && this.state.fileName != 'UPLOAD FILE') {
-      this.postData();
-      this.assignWave();
-      this.props.history.push('/categories');
-    }
-  }
 
   routeToNext() {
     if (this.state.tableNum != '' && this.state.clusterNum != '' && this.state.waveNum != '' && this.state.fileName != 'UPLOAD FILE') {
@@ -207,7 +198,6 @@ class DataEntry extends Component {
             </div>
 
             <div className="data-button nav">
-              <button className="button" type="submit" onClick={this.routeToPrev}>PREV</button>
               <button className="button" type="submit" onClick={this.routeToNext}>NEXT</button>
             </div>
           </div>
