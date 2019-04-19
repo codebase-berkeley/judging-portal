@@ -24,16 +24,16 @@ class CategoryInput extends Component {
   componentDidMount() {
     this.getLists().then(result => {
       let i;
-      let apiData = [];
-      let categoryData = [];
-      let fellowshipData = [];
-      for (i = 0; i < result.length; i++) { 
-        if (result[i].type === 'api') {
-          apiData.push(result[i].name);
-        } else if (result[i].type === 'fellowships') {
-          fellowshipData.push(result[i].name);
-        } else if (result[i].type === 'general') {
-          categoryData.push(result[i].name);
+      const apiData = [];
+      const categoryData = [];
+      const fellowshipData = [];
+      for (i = 0; i < result.length; i += 1) { 
+        if (result[i].api) {
+          apiData.push(result[i].api);
+        } else if (result[i].fellowships) {
+          fellowshipData.push(result[i].fellowships);
+        } else if (result[i].general) {
+          categoryData.push(result[i].general);
         }
       }
       this.setState({
@@ -45,9 +45,9 @@ class CategoryInput extends Component {
   }
 
   async getLists() {
-    let res = await fetch('/api/lists');
-    let res_json = res.json();
-    return res_json
+    const res = await fetch('/api/lists');
+    const resJson = res.json();
+    return resJson
   }
 
   routeToNext() {

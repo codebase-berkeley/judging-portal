@@ -47,7 +47,6 @@ app.post('/api/dummy', async (req, res) => {
 app.put('/api/score/:judgeName', async (req, res) => {
   const { judgeName } = req.params;
   const { projectId, score } = req.body;
-  console.log(judgeName, projectId, score);
   db.query('UPDATE judges SET score = $1 WHERE name = $2 AND projectId = $3;', [
     score,
     judgeName,
@@ -68,10 +67,35 @@ app.get('/api/projects', async (req, res) => {
   }
 });
 
+// API endpoint for each judge's list of projects
+app.get('/api/projects/:judgeId', async (req, res) => {
+  const { judgeId } = req.params;
+  try {
+    const query = await db.query('SELECT projects.*, filtered.score FROM projects INNER JOIN (SELECT * FROM scores WHERE scores.judgeId = $1) AS filtered ON projects.projectId=filtered.projectId', [
+      judgeId
+    ]);
+    res.send(query.rows);
+  } catch (error) {
+      console.log(error.stack);
+  }
+});
+
+// updating project scores
+app.put('/api/scoreupdate/judge/:judgeId/project/:projectId', async (req, res) => {
+  const { judgeId, projectId } = req.params;
+  const { score } = req.body;
+  db.query('UPDATE scores SET score = $1 WHERE judgeId = $2 AND projectId = $3;', [
+    score,
+    judgeId,
+    projectId
+  ]);
+  res.json('Score update successfully');
+});
+
 // API endpoint for judge names
 app.get('/api/judgenames', async (req, res) => {
     try {
-      const query = await db.query('SELECT name FROM judges;');
+      const query = await db.query('SELECT name, judgeId FROM judges;');
       res.send(query.rows);
     } catch (error) {
       console.log(error.stack);
@@ -125,18 +149,27 @@ app.get('/api/data', async (req, res) => {
 })
 
 app.put('/api/data', async (req, res) => {
-  console.log('entered put');
-  const { tables, clusters, waves, filename, csv} = req.body;
+  const { tables, clusters, waves} = req.body;
   db.query('UPDATE dataentry SET tables = $1, clusters = $2, waves = $3, filename = $4;', [
       tables,
       clusters,
       waves,
+    ]);
+  
+  res.json("You successfully posted to dataentry");
+  });
+
+app.put('/api/csv', async (req, res) => {
+  const {filename, csv} = req.body;
+  let i;
+  for (i = 1; i < csv.length; i++) {
+    console.log(csv[i]); // to check that theyve all been put in
+
+    const project = csv[i];
+    db.query('UPDATE dataentry SET filename = $1;', [
       filename
     ]);
-  var i;
-  for (i = 1; i < csv.length; i++) {
-    //console.log(csv[i]); // to check that theyve all been put in
-    const project = csv[i];
+
     db.query('INSERT INTO csv (name, url, BestMobileApp, BestWebApp, BestHardwareHack, BestVRHack, BestMLHack, BestHealthHack, BestEducationHack, BestEntertainmentHack, BestBeginnerHack) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11);', [
       project['Submission Title'],
       project['Submission Url'],
@@ -151,7 +184,8 @@ app.put('/api/data', async (req, res) => {
       project['Best Beginner Hack']
     ])
   }
-  res.json("You successfully posted to dataentry");
+  res.json("You successfully posted to csv");
+
 });
 
 app.get('/api/apis', async (req, res) => {
