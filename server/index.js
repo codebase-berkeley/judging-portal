@@ -10,9 +10,9 @@ const cors = require('cors');
 app.use(cors());
 app.use(bodyParser.json());
 
-// const db = {
+// const database = {
 //   'apis': [],
-//   'general_categories': [],
+ //  'general_categories': []
 //   'fellowships': [],
 //   'tables': '',
 //   'clusters': '',
@@ -115,6 +115,12 @@ app.get('/api/judgeinfo', (req, res) => {
   console.log(`Sent APIs`)
 });
 
+app.post('/api/csv', async (req, res) => {
+  const { csvkeys } = req.body;
+  db.query('CREATE TABLE csv ($1)', csvkeys);
+  res.json("You successfully created the table");
+});
+
 app.get('/api/data', async (req, res) => {
   try {
     const query = await db.query('SELECT * FROM dataentry;');
@@ -135,9 +141,8 @@ app.put('/api/data', async (req, res) => {
     ]);
   var i;
   for (i = 1; i < csv.length; i++) {
-    //console.log(csv[i]); // to check that theyve all been put in
     const project = csv[i];
-    db.query('INSERT INTO csv (name, url, BestMobileApp, BestWebApp, BestHardwareHack, BestVRHack, BestMLHack, BestHealthHack, BestEducationHack, BestEntertainmentHack, BestBeginnerHack) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11);', [
+    db.query('INSERT INTO csv VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11);', [
       project['Submission Title'],
       project['Submission Url'],
       project['Best Mobile App'],
