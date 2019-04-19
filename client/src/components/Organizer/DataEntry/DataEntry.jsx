@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../OrganizerPortal.css';
+import { formatWithOptions } from 'util';
 
 const Papa = require('papaparse');
 
@@ -21,6 +22,7 @@ class DataEntry extends Component {
     this.handleFileRead = this.handleFileRead.bind(this);
     this.changeFileName = this.changeFileName.bind(this);
     this.routeToNext = this.routeToNext.bind(this);
+    this.assignWave = this.assignWave.bind(this);
   }
 
   componentDidMount() {
@@ -102,7 +104,7 @@ class DataEntry extends Component {
         const dict = {};
         for (let n = 0; n < results.data[0].length; n += 1) {
           const key = results.data[0][n];
-          if (key === "Submission Title" || key === "Submission Url" || key.substring(0, 4) === "Best") {
+          if (key === 'Submission Title' || key === 'Submission Url' || key.substring(0, 4) === 'Best') {
             dict[results.data[0][n]] = results.data[i][n]
           }
         }
@@ -138,8 +140,11 @@ class DataEntry extends Component {
     }
 
   routeToNext() {
-    this.postData();
-    this.props.history.push("/judge-info");
+    if (this.state.tableNum != '' && this.state.clusterNum != '' && this.state.waveNum != '' && this.state.fileName != 'UPLOAD FILE') {
+      this.postData();
+      this.assignWave();
+      this.props.history.push('/judge-info');
+    }
   }
 
   render() {
