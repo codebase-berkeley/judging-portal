@@ -435,6 +435,14 @@ ul {
     color: #0A7191;
 }
 
+.proj-item {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 2px solid rgb(210, 211, 211);
+    width: 100%;
+    display: inline-block;
+}
+
 .headers {
     width: 100%;
     margin-top: 2vh;
@@ -449,10 +457,98 @@ ul {
     width: 50%;
 }
 
-.proj-item {
+/********************* HACKER FACING SPREADSHEET ********************/
+
+.content-spreadsheet {
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    width:100vw;
+    height: 60vh;
+}
+
+#hackSpreadsheet {
+
+}
+
+.entry-element {
+    display: inline-block;
+    /* overflow: auto; */
+    width: 100%;
+    height: 55vh;
+    position: relative; 
+    top: 2%;
+}
+
+.list-area {
+    width: 100%;
+    height: 80vh;
+    text-align: center;
+}
+
+.spread-project-name {
+    display: inline-block;
+    width: 33%;
+    color: #0A7191;
+    text-align: center;
+}
+
+.spread-project-wave {
+    display: inline-block;
+    width: 33%;
+    color: #0A7191;
+    text-align: center;
+}
+
+.spread-project-table {
+    display: inline-block;
+    width: 33%;
+    color: #0A7191;
+    text-align: center;
+}
+
+.spread-entry {
     display: flex;
     flex-direction: row;
     border-bottom: 2px solid #98D0EC;
     width: 100%;
     display: inline-block;
+}
+
+.entries-list {
+    position: relative; 
+    top: 10%;
+    display: inline-block;
+    overflow: auto;
+    width: 80%;
+    height: 80%;
+}
+
+.entries-list-name {
+    display: inline-block;
+    text-align: center;
+    width: 33%;
+    color: #0A7191;
+}
+
+.entries-list-wave {
+    display: inline-block;
+    text-align: center;
+    width: 33%;
+    color: #0A7191;
+}
+
+.entries-list-table {
+    display: inline-block;
+    text-align: center;
+    width: 33%;
+    color: #0A7191;
+}
+
+.button-container-spread {
+    justify-content: center;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    margin-top: 8vh;
 }
