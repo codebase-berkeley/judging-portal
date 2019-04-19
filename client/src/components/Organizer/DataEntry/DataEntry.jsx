@@ -98,9 +98,6 @@ class DataEntry extends Component {
 
     if (this.state.fileReader) {
       results = Papa.parse(this.state.fileReader.result);
-    } 
-
-
       const list = [];
 
       for (let i = 1; i < results.data.length; i += 1) {
@@ -113,9 +110,20 @@ class DataEntry extends Component {
         }
         list[i] = dict;
       }
-
       console.log(list);
 
+      const res = await fetch('/api/csv', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          filename: this.state.fileName,
+          csv: list
+        })
+      });
+
+    }
       const res = await fetch('/api/data', {
         method: 'PUT',
         headers: {
@@ -125,10 +133,9 @@ class DataEntry extends Component {
           tables: this.state.tableNum,
           clusters: this.state.clusterNum,
           waves: this.state.waveNum,
-          filename: this.state.fileName,
-          csv: list
         })
       });
+      
       const res_json = res.json();
       return res_json;
     }
