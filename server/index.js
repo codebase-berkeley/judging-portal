@@ -102,8 +102,8 @@ app.post('/api/lists', async (req, res) => {
     db.query('INSERT INTO lists VALUES(\'' + added[i][0] + '\', \'' + added[i][1] +'\');');
     console.log('INSERT INTO lists VALUES(\'' + added[i][0] + '\', \'' + added[i][1] +'\');');
   }
-
-  res.json("Databse has been updated");
+  
+  res.json("Database has been updated");
 
 });
 

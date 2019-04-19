@@ -12,7 +12,6 @@ class CategoryInput extends Component {
       deleted: [],
       added: []
     };
-    this.routeToNext = this.routeToNext.bind(this);
     this.addAPI = this.addAPI.bind(this);
     this.addCategory = this.addCategory.bind(this);
     this.addFellowship = this.addFellowship.bind(this);

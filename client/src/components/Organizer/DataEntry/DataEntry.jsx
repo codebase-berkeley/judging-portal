@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../OrganizerPortal.css';
+import { formatWithOptions } from 'util';
 
 const Papa = require('papaparse');
 
@@ -27,6 +28,7 @@ class DataEntry extends Component {
     this.changeProjectsFileName = this.changeProjectsFileName.bind(this);
     this.routeToPrev = this.routeToPrev.bind(this);
     this.routeToNext = this.routeToNext.bind(this);
+    this.assignWave = this.assignWave.bind(this);
   }
 
   componentDidMount() {
@@ -49,6 +51,12 @@ class DataEntry extends Component {
           })
       }
     });
+  }
+
+  async getDataEntry() {
+    const res = await fetch('/api/data');
+    const resJson = res.json();
+    return resJson
   }
 
   handleTable(event) {
@@ -117,12 +125,6 @@ class DataEntry extends Component {
     })
   }
 
-  async getDataEntry() {
-    const res = await fetch('/api/data');
-    const resJson = res.json();
-    return resJson
-  }
-
   async postData() {
     let tablesName = this.state.tablesName;
     if (this.state.tablesName === "UPLOAD FILE") {
@@ -171,14 +173,12 @@ class DataEntry extends Component {
     return res_json;
   }
 
-  routeToPrev() {
-    this.postData();
-    this.props.history.push("/categories");
-  }
-
   routeToNext() {
-    this.postData();
-    this.props.history.push("/judge-info");
+    if (this.state.tableNum != '' && this.state.clusterNum != '' && this.state.waveNum != '' && this.state.fileName != 'UPLOAD FILE') {
+      this.postData();
+      this.assignWave();
+      this.props.history.push('/judge-info');
+    }
   }
 
   render() {
@@ -243,7 +243,6 @@ class DataEntry extends Component {
             </div>
 
             <div className="data-button nav">
-              <button className="button" type="submit" onClick={this.routeToPrev}>PREV</button>
               <button className="button" type="submit" onClick={this.routeToNext}>NEXT</button>
             </div>
           </div>
