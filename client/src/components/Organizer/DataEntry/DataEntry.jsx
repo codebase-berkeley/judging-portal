@@ -31,7 +31,7 @@ class DataEntry extends Component {
 
   componentDidMount() {
     this.getDataEntry().then(result => {
-      if (result[0].tablesname === "") {
+      if (result[0].tablesname === '') {
         this.setState({
           tableNum: '',
           maxNum: '',
@@ -42,7 +42,7 @@ class DataEntry extends Component {
       } else {
           this.setState({
             tableNum: result[0].tables,
-            MaxNum: result[0].clusters,
+            maxNum: result[0].max,
             waveNum: result[0].waves,
             tablesName: result[0].tablesname,
             projectsName: result[0].projectsname
@@ -125,12 +125,12 @@ class DataEntry extends Component {
 
   async postData() {
     let tablesName = this.state.tablesName;
-    if (this.state.tablesName === "UPLOAD FILE") {
-      tablesName = "";
+    if (this.state.tablesName === 'UPLOAD FILE') {
+      tablesName = '';
     }
     let projectsName = this.state.projectsName;
-    if (this.state.projectsName === "UPLOAD FILE") {
-      projectsName = "";
+    if (this.state.projectsName === 'UPLOAD FILE') {
+      projectsName = '';
     }
 
     let results;
@@ -143,7 +143,7 @@ class DataEntry extends Component {
         const dict = {};
         for (let n = 0; n < results.data[0].length; n += 1) {
           const key = results.data[0][n];
-          if (key === "Submission Title" || key === "Submission Url" || key.substring(0, 4) === "Best") {
+          if (key === 'Submission Title' || key === 'Submission Url' || key.substring(0, 4) === 'Best') {
             keys[i] = key;
             dict[results.data[0][n]] = results.data[i][n];
           }
