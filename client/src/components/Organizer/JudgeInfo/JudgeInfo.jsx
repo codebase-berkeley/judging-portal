@@ -20,6 +20,11 @@ class JudgeInfo extends Component {
     this._onSelect = this._onSelect.bind(this);
     this.routeToPrev = this.routeToPrev.bind(this);
     this.routeToNext = this.routeToNext.bind(this);
+<<<<<<< HEAD
+=======
+    this.getJudgeInfo = this.getJudgeInto.bind(this);
+    this.getAPI = this.getAPI.bind(this);
+>>>>>>> 50c2e1050b9c4833c564d8ed6a8c1718935fa86f
     this.postJudgeInfo = this.postJudgeInfo.bind(this);
   }
 
@@ -27,7 +32,11 @@ class JudgeInfo extends Component {
     this.getJudgeInfo().then(result => {
       let i;
       const judgeinfo = [];
+<<<<<<< HEAD
       for (i = 0; i < result.length; i += 1) { 
+=======
+      for (i = 0; i < result.length; i+=1) { 
+>>>>>>> 50c2e1050b9c4833c564d8ed6a8c1718935fa86f
         judgeinfo[i] = [result[i].name, result[i].api];
       }
       this.setState({ info: judgeinfo });
@@ -35,7 +44,11 @@ class JudgeInfo extends Component {
     this.getAPI().then(result => {
       let i;
       const apis = [];
+<<<<<<< HEAD
       for (i = 0; i < result.length; i += 1) { 
+=======
+      for (i = 0; i < result.length; i+=1) { 
+>>>>>>> 50c2e1050b9c4833c564d8ed6a8c1718935fa86f
         if (result[i].api != null) {
           apis[i] = result[i].api;
         }

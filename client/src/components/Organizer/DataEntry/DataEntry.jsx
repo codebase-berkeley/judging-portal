@@ -44,6 +44,12 @@ class DataEntry extends Component {
     });
   }
 
+  async getDataEntry() {
+    const res = await fetch('/api/data');
+    const resJson = res.json();
+    return resJson
+  }
+  
   handleTable(event) {
     this.setState({
       tableNum: event.target.value
@@ -68,28 +74,22 @@ class DataEntry extends Component {
   }
 
   handleFileRead(file) {
-    const fileReader = new FileReader();
-    fileReader.readAsText(file);
+    const fr = new FileReader();
+    fr.readAsText(file);
     this.setState({
-      fileReader: fileReader
+      fileReader: fr
     })
   }
 
   changeFileName(event) {
     const input = event.target.value;
-    let fileName = input.replace(/^.*[\\\/]/, '');
-    if (fileName === '') {
-      fileName = 'UPLOAD FILE';
+    let fn = input.replace(/^.*[\\\/]/, '');
+    if (fn === '') {
+      fn = 'UPLOAD FILE';
     }
     this.setState({
-      fileName: fileName
+      fileName: fn
     })
-  }
-
-  async getDataEntry() {
-    const res = await fetch('/api/data');
-    const resJson = res.json();
-    return resJson
   }
 
   async postData() {
@@ -109,9 +109,8 @@ class DataEntry extends Component {
         }
         list[i] = dict;
       }
-      console.log(list);
 
-      const res = await fetch('/api/csv', {
+      await fetch('/api/csv', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
@@ -135,8 +134,8 @@ class DataEntry extends Component {
         })
       });
       
-      const res_json = res.json();
-      return res_json;
+      const resJson = res.json();
+      return resJson;
     }
 
   routeToPrev() {

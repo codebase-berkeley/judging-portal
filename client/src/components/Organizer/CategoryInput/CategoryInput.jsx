@@ -121,7 +121,6 @@ class CategoryInput extends Component {
   }
 
   async postLists() {
-
     const res = await window.fetch('/api/lists', {
       method: 'POST',
       headers: {
@@ -134,11 +133,6 @@ class CategoryInput extends Component {
     });
     const resJson = res.json();
     return resJson;
-  }
-  async getLists() {
-    let res = await fetch('/api/lists');
-    let res_json = res.json();
-    return res_json
   }
 
   render() {
