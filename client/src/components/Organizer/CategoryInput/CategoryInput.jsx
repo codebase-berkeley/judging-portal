@@ -24,7 +24,6 @@ class CategoryInput extends Component {
   componentDidMount() {
     this.getLists().then(result => {
       let i;
-<<<<<<< HEAD
       const apiData = [];
       const categoryData = [];
       const fellowshipData = [];
@@ -35,18 +34,6 @@ class CategoryInput extends Component {
           fellowshipData.push(result[i].fellowships);
         } else if (result[i].general) {
           categoryData.push(result[i].general);
-=======
-      let apiData = [];
-      let categoryData = [];
-      let fellowshipData = [];
-      for (i = 0; i < result.length; i++) { 
-        if (result[i].type === 'api') {
-          apiData.push(result[i].name);
-        } else if (result[i].type === 'fellowships') {
-          fellowshipData.push(result[i].name);
-        } else if (result[i].type === 'general') {
-          categoryData.push(result[i].name);
->>>>>>> cf0a478ff1b43e3ed033b87b3326f580db36397b
         }
       }
       this.setState({

@@ -53,15 +53,9 @@ class JudgeInfo extends Component {
   }
 
   async getAPI() {
-<<<<<<< HEAD
     const res = await fetch(`/api/apis`);
     const resJson = res.json();
     return resJson
-=======
-    const res = await fetch(`/api/lists`);
-    const res_json = res.json();
-    return res_json
->>>>>>> cf0a478ff1b43e3ed033b87b3326f580db36397b
   }
 
   _onSelect(option) {
@@ -73,11 +67,6 @@ class JudgeInfo extends Component {
   }
 
   removeTask(index) {
-<<<<<<< HEAD
-    const info = this.state.info
-    info.splice(index, 1)
-    this.setState({info})
-=======
     this.setState((prevState) => {
       const del_info = prevState.info.slice();
       const judge = del_info[index];
@@ -90,7 +79,6 @@ class JudgeInfo extends Component {
       } 
     });
     console.log(this.state.deleted);
->>>>>>> cf0a478ff1b43e3ed033b87b3326f580db36397b
   }
 
   handleName(event) {
@@ -126,18 +114,12 @@ class JudgeInfo extends Component {
     return resJson;
   }
 
-<<<<<<< HEAD
-  routeToPrev() {
-    this.postJudgeInfo();
-    const path = "/data-entry";
-=======
   postJudge() {
     this.postJudgeInfo().then(result => console.log(result));
   }
 
   routeToPrev() {
-    let path = "/data-entry";
->>>>>>> cf0a478ff1b43e3ed033b87b3326f580db36397b
+    const path = "/data-entry";
     this.props.history.push(path);
   }
 
@@ -190,13 +172,8 @@ class JudgeInfo extends Component {
 
               <button
                 className="button"
-<<<<<<< HEAD
-                type="submit"
-                onClick={this.addInfo}
-=======
                 type="button"
                 onClick={(event) => { this.addInfo(); this.postJudge();}}
->>>>>>> cf0a478ff1b43e3ed033b87b3326f580db36397b
               >
                 SUBMIT
               </button>
@@ -210,13 +187,8 @@ class JudgeInfo extends Component {
           </div>
 
           <div className= "buttons nav judge-button">
-<<<<<<< HEAD
             <button className="button" type="submit" onClick={this.routeToPrev}>PREV</button>
-            <button className="button" type="submit">NEXT</button>
-=======
-            <button className="button" onClick={this.routeToPrev}>PREV</button>
-            <button className="button" onClick={this.routeToNext}>NEXT</button>
->>>>>>> cf0a478ff1b43e3ed033b87b3326f580db36397b
+            <button className="button" type="submit" onClick={this.routeToNext}>NEXT</button>
           </div>
         </div>
       </div>

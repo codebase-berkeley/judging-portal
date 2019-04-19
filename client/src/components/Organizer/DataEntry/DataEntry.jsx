@@ -25,8 +25,6 @@ class DataEntry extends Component {
     this.routeToNext = this.routeToNext.bind(this);
   }
 
-<<<<<<< HEAD
-=======
   componentDidMount() {
     this.getDataEntry().then(result => {
       if (result.length === 0) {
@@ -47,19 +45,12 @@ class DataEntry extends Component {
     });
   }
 
-  async getDataEntry() {
-    const res = await fetch('/api/data');
-    const res_json = res.json();
-    return res_json
-  }
-
   handleTable(event) {
     this.setState({
       tableNum: event.target.value
     });
   }
 
->>>>>>> cf0a478ff1b43e3ed033b87b3326f580db36397b
   handleCluster(event) {
     this.setState({
       clusterNum: event.target.value
@@ -94,47 +85,12 @@ class DataEntry extends Component {
     this.setState({
       fileName: fileName
     })
-<<<<<<< HEAD
-  }
-
-  componentDidMount() {
-    this.getDataEntry().then(result => this.setState({
-      tableNum: result.tables,
-      clusterNum: result.clusters,
-      waveNum: result.waves,
-      fileName: result.filename
-    }))
   }
 
   async getDataEntry() {
     const res = await fetch('/api/data');
     const resJson = res.json();
     return resJson
-  }
-
-  handleTable(event) {
-    this.setState({
-      tableNum: event.target.value
-    });
-  }
-
-  async postData(){
-    const res = await fetch('/api/data', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        tables: this.state.tableNum,
-        clusters: this.state.clusterNum,
-        waves: this.state.waveNum,
-        filename: this.state.fileName
-      })
-    });
-    const resJson = res.json();
-    return resJson;
-  }
-=======
   }
 
   async postData() {
@@ -171,7 +127,6 @@ class DataEntry extends Component {
       const res_json = res.json();
       return res_json;
     }
->>>>>>> cf0a478ff1b43e3ed033b87b3326f580db36397b
 
   routeToPrev() {
     this.postData();
