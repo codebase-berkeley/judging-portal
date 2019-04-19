@@ -12,7 +12,6 @@ class CategoryInput extends Component {
       deleted: [],
       added: []
     };
-    this.routeToNext = this.routeToNext.bind(this);
     this.addAPI = this.addAPI.bind(this);
     this.addCategory = this.addCategory.bind(this);
     this.addFellowship = this.addFellowship.bind(this);
@@ -48,12 +47,6 @@ class CategoryInput extends Component {
     const res = await fetch('/api/lists');
     const resJson = res.json();
     return resJson
-  }
-
-  routeToNext() {
-    this.postLists();
-    const path = "/data-entry";
-    this.props.history.push(path);
   }
 
   addAPI(api) {

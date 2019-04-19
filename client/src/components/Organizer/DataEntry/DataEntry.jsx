@@ -20,7 +20,6 @@ class DataEntry extends Component {
     this.handleFileUpload = this.handleFileUpload.bind(this);
     this.handleFileRead = this.handleFileRead.bind(this);
     this.changeFileName = this.changeFileName.bind(this);
-    this.routeToPrev = this.routeToPrev.bind(this);
     this.routeToNext = this.routeToNext.bind(this);
   }
 
@@ -42,6 +41,12 @@ class DataEntry extends Component {
           })
       }
     });
+  }
+
+  async getDataEntry() {
+    const res = await fetch('/api/data');
+    const resJson = res.json();
+    return resJson
   }
 
   handleTable(event) {
@@ -86,12 +91,6 @@ class DataEntry extends Component {
     })
   }
 
-  async getDataEntry() {
-    const res = await fetch('/api/data');
-    const resJson = res.json();
-    return resJson
-  }
-
   async postData() {
     let results;
 
@@ -109,7 +108,6 @@ class DataEntry extends Component {
         }
         list[i] = dict;
       }
-      console.log(list);
 
       const res = await fetch('/api/csv', {
         method: 'PUT',
@@ -138,11 +136,6 @@ class DataEntry extends Component {
       const res_json = res.json();
       return res_json;
     }
-
-  routeToPrev() {
-    this.postData();
-    this.props.history.push("/categories");
-  }
 
   routeToNext() {
     this.postData();
@@ -200,7 +193,6 @@ class DataEntry extends Component {
             </div>
 
             <div className="data-button nav">
-              <button className="button" type="submit" onClick={this.routeToPrev}>PREV</button>
               <button className="button" type="submit" onClick={this.routeToNext}>NEXT</button>
             </div>
           </div>
