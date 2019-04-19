@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import './JudgeLogin.css';
-import { constants } from 'fs';
 
 class JudgeLogin extends Component {
     constructor(props) {
@@ -10,6 +9,8 @@ class JudgeLogin extends Component {
         this.state = {
             options: [],
             selected: '',
+            judgeId: '',
+            dict: {},
             curr_password: '',
             logininfo: []
         };
@@ -21,21 +22,33 @@ class JudgeLogin extends Component {
 
     async componentDidMount() {
         const res = await fetch(`/api/judgenames`);
-        const res_json = await res.json();
-        let names = [];
-        for (let i = 0; i < res_json.length; i++) {
-                names.push(res_json[i].name);
+        const resJson = await res.json();
+        const pairs = {}
+        const names = []
+        for (let i = 0; i < resJson.length; i += 1) {
+                names.push(resJson[i].name);
+                pairs[resJson[i].name] = resJson[i].judgeid;
         }
-        this.setState({ options: names });
+        this.setState({ 
+            options: names,
+            dict: pairs
+         });
     }
 
     routeToNext() {
-        const path = "/instructions";
-        this.props.history.push(path);
+        this.props.history.push({
+            pathname: '/instructions',
+            state: {
+                judgeId: this.state.judgeId
+            }
+        });
     }
 
     _onSelect(option) {
-        this.setState({ selected: option });
+        this.setState({ 
+            judgeId: this.state.dict[option.value],
+            selected: option.value
+        });
     }
 
     handlePassword(event) {
