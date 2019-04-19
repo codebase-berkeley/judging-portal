@@ -26,7 +26,7 @@ class DataEntry extends Component {
 
   componentDidMount() {
     this.getDataEntry().then(result => {
-      if (result[0].filename === "") {
+      if (!result[0]) {
         this.setState({
           tableNum: '',
           clusterNum: '',
@@ -93,38 +93,6 @@ class DataEntry extends Component {
   }
 
   async postData() {
-    let results;
-
-    if (this.state.fileReader != null) {
-      results = Papa.parse(this.state.fileReader.result);
-      const list = [];
-      const keys = [];
-
-      for (let i = 1; i < results.data.length; i += 1) {
-        const dict = {};
-        for (let n = 0; n < results.data[0].length; n += 1) {
-          const key = results.data[0][n];
-          if (key === "Submission Title" || key === "Submission Url" || key.substring(0, 4) === "Best") {
-            keys[i] = key;
-            dict[results.data[0][n]] = results.data[i][n];
-          }
-        }
-        list[i] = dict;
-      }
-      console.log(list);
-
-      const res = await fetch('/api/csv', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          filename: this.state.fileName,
-          csv: list
-        })
-      });
-
-    }
     const res = await fetch('/api/data', {
       method: 'PUT',
       headers: {
@@ -134,6 +102,7 @@ class DataEntry extends Component {
         tables: this.state.tableNum,
         clusters: this.state.clusterNum,
         waves: this.state.waveNum,
+        filename: this.state.fileName
       })
     });
     
@@ -141,13 +110,52 @@ class DataEntry extends Component {
     return res_json;
   }
 
+  async postCSV() {
+    let results;
+
+    const list = [];
+    const keys = [];
+
+    
+    results = Papa.parse(this.state.fileReader.result);
+
+    for (let i = 1; i < results.data.length; i += 1) {
+      const dict = {};
+      for (let n = 0; n < results.data[0].length; n += 1) {
+        const key = results.data[0][n];
+        if (key === "Submission Title" || key === "Submission Url" || key.substring(0, 4) === "Best") {
+          keys[i] = key;
+          dict[results.data[0][n]] = results.data[i][n];
+        }
+      }
+      list[i] = dict;
+    }
+
+    const res = await fetch('/api/csv', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        filename: this.state.fileName,
+        csvkeys: keys,
+        csv: list
+      })
+    });
+
+    const res_json = res.json();
+    return res_json;
+  }
+
   routeToPrev() {
     this.postData();
+    this.postCSV();
     this.props.history.push("/categories");
   }
 
   routeToNext() {
     this.postData();
+    this.postCSV();
     this.props.history.push("/judge-info");
   }
 

@@ -140,9 +140,28 @@ app.get('/api/judgeinfo', (req, res) => {
 });
 
 app.post('/api/csv', async (req, res) => {
+  console.log("hehehe");
   const { csvkeys } = req.body;
   db.query('CREATE TABLE csv ($1)', csvkeys);
   res.json("You successfully created the table");
+});
+
+app.put('/api/csv', async (req, res) => {
+  console.log("yeee");
+  const {filename, csv} = req.body;
+  let i;
+  for (i = 1; i < csv.length; i++) {
+    console.log(csv[i]); // to check that theyve all been put in
+
+    const project = csv[i];
+    db.query('UPDATE dataentry SET filename = $1;', [
+      filename
+    ]);
+
+    db.query('INSERT INTO csv VALUES ($1);', project.values())
+  }
+  res.json("You successfully posted to csv");
+
 });
 
 app.get('/api/data', async (req, res) => {
@@ -164,35 +183,6 @@ app.put('/api/data', async (req, res) => {
   
   res.json("You successfully posted to dataentry");
   });
-
-app.put('/api/csv', async (req, res) => {
-  const {filename, csv} = req.body;
-  let i;
-  for (i = 1; i < csv.length; i++) {
-    console.log(csv[i]); // to check that theyve all been put in
-
-    const project = csv[i];
-    db.query('UPDATE dataentry SET filename = $1;', [
-      filename
-    ]);
-
-    db.query('INSERT INTO csv (name, url, BestMobileApp, BestWebApp, BestHardwareHack, BestVRHack, BestMLHack, BestHealthHack, BestEducationHack, BestEntertainmentHack, BestBeginnerHack) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11);', [
-      project['Submission Title'],
-      project['Submission Url'],
-      project['Best Mobile App'],
-      project['Best Web App'],
-      project['Best Hardware Hack'],
-      project['Best VR Hack'],
-      project['Best ML Hack'],
-      project['Best Health Hack'],
-      project['Best Education Hack'],
-      project['Best Entertainment Hack'],
-      project['Best Beginner Hack']
-    ])
-  }
-  res.json("You successfully posted to csv");
-
-});
 
 app.get('/api/apis', async (req, res) => {
   try {
