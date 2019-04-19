@@ -11,23 +11,39 @@ class JudgeInfo extends Component {
       curr_name: '',
       selected: '',
       info: [],
-      count: 0,
-      options: []
+      options: [],
+      deleted: []
     };
     this.handleName = this.handleName.bind(this);
     this.addInfo = this.addInfo.bind(this);
     this.handleClickIndex = this.handleClickIndex.bind(this);
     this._onSelect = this._onSelect.bind(this);
     this.routeToPrev = this.routeToPrev.bind(this);
+    this.routeToNext = this.routeToNext.bind(this);
+
+    this.postJudgeInfo = this.postJudgeInfo.bind(this);
+
   }
 
-  componentDidMount() {
-    this.getJudgeInfo().then(result => this.setState({
-      info: result
-    }))
-    this.getAPI().then(result => this.setState({
-      options: result
-    }))
+  async componentDidMount() {
+    this.getJudgeInfo().then(result => {
+      let i;
+      let judgeinfo = [];
+      for (i = 0; i < result.length; i++) { 
+        judgeinfo[i] = [result[i].name, result[i].api];
+      }
+      this.setState({ info: judgeinfo });
+    });
+    this.getAPI().then(result => {
+      let i;
+      let apis = [];
+      for (i = 0; i < result.length; i++) { 
+        if (result[i].api != null) {
+          apis[i] = result[i].api;
+        }
+      }
+      this.setState({ options: apis });
+    });
   }
 
   async getJudgeInfo() {
@@ -37,9 +53,15 @@ class JudgeInfo extends Component {
   }
 
   async getAPI() {
+<<<<<<< HEAD
     const res = await fetch(`/api/apis`);
     const resJson = res.json();
     return resJson
+=======
+    const res = await fetch(`/api/lists`);
+    const res_json = res.json();
+    return res_json
+>>>>>>> cf0a478ff1b43e3ed033b87b3326f580db36397b
   }
 
   _onSelect(option) {
@@ -51,9 +73,24 @@ class JudgeInfo extends Component {
   }
 
   removeTask(index) {
+<<<<<<< HEAD
     const info = this.state.info
     info.splice(index, 1)
     this.setState({info})
+=======
+    this.setState((prevState) => {
+      const del_info = prevState.info.slice();
+      const judge = del_info[index];
+
+      del_info.splice(index, 1)
+      console.log(judge);
+      return {
+        info: del_info,
+        deleted: prevState.deleted.concat([judge])
+      } 
+    });
+    console.log(this.state.deleted);
+>>>>>>> cf0a478ff1b43e3ed033b87b3326f580db36397b
   }
 
   handleName(event) {
@@ -63,16 +100,15 @@ class JudgeInfo extends Component {
   }
 
   addInfo() {
-    if (this.state.curr_name !== '' && this.state.selected !== '') {
-      this.setState({
-        info: this.state.info.concat([
-          [this.state.curr_name, this.state.selected.label, this.state.count]
-        ]),
-        curr_name: '',
-        count: this.state.count + 1,
-        selected: ''
-      });
-    }
+      if (this.state.curr_name !== '' && this.state.selected !== '') {
+        this.setState({
+          info: this.state.info.concat([
+            [this.state.curr_name, this.state.selected.label]
+          ]),
+          curr_name: '',
+          selected: ''
+        });
+      }
   }
 
   async postJudgeInfo() {
@@ -82,16 +118,32 @@ class JudgeInfo extends Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        info: this.state.info
+        info: [this.state.curr_name, this.state.selected.label],
+        deleted: this.state.deleted
       })
     });
     const resJson = res.json();
     return resJson;
   }
 
+<<<<<<< HEAD
   routeToPrev() {
     this.postJudgeInfo();
     const path = "/data-entry";
+=======
+  postJudge() {
+    this.postJudgeInfo().then(result => console.log(result));
+  }
+
+  routeToPrev() {
+    let path = "/data-entry";
+>>>>>>> cf0a478ff1b43e3ed033b87b3326f580db36397b
+    this.props.history.push(path);
+  }
+
+  routeToNext() {
+    this.postJudgeInfo().then(result => console.log(result));
+    let path = "/project-breakdown";
     this.props.history.push(path);
   }
 
@@ -107,7 +159,6 @@ class JudgeInfo extends Component {
          <Judge
           name={name[0]}
           api={this.state.info[index][1]}
-          color={this.state.info[index][2]}
         />
       </ul>
     ))
@@ -139,8 +190,13 @@ class JudgeInfo extends Component {
 
               <button
                 className="button"
+<<<<<<< HEAD
                 type="submit"
                 onClick={this.addInfo}
+=======
+                type="button"
+                onClick={(event) => { this.addInfo(); this.postJudge();}}
+>>>>>>> cf0a478ff1b43e3ed033b87b3326f580db36397b
               >
                 SUBMIT
               </button>
@@ -154,8 +210,13 @@ class JudgeInfo extends Component {
           </div>
 
           <div className= "buttons nav judge-button">
+<<<<<<< HEAD
             <button className="button" type="submit" onClick={this.routeToPrev}>PREV</button>
             <button className="button" type="submit">NEXT</button>
+=======
+            <button className="button" onClick={this.routeToPrev}>PREV</button>
+            <button className="button" onClick={this.routeToNext}>NEXT</button>
+>>>>>>> cf0a478ff1b43e3ed033b87b3326f580db36397b
           </div>
         </div>
       </div>

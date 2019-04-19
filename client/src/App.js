@@ -7,6 +7,7 @@ import Home from './components/Home';
 import CategoryInput from './components/Organizer/CategoryInput/CategoryInput';
 import DataEntry from './components/Organizer/DataEntry/DataEntry';
 import JudgeInfo from './components/Organizer/JudgeInfo/JudgeInfo';
+import ProjectBreakdown from './components/Organizer/ProjectBreakdown/ProjectBreakdown';
 import JudgeLogin from './components/JudgeLogin/JudgeLogin';
 import Instructions from './components/JudgeLogin/Instructions';
 import ScoringOverview from './components/ScoringOverview/ScoringOverview';
@@ -25,6 +26,7 @@ class App extends Component {
           <Route path="/instructions" component={Instructions} />
           <Route path="/judge-login" component={JudgeLogin} />
           <Route path="/project-info" component={ProjectInfo} />
+          <Route path="/project-breakdown" component={ProjectBreakdown} />
         </Switch>
       </div>
     );
