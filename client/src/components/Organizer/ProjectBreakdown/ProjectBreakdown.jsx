@@ -6,23 +6,30 @@ class ProjectBreakdown extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          scored: [['SyncUp', 25], ['Codecademy', 100]],
+          scored: [['SyncUp', 25], ['Codeacademy', 100]],
           unscored: [['Github', 0]]
         };
         this.routeToPrev = this.routeToPrev.bind(this);
+        this.routeToNext = this.routeToNext.bind(this);
     }
 
     routeToPrev() {
         const path = "/judge-info";
         this.props.history.push(path);
       }
+    
+    routeToNext() {
+        // this.postData().then(result => console.log(result));
+        const path = "/hacker-spreadsheet"; 
+        this.props.history.push(path);
+    }
 
     render() {
-        const scoredProjects = (this.state.scored||[]).map((name,index)=>(
+        const scoredProjects = (this.state.scored||[]).map((item)=>(
             <ul className="proj-item">
                <ProjectItem
-                name={name[0]}
-                score={this.state.scored[index][1]}
+                name={item[0]}
+                score={item[1]}
               />
             </ul>
           ))
@@ -64,6 +71,7 @@ class ProjectBreakdown extends Component {
 
                     <div className= "buttons nav judge-button">
                         <button type="button" className="button" onClick={this.routeToPrev}>PREV</button>
+                        <button type="button" className="button" onClick={this.routeToNext}>NEXT</button>
                     </div>
 
                 </div>

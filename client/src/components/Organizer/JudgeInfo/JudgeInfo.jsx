@@ -36,7 +36,7 @@ class JudgeInfo extends Component {
     });
     this.getAPI().then(result => {
       let i;
-      let apis = [];
+      const apis = [];
       for (i = 0; i < result.length; i++) { 
         if (result[i].api != null) {
           apis[i] = result[i].api;
