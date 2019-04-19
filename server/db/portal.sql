@@ -17,25 +17,15 @@ CREATE TABLE projects
 (
   projectId INTEGER PRIMARY KEY,
   name VARCHAR(254),
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> ab0749c8e75611a69750b42cecd913e9eb142e20
   github VARCHAR(254),
   categories VARCHAR(254)[]
 );
 
-<<<<<<< HEAD
 CREATE TABLE lists
-=======
   API VARCHAR(254)
 );
 
 CREATE TABLE apis
->>>>>>> cf0a478ff1b43e3ed033b87b3326f580db36397b
-=======
-CREATE TABLE apis
->>>>>>> ab0749c8e75611a69750b42cecd913e9eb142e20
 (
   API VARCHAR(254)
 );
@@ -82,29 +72,9 @@ INSERT INTO judges VALUES ('calhacks', 'calhacksAPI', 30);
 
 INSERT INTO projects VALUES (1, 'mentored', 'https://github.com/codebase-berkeley/judging-portal', '{"best team", "funnest team", "coolest team"}');
 INSERT INTO projects VALUES (2, 'calhacks', 'https://github.com/codebase-berkeley/', '{"biggest hackathon"}');
-<<<<<<< HEAD
-<<<<<<< HEAD
-INSERT INTO projects VALUES (3, 'atlassian', 'https://github.com/codebase-berkeley/', '{"lit team"}');
-
-INSERT INTO lists (API) VALUES ('Google Vision');
-INSERT INTO lists (API) VALUES ('Uber Autopilot');
-INSERT INTO lists (API) VALUES ('API #23');
-INSERT INTO lists (fellowships) VALUES ('UCB Golden Bear Fellowship');
-INSERT INTO lists (general) VALUES ('worst project');
-INSERT INTO lists (general) VALUES ('most average project');
-=======
-
-INSERT INTO dataentry VALUES (0, 0, 0, '');
-
-INSERT INTO judges VALUES ('rachel', 'myAPI');
-INSERT INTO judges VALUES ('parth', 'codebaseAPI');
-INSERT INTO judges VALUES ('andrew', 'yoooAPI');
-INSERT INTO judges VALUES ('julia', 'bestAPI');
-=======
 INSERT INTO projects VALUES (3, 'atlassian', 'https://github.com/codebase-berkeley/', '{"lit team"}');
 
 INSERT INTO dataentry VALUES ('5', '3', '10', 'devpost');
->>>>>>> ab0749c8e75611a69750b42cecd913e9eb142e20
 
 INSERT INTO apis VALUES ('myAPI');
 INSERT INTO apis VALUES ('codebaseAPI');
@@ -117,10 +87,6 @@ INSERT INTO lists VALUES ('api', 'API #23');
 INSERT INTO lists VALUES ('fellowships', 'UCB Golden Bear Fellowship');
 INSERT INTO lists VALUES ('general', 'worst project');
 INSERT INTO lists VALUES ('general', 'most average project');
-<<<<<<< HEAD
->>>>>>> cf0a478ff1b43e3ed033b87b3326f580db36397b
-=======
->>>>>>> ab0749c8e75611a69750b42cecd913e9eb142e20
 
 INSERT INTO scores VALUES (10, 1, NULL);
 INSERT INTO scores VALUES (20, 2, NULL);
