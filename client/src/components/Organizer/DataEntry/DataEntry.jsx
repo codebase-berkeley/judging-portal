@@ -16,6 +16,7 @@ class DataEntry extends Component {
       tablesReader: null,
       projectsName: 'UPLOAD FILE',
       projectsReader: null
+      
     };
     this.handleTable = this.handleTable.bind(this);
     this.handleMax = this.handleMax.bind(this);
