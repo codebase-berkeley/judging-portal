@@ -8,9 +8,9 @@ WITH ENCRYPTED PASSWORD 'password';
 \c portal;
 CREATE TABLE judges
 (
+  judgeId INTEGER PRIMARY KEY,
   name VARCHAR(254),
-  API VARCHAR(254),
-  judgeId INTEGER PRIMARY KEY
+  API VARCHAR(254)
 );
 
 CREATE TABLE projects
@@ -19,8 +19,8 @@ CREATE TABLE projects
   name VARCHAR(254),
   github VARCHAR(254),
   categories VARCHAR(254)[],
-  wave INTEGER,
-  table VARCHAR(254)
+  tableName VARCHAR(254),
+  wave INTEGER
 );
 
 CREATE TABLE apis
@@ -36,9 +36,9 @@ CREATE TABLE scores
   score INTEGER
 );
 
-INSERT INTO judges VALUES ('lawrence', 'codebaseAPI', 10);
-INSERT INTO judges VALUES ('parth', 'general categories', 20);
-INSERT INTO judges VALUES ('calhacks', 'calhacksAPI', 30);
+INSERT INTO judges VALUES (10, 'lawrence', 'codebaseAPI');
+INSERT INTO judges VALUES (20, 'parth', 'general categories');
+INSERT INTO judges VALUES (30, 'calhacks', 'calhacksAPI');
 
 INSERT INTO projects VALUES (1, 'mentored', 'https://github.com/codebase-berkeley/judging-portal', '{"General Category 1", "codebaseAPI"}');
 INSERT INTO projects VALUES (2, 'calhacks', 'https://github.com/codebase-berkeley/', '{"General Category 1", "General Category2", "calhacksAPI"}');
