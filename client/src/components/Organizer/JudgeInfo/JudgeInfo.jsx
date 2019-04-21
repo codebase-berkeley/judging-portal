@@ -146,6 +146,9 @@ class JudgeInfo extends Component {
 
   routeToNext() {
     this.postJudgeInfo().then(result => console.log(result));
+
+    // this.assignJudges();
+
     const path = "/project-breakdown";
     this.props.history.push(path);
   }
