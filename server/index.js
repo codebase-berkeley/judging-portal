@@ -106,14 +106,6 @@ app.post('/api/lists', async (req, res) => {
 
 });
 
-app.get('/api/judgeinfo', (req, res) => {
-  const judgeinfo = db['judge_list']
-
-  // Return them as json
-  res.json(judgeinfo);
-  console.log(`Sent APIs`)
-});
-
 app.get('/api/data', async (req, res) => {
   try {
     const query = await db.query('SELECT * FROM dataentry;');
@@ -154,7 +146,7 @@ app.put('/api/data', async (req, res) => {
 
 app.get('/api/apis', async (req, res) => {
   try {
-    const query = await db.query('SELECT (api) FROM lists;');
+    const query = await db.query('SELECT * FROM apis;');
     res.send(query.rows);
   } catch (error) {
     console.log(error.stack)
@@ -171,19 +163,32 @@ app.get('/api/judgeinfo', async (req, res) => {
 });
 
 app.post('/api/judgeinfo', async (req, res) => {
-  const { info, deleted } = req.body;
-  res.json()
-  db.query('INSERT INTO judges(name, API) VALUES($1 ,$2)', [
-      info[0],
-      info[1]
-  ]);
-  var i;
-  for (i = 0; i < deleted.length; i++) {
-    db.query('DELETE FROM judges WHERE name=\'' + deleted[i][0] +'\' AND API=\'' + deleted[i][1]+'\';');
-    console.log('DELETE FROM lists WHERE type=\'' + deleted[i][0] +'\' AND name=\'' + deleted[i][1]+'\';');
+  try {
+    const {info} = req.body;
+    if (info.length > 1) {
+      db.query('INSERT INTO judges(name, API) VALUES($1, $2)', [
+        info[0],
+        info[1]
+      ]);
+    }
+    res.json("Successfully posted ".concat(info[0]));
+  } catch (error) {
+    console.log(error.stack);
   }
-  res.json("You successfully posted: ".concat(info));
 });
+
+app.post('/api/deletejudge', async (req, res) => {
+  try {
+    const {deleted} = req.body;
+    if (deleted.length > 1) {
+      db.query('DELETE FROM judges WHERE name=\'' + deleted[0] + '\' AND API=\'' + deleted[1] + '\';');
+    }
+    res.json("You successfully posted: ".concat(deleted));
+  } catch (error) {
+    console.log(error.stack)
+  }
+
+})
 
 const port = process.env.PORT || 5000;
 app.listen(port);
