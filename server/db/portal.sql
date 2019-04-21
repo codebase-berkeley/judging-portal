@@ -37,7 +37,7 @@ CREATE TABLE scores
 );
 
 INSERT INTO judges VALUES (10, 'lawrence', 'codebaseAPI');
-INSERT INTO judges VALUES (20, 'parth', 'general categories');
+INSERT INTO judges VALUES (20, 'parth', 'GC');
 INSERT INTO judges VALUES (30, 'calhacks', 'calhacksAPI');
 
 INSERT INTO projects VALUES (1, 'mentored', 'https://github.com/codebase-berkeley/judging-portal', '{"GC: Web", "codebaseAPI"}');
@@ -46,7 +46,7 @@ INSERT INTO projects VALUES (3, 'atlassian', 'https://github.com/codebase-berkel
 
 INSERT INTO apis VALUES ('codebaseAPI');
 INSERT INTO apis VALUES ('calhacksAPI');
-INSERT INTO apis VALUES ('General Category');
+INSERT INTO apis VALUES ('GC');
 
 INSERT INTO scores VALUES (30, 3, 'calhacksAPI', 5);
 

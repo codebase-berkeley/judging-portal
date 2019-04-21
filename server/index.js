@@ -106,14 +106,6 @@ app.post('/api/lists', async (req, res) => {
 
 });
 
-app.get('/api/judgeinfo', (req, res) => {
-  const judgeinfo = db['judge_list']
-
-  // Return them as json
-  res.json(judgeinfo);
-  console.log(`Sent APIs`)
-});
-
 app.get('/api/data', async (req, res) => {
   try {
     const query = await db.query('SELECT * FROM dataentry;');
@@ -165,6 +157,7 @@ app.get('/api/judgeinfo', async (req, res) => {
   try {
     const query = await db.query('SELECT * FROM judges;');
     res.send(query.rows);
+    console.log('sent judge info');
   } catch (error) {
     console.log(error.stack);
   }
@@ -180,7 +173,6 @@ app.post('/api/judgeinfo', async (req, res) => {
   var i;
   for (i = 0; i < deleted.length; i++) {
     db.query('DELETE FROM judges WHERE name=\'' + deleted[i][0] +'\' AND API=\'' + deleted[i][1]+'\';');
-    console.log('DELETE FROM lists WHERE type=\'' + deleted[i][0] +'\' AND name=\'' + deleted[i][1]+'\';');
   }
   res.json("You successfully posted: ".concat(info));
 });
