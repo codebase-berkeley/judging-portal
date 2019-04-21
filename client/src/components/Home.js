@@ -18,7 +18,7 @@ class Home extends Component {
   }
 
   routeToOrganizer() {
-    let path = "/categories";
+    let path = "/data-entry";
     this.props.history.push(path);
   }
 

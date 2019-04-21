@@ -12,7 +12,6 @@ class CategoryInput extends Component {
       deleted: [],
       added: []
     };
-    this.routeToNext = this.routeToNext.bind(this);
     this.addAPI = this.addAPI.bind(this);
     this.addCategory = this.addCategory.bind(this);
     this.addFellowship = this.addFellowship.bind(this);
@@ -48,12 +47,6 @@ class CategoryInput extends Component {
     const res = await fetch('/api/lists');
     const resJson = res.json();
     return resJson
-  }
-
-  routeToNext() {
-    this.postLists();
-    const path = "/data-entry";
-    this.props.history.push(path);
   }
 
   addAPI(api) {
@@ -104,7 +97,7 @@ class CategoryInput extends Component {
       return {
         general_categories: awards,
         deleted: prevState.deleted.concat([['general', item]])
-      } 
+      }
     });
   }
 
@@ -121,7 +114,6 @@ class CategoryInput extends Component {
   }
 
   async postLists() {
-
     const res = await window.fetch('/api/lists', {
       method: 'POST',
       headers: {
@@ -135,10 +127,26 @@ class CategoryInput extends Component {
     const resJson = res.json();
     return resJson;
   }
-  async getLists() {
-    let res = await fetch('/api/lists');
-    let res_json = res.json();
-    return res_json
+
+  async postGeneralCategories() {
+    const res = await window.fetch('/api/gc', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        categories: this.state.general_categories
+      })
+    });
+    const resJson = res.json();
+    return resJson;
+  }
+
+  routeToNext() {
+    this.postGeneralCategories();
+    this.postLists();
+    const path = "/data-entry";
+    this.props.history.push(path);
   }
 
   render() {
