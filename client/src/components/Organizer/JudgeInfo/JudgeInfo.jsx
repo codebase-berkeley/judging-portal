@@ -64,6 +64,8 @@ class JudgeInfo extends Component {
 
   handleClickIndex(index, event){
     this[event.target.name].bind(this)(index, event)
+    console.log(this.state.options);
+    console.log(this.state.info)
   }
 
   removeTask(index) {

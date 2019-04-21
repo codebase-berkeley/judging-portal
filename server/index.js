@@ -146,7 +146,7 @@ app.put('/api/data', async (req, res) => {
 
 app.get('/api/apis', async (req, res) => {
   try {
-    const query = await db.query('SELECT (api) FROM lists;');
+    const query = await db.query('SELECT * FROM apis;');
     res.send(query.rows);
   } catch (error) {
     console.log(error.stack)
@@ -164,17 +164,21 @@ app.get('/api/judgeinfo', async (req, res) => {
 });
 
 app.post('/api/judgeinfo', async (req, res) => {
-  const { info, deleted } = req.body;
-  res.json()
-  db.query('INSERT INTO judges(name, API) VALUES($1 ,$2)', [
+  try {
+    const { info, deleted } = req.body;
+    res.json()
+    db.query('INSERT INTO judges(name, API) VALUES($1, $2)', [
       info[0],
       info[1]
-  ]);
-  var i;
-  for (i = 0; i < deleted.length; i++) {
-    db.query('DELETE FROM judges WHERE name=\'' + deleted[i][0] +'\' AND API=\'' + deleted[i][1]+'\';');
+    ]);
+    var i;
+    for (i = 0; i < deleted.length; i++) {
+      db.query('DELETE FROM judges WHERE name=\'' + deleted[i][0] + '\' AND API=\'' + deleted[i][1] + '\';');
+    }
+    res.json("You successfully posted: ".concat(info));
+  } catch (error) {
+    console.log(error.stack);
   }
-  res.json("You successfully posted: ".concat(info));
 });
 
 const port = process.env.PORT || 5000;
