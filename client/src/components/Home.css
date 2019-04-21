@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css?family=Muli:regular,bold,light&subset=latin,latin-ext');
+
+.home {
+    font-family: 'Overpass', sans-serif;
+    height: 100vh; 
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #98D0EC;
+}
+
+.container {
+    text-align: left;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    align-content: center;
+    justify-content: center;
+}
+
+.route-button {
+    font-family: 'Muli';
+    font-weight: bold;
+    display: inline-block;
+    align-content: center;
+    justify-content: space-around;
+}
+
+.h-button {
+    height: 30%;
+    width: 100%;
+    margin: 2%;
+    padding: 0.8rem;
+    display: block;
+    align-content: center;
+    justify-content: center;
+    border-color: white;
+    border-radius: 0.7rem;
+    font-size: 1.7rem;
+    color: white;
+    background-color: #98D0EC;
+    margin-top: 4vh;
+    border: solid;
+}
+
+h1 {
+    color: #0A7191;
+}
+
+p {
+    font-size: 1.4rem;
+    color: white;
+}
