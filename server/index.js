@@ -171,11 +171,12 @@ app.post('/api/judgeinfo', async (req, res) => {
       info[0],
       info[1]
     ]);
-    var i;
-    for (i = 0; i < deleted.length; i++) {
-      db.query('DELETE FROM judges WHERE name=\'' + deleted[i][0] + '\' AND API=\'' + deleted[i][1] + '\';');
+    if (deleted.length > 1) {
+      console.log("deleting");
+      db.query('DELETE FROM judges WHERE name=\'' + deleted[0] + '\' AND API=\'' + deleted[1] + '\';');
     }
     res.json("You successfully posted: ".concat(info));
+
   } catch (error) {
     console.log(error.stack);
   }

@@ -64,23 +64,24 @@ class JudgeInfo extends Component {
 
   handleClickIndex(index, event){
     this[event.target.name].bind(this)(index, event)
-    console.log(this.state.options);
-    console.log(this.state.info)
   }
 
-  removeTask(index) {
-    this.setState((prevState) => {
+  async removeTask(index) {
+    await this.setState((prevState) => {
       const del_info = prevState.info.slice();
       const judge = del_info[index];
 
       del_info.splice(index, 1)
-      console.log(judge);
+      console.log("We just deleted: " + judge);
       return {
         info: del_info,
-        deleted: prevState.deleted.concat([judge])
+        deleted: [judge]
       } 
     });
     console.log(this.state.deleted);
+    console.log("INFO: " + this.state.info);
+    this.postJudgeInfo();
+
   }
 
   handleName(event) {
