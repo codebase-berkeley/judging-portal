@@ -47,9 +47,14 @@ class JudgeInfo extends Component {
   }
 
   async getJudgeInfo() {
-    const res = await fetch('/api/judgeinfo');
-    const resJson = res.json();
-    return resJson
+    try {
+      const res = await fetch('/api/judgeinfo');
+      const resJson = res.json();
+      return resJson;
+    } catch (error) {
+      console.log(error.stack)
+    }
+    
   }
 
   async getAPI() {

@@ -52,9 +52,13 @@ class DataEntry extends Component {
   }
 
   async getDataEntry() {
-    const res = await fetch('/api/data');
-    const resJson = res.json();
-    return resJson
+    try {
+      const res = await fetch('/api/data');
+      const resJson = res.json();
+      return resJson;
+    } catch(error) {
+      console.log(error.stack);
+    }
   }
 
   handleTable(event) {
@@ -75,6 +79,7 @@ class DataEntry extends Component {
     });
   }
 
+  //this is for uploading the tables file
   handleTablesFileUpload(event) {
     this.changeTablesFileName(event);
     this.handleTablesFileRead(event.target.files[0]);
@@ -84,7 +89,7 @@ class DataEntry extends Component {
     const fileReader = new FileReader();
     fileReader.readAsText(file);
     this.setState({
-      projectsReader: fileReader
+      tablesReader: fileReader
     })
   }
 
@@ -95,10 +100,11 @@ class DataEntry extends Component {
       fileName = 'UPLOAD FILE';
     }
     this.setState({
-      projectsName: fileName
+      tablesName: fileName
     })
   }
 
+  //this is for uploading projects csv
   handleProjectsFileUpload(event) {
     this.changeProjectsFileName(event);
     this.handleProjectsFileRead(event.target.files[0]);
@@ -123,6 +129,7 @@ class DataEntry extends Component {
     })
   }
 
+  //posts data entry and files to the database
   async postData() {
     let tablesName = this.state.tablesName;
     if (this.state.tablesName === 'UPLOAD FILE') {
@@ -221,22 +228,22 @@ class DataEntry extends Component {
               <div className="data-element-title">UPLOAD TABLES</div>
               <input
                 type="file"
-                id="og-file"
+                id="tables-file"
                 onChange={this.handleTablesFileUpload}
                 className="upload-file"
               />
-              <label htmlFor="og-file">{this.state.tablesName}</label>
+              <label htmlFor="tables-file">{this.state.tablesName}</label>
             </div>
 
             <div className="data-entry-element">
               <div className="data-element-title">UPLOAD PROJECTS</div>
               <input
                 type="file"
-                id="og-file"
+                id="projects-file"
                 onChange={this.handleProjectsFileUpload}
                 className="upload-file"
               />
-              <label htmlFor="og-file">{this.state.projectsName}</label>
+              <label htmlFor="projects-file">{this.state.projectsName}</label>
             </div>
 
             <div className="data-button nav">
