@@ -18,19 +18,9 @@ CREATE TABLE projects
   projectId INTEGER PRIMARY KEY,
   name VARCHAR(254),
   github VARCHAR(254),
-<<<<<<< HEAD
-  categories VARCHAR(254)[]
-  waves VARCHAR(254)
-  tables VARCHAR(254)
-);
-
-CREATE TABLE lists
-  API VARCHAR(254)
-=======
   categories VARCHAR(254)[],
-  wave VARCHAR(254)[],
-  tableNumber VARCHAR(254)[]
->>>>>>> 032a899dfffec844435f486ddf71684b148988c6
+  wave INTEGER,
+  table VARCHAR(254)
 );
 
 CREATE TABLE apis
@@ -38,68 +28,28 @@ CREATE TABLE apis
   API VARCHAR(254)
 );
 
-CREATE TABLE dataentry
-(
-  tables integer,
-  max integer,
-  waves integer,
-  tablesname VARCHAR(254),
-  projectsname VARCHAR(254)
-);
-
-CREATE TABLE lists
-(
-  type VARCHAR(254),
-  name VARCHAR(254)
-);
-
-CREATE TABLE csv
-(
-  name VARCHAR(254),
-  url VARCHAR(254),
-  BestMobileApp VARCHAR(254),
-  BestWebApp VARCHAR(254),
-  BestHardwareHack VARCHAR(254),
-  BestVRHack VARCHAR(254),
-  BestMLHack VARCHAR(254),
-  BestHealthHack VARCHAR(254),
-  BestEducationHack VARCHAR(254),
-  BestEntertainmentHack VARCHAR(254),
-  BestBeginnerHack VARCHAR(254)
-);
-
 CREATE TABLE scores
 (
   judgeId INTEGER REFERENCES judges(judgeId),
   projectId INTEGER REFERENCES projects(projectId),
+  category VARCHAR(254),
   score INTEGER
 );
 
 INSERT INTO judges VALUES ('lawrence', 'codebaseAPI', 10);
-INSERT INTO judges VALUES ('parth', 'codebaseAPI', 20);
+INSERT INTO judges VALUES ('parth', 'general categories', 20);
 INSERT INTO judges VALUES ('calhacks', 'calhacksAPI', 30);
 
-INSERT INTO projects VALUES (1, 'mentored', 'https://github.com/codebase-berkeley/judging-portal', '{"best team", "funnest team", "coolest team"}');
-INSERT INTO projects VALUES (2, 'calhacks', 'https://github.com/codebase-berkeley/', '{"biggest hackathon"}');
-INSERT INTO projects VALUES (3, 'atlassian', 'https://github.com/codebase-berkeley/', '{"lit team"}');
+INSERT INTO projects VALUES (1, 'mentored', 'https://github.com/codebase-berkeley/judging-portal', '{"General Category 1", "codebaseAPI"}');
+INSERT INTO projects VALUES (2, 'calhacks', 'https://github.com/codebase-berkeley/', '{"General Category 1", "General Category2", "calhacksAPI"}');
+INSERT INTO projects VALUES (3, 'atlassian', 'https://github.com/codebase-berkeley/', '{"calhacksAPI"}');
 
-INSERT INTO dataentry VALUES ('0', '0', '0', '', '');
-
-INSERT INTO apis VALUES ('myAPI');
 INSERT INTO apis VALUES ('codebaseAPI');
-INSERT INTO apis VALUES ('yoooAPI');
-INSERT INTO apis VALUES ('bestAPI');
+INSERT INTO apis VALUES ('calhacksAPI');
+INSERT INTO apis VALUES ('General Category 1');
+INSERT INTO apis VALUES ('General Category 2');
 
-INSERT INTO lists VALUES ('api', 'Google Vision');
-INSERT INTO lists VALUES ('api', 'Uber Autopilot');
-INSERT INTO lists VALUES ('api', 'API #23');
-INSERT INTO lists VALUES ('fellowships', 'UCB Golden Bear Fellowship');
-INSERT INTO lists VALUES ('general', 'worst project');
-INSERT INTO lists VALUES ('general', 'most average project');
-
-INSERT INTO scores VALUES (10, 1, NULL);
-INSERT INTO scores VALUES (20, 2, NULL);
-INSERT INTO scores VALUES (30, 3, 5);
+INSERT INTO scores VALUES (30, 3, 'calhacksAPI', 5);
 
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO root;
 
