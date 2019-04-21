@@ -67,14 +67,39 @@ app.get('/api/projects', async (req, res) => {
   }
 });
 
-// API endpoint for judge names
+// API endpoint for judge names for Judge Login
 app.get('/api/judgenames', async (req, res) => {
     try {
-      const query = await db.query('SELECT name FROM judges;');
+      const query = await db.query('SELECT judgeId, name FROM judges;');
       res.send(query.rows);
     } catch (error) {
       console.log(error.stack);
     }
+});
+
+// endpoint to draw all rows of projects in the Scoring Overview page
+app.get('/api/toscore/judge/:judgeId', async(req, res) => {
+  try {
+    const { judgeId } = req.params;
+    const query = await db.query('SELECT DISTINCT projects.projectId, projects.name, projects.categories, projects.github, projects.tableName, projects.wave, filtered.score FROM projects INNER JOIN (SELECT * FROM scores WHERE scores.judgeId = $1) AS filtered ON projects.projectId=filtered.projectId;', [
+      judgeId
+    ]);
+    res.send(query.rows);
+  } catch (error) {
+    console.log(error.stack);
+  }
+});
+
+// updating project scores
+app.put('/api/scoreupdate/judge/:judgeId/project/:projectId', async (req, res) => {
+  const { judgeId, projectId } = req.params;
+  const { score } = req.body;
+  db.query('UPDATE scores SET score = $1 WHERE judgeId = $2 AND projectId = $3;', [
+    score,
+    judgeId,
+    projectId
+  ]);
+  res.json('Score update successfully');
 });
 
 app.get('/api/lists', async (req, res) => {

@@ -29,7 +29,7 @@ class ProjectInfo extends Component{
     async updateScore() {
         const judgeId = this.state.judgeId;
         const projectId = this.state.projectId;
-        const res = await fetch('/api/scoreupdate/judge/' + judgeId + '/project/' + projectId, {
+        const res = await fetch('/api/scoreupdate/judge/' + judgeId + '/project/' + projectId , {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json'
