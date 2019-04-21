@@ -18,11 +18,9 @@ CREATE TABLE projects
   projectId INTEGER PRIMARY KEY,
   name VARCHAR(254),
   github VARCHAR(254),
-  categories VARCHAR(254)[]
-);
-
-CREATE TABLE lists
-  API VARCHAR(254)
+  categories VARCHAR(254)[],
+  wave VARCHAR(254)[],
+  tableNumber VARCHAR(254)[]
 );
 
 CREATE TABLE apis
@@ -33,9 +31,10 @@ CREATE TABLE apis
 CREATE TABLE dataentry
 (
   tables integer,
-  clusters integer,
+  max integer,
   waves integer,
-  filename VARCHAR(254)
+  tablesname VARCHAR(254),
+  projectsname VARCHAR(254)
 );
 
 CREATE TABLE lists
@@ -74,6 +73,7 @@ INSERT INTO projects VALUES (1, 'mentored', 'https://github.com/codebase-berkele
 INSERT INTO projects VALUES (2, 'calhacks', 'https://github.com/codebase-berkeley/', '{"biggest hackathon"}');
 INSERT INTO projects VALUES (3, 'atlassian', 'https://github.com/codebase-berkeley/', '{"lit team"}');
 
+INSERT INTO dataentry VALUES ('0', '0', '0', '', '');
 
 INSERT INTO apis VALUES ('myAPI');
 INSERT INTO apis VALUES ('codebaseAPI');
