@@ -12,7 +12,8 @@ class JudgeInfo extends Component {
       selected: '',
       info: [],
       options: [],
-      deleted: []
+      deleted: [],
+      reassignJudges: false
     };
     this.handleName = this.handleName.bind(this);
     this.addInfo = this.addInfo.bind(this);
@@ -20,7 +21,7 @@ class JudgeInfo extends Component {
     this._onSelect = this._onSelect.bind(this);
     this.routeToPrev = this.routeToPrev.bind(this);
     this.routeToNext = this.routeToNext.bind(this);
-
+    this.assignJudges = this.assignJudges.bind(this);
     this.postJudgeInfo = this.postJudgeInfo.bind(this);
 
   }
@@ -74,7 +75,8 @@ class JudgeInfo extends Component {
       delInfo.splice(index, 1)
       return {
         info: delInfo,
-        deleted: judge
+        deleted: judge,
+        reassignJudges: true
       } 
     });
 
@@ -109,9 +111,10 @@ class JudgeInfo extends Component {
             [prevState.curr_name, prevState.selected.label]
           ])
           return {
-          info: newInfo,
-          curr_name: '',
-          selected: ''
+            reassignJudges: true, 
+            info: newInfo,
+            curr_name: '',
+            selected: ''
         }
         });
       }
@@ -144,10 +147,25 @@ class JudgeInfo extends Component {
     this.props.history.push(path);
   }
 
-  routeToNext() {
-    this.postJudgeInfo().then(result => console.log(result));
+  async assignJudges() {
+    console.log("entered assignJudges");
+    try {
+      const res = await fetch('/api/assignjudges', {
+        method: 'POST',
+      });
+      return;
+    } catch (error) {
+      console.log("error");
+    }
+  }
 
-    // this.assignJudges();
+  routeToNext() {
+    // this.postJudgeInfo().then(result => console.log(result));
+    console.log("reassign judges: " + this.state.reassignJudges);
+
+    if (this.state.reassignJudges) {
+      this.assignJudges();
+    }
 
     const path = "/project-breakdown";
     this.props.history.push(path);
