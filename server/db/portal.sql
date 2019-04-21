@@ -37,19 +37,24 @@ CREATE TABLE scores
 );
 
 INSERT INTO judges VALUES (10, 'lawrence', 'codebaseAPI');
-INSERT INTO judges VALUES (20, 'parth', 'general categories');
+INSERT INTO judges VALUES (20, 'parth', 'GC');
 INSERT INTO judges VALUES (30, 'calhacks', 'calhacksAPI');
 
-INSERT INTO projects VALUES (1, 'mentored', 'https://github.com/codebase-berkeley/judging-portal', '{"General Category 1", "codebaseAPI"}');
-INSERT INTO projects VALUES (2, 'calhacks', 'https://github.com/codebase-berkeley/', '{"General Category 1", "General Category2", "calhacksAPI"}');
-INSERT INTO projects VALUES (3, 'atlassian', 'https://github.com/codebase-berkeley/', '{"calhacksAPI"}');
+INSERT INTO projects VALUES (1, 'mentored', 'https://github.com/codebase-berkeley/judging-portal', '{"GC: Web", "codebaseAPI"}');
+INSERT INTO projects VALUES (2, 'calhacks', 'https://github.com/codebase-berkeley/', '{"GC: Web", "GC: Mobile", "calhacksAPI"}');
+INSERT INTO projects VALUES (3, 'atlassian', 'https://github.com/codebase-berkeley/', '{"GC: Education", "calhacksAPI"}');
 
 INSERT INTO apis VALUES ('codebaseAPI');
 INSERT INTO apis VALUES ('calhacksAPI');
-INSERT INTO apis VALUES ('General Category 1');
-INSERT INTO apis VALUES ('General Category 2');
+INSERT INTO apis VALUES ('GC');
 
-INSERT INTO scores VALUES (30, 3, 'calhacksAPI', 5);
+INSERT INTO scores VALUES (20, 1, 'GC: Web', NULL);
+INSERT INTO scores VALUES (10, 1, 'codebaseAPI', NULL);
+INSERT INTO scores VALUES (20, 2, 'GC: Web', NULL);
+INSERT INTO scores VALUES (20, 2, 'GC: Mobile', NULL);
+INSERT INTO scores VALUES (30, 2, 'calhacksAPI', NULL);
+INSERT INTO scores VALUES (20, 3, 'GC: Education', NULL);
+INSERT INTO scores VALUES (30, 3, 'calhacksAPI', NULL);
 
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO root;
 
