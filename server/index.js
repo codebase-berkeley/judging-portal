@@ -157,7 +157,6 @@ app.get('/api/judgeinfo', async (req, res) => {
   try {
     const query = await db.query('SELECT * FROM judges;');
     res.send(query.rows);
-    console.log('sent judge info');
   } catch (error) {
     console.log(error.stack);
   }
@@ -165,22 +164,31 @@ app.get('/api/judgeinfo', async (req, res) => {
 
 app.post('/api/judgeinfo', async (req, res) => {
   try {
-    const { info, deleted } = req.body;
-    res.json()
-    db.query('INSERT INTO judges(name, API) VALUES($1, $2)', [
-      info[0],
-      info[1]
-    ]);
-    if (deleted.length > 1) {
-      console.log("deleting");
-      db.query('DELETE FROM judges WHERE name=\'' + deleted[0] + '\' AND API=\'' + deleted[1] + '\';');
+    const {info} = req.body;
+    if (info.length > 1) {
+      db.query('INSERT INTO judges(name, API) VALUES($1, $2)', [
+        info[0],
+        info[1]
+      ]);
     }
-    res.json("You successfully posted: ".concat(info));
-
+    res.json("Successfully posted ".concat(info[0]));
   } catch (error) {
     console.log(error.stack);
   }
 });
+
+app.post('/api/deletejudge', async (req, res) => {
+  try {
+    const {deleted} = req.body;
+    if (deleted.length > 1) {
+      db.query('DELETE FROM judges WHERE name=\'' + deleted[0] + '\' AND API=\'' + deleted[1] + '\';');
+    }
+    res.json("You successfully posted: ".concat(deleted));
+  } catch (error) {
+    console.log(error.stack)
+  }
+
+})
 
 const port = process.env.PORT || 5000;
 app.listen(port);

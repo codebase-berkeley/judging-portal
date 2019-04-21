@@ -72,16 +72,27 @@ class JudgeInfo extends Component {
       const judge = del_info[index];
 
       del_info.splice(index, 1)
-      console.log("We just deleted: " + judge);
       return {
         info: del_info,
-        deleted: [judge]
+        deleted: judge
       } 
     });
-    console.log(this.state.deleted);
-    console.log("INFO: " + this.state.info);
-    this.postJudgeInfo();
 
+    try {
+      const res = await fetch('/api/deletejudge', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          deleted: this.state.deleted
+        })
+      });
+      const resJson = res.json();
+      return resJson;
+    } catch (error) {
+      console.log("error");
+    }
   }
 
   handleName(event) {
@@ -111,7 +122,6 @@ class JudgeInfo extends Component {
         },
         body: JSON.stringify({
           info: [this.state.curr_name, this.state.selected.label],
-          deleted: this.state.deleted
         })
       });
       const resJson = res.json();
