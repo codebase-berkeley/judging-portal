@@ -203,7 +203,7 @@ function getApiMapping(apisJSON, judgeJSON) {
 
 app.post('/api/assignjudges', async (req, res) => {
   /**
-   * psudo:
+   * pseudo:
    * fetch all judges and all projects as lists of JSONs
    * sort the judges into a list all judges scoring each api and one for all general category judges 
    * loop through each project and find the next judge of each of this project's api (a pointer that traverses judge list)

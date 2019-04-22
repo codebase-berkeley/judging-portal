@@ -160,9 +160,6 @@ class JudgeInfo extends Component {
   }
 
   routeToNext() {
-    // this.postJudgeInfo().then(result => console.log(result));
-    console.log("reassign judges: " + this.state.reassignJudges);
-
     if (this.state.reassignJudges) {
       this.assignJudges();
     }
