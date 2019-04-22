@@ -175,7 +175,103 @@ app.post('/api/judgeinfo', async (req, res) => {
   } catch (error) {
     console.log(error.stack);
   }
-});
+}); 
+
+function getApiMapping(apisJSON, judgeJSON) {
+  /**
+   * @param {*} apisJSON
+   * @param {*} judgeJSON 
+   * 
+   * @returns an json that maps each api to another json objects with index and judges as fields 
+   */
+  let apiMappings = {};
+  var i;
+  for (i = 0; i < apisJSON.length; i += 1) {
+    const apiName = apisJSON[i]['api'];
+    apiMappings[apiName] = {index: 0, judges: []};
+  }
+  console.log(apiMappings);
+
+  var j;
+  for (j = 0; j < judgeJSON.length; j += 1) {
+    const api = judgeJSON[j]['api'];
+    console.log(api);
+    apiMappings[api].judges = apiMappings[api].judges.concat(judgeJSON[j]['judgeid']);
+  }
+  return apiMappings; 
+}
+
+app.post('/api/assignjudges', async (req, res) => {
+  /**
+   * pseudo:
+   * fetch all judges and all projects as lists of JSONs
+   * sort the judges into a list all judges scoring each api and one for all general category judges 
+   * loop through each project and find the next judge of each of this project's api (a pointer that traverses judge list)
+   * inserts assignments into scores table
+   */
+  try {
+    await db.query('DELETE FROM scores;');
+
+    const { } = req.body;
+    const judges = await db.query('SELECT * FROM judges;');
+    const judgeJSON = judges.rows;
+
+    const projects = await db.query('SELECT * FROM projects;');
+    const projectsJSON = projects.rows;
+
+    const apis = await db.query('SELECT * FROM apis;');
+    const apisJSON = apis.rows;
+
+    let apiMappings = getApiMapping(apisJSON, judgeJSON);
+
+    //now we match
+    let i;
+    /**
+     * looping through projects to match judges
+     */
+    for (i = 0; i < projectsJSON.length; i += 1) {
+
+      const currProj = projectsJSON[i];
+      const categories = currProj.categories;
+      let hasGC = false;
+      let j;
+      for (j = 0; j < categories.length; j += 1) {
+        /**
+         * loops through the categories of each project
+         */
+        let currCat = categories[j];
+
+        if (currCat.slice(0, 3) === "GC:") {
+          /**
+           * check if category is a general category
+           * assigns the category JSON key accordingly
+           */
+          if (hasGC) {
+            continue;
+          } else {
+            hasGC = true;
+            var currCatKey = 'GC';
+          }
+        } else {
+          var currCatKey = currCat;
+        }
+        let apiJudges = apiMappings[currCatKey].judges;
+        let apiIndex = apiMappings[currCatKey].index;
+        apiMappings[currCatKey].index = (apiMappings[currCatKey].index + 1) % apiJudges.length;
+
+        await db.query('INSERT INTO scores(judgeID, projectID, category) VALUES ($1, $2, $3)', [
+          apiJudges[apiIndex],
+          currProj.projectid,
+          currCat
+        ]);
+      }
+    }
+
+  } catch (error) {
+    console.log(error.stack);
+  }
+
+})
 
 app.post('/api/deletejudge', async (req, res) => {
   try {

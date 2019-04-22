@@ -8,11 +8,12 @@ class JudgeInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      curr_name: '',
+      currName: '',
       selected: '',
       info: [],
       options: [],
-      deleted: []
+      deleted: [],
+      reassignJudges: true
     };
     this.handleName = this.handleName.bind(this);
     this.addInfo = this.addInfo.bind(this);
@@ -20,7 +21,7 @@ class JudgeInfo extends Component {
     this._onSelect = this._onSelect.bind(this);
     this.routeToPrev = this.routeToPrev.bind(this);
     this.routeToNext = this.routeToNext.bind(this);
-
+    this.assignJudges = this.assignJudges.bind(this);
     this.postJudgeInfo = this.postJudgeInfo.bind(this);
 
   }
@@ -74,7 +75,8 @@ class JudgeInfo extends Component {
       delInfo.splice(index, 1)
       return {
         info: delInfo,
-        deleted: judge
+        deleted: judge,
+        reassignJudges: true
       } 
     });
 
@@ -98,20 +100,21 @@ class JudgeInfo extends Component {
 
   handleName(event) {
     this.setState({
-      curr_name: event.target.value
+      currName: event.target.value
     });
   }
 
   addInfo() {
-      if (this.state.curr_name !== '' && this.state.selected !== '') {
+      if (this.state.currName !== '' && this.state.selected !== '') {
         this.setState((prevState) => {
           const newInfo = prevState.info.concat([
-            [prevState.curr_name, prevState.selected.label]
+            [prevState.currName, prevState.selected.label]
           ])
           return {
-          info: newInfo,
-          curr_name: '',
-          selected: ''
+            reassignJudges: true, 
+            info: newInfo,
+            currName: '',
+            selected: ''
         }
         });
       }
@@ -125,7 +128,7 @@ class JudgeInfo extends Component {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          info: [this.state.curr_name, this.state.selected.label],
+          info: [this.state.currName, this.state.selected.label],
         })
       });
       const resJson = res.json();
@@ -144,8 +147,22 @@ class JudgeInfo extends Component {
     this.props.history.push(path);
   }
 
+  async assignJudges() {
+    try {
+      const res = await fetch('/api/assignjudges', {
+        method: 'POST',
+      });
+      return;
+    } catch (error) {
+      console.log("error");
+    }
+  }
+
   routeToNext() {
-    this.postJudgeInfo().then(result => console.log(result));
+    if (this.state.reassignJudges) {
+      this.assignJudges();
+    }
+
     const path = "/project-breakdown";
     this.props.history.push(path);
   }
@@ -177,7 +194,7 @@ class JudgeInfo extends Component {
               <input
                 className="judge-name-input"
                 placeholder="Judge Name"
-                value={this.state.curr_name}
+                value={this.state.currName}
                 onChange={this.handleName}
               />
 
