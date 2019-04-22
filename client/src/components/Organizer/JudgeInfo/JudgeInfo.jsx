@@ -148,7 +148,6 @@ class JudgeInfo extends Component {
   }
 
   async assignJudges() {
-    console.log("entered assignJudges");
     try {
       const res = await fetch('/api/assignjudges', {
         method: 'POST',

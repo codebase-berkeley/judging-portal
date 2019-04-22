@@ -185,18 +185,18 @@ function getApiMapping(apisJSON, judgeJSON) {
    * @returns an json that maps each api to another json objects with index and judges as fields 
    */
   let apiMappings = {};
-  var x;
-  for (x = 0; x < apisJSON.length; x += 1) {
-    const apiName = apisJSON[x]['api'];
+  var i;
+  for (i = 0; i < apisJSON.length; i += 1) {
+    const apiName = apisJSON[i]['api'];
     apiMappings[apiName] = {index: 0, judges: []};
   }
   console.log(apiMappings);
 
-  var i;
-  for (i = 0; i < judgeJSON.length; i += 1) {
-    const api = judgeJSON[i]['api'];
+  var j;
+  for (j = 0; j < judgeJSON.length; j += 1) {
+    const api = judgeJSON[j]['api'];
     console.log(api);
-    apiMappings[api].judges = apiMappings[api].judges.concat(judgeJSON[i]['judgeid']);
+    apiMappings[api].judges = apiMappings[api].judges.concat(judgeJSON[j]['judgeid']);
   }
   return apiMappings; 
 }
@@ -225,21 +225,21 @@ app.post('/api/assignjudges', async (req, res) => {
     let apiMappings = getApiMapping(apisJSON, judgeJSON);
 
     //now we match
-    var p;
+    let i;
     /**
      * looping through projects to match judges
      */
-    for (p = 0; p < projectsJSON.length; p += 1) {
+    for (i = 0; i < projectsJSON.length; i += 1) {
 
-      const currProj = projectsJSON[p];
+      const currProj = projectsJSON[i];
       const categories = currProj.categories;
       let hasGC = false;
-      var c;
-      for (c = 0; c < categories.length; c += 1) {
+      let j;
+      for (j = 0; j < categories.length; j += 1) {
         /**
          * loops through the categories of each project
          */
-        let currCat = categories[c];
+        let currCat = categories[j];
 
         if (currCat.slice(0, 3) === "GC:") {
           /**
@@ -263,7 +263,7 @@ app.post('/api/assignjudges', async (req, res) => {
           apiJudges[apiIndex],
           currProj.projectid,
           currCat,
-          0
+          null
         ]);
       }
     }
