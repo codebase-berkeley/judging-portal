@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../OrganizerPortal.css';
 
-class ProjectItem extends Component {
+class CategoryItem extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -19,4 +19,4 @@ class ProjectItem extends Component {
     }
 }
 
-export default ProjectItem;
+export default CategoryItem;

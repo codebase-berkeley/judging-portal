@@ -187,7 +187,39 @@ app.post('/api/deletejudge', async (req, res) => {
   } catch (error) {
     console.log(error.stack)
   }
+})
 
+app.get('/api/projectscore/:id',  async (req, res) => {
+  try {
+    const { id } = req.params;
+    console.log("id: " + id);
+    const query = await db.query('SELECT * FROM scores WHERE projectID=' + id);
+    res.send(query.rows);
+  } catch (error) {
+    console.log(error.stack)
+  }
+})
+
+app.get('/api/projectname/:id',  async (req, res) => {
+  try {
+    const { id } = req.params;
+    console.log("id: " + id);
+    const query = await db.query('SELECT * FROM projects WHERE projectID=' + id);
+    res.send(query.rows);
+  } catch (error) {
+    console.log(error.stack)
+  }
+})
+
+app.get('/api/judgename/:id',  async (req, res) => {
+  try {
+    const { id } = req.params;
+    console.log("id: " + id);
+    const query = await db.query('SELECT * FROM judges WHERE judgeId=' + id);
+    res.send(query.rows);
+  } catch (error) {
+    console.log(error.stack)
+  }
 })
 
 const port = process.env.PORT || 5000;
