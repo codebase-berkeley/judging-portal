@@ -63,7 +63,7 @@ class DataEntry extends Component {
 
   async getDataEntry() {
     let res = await fetch('/api/data');
-    let res_json = res.json();
+    let res_json = JSON.parse(res);
     return res_json
   }
 
@@ -80,7 +80,7 @@ class DataEntry extends Component {
         filename: this.state.fileName
       })
     });
-    let res_json = res.json();
+    let res_json = JSON.parse(res);
     return res_json;
   }
 

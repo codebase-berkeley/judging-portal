@@ -11,39 +11,65 @@ class JudgeInfo extends Component {
       curr_name: '',
       selected: '',
       info: [],
-      options: []
+      options: [],
+      deleted: []
     };
     this.handleName = this.handleName.bind(this);
     this.addInfo = this.addInfo.bind(this);
     this.handleClickIndex = this.handleClickIndex.bind(this);
     this._onSelect = this._onSelect.bind(this);
     this.routeToPrev = this.routeToPrev.bind(this);
+    this.routeToNext = this.routeToNext.bind(this);
+
+    this.postJudgeInfo = this.postJudgeInfo.bind(this);
+
   }
 
-  componentDidMount() {
-    this.getJudgeInfo().then(result => {
-      let i;
-      let judgeinfo = [];
-      for (i = 0; i < result.length; i++) { 
-        judgeinfo[i] = [result[i].name, result[i].api];
-      }
-      this.setState({ info: judgeinfo });
-    });
-    this.getAPI().then(result => this.setState({
-      options: result
-    }))
+  async componentDidMount() {
+    try {
+      this.getJudgeInfo().then(result => {
+          let i;
+          let judgeinfo = [];
+          for (i = 0; i < result.length; i++) { 
+            judgeinfo[i] = [result[i].name, result[i].api];
+          }
+          this.setState({ info: judgeinfo });
+        });
+        this.getAPI().then(result => {
+          let i;
+          const apis = [];
+          for (i = 0; i < result.length; i++) { 
+            if (result[i].api != null) {
+              apis[i] = result[i].api;
+            }
+          }
+          this.setState({ options: apis });
+      });
+    } catch (error) {
+      console.log(error);
+    }
+    
   }
 
   async getJudgeInfo() {
-    let res = await fetch('/api/judgeinfo');
-    let res_json = res.json();
-    return res_json
+    try {
+      const res = await fetch('/api/judgeinfo');
+      const resJson = res.json();
+      return resJson;
+    } catch (error) {
+      console.log(error.stack)
+    }
   }
 
   async getAPI() {
-    const res = await fetch(`/api/apis`);
-    const res_json = res.json();
-    return res_json
+    try {
+      const res = await fetch(`/api/apis`);
+      const resJson = res.json();
+      return resJson;
+    } catch (error) {
+      console.log(error.stack);
+    }
+    
   }
 
   _onSelect(option) {
@@ -54,10 +80,19 @@ class JudgeInfo extends Component {
     this[event.target.name].bind(this)(index, event)
   }
 
-  removeTask(index, event) {
-    const info = this.state.info
-    info.splice(index, 1)
-    this.setState({info})
+  removeTask(index) {
+    this.setState((prevState) => {
+      const del_info = prevState.info.slice();
+      const judge = del_info[index];
+
+      del_info.splice(index, 1)
+      console.log(judge);
+      return {
+        info: del_info,
+        deleted: prevState.deleted.concat([judge])
+      } 
+    });
+    console.log(this.state.deleted);
   }
 
   handleName(event) {
@@ -79,22 +114,36 @@ class JudgeInfo extends Component {
   }
 
   async postJudgeInfo() {
-    let res = await fetch('/api/judgeinfo', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        info: this.state.info
-      })
-    });
-    let res_json = res.json();
-    return res_json;
+    try {
+      const res = await fetch('/api/judgeinfo', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          info: [this.state.curr_name, this.state.selected.label],
+          deleted: this.state.deleted
+        })
+      });
+      const resJson = res.json();
+      return resJson;
+    } catch (error) {
+      console.log("error");
+    }
+  }
+
+  postJudge() {
+    this.postJudgeInfo().then(result => console.log(result));
   }
 
   routeToPrev() {
+    const path = "/data-entry";
+    this.props.history.push(path);
+  }
+
+  routeToNext() {
     this.postJudgeInfo().then(result => console.log(result));
-    let path = "/data-entry";
+    let path = "/project-breakdown";
     this.props.history.push(path);
   }
 
@@ -103,7 +152,7 @@ class JudgeInfo extends Component {
     const info = (this.state.info||[]).map((name,index)=>(
       <ul className="judge-item">
         <div className="delete-button">
-          <button name="removeTask" className="delete-button" onClick={event=>this.handleClickIndex(index,event)}>
+          <button name="removeTask" type="submit" className="delete-button" onClick={event=>this.handleClickIndex(index,event)}>
               ×
           </button>
         </div>
@@ -142,8 +191,7 @@ class JudgeInfo extends Component {
               <button
                 className="button"
                 type="button"
-                onClick={this.addInfo}
-                onClick={this.postJudge}
+                onClick={(event) => { this.addInfo(); this.postJudge();}}
               >
                 SUBMIT
               </button>
@@ -157,8 +205,8 @@ class JudgeInfo extends Component {
           </div>
 
           <div className= "buttons nav judge-button">
-            <button className="button" onClick={this.routeToPrev}>PREV</button>
-            <button className="button">NEXT</button>
+            <button className="button" type="submit" onClick={this.routeToPrev}>PREV</button>
+            <button className="button" type="submit" onClick={this.routeToNext}>NEXT</button>
           </div>
         </div>
       </div>
