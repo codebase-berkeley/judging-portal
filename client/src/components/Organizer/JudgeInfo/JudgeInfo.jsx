@@ -8,7 +8,7 @@ class JudgeInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      curr_name: '',
+      currName: '',
       selected: '',
       info: [],
       options: [],
@@ -100,20 +100,20 @@ class JudgeInfo extends Component {
 
   handleName(event) {
     this.setState({
-      curr_name: event.target.value
+      currName: event.target.value
     });
   }
 
   addInfo() {
-      if (this.state.curr_name !== '' && this.state.selected !== '') {
+      if (this.state.currName !== '' && this.state.selected !== '') {
         this.setState((prevState) => {
           const newInfo = prevState.info.concat([
-            [prevState.curr_name, prevState.selected.label]
+            [prevState.currName, prevState.selected.label]
           ])
           return {
             reassignJudges: true, 
             info: newInfo,
-            curr_name: '',
+            currName: '',
             selected: ''
         }
         });
@@ -128,7 +128,7 @@ class JudgeInfo extends Component {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          info: [this.state.curr_name, this.state.selected.label],
+          info: [this.state.currName, this.state.selected.label],
         })
       });
       const resJson = res.json();
@@ -194,7 +194,7 @@ class JudgeInfo extends Component {
               <input
                 className="judge-name-input"
                 placeholder="Judge Name"
-                value={this.state.curr_name}
+                value={this.state.currName}
                 onChange={this.handleName}
               />
 
