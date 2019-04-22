@@ -214,7 +214,7 @@ app.get('/api/projectname/:id',  async (req, res) => {
 app.get('/api/judgename/:id',  async (req, res) => {
   try {
     const { id } = req.params;
-    console.log("id: " + id);
+    console.log("judge id: " + id);
     const query = await db.query('SELECT * FROM judges WHERE judgeId=' + id);
     res.send(query.rows);
   } catch (error) {

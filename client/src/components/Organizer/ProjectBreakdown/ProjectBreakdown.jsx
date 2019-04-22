@@ -43,19 +43,18 @@ class ProjectBreakdown extends Component {
                 let n = await this.getName(projectid);
                 let judgeid = scores[k].judgeid;
                 console.log("judgeid: " + judgeid);
-                let name = n[0].name;
+                let projectName = n[0].name;
                 let category = scores[k].category;
-                // let judge = await this.getJudge()
-                // console.log(judge);
-                // let judgeName = judge[0].name;
-                // console.log('Judge Name: '+ judgeName);
+                let judge = await this.getJudge(judgeid)
+                console.log(judge);
+                let judgeName = judge[0].name;
+                console.log('Judge Name: '+ judgeName);
                 console.log("Category: " + category);
-                console.log(name);
                 console.log("the fucking score: " + scores[k].score);
                 if (scores[k].score) {
-                    projectsJson[category].scored.push([name, scores[k].score]);
+                    projectsJson[category].scored.push([projectName, judgeName, scores[k].score]);
                 } else {
-                    projectsJson[category].unscored.push([name])
+                    projectsJson[category].unscored.push([projectName, judgeName])
                 }
             }
             console.log(projectsJson);
