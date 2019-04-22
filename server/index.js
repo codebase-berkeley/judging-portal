@@ -175,7 +175,7 @@ app.post('/api/judgeinfo', async (req, res) => {
   } catch (error) {
     console.log(error.stack);
   }
-});
+}); 
 
 function getApiMapping(apisJSON, judgeJSON) {
   /**
