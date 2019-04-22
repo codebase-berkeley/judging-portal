@@ -6,10 +6,6 @@ class ProjectBreakdown extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            categories: ["Google API", "Yelp API", "Codebase API"],
-            projects: [['SyncUp', 'Google API', 25], ['Codeacademy', 'Codebase API', 100], ['Github', 'Codebase API', 0]], 
-            scored: [['SyncUp', 'Google API', 25], ['Codeacademy', 'Codebase API', 100]],
-            unscored: [['Github', 'Yelp API', 0]],
             projectsJson: {}
         };
         this.routeToPrev = this.routeToPrev.bind(this);
@@ -19,7 +15,6 @@ class ProjectBreakdown extends Component {
     async componentDidMount() {
         let projectsJson = {};
         let categories = await this.getCategories();
-        console.log(categories);
         var i; 
         for (i = 0; i < categories.length; i += 1) {
             let category = categories[i];
@@ -28,36 +23,26 @@ class ProjectBreakdown extends Component {
                 unscored: [[]]
             }
         }
-        console.log(projectsJson);
 
         let projects = await this.getProjects();
         var j;
         for (j = 0; j < projects.length; j += 1) {
             let projectid = projects[j].projectid;
-            console.log(projectid);
             let scores = await this.getScores(projectid);
-            console.log("scores:  " + scores);
             var k;
             for (k = 0; k < scores.length; k += 1) {
-                console.log("Scores data:" + scores[k]);
                 let n = await this.getName(projectid);
                 let judgeid = scores[k].judgeid;
-                console.log("judgeid: " + judgeid);
                 let projectName = n[0].name;
                 let category = scores[k].category;
                 let judge = await this.getJudge(judgeid)
-                console.log(judge);
                 let judgeName = judge[0].name;
-                console.log('Judge Name: '+ judgeName);
-                console.log("Category: " + category);
-                console.log("the fucking score: " + scores[k].score);
                 if (scores[k].score) {
                     projectsJson[category].scored.push([projectName, judgeName, scores[k].score]);
                 } else {
                     projectsJson[category].unscored.push([projectName, judgeName])
                 }
             }
-            console.log(projectsJson);
         }
 
         this.setState({
@@ -101,7 +86,6 @@ class ProjectBreakdown extends Component {
     }
 
     async getProjects() {
-        console.log("getting projects");
         const res = await fetch('/api/projects');
         const resJson = res.json();
         return resJson
@@ -126,33 +110,8 @@ class ProjectBreakdown extends Component {
 
     render() {
         let projects = this.state.projectsJson;
-        // let scored;
-        // let unscored;
+        console.log(projects);
 
-        // for (var key in projects) {
-        //     <ul className="proj-item">
-        //         <CategoryItem category={key} scored={category.scored} unscored={category.unscored}/>
-        //     </ul>
-        // }
-
-        
-
-    
-        // const scoredProjects = (this.state.scored||[]).map((item)=>(
-        //     <ul className="proj-item">
-        //        <ProjectItem
-        //         name={item[0]}
-        //         score={item[1]}
-        //       />
-        //     </ul>
-        //   ))
-        //   const unscoredProjects = (this.state.unscored||[]).map((name)=>(
-        //     <ul className="proj-item">
-        //        <ProjectItem
-        //         name={name[0]}
-        //       />
-        //     </ul>
-        //   ))
         return (
             <div className="page-background" id= "projBreakdown">
                 <div className="page-header">SCORING BREAKDOWN</div>
@@ -168,18 +127,13 @@ class ProjectBreakdown extends Component {
                                 <div className="project-list-score">SCORE</div>
                             </div>
 
-                            {/* <div className="breakdown-list">{scoredProjects}</div> */}
                         </div>
                         <div className = "unscored-section">
                             <div className="project-list">
                                 <div className="project-list-name-unscored">NAME</div>
                             </div>
                     
-                            {/* <div className="breakdown-list">{unscoredProjects}</div> */}
                         </div>
-                    </div>
-                    <div className="progress" >
-                        {(this.state.scored.length/(this.state.scored.length + this.state.unscored.length)*100).toFixed(2)}% SCORED
                     </div>
 
                     <div className= "buttons nav judge-button">
