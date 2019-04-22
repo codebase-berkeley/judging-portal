@@ -259,11 +259,10 @@ app.post('/api/assignjudges', async (req, res) => {
         let apiIndex = apiMappings[currCatKey].index;
         apiMappings[currCatKey].index = (apiMappings[currCatKey].index + 1) % apiJudges.length;
 
-        await db.query('INSERT INTO scores(judgeID, projectID, category, score) VALUES ($1, $2, $3, $4)', [
+        await db.query('INSERT INTO scores(judgeID, projectID, category) VALUES ($1, $2, $3)', [
           apiJudges[apiIndex],
           currProj.projectid,
-          currCat,
-          null
+          currCat
         ]);
       }
     }
