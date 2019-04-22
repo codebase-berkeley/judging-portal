@@ -13,7 +13,7 @@ class JudgeInfo extends Component {
       info: [],
       options: [],
       deleted: [],
-      reassignJudges: false
+      reassignJudges: true
     };
     this.handleName = this.handleName.bind(this);
     this.addInfo = this.addInfo.bind(this);
