@@ -12,9 +12,9 @@ class DataEntry extends Component {
       tableNum: '',
       maxNum: '',
       waveNum: '',
-      tablesName: 'UPLOAD FILE',
+      tableCSVName: 'UPLOAD FILE',
       tablesReader: null,
-      projectsName: 'UPLOAD FILE',
+      projectCSVName: 'UPLOAD FILE',
       projectsReader: null
     };
     this.handleTable = this.handleTable.bind(this);
@@ -36,16 +36,16 @@ class DataEntry extends Component {
           tableNum: '',
           maxNum: '',
           waveNum: '',
-          tablesName: 'UPLOAD FILE',
-          projectsName: 'UPLOAD FILE'
+          tableCSVName: 'UPLOAD FILE',
+          projectCSVName: 'UPLOAD FILE'
         })
       } else {
           this.setState({
             tableNum: result[0].tables,
             maxNum: result[0].max,
             waveNum: result[0].waves,
-            tablesName: result[0].tablesname,
-            projectsName: result[0].projectsname
+            tableCSVName: result[0].tablesname,
+            projectCSVName: result[0].projectsname
           })
       }
     });
@@ -100,7 +100,7 @@ class DataEntry extends Component {
       fileName = 'UPLOAD FILE';
     }
     this.setState({
-      tablesName: fileName
+      tableCSVName: fileName
     })
   }
 
@@ -125,62 +125,96 @@ class DataEntry extends Component {
       fileName = 'UPLOAD FILE';
     }
     this.setState({
-      projectsName: fileName
+      projectCSVName: fileName
     })
   }
 
   //posts data entry and files to the database
-  async postData() {
-    let tablesName = this.state.tablesName;
-    if (this.state.tablesName === 'UPLOAD FILE') {
-      tablesName = '';
-    }
-    let projectsName = this.state.projectsName;
-    if (this.state.projectsName === 'UPLOAD FILE') {
-      projectsName = '';
-    }
-
-    let results;
-    const list = [];
-    const keys = [];
-    if (this.state.fileReader != null) {
-      results = Papa.parse(this.state.fileReader.result);
-
-      for (let i = 1; i < results.data.length; i += 1) {
-        const dict = {};
-        for (let n = 0; n < results.data[0].length; n += 1) {
-          const key = results.data[0][n];
-          if (key === 'Submission Title' || key === 'Submission Url' || key.substring(0, 4) === 'Best') {
-            keys[i] = key;
-            dict[results.data[0][n]] = results.data[i][n];
+  async postProjects() {
+    try {
+      if (this.state.projectCSVName === 'UPLOAD FILE') {
+        this.state.projectCSVName = '';
+      }
+  
+      let results;
+      const list = [];
+      if (this.state.projectsReader != null) {
+        results = Papa.parse(this.state.projectsReader.result);
+  
+        for (let i = 1; i < results.data.length; i += 1) {
+          const dict = {};
+          const categories = [];
+          for (let n = 0; n < results.data[0].length; n += 1) {
+            const key = results.data[0][n];
+            const value = results.data[i][n];
+            if (key === 'Submission Title' || key === 'Submission Url') {
+              dict[key] = value;
+            }
+            if (key.substring(0, 3) === 'API' || key.substring(0, 2) === 'GC') {
+              if (value !== 'FALSE') {
+                categories.push(key);
+              }
+            }
           }
+          dict['Categories'] = categories;
+          list[i] = dict;
         }
-        list[i] = dict;
+        console.log(list);
+      }
+  
+      const res = await fetch('/api/projects', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          projectCSV: list
+        })
+      });
+      const res_json = res.json();
+      return res_json;
+
+    } catch (error) {
+      console.log(error.stack);
+    }
+  }
+
+  async postTables() {
+    try {
+      if (this.state.tableCSVName === 'UPLOAD FILE') {
+        this.state.tableCSVName = '';
+      }
+  
+      let results;
+      let list;
+      if (this.state.tablesReader != null) {
+        results = Papa.parse(this.state.tablesReader.result);
+        list = results.data;
       }
       console.log(list);
+  
+      const res = await fetch('/api/projects', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          tableNum: this.state.tableNum,
+          tablesCSV: list
+        })
+      });
+      const res_json = res.json();
+      return res_json;
+
+    } catch (error) {
+      console.log(error.stack)
     }
-    const res = await fetch('/api/data', {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        tables: this.state.tableNum,
-        max: this.state.maxNum,
-        waves: this.state.waveNum,
-        tablesname: tablesName,
-        projectsname: projectsName,
-        csvkeys: keys,
-        csv: list
-      })
-    });
-    const res_json = res.json();
-    return res_json;
   }
 
   routeToNext() {
-    if (this.state.tableNum != '' && this.state.clusterNum != '' && this.state.waveNum != '' && this.state.fileName != 'UPLOAD FILE') {
-      this.postData();
+    if (this.state.tableNum !== '' && this.state.clusterNum !== '' && this.state.waveNum !== '' && this.state.fileName !== 'UPLOAD FILE') {
+      this.postProjects();
+      this.postTables();
       this.props.history.push('/judge-info');
     }
   }
@@ -232,7 +266,7 @@ class DataEntry extends Component {
                 onChange={this.handleTablesFileUpload}
                 className="upload-file"
               />
-              <label htmlFor="tables-file">{this.state.tablesName}</label>
+              <label htmlFor="tables-file">{this.state.tableCSVName}</label>
             </div>
 
             <div className="data-entry-element">
@@ -243,7 +277,7 @@ class DataEntry extends Component {
                 onChange={this.handleProjectsFileUpload}
                 className="upload-file"
               />
-              <label htmlFor="projects-file">{this.state.projectsName}</label>
+              <label htmlFor="projects-file">{this.state.projectCSVName}</label>
             </div>
 
             <div className="data-button nav">

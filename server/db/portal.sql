@@ -8,14 +8,14 @@ WITH ENCRYPTED PASSWORD 'password';
 \c portal;
 CREATE TABLE judges
 (
-  judgeId INTEGER PRIMARY KEY,
+  judgeId SERIAL PRIMARY KEY,
   name VARCHAR(254),
   API VARCHAR(254)
 );
 
 CREATE TABLE projects
 (
-  projectId INTEGER PRIMARY KEY,
+  projectId SERIAL PRIMARY KEY,
   name VARCHAR(254),
   github VARCHAR(254),
   categories VARCHAR(254)[],
@@ -36,25 +36,25 @@ CREATE TABLE scores
   score INTEGER
 );
 
-INSERT INTO judges VALUES (10, 'lawrence', 'codebaseAPI');
-INSERT INTO judges VALUES (20, 'parth', 'GC');
-INSERT INTO judges VALUES (30, 'calhacks', 'calhacksAPI');
+INSERT INTO judges(name, API) VALUES ('lawrence', 'codebaseAPI');
+INSERT INTO judges(name, API) VALUES ('parth', 'GC');
+INSERT INTO judges(name, API) VALUES ('calhacks', 'calhacksAPI');
 
-INSERT INTO projects VALUES (1, 'mentored', 'https://github.com/codebase-berkeley/judging-portal', '{"GC: Web", "codebaseAPI"}');
-INSERT INTO projects VALUES (2, 'calhacks', 'https://github.com/codebase-berkeley/', '{"GC: Web", "GC: Mobile", "calhacksAPI"}');
-INSERT INTO projects VALUES (3, 'atlassian', 'https://github.com/codebase-berkeley/', '{"GC: Education", "calhacksAPI"}');
+-- INSERT INTO projects(name, github, categories, tableName, wave) VALUES ('mentored', 'https://github.com/codebase-berkeley/judging-portal', '{"GC: Web", "codebaseAPI"}', 'A1', 1);
+-- INSERT INTO projects(name, github, categories, tableName, wave) VALUES ('calhacks', 'https://github.com/codebase-berkeley/', '{"GC: Mobile", "GC: Web", "calhacksAPI"}', 'A2', 2);
+-- INSERT INTO projects(name, github, categories, tableName, wave) VALUES ('atlassian', 'https://github.com/codebase-berkeley/', '{"calhacksAPI"}', 'A3', 1);
 
 INSERT INTO apis VALUES ('codebaseAPI');
 INSERT INTO apis VALUES ('calhacksAPI');
 INSERT INTO apis VALUES ('GC');
 
-INSERT INTO scores VALUES (20, 1, 'GC: Web', NULL);
-INSERT INTO scores VALUES (10, 1, 'codebaseAPI', NULL);
-INSERT INTO scores VALUES (20, 2, 'GC: Web', NULL);
-INSERT INTO scores VALUES (20, 2, 'GC: Mobile', NULL);
-INSERT INTO scores VALUES (30, 2, 'calhacksAPI', NULL);
-INSERT INTO scores VALUES (20, 3, 'GC: Education', NULL);
-INSERT INTO scores VALUES (30, 3, 'calhacksAPI', NULL);
+INSERT INTO scores VALUES (2, 1, 'GC: Web', NULL);
+INSERT INTO scores VALUES (1, 1, 'codebaseAPI', NULL);
+INSERT INTO scores VALUES (2, 2, 'GC: Web', NULL);
+INSERT INTO scores VALUES (2, 2, 'GC: Mobile', NULL);
+INSERT INTO scores VALUES (3, 2, 'calhacksAPI', NULL);
+INSERT INTO scores VALUES (2, 3, 'GC: Education', NULL);
+INSERT INTO scores VALUES (3, 3, 'calhacksAPI', NULL);
 
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO root;
 
