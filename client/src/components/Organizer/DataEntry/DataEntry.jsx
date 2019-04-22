@@ -31,7 +31,7 @@ class DataEntry extends Component {
 
   componentDidMount() {
     this.getDataEntry().then(result => {
-      if (result[0].tablesname === '') {
+      if (result !== null) {
         this.setState({
           tableNum: '',
           maxNum: '',
@@ -54,7 +54,7 @@ class DataEntry extends Component {
   async getDataEntry() {
     try {
       const res = await fetch('/api/data');
-      const resJson = res.json();
+      const resJson = JSON.parse(res);
       return resJson;
     } catch(error) {
       console.log(error.stack);
@@ -179,42 +179,42 @@ class DataEntry extends Component {
     }
   }
 
-  async postTables() {
-    try {
-      if (this.state.tableCSVName === 'UPLOAD FILE') {
-        this.state.tableCSVName = '';
-      }
+  // async postTables() {
+  //   try {
+  //     if (this.state.tableCSVName === 'UPLOAD FILE') {
+  //       this.state.tableCSVName = '';
+  //     }
   
-      let results;
-      let list;
-      if (this.state.tablesReader != null) {
-        results = Papa.parse(this.state.tablesReader.result);
-        list = results.data;
-      }
-      console.log(list);
+  //     let results;
+  //     let list;
+  //     if (this.state.tablesReader != null) {
+  //       results = Papa.parse(this.state.tablesReader.result);
+  //       list = results.data;
+  //     }
+  //     console.log(list);
   
-      const res = await fetch('/api/projects', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          tableNum: this.state.tableNum,
-          tablesCSV: list
-        })
-      });
-      const res_json = res.json();
-      return res_json;
+  //     const res = await fetch('/api/projects', {
+  //       method: 'PUT',
+  //       headers: {
+  //         'Content-Type': 'application/json'
+  //       },
+  //       body: JSON.stringify({
+  //         tableNum: this.state.tableNum,
+  //         tablesCSV: list
+  //       })
+  //     });
+  //     const res_json = res.json();
+  //     return res_json;
 
-    } catch (error) {
-      console.log(error.stack)
-    }
-  }
+  //   } catch (error) {
+  //     console.log(error.stack)
+  //   }
+  // }
 
   routeToNext() {
     if (this.state.tableNum !== '' && this.state.clusterNum !== '' && this.state.waveNum !== '' && this.state.fileName !== 'UPLOAD FILE') {
       this.postProjects();
-      this.postTables();
+      //this.postTables();
       this.props.history.push('/judge-info');
     }
   }

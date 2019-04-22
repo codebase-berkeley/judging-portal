@@ -34,21 +34,21 @@ app.post('/api/projects', async (req, res) => {
   res.json("You successfully posted to projects");
 });
 
-app.put('/api/projects', async (req, res) => {
-  console.log('begin');
-  const { tableNum, tablesCSV } = req.body;
-  for (let i = 1; i < tablesCSV.length; i++) {
-    const table = tablesCSV[i][0];
-    for (let j = 1; j < tableNum; j++) {
-      console.log('here');
-      db.query('UPDATE projects SET tableName = $1;', [
-        table
-      ]);
-    }
-  }
+// app.put('/api/projects', async (req, res) => {
+//   console.log('begin');
+//   const { tableNum, tablesCSV } = req.body;
+//   for (let i = 1; i < tablesCSV.length; i++) {
+//     const table = tablesCSV[i][0];
+//     for (let j = 1; j < tableNum; j++) {
+//       console.log('here');
+//       db.query('UPDATE projects SET tableName = $1;', [
+//         table
+//       ]);
+//     }
+//   }
 
-  res.json("You successfully posted to projects");
-});
+//   res.json("You successfully posted to projects");
+// });
 // ########### DATAENTRY END ###########
 
 
