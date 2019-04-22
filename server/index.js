@@ -20,6 +20,17 @@ app.get('/api/projects', async (req, res) => {
   }
 });
 
+app.put('/api/projects/:projectId', async (req, res) => {
+  const { projectId } = req.params;
+  const { tableName, wave } = req.body;
+  db.query('UPDATE projects SET wave = $1 and tableName = $2 WHERE projectId = $3;', [
+    wave,
+    tableName,
+    projectId
+  ]);
+  res.json('Score update successfully');
+});
+
 app.post('/api/projects', async (req, res) => {
   const { projectCSV } = req.body;
   for (let i = 1; i < projectCSV.length; i++) {
