@@ -79,15 +79,16 @@ class ScoringOverview extends Component {
                     pathname: "/project-info",
                     state: {
                         judgeId: this.state.judgeId,
-                        team: item.name,
+                        name: item.name,
                         projectId: item.projectid,
+                        url: item.github,
                         api: item.categories,
-                        score: item.score
+                        tablename: item.tablename,
+                        wave: item.wave,
+                        score: item.score,
                     }
                 }}>
-                    <Project key={index} name={item.name} identification={item.projectid} categories={item.api} 
-                    //score={item.score}
-                    />
+                    <Project key={index} name={item.name} identification={item.projectid}/>
                 </Link>
             ))}
             </ul>

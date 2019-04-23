@@ -78,7 +78,7 @@ app.get('/api/judgenames', async (req, res) => {
 });
 
 // endpoint to draw all rows of projects in the Scoring Overview page
-app.get('/api/toscore/judge/:judgeId', async(req, res) => {
+app.get('/api/toscore/judge/:judgeId', async (req, res) => {
   try {
     const { judgeId } = req.params;
     const query = await db.query('SELECT DISTINCT projects.projectId, projects.name, projects.categories, projects.github, projects.tableName, projects.wave, filtered.score FROM projects INNER JOIN (SELECT * FROM scores WHERE scores.judgeId = $1) AS filtered ON projects.projectId=filtered.projectId;', [
@@ -90,14 +90,30 @@ app.get('/api/toscore/judge/:judgeId', async(req, res) => {
   }
 });
 
+// endpoint to select the categories to be scored for in each project info page
+app.get('/api/categories/judge/:judgeId/project/:projectId', async (req, res) => {
+  try {
+
+    const { judgeId, projectId } = req.params;
+    const query = await db.query('SELECT category, score FROM scores WHERE judgeId = $1 AND projectId = $2;', [
+      judgeId,
+      projectId
+    ]);
+    res.send(query.rows);
+  } catch (error) {
+    console.log(error.stack);
+  }
+});
+
 // updating project scores
-app.put('/api/scoreupdate/judge/:judgeId/project/:projectId', async (req, res) => {
-  const { judgeId, projectId } = req.params;
+app.put('/api/scoreupdate/judge/:judgeId/project/:projectId/category/:category', async (req, res) => {
+  const { judgeId, projectId, category } = req.params;
   const { score } = req.body;
-  db.query('UPDATE scores SET score = $1 WHERE judgeId = $2 AND projectId = $3;', [
+  db.query('UPDATE scores SET score = $1 WHERE judgeId = $2 AND projectId = $3 AND category = $4;', [
     score,
     judgeId,
-    projectId
+    projectId,
+    category
   ]);
   res.json('Score update successfully');
 });
