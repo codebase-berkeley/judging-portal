@@ -33,7 +33,7 @@ class DataEntry extends Component {
 
   componentDidMount() {
     this.getProjects().then(result => {
-      if (result !== null) {
+      if (this.state.tablesReader === null) {
         this.setState({
           tableNum: '',
           maxNum: '',
@@ -51,68 +51,6 @@ class DataEntry extends Component {
           })
       }
     });
-  }
-
-  async assignProjectTraits() {
-    // console.log(this.state.numProjects);
-    let projsPerWave = this.state.numProjects / this.state.waveNum;
-    let i;
-    let j;
-    let tableCounter; 
-    let tableIndex;
-    for (i = 1; i <= this.state.waveNum - 1; i++) {
-      tableCounter = 1;
-      tableIndex = 0;
-      for (j = 1; j <= projsPerWave; j++) {
-        if (tableCounter > this.state.tableNum) {
-          tableCounter = 1;
-          tableIndex ++; 
-        }
-        const res = await fetch(`/api/projects${i*projsPerWave + j}`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            wave: i, 
-            tableName: this.state.tablesReader.data[tableIndex][0], 
-            projectId: i * projsPerWave + j
-          })
-        });
-        tableCounter ++; 
-      }
-    }
-
-    tableCounter = 1; 
-    tableIndex = 0;
-    for (j = (this.state.waveNum-1)*projsPerWave + 1; j <= this.state.numProjects; j++) {
-      if (tableCounter > this.state.tableNum) {
-        tableCounter = 1;
-        tableIndex ++; 
-      }
-      const res = await fetch(`/api/projects${j}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          wave: i, 
-          tableName: this.state.tablesReader.data[tableIndex][0], 
-          projectId: i * projsPerWave + j
-        })
-      });
-      tableCounter ++; 
-    }
-  }
-
-  async getProjects() {
-    try {
-      const res = await fetch('api/projects'); 
-      const resJson = res.json(); 
-      return resJson; 
-    } catch(error) {
-      console.log(error.stack);
-    }
   }
 
   handleTable(event) {
@@ -195,10 +133,7 @@ class DataEntry extends Component {
       if (this.state.projectsReader != null) {
         results = Papa.parse(this.state.projectsReader.result);
 
-        this.setState({
-          numProjects: results.data.length
-        })
-        console.log(this.state.numProjects);
+        this.state.numProjects = results.data.length;
   
         for (let i = 1; i < results.data.length; i += 1) {
           const dict = {};
@@ -238,43 +173,126 @@ class DataEntry extends Component {
     }
   }
 
-  // async postTables() {
-  //   try {
-  //     if (this.state.tableCSVName === 'UPLOAD FILE') {
-  //       this.state.tableCSVName = '';
+  // async assignProjectTraits() {
+  //   console.log(this.state.numProjects);
+
+  //   if (this.state.tableCSVName === 'UPLOAD FILE') {
+  //     this.state.tableCSVName = '';
+  //   }
+
+  //   let results;
+  //   let list;
+  //   if (this.state.tablesReader != null) {
+  //     results = Papa.parse(this.state.tablesReader.result);
+  //     list = results.data;
+  //   }
+
+  //   console.log(list);
+
+  //   let projsPerWave = this.state.numProjects / this.state.waveNum;
+  //   let i;
+  //   let j;
+  //   let tableCounter; 
+  //   let tableIndex;
+
+  //   for (i = 1; i <= this.state.waveNum - 1; i++) {
+  //     tableCounter = 1;
+  //     tableIndex = 0;
+  //     for (j = 1; j <= projsPerWave; j++) {
+  //       if (tableCounter > this.state.tableNum) {
+  //         tableCounter = 1;
+  //         tableIndex ++; 
+  //       }
+  //       const res = await fetch(`/api/projects${i*projsPerWave + j}`, {
+  //         method: 'PUT',
+  //         headers: {
+  //           'Content-Type': 'application/json'
+  //         },
+  //         body: JSON.stringify({
+  //           wave: i, 
+  //           tableName: list[tableIndex][0], 
+  //           projectId: i * projsPerWave + j
+  //         })
+  //       });
+  //       tableCounter ++; 
+  //       const res_json = res.json();
+  //       return res_json;
   //     }
-  
-  //     let results;
-  //     let list;
-  //     if (this.state.tablesReader != null) {
-  //       results = Papa.parse(this.state.tablesReader.result);
-  //       list = results.data;
+  //   }
+
+  //   tableCounter = 1; 
+  //   tableIndex = 0;
+  //   for (j = (this.state.waveNum-1)*projsPerWave + 1; j <= this.state.numProjects; j++) {
+  //     if (tableCounter > this.state.tableNum) {
+  //       tableCounter = 1;
+  //       tableIndex ++; 
   //     }
-  //     console.log(list);
-  
-  //     const res = await fetch('/api/projects', {
+  //     const res = await fetch(`/api/projects${j}`, {
   //       method: 'PUT',
   //       headers: {
   //         'Content-Type': 'application/json'
   //       },
   //       body: JSON.stringify({
-  //         tableNum: this.state.tableNum,
-  //         tablesCSV: list
+  //         wave: i, 
+  //         tableName: list[tableIndex][0], 
+  //         projectId: i * projsPerWave + j
   //       })
   //     });
+  //     tableCounter ++; 
   //     const res_json = res.json();
   //     return res_json;
-
-  //   } catch (error) {
-  //     console.log(error.stack)
   //   }
   // }
+
+  async getProjects() {
+    try {
+      const res = await fetch('api/projects'); 
+      const resJson = res.json(); 
+      return resJson; 
+    } catch(error) {
+      console.log(error.stack);
+    }
+  }
+
+  async postTables() {
+    try {
+      if (this.state.tableCSVName === 'UPLOAD FILE') {
+        this.state.tableCSVName = '';
+      }
+  
+      let results;
+      let list;
+      if (this.state.tablesReader != null) {
+        results = Papa.parse(this.state.tablesReader.result);
+        list = results.data;
+      }
+      console.log(list);
+  
+      const res = await fetch('/api/projects', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          numProjects: this.state.numProjects,
+          waveNum: this.state.waveNum,
+          tableNum: this.state.tableNum,
+          tablesCSV: list
+        })
+      });
+      const res_json = res.json();
+      return res_json;
+
+    } catch (error) {
+      console.log(error.stack)
+    }
+  }
 
   routeToNext() {
     if (this.state.tableNum !== '' && this.state.clusterNum !== '' && this.state.waveNum !== '' && this.state.fileName !== 'UPLOAD FILE') {
       this.postProjects();
-      //this.postTables();
-      this.assignProjectTraits();
+      this.postTables();
+      //this.assignProjectTraits();
       this.props.history.push('/judge-info');
     }
   }
