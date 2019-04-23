@@ -13,7 +13,7 @@ class ProjectInfo extends Component{
         this.state = {
             judgeId: '',
             projectId: '',
-            scores:{}
+            scores: {}
         }
         this.routeToPrev = this.routeToPrev.bind(this);
         this.updateScore = this.updateScore.bind(this);

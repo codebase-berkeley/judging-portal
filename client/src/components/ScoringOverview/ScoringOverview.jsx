@@ -21,7 +21,7 @@ class ScoringOverview extends Component {
     }
 
     async componentDidMount() {
-        const res = await fetch(`/api/toscore/judge/` + this.props.location.state.judgeId);
+        const res = await fetch('/api/toscore/judge/' + this.props.location.state.judgeId);
         const resJson = await res.json();
         this.setState({
             judgeId: this.props.location.state.judgeId
