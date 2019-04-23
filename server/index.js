@@ -81,7 +81,7 @@ app.get('/api/judgenames', async (req, res) => {
 app.get('/api/toscore/judge/:judgeId', async (req, res) => {
   try {
     const { judgeId } = req.params;
-    const query = await db.query('SELECT DISTINCT projects.projectId, projects.name, projects.categories, projects.github, projects.tableName, projects.wave, filtered.score FROM projects INNER JOIN (SELECT * FROM scores WHERE scores.judgeId = $1) AS filtered ON projects.projectId=filtered.projectId;', [
+    const query = await db.query('SELECT DISTINCT ON (projects.projectId) projects.projectId, projects.name, projects.categories, projects.github, projects.tableName, projects.wave, filtered.score FROM projects INNER JOIN (SELECT * FROM scores WHERE scores.judgeId = $1) AS filtered ON projects.projectId=filtered.projectId;', [
       judgeId
     ]);
     res.send(query.rows);

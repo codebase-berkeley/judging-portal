@@ -13,11 +13,12 @@ class ProjectInfo extends Component{
         this.state = {
             judgeId: '',
             projectId: '',
-            scores:[]
+            scores:{}
         }
         this.routeToPrev = this.routeToPrev.bind(this);
         this.updateScore = this.updateScore.bind(this);
-        this.handleScore = this.handleScore.bind(this);
+        this.changeScore = this.changeScore.bind(this);
+        this.putScore = this.putScore.bind(this);
     }
 
     async componentDidMount() {
@@ -25,55 +26,67 @@ class ProjectInfo extends Component{
         const projectId = this.props.location.state.projectId;
         const res = await fetch('/api/categories/judge/' + judgeId + '/project/' + projectId);
         const resJson = await res.json();
+        const dict = {}
+        for (let i = 0; i < resJson.length; i +=1) {
+            dict[resJson[i].category] = resJson[i].score
+        };
         this.setState({
             judgeId: judgeId,
             projectId: projectId,
-            scores: resJson
+            scores: dict
         })
     }
 
-    async updateScore(category) {
+    async updateScore() {
+        for (var key in this.state.scores) {
+            let category = key;
+            this.putScore(category);
+        }
+    };
+
+    async putScore(category) {
         const judgeId = this.state.judgeId;
         const projectId = this.state.projectId;
         const res = await fetch('/api/scoreupdate/judge/' + judgeId + '/project/' + projectId + '/category/' + category, {
             method: 'PUT',
             headers: {
-              'Content-Type': 'application/json'
+            'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                score: parseInt(this.state.score, 10)
+                score: parseInt(this.state.scores[category], 10)
             })
         });
         const resJson = res.json();
         return resJson;
-    };
+    }
 
-    handleScore(event) {
+    changeScore(category, score) {
+        const dict = this.state.scores
+        dict[category] = score;
         this.setState({
-            score: event.target.value
+            scores: dict
         });
     }
 
-    // async routeToPrev() {
-    //     await this.updateScore();
-    //     this.props.history.push({
-    //         pathname: '/overview',
-    //         state: {
-    //             judgeId: this.state.judgeId,
-    //             score: this.state.score
-    //         }
-    //     })
-    // }
+    async routeToPrev() {
+        this.props.history.push({
+            pathname: '/overview',
+            state: {
+                judgeId: this.state.judgeId
+            }
+        })
+    }
 
     render() {
-        const cmp = (this.state.scores||[]).map((entry,index)=>(
+        const cmp = Object.keys(this.state.scores).map((key, index) => (
             <ul className="category-score">
                <PerCategory
-                category={entry.category}
-                score={this.state.scores[index].score}
+                category={key}
+                score={this.state.scores[key]}
+                changeScore={this.changeScore}
               />
             </ul>
-          ))
+        ));
         return (
             <div className = "entirePage">
                 <button type="submit" onClick={this.routeToPrev}>
@@ -120,7 +133,7 @@ class ProjectInfo extends Component{
                 <button
                     className="button"
                     type="submit"
-                    onClick={() => { this.postScore();}}
+                    onClick={() => { this.updateScore();}}
                     >
                     SUBMIT
                 </button>

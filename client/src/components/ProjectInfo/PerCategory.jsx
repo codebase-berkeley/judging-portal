@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
-import './PerCategory.css';
+// import './PerCategory.css';
 
 class PerCategory extends Component {
+    constructor(props) {
+        super(props);
+        this.handleScore = this.handleScore.bind(this)
+    }
+
+    handleScore(event) {
+       this.props.changeScore(this.props.category, event.target.value);
+    }
+
     render() {
         return(
             <div className = "category-score">
                 <div className="t-category">{this.props.category}</div>
                 <div className="t-score">
-                    {this.props.location.state.score === null ? 
+                    {this.props.score === null ? 
                         <input
                             keyboardType = "phone-pad"
                             className = "scoreInput" 
@@ -18,7 +27,7 @@ class PerCategory extends Component {
                         <input
                             keyboardType = "phone-pad"
                             className = "scoreInput" 
-                            placeholder = {this.props.location.state.score}
+                            placeholder = {this.props.score}
                             onChange={this.handleScore}
                         >
                         </input>
