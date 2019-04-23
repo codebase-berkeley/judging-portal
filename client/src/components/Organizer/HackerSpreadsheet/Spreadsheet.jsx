@@ -6,9 +6,27 @@ class Spreadsheet extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            projects: [['SyncUp', 3, 250], ['Codeacademy', 2, 29], ['Github', 1, 50]]
+            projects: []
         };
         this.routeToPrev = this.routeToPrev.bind(this);
+    }
+
+    async componentDidMount() { 
+        this.getProjectInfo().then(result => {
+            const projs = []; 
+            for (let i = 0; i < result.length; i++) {
+                projs[i] = [result[i].name, result[i].wave, result[i].tablename];
+            }
+            this.setState({
+                projects: projs
+            })
+        });
+    }
+
+    async getProjectInfo() {
+        const res = await fetch('/api/projects');
+        const resJson = res.json(); 
+        return resJson;
     }
 
     routeToPrev() {
