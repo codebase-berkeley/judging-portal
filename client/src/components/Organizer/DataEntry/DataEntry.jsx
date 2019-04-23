@@ -76,6 +76,7 @@ class DataEntry extends Component {
   }
 
   handleTablesFileUpload(event) {
+    console.log('hi')
     this.changeTablesFileName(event);
     this.handleTablesFileRead(event.target.files[0]);
   }
@@ -84,7 +85,7 @@ class DataEntry extends Component {
     const fileReader = new FileReader();
     fileReader.readAsText(file);
     this.setState({
-      projectsReader: fileReader
+      tablesReader: fileReader
     })
   }
 
@@ -95,11 +96,12 @@ class DataEntry extends Component {
       fileName = 'UPLOAD FILE';
     }
     this.setState({
-      projectsName: fileName
+      tablesName: fileName
     })
   }
 
   handleProjectsFileUpload(event) {
+    console.log('hey')
     this.changeProjectsFileName(event);
     this.handleProjectsFileRead(event.target.files[0]);
   }
@@ -221,22 +223,22 @@ class DataEntry extends Component {
               <div className="data-element-title">UPLOAD TABLES</div>
               <input
                 type="file"
-                id="og-file"
+                id="table-file"
                 onChange={this.handleTablesFileUpload}
                 className="upload-file"
               />
-              <label htmlFor="og-file">{this.state.tablesName}</label>
+              <label htmlFor="table-file">{this.state.tablesName}</label>
             </div>
 
             <div className="data-entry-element">
               <div className="data-element-title">UPLOAD PROJECTS</div>
               <input
                 type="file"
-                id="og-file"
+                id="project-file"
                 onChange={this.handleProjectsFileUpload}
                 className="upload-file"
               />
-              <label htmlFor="og-file">{this.state.projectsName}</label>
+              <label htmlFor="project-file">{this.state.projectsName}</label>
             </div>
 
             <div className="data-button nav">
