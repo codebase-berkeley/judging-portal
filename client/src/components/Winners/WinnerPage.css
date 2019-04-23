@@ -1,0 +1,31 @@
+.category {
+    font-size:3vh;
+    padding-top: 2%;
+    cursor: pointer;
+
+
+}
+
+.Collapsible {
+    align-items: center;
+    
+
+}
+
+.Collapsible__contentOuter{
+    width: 50%;
+    margin: 0 auto;
+    background-color:#98D0EC;
+
+
+}
+
+.Collapsible__contentInner{
+
+}
+
+.Collapsible__trigger{
+    text-decoration: underline;
+}
+.winner-list{
+}

@@ -286,6 +286,50 @@ app.post('/api/deletejudge', async (req, res) => {
 
 })
 
+app.get('/api/scores', async (req, res) => {
+  try {
+    const query = await db.query('SELECT * FROM scores;');
+    res.send(query.rows);
+  } catch (error) {
+    console.log(error.stack);
+  }
+});
+
+
+app.get('/api/winners', async (req, res) => {
+  try {
+    const apis = await db.query('SELECT DISTINCT category FROM scores ORDER BY category;');
+    const apisJSON = apis.rows;
+    const winnersJSON = {};
+    let i;
+    for (i = 0; i < apisJSON.length; i += 1) {
+      const currCat = apisJSON[i].category;
+      const query = await db.query('SELECT * FROM scores WHERE category = $1 ORDER BY score DESC;', [currCat]);
+      projects = query.rows;
+      let j;
+      winnersJSON[currCat] = [];
+      for (j = 0; j < projects.length; j+= 1) {
+        const currID = projects[j].projectid;
+        const nameQuery = await db.query('SELECT name FROM projects WHERE projectId = $1', [currID]);
+        const name = nameQuery.rows[0].name;
+
+        const currJudgeID = projects[j].judgeid;
+        const judgeNameQuery = await db.query('SELECT name FROM judges WHERE judgeId = $1', [currJudgeID]);
+        const judgeName = judgeNameQuery.rows[0].name;
+
+        winnersJSON[currCat] = winnersJSON[currCat].concat([{projectname: name , judgename: judgeName, score: projects[j].score}]);
+      }
+      //send back: project name, judge name, score
+    }
+    console.log(winnersJSON);
+
+    res.send(winnersJSON);
+
+  } catch (error) {
+    console.log(error.stack);
+  }
+});
+
 const port = process.env.PORT || 5000;
 app.listen(port);
 

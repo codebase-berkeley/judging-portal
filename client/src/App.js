@@ -13,6 +13,8 @@ import Instructions from './components/JudgeLogin/Instructions';
 import ScoringOverview from './components/ScoringOverview/ScoringOverview';
 import ProjectInfo from './components/ProjectInfo/ProjectInfo';
 import Spreadsheet from './components/Organizer/HackerSpreadsheet/Spreadsheet';
+import Winners from './components/Winners/WinnerPage';
+
 
 class App extends Component {
   render() {
@@ -29,6 +31,7 @@ class App extends Component {
           <Route path="/project-info" component={ProjectInfo} />
           <Route path="/project-breakdown" component={ProjectBreakdown} />
           <Route path="/hacker-spreadsheet" component={Spreadsheet} />
+          <Route path="/winners" component={Winners} />
         </Switch>
       </div>
     );
