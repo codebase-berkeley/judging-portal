@@ -11,10 +11,10 @@ class CategoryItem extends Component {
 
     render() {
         return (
-            <div>
-                <div className="project-name">{this.props.name}</div>
-                <div className="project-score">{this.props.score}</div>
-            </div>
+          <div>
+            <div className="project-name">{this.props.name}</div>
+            <div className="project-score">{this.props.score}</div>
+          </div>
         );
     }
 }
