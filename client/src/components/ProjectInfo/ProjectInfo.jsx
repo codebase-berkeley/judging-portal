@@ -38,9 +38,8 @@ class ProjectInfo extends Component{
     }
 
     async updateScore() {
-        for (var key in this.state.scores) {
-            let category = key;
-            this.putScore(category);
+        for (let key in this.state.scores) {
+            this.putScore(key);
         }
     };
 
@@ -78,7 +77,7 @@ class ProjectInfo extends Component{
     }
 
     render() {
-        const cmp = Object.keys(this.state.scores).map((key, index) => (
+        const cmp = Object.keys(this.state.scores).map((key) => (
             <ul className="category-score">
                <PerCategory
                 category={key}
