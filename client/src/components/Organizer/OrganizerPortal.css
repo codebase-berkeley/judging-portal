@@ -458,7 +458,7 @@ ul {
     display: flex;
     flex-direction: row;
     border-bottom: 2px solid rgb(210, 211, 211);
-    width: 100%;
+    width: 90%;
     display: inline-block;
 }
 
