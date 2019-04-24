@@ -30,9 +30,7 @@ class WinnerCategory extends Component {
         return (
           <div className="winner-info">
               <div className="api-name">{this.props.api}</div>
-              {/* <button type="button" className="dropdown-button">
-                  <div className="dropdown-button-shape"></div>
-              </button> */}
+              
 
               <div className="w-content-breakdown">
                   <div className="w-scored-section">

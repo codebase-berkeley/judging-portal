@@ -579,7 +579,7 @@ ul {
 
 }
 .triggerHeader {
-    background-color:white;
+    background-color:#98D0EC;
     margin: 0 auto;
     width:50vw;
     color: #0A7191;
@@ -590,6 +590,19 @@ ul {
 } 
 
 /*child components of winer page*/
+
+.w-content-background {
+    font-family: 'Overpass', sans-serif;
+    background: #F9F9F9;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    align-content: center;
+    justify-content: center;
+    width: 100vw;
+    min-height: 85vh;
+    overflow: auto;
+}
 
 
 .w-content-breakdown {
@@ -608,7 +621,8 @@ ul {
 .w-project-list {
     width: 70%;
     display: inline-block;
-    background-color: #98D0EC;
+    border-bottom: 2px solid rgb(210, 211, 211);
+
 }
 .w-proj-item {
     display: flex;
@@ -623,10 +637,30 @@ ul {
     text-align: center;
     width: 33%;
     color: #0A7191;
+    
 }
 
 .w-project-name {
     display: inline-block;
     width: 33%;
     color: #0A7191;
+}
+
+
+.dropdown-button {
+    margin-top: 5px;
+    font-family: 'Overpass', sans-serif;
+    color: #0A7191;
+    background-color: #98D0EC;
+    border: none;
+    float: right;
+    cursor: pointer;
+}
+
+.dropdown-button-shape {
+  	width: 0;
+  	height: 0;
+  	border-left: 10px solid transparent;
+  	border-right: 10px solid transparent;
+  	border-top: 20px solid #0A7191;
 }

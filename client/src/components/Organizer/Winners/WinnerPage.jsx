@@ -25,7 +25,9 @@ class WinnerPage extends Component {
             const currCatName = Object.keys(winner)[i];
             const currCatWinners = winner[currCatName];
             allCategories.push(
-                <Collapsible trigger = {<div className="triggerHeader"> {currCatName}</div>} transitionTime={100}> 
+                <Collapsible trigger = {<div className="triggerHeader"> {currCatName} <button type="button" className="dropdown-button">
+                <div className="dropdown-button-shape"></div>
+            </button></div>} transitionTime={100}> 
                 <WinnerCategory category = {currCatName} projects = {currCatWinners}/>
                 </Collapsible>
             );
@@ -61,7 +63,7 @@ class WinnerPage extends Component {
         return (
             <div className="page-background" id="">
                 <div className="page-header">WINNERS</div>
-                <div className="content-background">
+                <div className="w-content-background">
                 {this.state.collapsibleCategories}
                     {/* {Object.values(this.state.winners).map((categoryWinners, index) => (
                         <div>
