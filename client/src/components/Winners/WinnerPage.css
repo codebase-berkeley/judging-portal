@@ -1,23 +1,15 @@
-.category {
-    font-size:3vh;
-    padding-top: 2%;
-    cursor: pointer;
-
-
-}
 
 .Collapsible {
     align-items: center;
-    
+    font-size:3vh;
+    padding-top: 2%;
 
 }
 
 .Collapsible__contentOuter{
-    width: 50%;
+    width: 70%;
+    font-size:2vh;
     margin: 0 auto;
-    background-color:#98D0EC;
-
-
 }
 
 .Collapsible__contentInner{
@@ -25,7 +17,15 @@
 }
 
 .Collapsible__trigger{
-    text-decoration: underline;
+
+}
+.triggerHeader {
+    background-color:#98D0EC;
+    margin: 0 auto;
+    width:50vw;
+    color: #0A7191;
+    cursor: pointer;
+
 }
 .winner-list{
-}
+} 
