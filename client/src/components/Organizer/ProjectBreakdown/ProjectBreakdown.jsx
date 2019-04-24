@@ -7,8 +7,8 @@ class ProjectBreakdown extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            projectsJson: {},
-            keys: []
+          projectsJson: {},
+          keys: []
         };
         this.routeToPrev = this.routeToPrev.bind(this);
         this.routeToNext = this.routeToNext.bind(this);

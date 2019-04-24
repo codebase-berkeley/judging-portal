@@ -13,18 +13,12 @@ class DataEntry extends Component {
       maxNum: '',
       waveNum: '',
       tablesName: 'UPLOAD FILE',
-      tablesReader: null,
-      projectsName: 'UPLOAD FILE',
-      projectsReader: null
+      projectsName: 'UPLOAD FILE'
     };
     this.handleTable = this.handleTable.bind(this);
     this.handleMax = this.handleMax.bind(this);
     this.handleWave = this.handleWave.bind(this);
-    this.handleTablesFileUpload = this.handleTablesFileUpload.bind(this);
-    this.handleTablesFileRead = this.handleTablesFileRead.bind(this);
     this.changeTablesFileName = this.changeTablesFileName.bind(this);
-    this.handleProjectsFileUpload = this.handleProjectsFileUpload.bind(this);
-    this.handleProjectsFileRead = this.handleProjectsFileRead.bind(this);
     this.changeProjectsFileName = this.changeProjectsFileName.bind(this);
     this.routeToNext = this.routeToNext.bind(this);
   }
@@ -75,20 +69,6 @@ class DataEntry extends Component {
     });
   }
 
-  handleTablesFileUpload(event) {
-    console.log('hi')
-    this.changeTablesFileName(event);
-    this.handleTablesFileRead(event.target.files[0]);
-  }
-
-  handleTablesFileRead(file) {
-    const fileReader = new FileReader();
-    fileReader.readAsText(file);
-    this.setState({
-      tablesReader: fileReader
-    })
-  }
-
   changeTablesFileName(event) {
     const input = event.target.value;
     let fileName = input.replace(/^.*[\\\/]/, '');
@@ -97,20 +77,6 @@ class DataEntry extends Component {
     }
     this.setState({
       tablesName: fileName
-    })
-  }
-
-  handleProjectsFileUpload(event) {
-    console.log('hey')
-    this.changeProjectsFileName(event);
-    this.handleProjectsFileRead(event.target.files[0]);
-  }
-
-  handleProjectsFileRead(file) {
-    const fileReader = new FileReader();
-    fileReader.readAsText(file);
-    this.setState({
-      projectsReader: fileReader
     })
   }
 
@@ -224,7 +190,7 @@ class DataEntry extends Component {
               <input
                 type="file"
                 id="table-file"
-                onChange={this.handleTablesFileUpload}
+                onChange={this.changeTablesFileName}
                 className="upload-file"
               />
               <label htmlFor="table-file">{this.state.tablesName}</label>
@@ -235,7 +201,7 @@ class DataEntry extends Component {
               <input
                 type="file"
                 id="project-file"
-                onChange={this.handleProjectsFileUpload}
+                onChange={this.changeProjectsFileName}
                 className="upload-file"
               />
               <label htmlFor="project-file">{this.state.projectsName}</label>
