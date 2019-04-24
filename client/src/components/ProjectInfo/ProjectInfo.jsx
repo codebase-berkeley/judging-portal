@@ -38,7 +38,7 @@ class ProjectInfo extends Component{
     }
 
     async updateScore() {
-        for (let key in this.state.scores) {
+        for (const key in this.state.scores) {
             this.putScore(key);
         }
     };
