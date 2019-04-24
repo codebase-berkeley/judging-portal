@@ -1,0 +1,17 @@
+.category-score {
+    margin-top: 0.7rem;
+    margin-right: 1.7rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: center;
+}
+
+.t-category {
+    display: inline-block;
+}
+
+.t-score {
+    display: inline-block;
+    margin-left: 0.8rem;
+}
