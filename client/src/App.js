@@ -13,7 +13,7 @@ import Instructions from './components/JudgeLogin/Instructions';
 import ScoringOverview from './components/ScoringOverview/ScoringOverview';
 import ProjectInfo from './components/ProjectInfo/ProjectInfo';
 import Spreadsheet from './components/Organizer/HackerSpreadsheet/Spreadsheet';
-import Winners from './components/Winners/WinnerPage';
+import Winners from './components/Organizer/Winners/WinnerPage';
 
 
 class App extends Component {

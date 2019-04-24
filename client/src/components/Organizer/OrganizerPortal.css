@@ -552,3 +552,81 @@ ul {
     flex-direction: row;
     margin-top: 8vh;
 }
+
+/********************* Winners Page ********************/
+
+/* winner page*/
+
+.Collapsible {
+    align-items: center;
+    font-size:3vh;
+    padding-top: 2%;
+
+}
+
+.Collapsible__contentOuter{
+    width: 70%;
+    height:20%;
+    font-size:2vh;
+    margin: 0 auto;
+}
+
+.Collapsible__contentInner{
+
+}
+
+.Collapsible__trigger{
+
+}
+.triggerHeader {
+    background-color:white;
+    margin: 0 auto;
+    width:50vw;
+    color: #0A7191;
+    cursor: pointer;
+
+}
+.winner-list{
+} 
+
+/*child components of winer page*/
+
+
+.w-content-breakdown {
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    width:100%;
+    height: 30vh;
+}
+
+.w-scored-section {
+    width: 100%;
+    text-align: center;
+}
+
+.w-project-list {
+    width: 70%;
+    display: inline-block;
+    background-color: #98D0EC;
+}
+.w-proj-item {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 2px solid rgb(210, 211, 211);
+    width: 70%;
+    display: inline-block;
+}
+
+.w-project-list-name {
+    display: inline-block;
+    text-align: center;
+    width: 33%;
+    color: #0A7191;
+}
+
+.w-project-name {
+    display: inline-block;
+    width: 33%;
+    color: #0A7191;
+}
