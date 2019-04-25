@@ -21,18 +21,28 @@ app.get('/api/projects', async (req, res) => {
 });
 
 app.post('/api/projects', async (req, res) => {
+  db.query('DELETE FROM projects;');
   const { projectCSV } = req.body;
   for (let i = 1; i < projectCSV.length; i++) {
     const project = projectCSV[i];
-    db.query('INSERT INTO projects(name, github, categories) VALUES($1 ,$2, $3)', [
+    db.query('INSERT INTO projects(name, github, categories, projectId) VALUES($1 ,$2, $3, $4)', [
       project['Submission Title'],
       project['Submission Url'],
-      project['Categories']
+      project['Categories'], 
+      i
     ]);
   }
 
   res.json("You successfully posted to projects");
 });
+
+// app.delete('/api/projects', async(req, res) => {
+//   try {
+//     const query = await db.query('DELETE * FROM projects;');
+//   } catch (error) {
+//     console.log(error.stack);
+//   }
+// })
 
 app.put('/api/projects', async (req, res) => {
   const { projectNum, waveNum, tableNum, tablesCSV } = req.body;

@@ -147,7 +147,6 @@ class DataEntry extends Component {
       const resJson = res.json(); 
       return resJson; 
     } catch(error) {
-      console.log(error.stack);
     }
   }
 
@@ -171,6 +170,8 @@ class DataEntry extends Component {
     let results;
     let list;
     let tableLength;
+
+
     if (this.state.tablesReader != null) {
       results = Papa.parse(this.state.tablesReader.result);
       list = results.data;
