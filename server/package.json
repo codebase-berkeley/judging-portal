@@ -23,5 +23,5 @@
     "prettier": "^1.16.4",
     "pretty-quick": "^1.10.0",
     "react-dev-tools": "0.0.1"
-  },
+  }
 }
