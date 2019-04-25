@@ -1,52 +1,54 @@
 import React, { Component } from 'react';
 import '../OrganizerPortal.css';
-import CategoryItem from './CategoryItem';
+import APICategory from './APICategory';
+
 
 class ProjectBreakdown extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            projectsJson: {}
+          projectsJson: {},
+          keys: []
         };
         this.routeToPrev = this.routeToPrev.bind(this);
         this.routeToNext = this.routeToNext.bind(this);
     }
 
     async componentDidMount() {
-        let projectsJson = {};
-        let categories = await this.getCategories();
-        var i; 
-        for (i = 0; i < categories.length; i += 1) {
-            let category = categories[i];
+        const projectsJson = {};
+        const keys = [];
+        const categories = await this.getCategories();
+        for (let i = 0; i < categories.length; i += 1) {
+            const category = categories[i];
             projectsJson[category] = {
                 scored: [[]],
                 unscored: [[]]
             }
         }
 
-        let projects = await this.getProjects();
-        var j;
-        for (j = 0; j < projects.length; j += 1) {
-            let projectid = projects[j].projectid;
-            let scores = await this.getScores(projectid);
-            var k;
-            for (k = 0; k < scores.length; k += 1) {
-                let n = await this.getName(projectid);
-                let judgeid = scores[k].judgeid;
-                let projectName = n[0].name;
-                let category = scores[k].category;
-                let judge = await this.getJudge(judgeid)
-                let judgeName = judge[0].name;
+        const projects = await this.getProjects();
+        for (let j = 0; j < projects.length; j += 1) {
+            const projectid = projects[j].projectid;
+            const scores = await this.getScores(projectid);
+            for (let k = 0; k < scores.length; k += 1) {
+                const n = await this.getName(projectid);
+                const judgeid = scores[k].judgeid;
+                const projectName = n[0].name;
+                const category = scores[k].category;
+                const judge = await this.getJudge(judgeid)
+                const judgeName = judge[0].name;
                 if (scores[k].score) {
                     projectsJson[category].scored.push([projectName, judgeName, scores[k].score]);
                 } else {
                     projectsJson[category].unscored.push([projectName, judgeName])
                 }
+                keys.push(category);
             }
         }
 
         this.setState({
-            projectsJson: projectsJson
+            projectsJson: projectsJson,
+            keys: keys
         })
     }
 
@@ -57,15 +59,13 @@ class ProjectBreakdown extends Component {
     }
 
     async getCategories() {
-        let categoryList = [];
+        const categoryList = [];
 
-        let projects = await this.getProjects();
-        var i;
-        for (i = 0; i < projects.length; i += 1) {
-            let categories = projects[i].categories;
-            var k = 0; 
-            for (k = 0; k < projects.length; k += 1) {
-                if (categories[k] && categoryList.indexOf(categories[k]) == -1) {
+        const projects = await this.getProjects();
+        for (let i = 0; i < projects.length; i += 1) {
+            const categories = projects[i].categories;
+            for (let k = 0; k < projects.length; k += 1) {
+                if (categories[k] && categoryList.indexOf(categories[k]) === -1) {
                     categoryList.push(categories[k]);
                 }
             }
@@ -101,49 +101,35 @@ class ProjectBreakdown extends Component {
         const path = "/judge-info";
         this.props.history.push(path);
       }
-    
+
     routeToNext() {
-        // this.postData().then(result => console.log(result));
-        const path = "/hacker-spreadsheet"; 
+        const path = "/hacker-spreadsheet";
         this.props.history.push(path);
     }
 
     render() {
-        let projects = this.state.projectsJson;
-        console.log(projects);
-
+      const projects = this.state.projectsJson;
+      const keys = this.state.keys;
+      if (this.state.keys.length === 0) {return null }
+      else {
+        const apiCategories = [];
+        for (let i = 0; i < this.state.keys.length; i+=1) {
+          apiCategories.push(<APICategory api={keys[i]} alldata={projects[keys[i]]} />);
+        }
         return (
-            <div className="page-background" id= "projBreakdown">
-                <div className="page-header">SCORING BREAKDOWN</div>
-                <div className="content-background">
-                    <div className="headers"> 
-                            <header className="scoring-header">SCORED</header>
-                            <header className="scoring-header">UNSCORED</header> 
-                    </div>
-                    <div className="content-breakdown">
-                        <div className="scored-section">
-                            <div className="project-list">
-                                <div className="project-list-name">NAME</div>
-                                <div className="project-list-score">SCORE</div>
-                            </div>
-
-                        </div>
-                        <div className = "unscored-section">
-                            <div className="project-list">
-                                <div className="project-list-name-unscored">NAME</div>
-                            </div>
-                    
-                        </div>
-                    </div>
-
-                    <div className= "buttons nav judge-button">
-                        <button type="button" className="button" onClick={this.routeToPrev}>PREV</button>
-                        <button type="button" className="button" onClick={this.routeToNext}>NEXT</button>
-                    </div>
-
+          <div className="page-background" id="projBreakdown">
+              <div className="page-header">SCORING BREAKDOWN</div>
+              <div className="content-background">
+                <div className="api-category-box">{apiCategories}</div>
+                <div className= "buttons nav judge-button">
+                    <button type="button" className="button" onClick={this.routeToPrev}>PREV</button>
+                    <button type="button" className="button" onClick={this.routeToNext}>NEXT</button>
                 </div>
-            </div>
+
+              </div>
+          </div>
         );
+      }
     }
 }
 

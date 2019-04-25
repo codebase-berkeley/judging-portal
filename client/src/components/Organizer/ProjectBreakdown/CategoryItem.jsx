@@ -10,11 +10,16 @@ class CategoryItem extends Component {
       }
 
     render() {
+      let score = true;
+      if (this.props.score == null) {
+        score = false;
+      }
+
         return (
-            <div>
-                <div className="project-name">{this.props.name}</div>
-                <div className="project-score">{this.props.score}</div>
-            </div>
+          <div className="proj-item">
+            <div className="project-name">{this.props.name}</div>
+            <div className="project-score">{score ? this.props.score : ""}</div>
+          </div>
         );
     }
 }

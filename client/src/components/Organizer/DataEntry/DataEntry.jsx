@@ -13,18 +13,12 @@ class DataEntry extends Component {
       maxNum: '',
       waveNum: '',
       tablesName: 'UPLOAD FILE',
-      tablesReader: null,
-      projectsName: 'UPLOAD FILE',
-      projectsReader: null
+      projectsName: 'UPLOAD FILE'
     };
     this.handleTable = this.handleTable.bind(this);
     this.handleMax = this.handleMax.bind(this);
     this.handleWave = this.handleWave.bind(this);
-    this.handleTablesFileUpload = this.handleTablesFileUpload.bind(this);
-    this.handleTablesFileRead = this.handleTablesFileRead.bind(this);
     this.changeTablesFileName = this.changeTablesFileName.bind(this);
-    this.handleProjectsFileUpload = this.handleProjectsFileUpload.bind(this);
-    this.handleProjectsFileRead = this.handleProjectsFileRead.bind(this);
     this.changeProjectsFileName = this.changeProjectsFileName.bind(this);
     this.routeToNext = this.routeToNext.bind(this);
   }
@@ -75,19 +69,6 @@ class DataEntry extends Component {
     });
   }
 
-  handleTablesFileUpload(event) {
-    this.changeTablesFileName(event);
-    this.handleTablesFileRead(event.target.files[0]);
-  }
-
-  handleTablesFileRead(file) {
-    const fileReader = new FileReader();
-    fileReader.readAsText(file);
-    this.setState({
-      projectsReader: fileReader
-    })
-  }
-
   changeTablesFileName(event) {
     const input = event.target.value;
     let fileName = input.replace(/^.*[\\\/]/, '');
@@ -95,20 +76,7 @@ class DataEntry extends Component {
       fileName = 'UPLOAD FILE';
     }
     this.setState({
-      projectsName: fileName
-    })
-  }
-
-  handleProjectsFileUpload(event) {
-    this.changeProjectsFileName(event);
-    this.handleProjectsFileRead(event.target.files[0]);
-  }
-
-  handleProjectsFileRead(file) {
-    const fileReader = new FileReader();
-    fileReader.readAsText(file);
-    this.setState({
-      projectsReader: fileReader
+      tablesName: fileName
     })
   }
 
@@ -221,22 +189,22 @@ class DataEntry extends Component {
               <div className="data-element-title">UPLOAD TABLES</div>
               <input
                 type="file"
-                id="og-file"
-                onChange={this.handleTablesFileUpload}
+                id="table-file"
+                onChange={this.changeTablesFileName}
                 className="upload-file"
               />
-              <label htmlFor="og-file">{this.state.tablesName}</label>
+              <label htmlFor="table-file">{this.state.tablesName}</label>
             </div>
 
             <div className="data-entry-element">
               <div className="data-element-title">UPLOAD PROJECTS</div>
               <input
                 type="file"
-                id="og-file"
-                onChange={this.handleProjectsFileUpload}
+                id="project-file"
+                onChange={this.changeProjectsFileName}
                 className="upload-file"
               />
-              <label htmlFor="og-file">{this.state.projectsName}</label>
+              <label htmlFor="project-file">{this.state.projectsName}</label>
             </div>
 
             <div className="data-button nav">
