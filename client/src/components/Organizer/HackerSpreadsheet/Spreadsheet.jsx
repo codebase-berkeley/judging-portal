@@ -13,7 +13,6 @@ class Spreadsheet extends Component {
 
     async componentDidMount() { 
         this.getProjectInfo().then(result => {
-            console.log(result);
             this.setState({
                 projects: result.sort(this.compareWaveFunct)
             })
@@ -28,15 +27,15 @@ class Spreadsheet extends Component {
 
     compareWaveFunct(project1, project2) {
         if (project1.wave < project2.wave) {
-            return -1 
+            return -1; 
         } else if (project1.wave > project2.wave) {
-            return 1
+            return 1;
         } else {
             if (project1.tablename > project2.tablename) {
-                return 1
+                return 1;
             }
             else {
-                return -1
+                return -1;
             }
         }
     }
