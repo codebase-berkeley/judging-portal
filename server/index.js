@@ -146,16 +146,6 @@ app.post('/api/lists', async (req, res) => {
 
 });
 
-app.get('/api/data', async (req, res) => {
-  try {
-    const query = await db.query('SELECT * FROM dataentry;');
-    res.send(query.rows);
-  } catch (error) {
-    console.log(error.stack);
-  }
-
-  res.json("You successfully posted to projects");
-});
 // ########### DATAENTRY END ###########
 
 app.get('/api/apis', async (req, res) => {
