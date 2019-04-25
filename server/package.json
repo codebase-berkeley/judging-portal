@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "heroku-postbuild": "npm install && cd client && npm install --only-dev && npm install && npm run build"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -24,17 +24,4 @@
     "pretty-quick": "^1.10.0",
     "react-dev-tools": "0.0.1"
   },
-  "author": "Lawrence Jiang, Parth Shah, Andrew Kou, Francesca Song, Julia Wang, Mulan Zhao, Rachel Lau, Warren Wang",
-  "license": "ISC",
-  "dependencies": {
-    "concurrently": "^4.1.0"
-  },
-  "devDependencies": {
-    "concurrently": "^4.1.0"
-  },
-  "cacheDirectories": [
-    "node_modules",
-    "react-ui/node_modules",
-    "server/node_modules"
-  ]
 }
