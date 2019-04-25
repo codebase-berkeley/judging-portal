@@ -555,41 +555,32 @@ ul {
 
 /********************* Winners Page ********************/
 
-/* winner page*/
+.all-collapsible-categories {
+    margin-bottom: 10vh;
+}
 
 .Collapsible {
     align-items: center;
     font-size:3vh;
     padding-top: 2%;
-
+    margin: 0 auto;
+    width:50vw;
 }
 
 .Collapsible__contentOuter{
-    width: 70%;
-    height:20%;
+    width: 95%;
     font-size:2vh;
     margin: 0 auto;
 }
 
 .Collapsible__contentInner{
-
-}
-
-.Collapsible__trigger{
-
+    overflow: auto;
 }
 .triggerHeader {
     background-color:#98D0EC;
-    margin: 0 auto;
-    width:50vw;
     color: #0A7191;
     cursor: pointer;
-
 }
-.winner-list{
-} 
-
-/*child components of winer page*/
 
 .w-content-background {
     font-family: 'Overpass', sans-serif;
@@ -604,13 +595,12 @@ ul {
     overflow: auto;
 }
 
-
 .w-content-breakdown {
     text-align: center;
     display: flex;
     flex-direction: row;
     width:100%;
-    height: 30vh;
+    height: 20vh;
 }
 
 .w-scored-section {
@@ -619,33 +609,31 @@ ul {
 }
 
 .w-project-list {
-    width: 70%;
+    width: 100%;
     display: inline-block;
     border-bottom: 2px solid rgb(210, 211, 211);
-
 }
+
 .w-proj-item {
     display: flex;
     flex-direction: row;
     border-bottom: 2px solid rgb(210, 211, 211);
-    width: 70%;
+    width: 100%;
     display: inline-block;
 }
 
 .w-project-list-name {
     display: inline-block;
     text-align: center;
-    width: 33%;
+    width: 25%;
     color: #0A7191;
-    
 }
 
 .w-project-name {
     display: inline-block;
-    width: 33%;
+    width: 25%;
     color: #0A7191;
 }
-
 
 .dropdown-button {
     margin-top: 5px;
@@ -657,10 +645,18 @@ ul {
     cursor: pointer;
 }
 
-.dropdown-button-shape {
+.dropdown-button-shape-down {
   	width: 0;
   	height: 0;
   	border-left: 10px solid transparent;
   	border-right: 10px solid transparent;
   	border-top: 20px solid #0A7191;
+}
+
+.dropdown-button-shape-up {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 20px solid #0A7191;
 }

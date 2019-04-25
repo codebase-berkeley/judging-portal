@@ -1,44 +1,33 @@
 import React, { Component } from 'react';
-import Collapsible from 'react-collapsible';
-import WinnerCategory from './WinnerCategory';
-
+import WinnerCollapsible from './WinnerCollapsible';
 import '../OrganizerPortal.css';
-
 
 class WinnerPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
             winners: {},
-            collapsibleCategories: []
+            dropdownButtons: []
         }
         this.getWinners = this.getWinners.bind(this);
+        this.flipButtonUp = this.flipButtonUp.bind(this);
+        this.flipButtonDown = this.flipButtonDown.bind(this);
     }
 
     async componentDidMount() {
         const winner = await this.getWinners();
-        
-        const allCategories = [];
-        var i;
+        const buttons = [];
         const numCategories = Object.keys(winner).length;
-        for (i = 0; i < numCategories; i ++) {
-            const currCatName = Object.keys(winner)[i];
-            const currCatWinners = winner[currCatName];
-            allCategories.push(
-                <Collapsible trigger = {<div className="triggerHeader"> {currCatName} <button type="button" className="dropdown-button">
-                <div className="dropdown-button-shape"></div>
-            </button></div>} transitionTime={100}> 
-                <WinnerCategory category = {currCatName} projects = {currCatWinners}/>
-                </Collapsible>
+        for (let i = 0; i < numCategories; i += 1) {
+            buttons.push(
+                <button type="button" className="dropdown-button">
+                    <div className="dropdown-button-shape-down"></div> </button>
             );
-            console.log(allCategories);
-
         }
         await this.setState({
             winners: winner,
-            collapsibleCategories: allCategories
-        })
-        console.log(this.state.collapsibleCategories);
+            dropdownButtons: buttons
+        });
     }
 
     async getWinners() {
@@ -47,38 +36,53 @@ class WinnerPage extends Component {
         return resJson;
     }
 
+    async flipButtonUp(i) {
+        await this.setState((prevState) => {
+            const newButtons = prevState.dropdownButtons;
+            newButtons[i] = <button type="button" className="dropdown-button">
+                <div className="dropdown-button-shape-up"></div> </button>
+            return {
+                dropdownButtons: newButtons
+            }
+        });
+    }
+
+    async flipButtonDown(i) {
+        await this.setState((prevState) => {
+            const newButtons = prevState.dropdownButtons;
+            newButtons[i] = <button type="button" className="dropdown-button">
+                <div className="dropdown-button-shape-down"></div> </button>
+            return {
+                dropdownButtons: newButtons
+            }
+        });
+    }
+
     render() {
-        // const columns = [{
-        //     Header: 'Ranking',
-        //     accessor: 'judgename'
-        // }, {
-        //     Header: 'Project Name',
-        //     accessor: 'projectname'
-        // }, {
-        //     Header: 'Score',
-        //     accessor: 'score'
-        // }]
-
-
+        const winner = this.state.winners;
+        const allCategories = [];
+        const numCategories = Object.keys(winner).length;
+        for (let i = 0; i < numCategories; i += 1) {
+            const currCatName = Object.keys(winner)[i];
+            const currCatWinners = winner[currCatName];
+            allCategories.push(
+                <WinnerCollapsible
+                    index={i}
+                    flipButtonUp={this.flipButtonUp}
+                    flipButtonDown={this.flipButtonDown}
+                    name={currCatName}
+                    button={this.state.dropdownButtons[i]}
+                    winners={currCatWinners}
+                />
+            );
+        }
         return (
             <div className="page-background" id="">
                 <div className="page-header">WINNERS</div>
                 <div className="w-content-background">
-                {this.state.collapsibleCategories}
-                    {/* {Object.values(this.state.winners).map((categoryWinners, index) => (
-                        <div>
-                            <Collapsible
-                                trigger={<div className="triggerHeader">
-                                    {Object.keys(this.state.winners)[index]}
-                                </div>}
-                                transitionTime={100}>
-
-                                <div className="winner-list">
-                                    
-                                </div>
-                            </Collapsible>
-                        </div>
-                    ))} */}
+                    <div className="all-collapsible-categories">
+                        {allCategories}
+                    </div>
                 </div>
             </div>
         );
