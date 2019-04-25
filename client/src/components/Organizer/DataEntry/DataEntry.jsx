@@ -62,7 +62,7 @@ class DataEntry extends Component {
 
   changeTablesFileName(event) {
     const input = event.target.value;
-    let fileName = input.replace(/^.*[\\\/]/, '');
+    let fileName = input.replace(/^.*[\\/]/, '');
     if (fileName === '') {
       fileName = 'UPLOAD FILE';
     }
@@ -87,7 +87,7 @@ class DataEntry extends Component {
 
   changeProjectsFileName(event) {
     const input = event.target.value;
-    let fileName = input.replace(/^.*[\\\/]/, '');
+    let fileName = input.replace(/^.*[\\/]/, '');
     if (fileName === '') {
       fileName = 'UPLOAD FILE';
     }
@@ -99,9 +99,11 @@ class DataEntry extends Component {
   //posts data entry and files to the database
   postProjects() {
       if (this.state.projectCSVName === 'UPLOAD FILE') {
-        this.state.projectCSVName = '';
+        this.setState({
+          projectCSVName: ''
+        })
       }
-  
+
       let results;
       const list = [];
       let length;
@@ -128,7 +130,7 @@ class DataEntry extends Component {
           list[i] = dict;
         }
       }
-  
+
       const res = fetch('/api/projects', {
         method: 'POST',
         headers: {
@@ -143,9 +145,9 @@ class DataEntry extends Component {
 
   async getProjects() {
     try {
-      const res = await fetch('api/projects'); 
-      const resJson = res.json(); 
-      return resJson; 
+      const res = await fetch('api/projects');
+      const resJson = res.json();
+      return resJson;
     } catch(error) {
       console.log(error.stack);
     }
@@ -165,7 +167,9 @@ class DataEntry extends Component {
 
   postTables(length) {
     if (this.state.tableCSVName === 'UPLOAD FILE') {
-      this.state.tableCSVName = '';
+      this.setState({
+        tableCSVName: ''
+      })
     }
 
     let results;

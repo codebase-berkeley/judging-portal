@@ -40,9 +40,9 @@ INSERT INTO judges(name, API) VALUES ('lawrence', 'codebaseAPI');
 INSERT INTO judges(name, API) VALUES ('parth', 'GC');
 INSERT INTO judges(name, API) VALUES ('calhacks', 'calhacksAPI');
 
--- INSERT INTO projects(name, github, categories, tableName, wave) VALUES ('mentored', 'https://github.com/codebase-berkeley/judging-portal', '{"GC: Web", "codebaseAPI"}', 'A1', 1);
--- INSERT INTO projects(name, github, categories, tableName, wave) VALUES ('calhacks', 'https://github.com/codebase-berkeley/', '{"GC: Mobile", "GC: Web", "calhacksAPI"}', 'A2', 2);
--- INSERT INTO projects(name, github, categories, tableName, wave) VALUES ('atlassian', 'https://github.com/codebase-berkeley/', '{"calhacksAPI"}', 'A3', 1);
+INSERT INTO projects(name, github, categories, tableName, wave) VALUES ('mentored', 'https://github.com/codebase-berkeley/judging-portal', '{"GC: Web", "codebaseAPI"}', 'A1', 1);
+INSERT INTO projects(name, github, categories, tableName, wave) VALUES ('calhacks', 'https://github.com/codebase-berkeley/', '{"GC: Mobile", "GC: Web", "calhacksAPI"}', 'A2', 2);
+INSERT INTO projects(name, github, categories, tableName, wave) VALUES ('atlassian', 'https://github.com/codebase-berkeley/', '{"calhacksAPI"}', 'A3', 1);
 
 INSERT INTO apis VALUES ('codebaseAPI');
 INSERT INTO apis VALUES ('calhacksAPI');

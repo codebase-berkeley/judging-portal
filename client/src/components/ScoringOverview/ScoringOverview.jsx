@@ -75,7 +75,7 @@ class ScoringOverview extends Component {
                 </div>
             <ul>
             {this.state.renderedList.map((item, index) => (
-                <Link style={{ textDecoration: 'none', color: '#3B9Bc2' }} to={{
+                <Link style={{ textDecoration: 'none', color: '#0A7191' }} to={{
                     pathname: "/project-info",
                     state: {
                         judgeId: this.state.judgeId,
