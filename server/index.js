@@ -19,7 +19,6 @@ app.post('/api/apis', async (req, res) => {
       apis[i][0]
     ]);
   }
-
   res.json("You successfully posted to apis");
 });
 
@@ -29,6 +28,16 @@ app.get('/api/projects', async (req, res) => {
     res.send(query.rows);
   } catch (error) {
       console.log(error.stack);
+  }
+});
+
+app.get('/api/apis', async (req, res) => {
+  try {
+    const query = await db.query('SELECT * FROM apis;');
+    console.log("apis", query.rows);
+    res.send(query.rows);
+  } catch (error) {
+    console.log(error.stack);
   }
 });
 

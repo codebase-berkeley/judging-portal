@@ -89,14 +89,13 @@ class DataEntry extends Component {
       let results;
       const list = [];
       let length;
-      const apis = [];
+      const apiRaw = [];
       if (this.state.projectsReader != null) {
         results = Papa.parse(this.state.projectsReader.result);
         length = results.data.length;
 
         for (let i = 1; i < length; i += 1) {
           const projectDict = {};
-          const apiDict = {}
           const categories = [];
           for (let n = 0; n < results.data[0].length; n += 1) {
             const key = results.data[0][n];
@@ -108,13 +107,8 @@ class DataEntry extends Component {
               if (value !== 'FALSE') {
                 categories.push(key);
               }
-
-              
-
-              if (key.substring(0, 3) === 'API') {
-                apis.push(['API', key.substring(5)]);
-              } else {
-                apis.push(['GC', key.substring(4)]);
+              if(!apiRaw.includes(key)) {
+                apiRaw.push(key);
               }
             }
           }
@@ -122,6 +116,17 @@ class DataEntry extends Component {
           list[i] = projectDict;
         }
       }
+      
+      let apiFinal = [];
+      for (let i = 0; i < apiRaw.length; i++) {
+        if(apiRaw[i].substring(0, 3) === 'API') {
+          apiFinal.push(['API', apiRaw[i]]);
+        } else {
+          apiFinal.push(['GC', apiRaw[i]]);
+        }
+      }
+      console.log(apiFinal);
+
       const resProjects = fetch('/api/projects', {
         method: 'POST',
         headers: {
@@ -138,7 +143,7 @@ class DataEntry extends Component {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          apis: apis
+          apis: apiFinal
         })
       }).then (r => r.json());
 

@@ -28,6 +28,7 @@ class JudgeInfo extends Component {
   async componentDidMount() {
     try {
       this.getJudgeInfo().then(result => {
+        console.log(result);
         if (result != null) {
           let i;
           let judgeinfo = [];
@@ -36,18 +37,22 @@ class JudgeInfo extends Component {
           }
           this.setState({ info: judgeinfo });
         }
-        });
+        
         this.getAPI().then(result => {
+          console.log(result);
           if (result != null) {
             let i;
             const apis = [];
             for (i = 0; i < result.length; i++) { 
-              if (result[i].api != null) {
-                apis[i] = result[i].api;
+              if(result[i].type != "General Category") {
+                apis[i] = result[i].name;
               }
             }
+            apis.push('General Category');
             this.setState({ options: apis });
+            console.log(apis);
           }
+        });
       });
     } catch (error) {
       console.log(error);
@@ -58,7 +63,7 @@ class JudgeInfo extends Component {
   async getJudgeInfo() {
     try {
       const res = await fetch('/api/judgeinfo');
-      const resJson = JSON.parse(res);
+      const resJson = res.json();
       return resJson;
     } catch (error) {
       console.log(error.stack)
@@ -66,14 +71,16 @@ class JudgeInfo extends Component {
   }
 
   async getAPI() {
-    try {
+    // try {
       const res = await fetch(`/api/apis`);
-      const resJson = JSON.parse(res);
+      console.log(res);
+      const resJson = res.json();
+      console.log("api", resJson);
+      console.log(3);
       return resJson;
-    } catch (error) {
-      console.log(error.stack);
-    }
-    
+    // } catch (error) {
+    //   console.log(error.stack);
+    // }
   }
 
   _onSelect(option) {
