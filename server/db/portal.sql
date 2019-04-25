@@ -36,7 +36,7 @@ CREATE TABLE scores
   category VARCHAR(254),
   score INTEGER
 );
-  
+
 -- INSERT INTO judges(name, API) VALUES ('lawrence', 'API: Codebase');
 -- INSERT INTO judges(name, API) VALUES ('parth', 'General Category');
 -- INSERT INTO judges(name, API) VALUES ('warren', 'API: CalHacks');
