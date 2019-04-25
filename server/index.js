@@ -36,11 +36,11 @@ app.get('/api/home', async (req, res) => {
 app.post('/api/dummy', async (req, res) => {
   const { dummy } = req.body;
   db.query('INSERT INTO judges(name, API, projectId, score) VALUES($1 ,$2, $3, $4)', [
-      dummy,
-      "mentoredAPI",
-      1,
-      -1
-    ]);
+    dummy,
+    "mentoredAPI",
+    1,
+    -1
+  ]);
   res.json("You successfully posted: ".concat(dummy));
 });
 
@@ -63,18 +63,18 @@ app.get('/api/projects', async (req, res) => {
     const query = await db.query('SELECT * FROM projects;');
     res.send(query.rows);
   } catch (error) {
-      console.log(error.stack);
+    console.log(error.stack);
   }
 });
 
 // API endpoint for judge names
 app.get('/api/judgenames', async (req, res) => {
-    try {
-      const query = await db.query('SELECT name FROM judges;');
-      res.send(query.rows);
-    } catch (error) {
-      console.log(error.stack);
-    }
+  try {
+    const query = await db.query('SELECT name FROM judges;');
+    res.send(query.rows);
+  } catch (error) {
+    console.log(error.stack);
+  }
 });
 
 app.get('/api/lists', async (req, res) => {
@@ -88,18 +88,18 @@ app.get('/api/lists', async (req, res) => {
 
 
 app.post('/api/lists', async (req, res) => {
-  const {deleted, added } = req.body;
+  const { deleted, added } = req.body;
   console.log(deleted);
   var i;
   for (i = 0; i < deleted.length; i++) {
     console.log("DELETING: " + deleted[i]);
-    db.query('DELETE FROM lists WHERE type=\'' + deleted[i][0] +'\' AND name=\'' + deleted[i][1]+'\';');
-    console.log('DELETE FROM lists WHERE type=\'' + deleted[i][0] +'\' AND name=\'' + deleted[i][1]+'\';');
+    db.query('DELETE FROM lists WHERE type=\'' + deleted[i][0] + '\' AND name=\'' + deleted[i][1] + '\';');
+    console.log('DELETE FROM lists WHERE type=\'' + deleted[i][0] + '\' AND name=\'' + deleted[i][1] + '\';');
   }
   for (i = 0; i < added.length; i++) {
     console.log("ADDING: " + added[i]);
-    db.query('INSERT INTO lists VALUES(\'' + added[i][0] + '\', \'' + added[i][1] +'\');');
-    console.log('INSERT INTO lists VALUES(\'' + added[i][0] + '\', \'' + added[i][1] +'\');');
+    db.query('INSERT INTO lists VALUES(\'' + added[i][0] + '\', \'' + added[i][1] + '\');');
+    console.log('INSERT INTO lists VALUES(\'' + added[i][0] + '\', \'' + added[i][1] + '\');');
   }
 
   res.json("Database has been updated");
@@ -116,14 +116,14 @@ app.get('/api/data', async (req, res) => {
 })
 
 app.put('/api/data', async (req, res) => {
-  const { tables, max, waves, tablesname, projectsname, csv} = req.body;
+  const { tables, max, waves, tablesname, projectsname, csv } = req.body;
   db.query('UPDATE dataentry SET tables = $1, max = $2, waves = $3, tablesname = $4, projectsname = $5;', [
-      tables,
-      max,
-      waves,
-      tablesname,
-      projectsname
-    ]);
+    tables,
+    max,
+    waves,
+    tablesname,
+    projectsname
+  ]);
   let i;
   for (i = 1; i < csv.length; i++) {
     const project = csv[i];
@@ -164,7 +164,7 @@ app.get('/api/judgeinfo', async (req, res) => {
 
 app.post('/api/judgeinfo', async (req, res) => {
   try {
-    const {info} = req.body;
+    const { info } = req.body;
     if (info.length > 1) {
       db.query('INSERT INTO judges(name, API) VALUES($1, $2)', [
         info[0],
@@ -175,7 +175,7 @@ app.post('/api/judgeinfo', async (req, res) => {
   } catch (error) {
     console.log(error.stack);
   }
-}); 
+});
 
 function getApiMapping(apisJSON, judgeJSON) {
   /**
@@ -188,7 +188,7 @@ function getApiMapping(apisJSON, judgeJSON) {
   var i;
   for (i = 0; i < apisJSON.length; i += 1) {
     const apiName = apisJSON[i]['api'];
-    apiMappings[apiName] = {index: 0, judges: []};
+    apiMappings[apiName] = { index: 0, judges: [] };
   }
   console.log(apiMappings);
 
@@ -198,7 +198,7 @@ function getApiMapping(apisJSON, judgeJSON) {
     console.log(api);
     apiMappings[api].judges = apiMappings[api].judges.concat(judgeJSON[j]['judgeid']);
   }
-  return apiMappings; 
+  return apiMappings;
 }
 
 app.post('/api/assignjudges', async (req, res) => {
@@ -275,7 +275,7 @@ app.post('/api/assignjudges', async (req, res) => {
 
 app.post('/api/deletejudge', async (req, res) => {
   try {
-    const {deleted} = req.body;
+    const { deleted } = req.body;
     if (deleted.length > 1) {
       db.query('DELETE FROM judges WHERE name=\'' + deleted[0] + '\' AND API=\'' + deleted[1] + '\';');
     }
@@ -301,28 +301,26 @@ app.get('/api/winners', async (req, res) => {
     const apis = await db.query('SELECT DISTINCT category FROM scores ORDER BY category;');
     const apisJSON = apis.rows;
     const winnersJSON = {};
-    let i;
-    for (i = 0; i < apisJSON.length; i += 1) {
-      const currCat = apisJSON[i].category;
-      const query = await db.query('SELECT * FROM scores WHERE category = $1 ORDER BY score DESC;', [currCat]);
+    let currCat, query;
+    for (let i = 0; i < apisJSON.length; i += 1) {
+      currCat = apisJSON[i].category;
+      query = await db.query('SELECT * FROM scores WHERE category = $1 ORDER BY score DESC;', [currCat]);
       projects = query.rows;
-      let j;
       winnersJSON[currCat] = [];
-      for (j = 0; j < projects.length; j+= 1) {
-        const currID = projects[j].projectid;
-        const nameQuery = await db.query('SELECT name FROM projects WHERE projectId = $1', [currID]);
-        const name = nameQuery.rows[0].name;
 
-        const currJudgeID = projects[j].judgeid;
-        const judgeNameQuery = await db.query('SELECT name FROM judges WHERE judgeId = $1', [currJudgeID]);
-        const judgeName = judgeNameQuery.rows[0].name;
+      let currID, nameQuery, name, currJudgeID, judgeNameQuery, judgeName;
+      for (let j = 0; j < projects.length; j += 1) {
+        currID = projects[j].projectid;
+        nameQuery = await db.query('SELECT name FROM projects WHERE projectId = $1', [currID]);
+        name = nameQuery.rows[0].name;
 
-        winnersJSON[currCat] = winnersJSON[currCat].concat([{projectname: name , judgename: judgeName, score: projects[j].score}]);
+        currJudgeID = projects[j].judgeid;
+        judgeNameQuery = await db.query('SELECT name FROM judges WHERE judgeId = $1', [currJudgeID]);
+        judgeName = judgeNameQuery.rows[0].name;
+
+        winnersJSON[currCat] = winnersJSON[currCat].concat([{ projectname: name, judgename: judgeName, score: projects[j].score }]);
       }
-      //send back: project name, judge name, score
     }
-    console.log(winnersJSON);
-
     res.send(winnersJSON);
 
   } catch (error) {
