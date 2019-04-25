@@ -34,6 +34,7 @@ class ProjectInfo extends Component{
             judgeId: judgeId,
             projectId: projectId,
             scores: dict
+
         })
     }
 
@@ -128,7 +129,6 @@ class ProjectInfo extends Component{
                     </div>
                 
                 </div>
-        
                 <div className="list">{cmp}</div>
                 <div className="wrapper">
                 <button

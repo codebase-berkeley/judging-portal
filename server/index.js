@@ -127,7 +127,6 @@ app.get('/api/lists', async (req, res) => {
   }
 });
 
-
 app.post('/api/lists', async (req, res) => {
   const {deleted, added } = req.body;
   console.log(deleted);
