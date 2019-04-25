@@ -6,7 +6,6 @@ import backIcon from "./src/back_icon.png";
 import PerCategory from "./PerCategory.jsx";
 import "./ProjectInfo.css";
 
-
 class ProjectInfo extends Component{
     constructor(props) {
         super(props);
@@ -125,24 +124,21 @@ class ProjectInfo extends Component{
                             </div>
                            <p className="actual-info attribute-align-left">{this.props.location.state.tablename}</p>
                         </div>
-
                     </div>
-                
                 </div>
                 <div className="list">{cmp}</div>
                 <div className="wrapper">
-                <button
-                    className="button"
-                    type="submit"
-                    onClick={() => { this.updateScore();}}
-                    >
-                    SUBMIT
-                </button></div>
+                    <button
+                        className="button"
+                        type="submit"
+                        onClick={() => { this.updateScore();}}
+                        >
+                        SUBMIT
+                    </button>
+                </div>
             </div>
-
         );
     }
-
 }
 
 export default ProjectInfo;
