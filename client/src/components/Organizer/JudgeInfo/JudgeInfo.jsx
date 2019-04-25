@@ -22,7 +22,6 @@ class JudgeInfo extends Component {
     this.routeToPrev = this.routeToPrev.bind(this);
     this.routeToNext = this.routeToNext.bind(this);
     this.assignJudges = this.assignJudges.bind(this);
-    this.postJudgeInfo = this.postJudgeInfo.bind(this);
 
   }
 
@@ -37,18 +36,20 @@ class JudgeInfo extends Component {
           }
           this.setState({ info: judgeinfo });
         }
-        });
+        
         this.getAPI().then(result => {
           if (result != null) {
             let i;
             const apis = [];
             for (i = 0; i < result.length; i++) { 
-              if (result[i].api != null) {
-                apis[i] = result[i].api;
+              if(result[i].type != "GC") {
+                apis[i] = result[i].name.substring(5);
               }
             }
+            apis.push('General Category');
             this.setState({ options: apis });
           }
+        });
       });
     } catch (error) {
       console.log(error);
@@ -59,7 +60,7 @@ class JudgeInfo extends Component {
   async getJudgeInfo() {
     try {
       const res = await fetch('/api/judgeinfo');
-      const resJson = JSON.parse(res);
+      const resJson = res.json();
       return resJson;
     } catch (error) {
       console.log(error.stack)
@@ -67,14 +68,9 @@ class JudgeInfo extends Component {
   }
 
   async getAPI() {
-    try {
       const res = await fetch(`/api/apis`);
-      const resJson = JSON.parse(res);
+      const resJson = res.json();
       return resJson;
-    } catch (error) {
-      console.log(error.stack);
-    }
-    
   }
 
   _onSelect(option) {
@@ -138,7 +134,7 @@ class JudgeInfo extends Component {
       }
   }
 
-  async postJudgeInfo() {
+  async postJudge() {
     try {
       const res = await fetch('/api/judgeinfo', {
         method: 'POST',
@@ -154,10 +150,6 @@ class JudgeInfo extends Component {
     } catch (error) {
       console.log("error");
     }
-  }
-
-  postJudge() {
-    this.postJudgeInfo().then(result => console.log(result));
   }
 
   routeToPrev() {

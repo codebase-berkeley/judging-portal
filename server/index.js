@@ -11,6 +11,17 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // ########### DATAENTRY START ###########
+app.post('/api/apis', async (req, res) => {
+  const { apis } = req.body;
+  for (let i = 0; i < apis.length; i ++) {
+    db.query('INSERT INTO apis(name, type) VALUES($1 ,$2)', [
+      apis[i][1],
+      apis[i][0]
+    ]);
+  }
+  res.json("You successfully posted to apis");
+});
+
 app.get('/api/projects', async (req, res) => {
   try {
     const query = await db.query('SELECT * FROM projects;');
@@ -20,6 +31,14 @@ app.get('/api/projects', async (req, res) => {
   }
 });
 
+app.get('/api/apis', async (req, res) => {
+  try {
+    const query = await db.query('SELECT * FROM apis;');
+    res.send(query.rows);
+  } catch (error) {
+    console.log(error.stack);
+  }
+});
 
 app.post('/api/projects', async (req, res) => {
   const { projectCSV } = req.body;
@@ -139,33 +158,6 @@ app.put('/api/scoreupdate/judge/:judgeId/project/:projectId/category/:category',
     category
   ]);
   res.json('Score update successfully');
-});
-
-app.get('/api/lists', async (req, res) => {
-  try {
-    const query = await db.query('SELECT * FROM lists;');
-    res.send(query.rows);
-  } catch (error) {
-    console.log(error.stack)
-  }
-});
-
-app.post('/api/lists', async (req, res) => {
-  const {deleted, added } = req.body;
-  var i;
-  for (i = 0; i < deleted.length; i++) {
-    console.log("DELETING: " + deleted[i]);
-    db.query('DELETE FROM lists WHERE type=\'' + deleted[i][0] + '\' AND name=\'' + deleted[i][1] + '\';');
-    console.log('DELETE FROM lists WHERE type=\'' + deleted[i][0] + '\' AND name=\'' + deleted[i][1] + '\';');
-  }
-  for (i = 0; i < added.length; i++) {
-    console.log("ADDING: " + added[i]);
-    db.query('INSERT INTO lists VALUES(\'' + added[i][0] + '\', \'' + added[i][1] + '\');');
-    console.log('INSERT INTO lists VALUES(\'' + added[i][0] + '\', \'' + added[i][1] + '\');');
-  }
-
-  res.json("Database has been updated");
-
 });
 
 // ########### DATAENTRY END ###########
