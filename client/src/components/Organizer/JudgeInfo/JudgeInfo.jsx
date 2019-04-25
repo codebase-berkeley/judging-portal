@@ -43,7 +43,7 @@ class JudgeInfo extends Component {
             const apis = [];
             for (i = 0; i < result.length; i++) { 
               if(result[i].type != "GC") {
-                apis[i] = result[i].name.substring(5);
+                apis[i] = result[i].name;
               }
             }
             apis.push('General Category');
