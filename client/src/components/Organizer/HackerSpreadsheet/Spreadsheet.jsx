@@ -20,7 +20,7 @@ class Spreadsheet extends Component {
     }
 
     async getProjectInfo() {
-        const res = await fetch('/api/project_tables_waves');
+        const res = await fetch('/api/project-tables-waves');
         const resJson = res.json(); 
         return resJson;
     }
