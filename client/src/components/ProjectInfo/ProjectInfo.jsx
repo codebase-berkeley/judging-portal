@@ -37,12 +37,6 @@ class ProjectInfo extends Component{
         })
     }
 
-    async updateScore() {
-        for (const key in this.state.scores) {
-            this.putScore(key);
-        }
-    };
-
     async putScore(category) {
         const judgeId = this.state.judgeId;
         const projectId = this.state.projectId;
@@ -66,6 +60,13 @@ class ProjectInfo extends Component{
             scores: dict
         });
     }
+
+    async updateScore() {
+        for (const key in this.state.scores) {
+            await this.putScore(key);
+        }
+        this.routeToPrev();
+    };
 
     async routeToPrev() {
         this.props.history.push({
@@ -140,7 +141,7 @@ class ProjectInfo extends Component{
                     <button
                         className="button"
                         type="submit"
-                        onClick={() => { this.updateScore();}}
+                        onClick={() => { this.updateScore(); }}
                         >
                         SUBMIT
                     </button>
