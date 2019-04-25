@@ -12,13 +12,6 @@ app.use(bodyParser.json());
 
 // ########### DATAENTRY START ###########
 
-/**
- * @api {post} /api/apis add judging category to apis table
- * @apiName PostApi
- * @apiGroup Api
- *
- * @apiParam {apis} list of judging categories to add
- */
 app.post('/api/apis', async (req, res) => {
   const { apis } = req.body;
   for (let i = 0; i < apis.length; i ++) {

@@ -1,0 +1,10 @@
+{
+  "name": "judging-portal",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node index.js",
+    "heroku-postbuild": "cd client && npm install && npm run build"
+  },
+  "author": "Lawrence Jiang, Parth Shah, Andrew Kou, Francesca Song, Julia Wang, Mulan Zhao, Rachel Lau, Warren Wang",
+  "license": "ISC"
+}
