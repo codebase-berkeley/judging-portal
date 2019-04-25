@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Muli:regular,bold,light&subset=latin,latin-ext');
+@import url('https://fonts.googleapis.com/css?family=Overpass');
 
 .home {
     font-family: 'Overpass', sans-serif;
@@ -22,7 +22,6 @@
 }
 
 .route-button {
-    font-family: 'Muli';
     font-weight: bold;
     display: inline-block;
     align-content: center;

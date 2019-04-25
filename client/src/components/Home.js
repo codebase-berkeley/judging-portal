@@ -26,8 +26,8 @@ class Home extends Component {
           <h1>Hi There!</h1>
           <p>I am:</p>
           <div className="route-button">
-            <button className="h-button" onClick={this.routeToOrganizer}>AN ORGANIZER</button>
             <button className="h-button" onClick={this.routeToJudge}>A JUDGE</button>
+            <button className="h-button" onClick={this.routeToOrganizer}>AN ORGANIZER</button>
           </div>
         </div>
       </div>
