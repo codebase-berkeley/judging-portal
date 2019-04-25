@@ -1,10 +1,29 @@
 {
   "name": "judging-portal",
   "version": "1.0.0",
+  "engines": {
+    "node": "10.13.0",
+    "npm": "6.4.1"
+  },
   "scripts": {
-    "start": "node ./client/src/index.js",
-    "heroku-postbuild": "cd server && npm install && cd ../client && npm install && npm run build"
+    "postinstall":
+      "npm --prefix client install && npm --prefix server install",
+    "start:dev":
+      "concurrently 'npm run --prefix client start' 'npm run --prefix server start'",
+    "heroku-postbuild": "npm run --prefix client build",
+    "start": "cd server && node index.js"
   },
   "author": "Lawrence Jiang, Parth Shah, Andrew Kou, Francesca Song, Julia Wang, Mulan Zhao, Rachel Lau, Warren Wang",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^4.1.0"
+  },
+  "devDependencies": {
+    "concurrently": "^4.1.0"
+  },
+  "cacheDirectories": [
+    "node_modules",
+    "react-ui/node_modules",
+    "server/node_modules"
+  ]
 }
