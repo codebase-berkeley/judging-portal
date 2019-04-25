@@ -27,36 +27,54 @@ class JudgeInfo extends Component {
   }
 
   async componentDidMount() {
-    this.getJudgeInfo().then(result => {
-      let i;
-      const judgeinfo = [];
-      for (i = 0; i < result.length; i+=1) { 
-        judgeinfo[i] = [result[i].name, result[i].api];
-      }
-      this.setState({ info: judgeinfo });
-    });
-    this.getAPI().then(result => {
-      let i;
-      const apis = [];
-      for (i = 0; i < result.length; i+=1) { 
-        if (result[i].api != null) {
-          apis[i] = result[i].api;
+    try {
+      this.getJudgeInfo().then(result => {
+        if (result != null) {
+          let i;
+          let judgeinfo = [];
+          for (i = 0; i < result.length; i++) { 
+            judgeinfo[i] = [result[i].name, result[i].api];
+          }
+          this.setState({ info: judgeinfo });
         }
-      }
-      this.setState({ options: apis });
-    });
+        });
+        this.getAPI().then(result => {
+          if (result != null) {
+            let i;
+            const apis = [];
+            for (i = 0; i < result.length; i++) { 
+              if (result[i].api != null) {
+                apis[i] = result[i].api;
+              }
+            }
+            this.setState({ options: apis });
+          }
+      });
+    } catch (error) {
+      console.log(error);
+    }
+    
   }
 
   async getJudgeInfo() {
-    const res = await fetch('/api/judgeinfo');
-    const resJson = res.json();
-    return resJson
+    try {
+      const res = await fetch('/api/judgeinfo');
+      const resJson = JSON.parse(res);
+      return resJson;
+    } catch (error) {
+      console.log(error.stack)
+    }
   }
 
   async getAPI() {
-    const res = await fetch(`/api/apis`);
-    const resJson = res.json();
-    return resJson
+    try {
+      const res = await fetch(`/api/apis`);
+      const resJson = JSON.parse(res);
+      return resJson;
+    } catch (error) {
+      console.log(error.stack);
+    }
+    
   }
 
   _onSelect(option) {

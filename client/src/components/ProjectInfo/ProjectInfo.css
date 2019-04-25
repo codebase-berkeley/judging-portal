@@ -8,12 +8,23 @@
     height: 100%;
     width: 100%;
     text-align: left;
-
 }
+
+.submit {
+    display: flex;
+    height: auto;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 2vh 2vh;
+}
+
 .attribute-item {
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
     height: 33%;
-    width:100%;
+    width: 100%;
     padding: 2%;
 }
 
@@ -24,11 +35,10 @@
 }
 
 .projHeader {
-    font-size: 2.5vh;
-    text-align: left;
-    position: relative; 
-    left: 0%;
-    top: 0%;
+    display: inline-block;
+    margin-right: 1rem;
+    padding-top: 1.8rem;
+    align-self: flex-end;
 }
 
 .projTitle{
@@ -37,23 +47,26 @@
 }
 .projID {
     color: #8AC9E1;
-    font-size: 150%;
-
+    font-size: 1.7rem;
+    width: auto;
 }
+
 .projDetails {
     position: relative; 
     top: 4%;
+    width: 100%;
     left: 0%;
 }
 
 .projInfo {
     position: relative;
-    padding-top: 10vh;
-    width:auto;
-    height:70%;
-    padding-left: 10vh;
-
-}
+    margin-top: 4vh;
+    text-align: center;
+    width: auto;
+    height: auto;
+    padding-top: 3vh;
+    padding-left: 3.5rem;
+} 
 
 .detail-header {
     font-weight: bold;
@@ -74,9 +87,9 @@
 }
 
 .actual-info {
-    position: relative; 
-    margin: 0%;
-    left: 14%;
+    position: relative;
+    text-align: left;
+    margin: auto;
     font-size: 3vh;
 }
 
@@ -93,6 +106,7 @@
     position: relative;
     display: flex;
     align-items: center;
+    width: 30vw;
 }
 
 ::placeholder {
@@ -100,15 +114,41 @@
     color: #3b9bc2
 }
 
+.category-list {
+    font-size: 2vh;
+}
+
+.list {
+    height: auto;
+    margin-top: 3vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-content: center;
+    text-align: center;
+}
+
+.wrapper {
+    margin-top: 4vh;
+    position: relative;
+    text-align: center;
+}
+
+.button {
+    display: inline-block;
+}
+
 .backButton {
     position: relative;
+    display: inline-block;
     top: 3vh;
     left: 3vh;
     width: 12vw;
     height: 12vw;
     border:none;
-    background-color:transperant;
+    background-color: transparent;
     outline:none;
-
+    align-self: flex-start;
     cursor:'pointer';
 }
