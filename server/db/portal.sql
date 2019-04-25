@@ -48,15 +48,6 @@ INSERT INTO apis VALUES ('codebaseAPI');
 INSERT INTO apis VALUES ('calhacksAPI');
 INSERT INTO apis VALUES ('GC');
 
-<<<<<<< HEAD
--- INSERT INTO scores VALUES (2, 1, 'GC: Web', NULL);
--- INSERT INTO scores VALUES (1, 1, 'codebaseAPI', NULL);
--- INSERT INTO scores VALUES (2, 2, 'GC: Web', NULL);
--- INSERT INTO scores VALUES (2, 2, 'GC: Mobile', NULL);
--- INSERT INTO scores VALUES (3, 2, 'calhacksAPI', NULL);
--- INSERT INTO scores VALUES (2, 3, 'GC: Education', NULL);
--- INSERT INTO scores VALUES (3, 3, 'calhacksAPI', NULL);
-=======
 INSERT INTO scores VALUES (2, 1, 'GC: Web', NULL);
 INSERT INTO scores VALUES (1, 1, 'codebaseAPI', NULL);
 INSERT INTO scores VALUES (2, 2, 'GC: Web', NULL);
@@ -65,7 +56,6 @@ INSERT INTO scores VALUES (3, 2, 'calhacksAPI', NULL);
 INSERT INTO scores VALUES (2, 3, 'GC: Education', NULL);
 INSERT INTO scores VALUES (3, 3, 'calhacksAPI', 5);
 INSERT INTO scores VALUES (1, 1, 'calhacksAPI', 2);
->>>>>>> 4ae2f542bf0f2eb5af7b792c983b809573e3a498
 
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO root;
 

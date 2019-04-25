@@ -18,17 +18,17 @@ class APICategory extends Component {
       const unscored = [];
       const scored = [];
 
-      if (unscoreddata.length > 1) {
+      if (unscoreddata.length > 0) {
         let currentProj;
-        for (let i = 1; i < unscoreddata.length; i+=1) {
+        for (let i = 0; i < unscoreddata.length; i+=1) {
           currentProj = unscoreddata[i]
           unscored.push(<CategoryItem name={currentProj[0]} score={null}/>);
         }
       }
 
-      if (scoreddata.length > 1) {
+      if (scoreddata.length > 0) {
         let currentProj;
-        for (let i = 1; i < scoreddata.length; i+=1) {
+        for (let i = 0; i < scoreddata.length; i+=1) {
           currentProj = scoreddata[i]
           scored.push(<CategoryItem name={currentProj[0]} score={currentProj[2]} />);
         }

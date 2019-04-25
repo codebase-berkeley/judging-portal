@@ -19,10 +19,10 @@ class ProjectBreakdown extends Component {
         const keys = [];
         const categories = await this.getCategories();
         for (let i = 0; i < categories.length; i += 1) {
-            const category = categories[i];
+            const category = categories[i].category;
             projectsJson[category] = {
-                scored: [[]],
-                unscored: [[]]
+                scored: [],
+                unscored: []
             }
         }
 
@@ -59,18 +59,9 @@ class ProjectBreakdown extends Component {
     }
 
     async getCategories() {
-        const categoryList = [];
-
-        const projects = await this.getProjects();
-        for (let i = 0; i < projects.length; i += 1) {
-            const categories = projects[i].categories;
-            for (let k = 0; k < projects.length; k += 1) {
-                if (categories[k] && categoryList.indexOf(categories[k]) === -1) {
-                    categoryList.push(categories[k]);
-                }
-            }
-        }
-        return categoryList;
+        const res = await fetch('/api/categories');
+        const resJson = res.json();
+        return resJson
     }
 
     async getScores(projectID) {
