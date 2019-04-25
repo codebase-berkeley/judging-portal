@@ -21,7 +21,7 @@ class ScoringOverview extends Component {
     }
 
     async componentDidMount() {
-        const res = await fetch('/api/projects/' + this.props.location.state.judgeId + '/');
+        const res = await fetch('/api/toscore/judge/' + this.props.location.state.judgeId);
         const resJson = await res.json();
         this.setState({
             judgeId: this.props.location.state.judgeId
@@ -79,13 +79,16 @@ class ScoringOverview extends Component {
                     pathname: "/project-info",
                     state: {
                         judgeId: this.state.judgeId,
-                        team: item.name,
+                        name: item.name,
                         projectId: item.projectid,
+                        url: item.github,
                         api: item.categories,
-                        score: item.score
+                        tablename: item.tablename,
+                        wave: item.wave,
+                        score: item.score,
                     }
                 }}>
-                    <Project key={index} name={item.name} identification={item.projectId} score={item.score}/>
+                    <Project key={index} name={item.name} identification={item.projectid}/>
                 </Link>
             ))}
             </ul>
