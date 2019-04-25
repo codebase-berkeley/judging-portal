@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import '../OrganizerPortal.css';
 import APICategory from './APICategory';
 
-
 class ProjectBreakdown extends Component {
     constructor(props) {
         super(props);
@@ -96,8 +95,6 @@ class ProjectBreakdown extends Component {
       }
 
     routeToNext() {
-
-
     }
 
     render() {
@@ -118,7 +115,6 @@ class ProjectBreakdown extends Component {
                     <button type="button" className="button" onClick={this.routeToPrev}>PREV</button>
                     <button type="button" className="button" onClick={this.routeToNext}>NEXT</button>
                 </div>
-
               </div>
           </div>
         );

@@ -369,7 +369,7 @@ ul {
     display: block;
     margin-bottom: 10px;
     background-color: #F9F9F9;
-    height: 25vh;
+    height: 30vh;
 }
 
 .api-header {
@@ -389,16 +389,20 @@ ul {
 .scored-section {
     width: 50%;
     text-align: center;
+    height: 75%;
 }
 
 .unscored-section {
     width: 50%;
+    height: 75%;
 }
 
 .content-breakdown {
     text-align: center;
     display: flex;
     flex-direction: row;
+    height: 75%;
+    overflow: auto;
 }
 
 .breakdown-list {
@@ -477,6 +481,11 @@ ul {
 .scoring-header {
     display: inline-block;
     width: 50%;
+}
+
+.scoring-list {
+    height: 80%;
+    overflow: auto;
 }
 
 .dropdown-button {

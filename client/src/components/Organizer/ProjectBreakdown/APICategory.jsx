@@ -54,13 +54,17 @@ class APICategory extends Component {
                           <div className="project-list-name">NAME</div>
                           <div className="project-list-score">SCORE</div>
                       </div>
-                      {scored}
+                      <div className="scoring-list"> 
+                        {scored}
+                      </div>
                   </div>
                   <div className = "unscored-section">
                       <div className="project-list">
                           <div className="project-list-name-unscored">NAME</div>
                       </div>
-                      {unscored}
+                      <div className="scoring-list"> 
+                        {unscored}
+                      </div>
                   </div>
               </div>
           </div>
