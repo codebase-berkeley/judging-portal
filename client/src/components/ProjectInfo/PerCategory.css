@@ -31,7 +31,7 @@
     font-size: 45px;
 }
 
-::placeholder {
+input[type="score"]::placeholder {
     font-size: 60px;
     color: #0A7191;
 }

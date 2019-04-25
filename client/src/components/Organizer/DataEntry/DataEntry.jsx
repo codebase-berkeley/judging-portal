@@ -119,7 +119,6 @@ class DataEntry extends Component {
         }
       }
 
-      const res = fetch('/api/projects', {
       let apiFinal = [];
       for (let i = 0; i < apiRaw.length; i++) {
         if(apiRaw[i].substring(0, 3) === 'API') {
