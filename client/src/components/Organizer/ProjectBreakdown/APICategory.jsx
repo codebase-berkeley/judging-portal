@@ -36,10 +36,13 @@ class APICategory extends Component {
 
         return (
           <div className="api-info">
+              <div className="api-header">
               <div className="api-name">{this.props.api}</div>
               <button type="button" className="dropdown-button">
                   <div className="dropdown-button-shape"></div>
               </button>
+              </div>
+
               <div className="headers">
                   <header className="scoring-header">SCORED</header>
                   <header className="scoring-header">UNSCORED</header>

@@ -372,6 +372,10 @@ ul {
     height: 25vh;
 }
 
+.api-header {
+    background-color: #98D0EC;
+}
+
 .api-name {
     text-align: left;
     color: #0A7191;
@@ -476,10 +480,11 @@ ul {
 }
 
 .dropdown-button {
-    margin-top: 5px;
+    margin-top: 15px;
+    margin-right: 5px;
     font-family: 'Overpass', sans-serif;
     color: #0A7191;
-    background-color: #F9F9F9;
+    background-color: #98D0EC;
     border: none;
     float: right;
     cursor: pointer;
