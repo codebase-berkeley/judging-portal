@@ -42,7 +42,7 @@ class JudgeInfo extends Component {
             let i;
             const apis = [];
             for (i = 0; i < result.length; i++) { 
-              if(result[i].type != "GC") {
+              if(result[i].type !== "GC") {
                 apis[i] = result[i].name;
               }
             }
@@ -159,7 +159,7 @@ class JudgeInfo extends Component {
 
   async assignJudges() {
     try {
-      const res = await fetch('/api/assignjudges', {
+      await fetch('/api/assignjudges', {
         method: 'POST',
       });
       return;
@@ -179,7 +179,7 @@ class JudgeInfo extends Component {
 
   render() {
     const defaultOption = this.state.selected;
-    const info = (this.state.info||[]).map((name,index)=>(
+    const info = (this.state.info||[]).map((name,index) => (
       <ul className="judge-item">
         <div className="delete-button">
           <button name="removeTask" type="submit" className="delete-button" onClick={event=>this.handleClickIndex(index,event)}>

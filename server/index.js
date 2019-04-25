@@ -11,6 +11,14 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // ########### DATAENTRY START ###########
+
+/**
+ * @api {post} /api/apis add judging category to apis table
+ * @apiName PostApi
+ * @apiGroup Api
+ *
+ * @apiParam {apis} list of judging categories to add
+ */
 app.post('/api/apis', async (req, res) => {
   const { apis } = req.body;
   for (let i = 0; i < apis.length; i ++) {
@@ -164,16 +172,6 @@ app.put('/api/scoreupdate/judge/:judgeId/project/:projectId/category/:category',
 
 // ########### DATAENTRY END ###########
 
-
-app.get('/api/apis', async (req, res) => {
-  try {
-    const query = await db.query('SELECT * FROM apis;');
-    res.send(query.rows);
-  } catch (error) {
-    console.log(error.stack)
-  }
-});
-
 // ########### JUDGEINFO START ###########
 app.get('/api/judgeinfo', async (req, res) => {
   try {
@@ -218,7 +216,6 @@ function getApiMapping(apisJSON, judgeJSON) {
   var j;
   for (j = 0; j < judgeJSON.length; j += 1) {
     const api = judgeJSON[j]['api'];
-    console.log("api", api);
     apiMappings[api].judges = apiMappings[api].judges.concat(judgeJSON[j].judgeid);
   }
   return apiMappings; 

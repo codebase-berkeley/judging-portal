@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import teamIcon from "./src/team_icon.png";
 import apiIcon from "./src/API_icon.png";
 import tableIcon from "./src/table_icon.png";
-import backIcon from "./src/back_icon.png";
 import PerCategory from "./PerCategory.jsx";
 import "./ProjectInfo.css";
 
@@ -109,7 +108,7 @@ class ProjectInfo extends Component{
                         <div className = "proj-details">
                             <div className = "attribute-item">
                                 <div className="head-and-icon">
-                                    <img className="projinfo-icon" src ={teamIcon}></img>
+                                    <img className="projinfo-icon" src={teamIcon}></img>
                                     <h className="detail-header">Team</h>
                                 </div>
                                 <p className="actual-info">{this.props.location.state.name}</p>
@@ -117,17 +116,17 @@ class ProjectInfo extends Component{
 
                             <div className = "attribute-item">
                                 <div className="head-and-icon">
-                                    <img className="projinfo-icon" src ={apiIcon}></img>
+                                    <img className="projinfo-icon" src={apiIcon}></img>
                                     <h className="detail-header">API</h>
                                 </div>
                                 <p className="actual-info">{cat}</p>
                             </div>
 
-                            <br />
+                            <br/>
 
                             <div className = "attribute-item">
                                 <div className="head-and-icon">
-                                    <img className="projinfo-icon" src ={tableIcon}></img>
+                                    <img className="projinfo-icon" src={tableIcon}></img>
                                     <h className="detail-header">Table</h>
                                 </div>
                                <p className="actual-info">{this.props.location.state.tablename}</p>
