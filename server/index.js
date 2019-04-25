@@ -11,6 +11,18 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // ########### DATAENTRY START ###########
+app.post('/api/apis', async (req, res) => {
+  const { apis } = req.body;
+  for (let i = 0; i < apis.length; i ++) {
+    db.query('INSERT INTO apis(name, type) VALUES($1 ,$2)', [
+      apis[i][1],
+      apis[i][0]
+    ]);
+  }
+
+  res.json("You successfully posted to apis");
+});
+
 app.get('/api/projects', async (req, res) => {
   try {
     const query = await db.query('SELECT * FROM projects;');
@@ -42,7 +54,6 @@ app.put('/api/projects', async (req, res) => {
     //wave assignment
     let w = 1;
     for (let id = 1; id <= projectNum; id++) {
-      console.log(id)
       db.query('UPDATE projects SET wave = $1 WHERE projectId = $2;', [
         w,
         id

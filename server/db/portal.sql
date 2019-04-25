@@ -25,7 +25,8 @@ CREATE TABLE projects
 
 CREATE TABLE apis
 (
-  API VARCHAR(254)
+  name VARCHAR(254),
+  type VARCHAR(254)
 );
 
 CREATE TABLE scores
@@ -44,9 +45,10 @@ INSERT INTO judges(name, API) VALUES ('calhacks', 'calhacksAPI');
 -- INSERT INTO projects(name, github, categories, tableName, wave) VALUES ('calhacks', 'https://github.com/codebase-berkeley/', '{"GC: Mobile", "GC: Web", "calhacksAPI"}', 'A2', 2);
 -- INSERT INTO projects(name, github, categories, tableName, wave) VALUES ('atlassian', 'https://github.com/codebase-berkeley/', '{"calhacksAPI"}', 'A3', 1);
 
-INSERT INTO apis VALUES ('codebaseAPI');
-INSERT INTO apis VALUES ('calhacksAPI');
-INSERT INTO apis VALUES ('GC');
+-- INSERT INTO apis VALUES ('codebase', 'API');
+-- INSERT INTO apis VALUES ('calhacks', 'API');
+-- INSERT INTO apis VALUES ('Best Mobile', 'General Category');
+-- INSERT INTO apis VALUES ('Best Web', 'General Category');
 
 INSERT INTO scores VALUES (2, 1, 'GC: Web', NULL);
 INSERT INTO scores VALUES (1, 1, 'codebaseAPI', NULL);
