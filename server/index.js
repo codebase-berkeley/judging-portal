@@ -68,6 +68,15 @@ app.put('/api/projects', async (req, res) => {
   }
 });
 
+app.get('/api/project-tables-waves', async(req, res) => {
+  try {
+    const query = await db.query('SELECT name, wave, tableName FROM projects;');
+    res.send(query.rows);
+  } catch(error) {
+    console.log(error.stack);
+  }
+})
+
 // API endpoint for judge names for Judge Login
 app.get('/api/judgenames', async (req, res) => {
     try {
