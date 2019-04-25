@@ -20,17 +20,6 @@ app.get('/api/projects', async (req, res) => {
   }
 });
 
-// app.put('/api/projects/:projectId', async (req, res) => {
-//   const { projectId } = req.params;
-//   const { tableName, wave } = req.body;
-//   db.query('UPDATE projects SET wave = $1 and tableName = $2 WHERE projectId = $3;', [
-//     wave,
-//     tableName,
-//     projectId
-//   ]);
-//   res.json('Score update successfully');
-// });
-
 app.post('/api/projects', async (req, res) => {
   const { projectCSV } = req.body;
   for (let i = 1; i < projectCSV.length; i++) {
@@ -46,50 +35,40 @@ app.post('/api/projects', async (req, res) => {
 });
 
 app.put('/api/projects', async (req, res) => {
-  const { numProjects, waveNum, tableNum, tablesCSV } = req.body;
-
-  //wave assignment
-  let w = 1;
-  for (let id = 1; id <= numProjects; id++) {
-    db.query('UPDATE projects SET wave = $1 WHERE projectId = $2;', [
-      w,
-      id
-    ]);
-    w++;
-    if (w > waveNum) {
-      w = 1;
+  const { projectNum, waveNum, tableNum, tablesCSV } = req.body;
+  if (tableNum * tablesCSV.length * waveNum < projectNum) {
+    console.log("error: not enough capacity");
+  } else {
+    //wave assignment
+    let w = 1;
+    for (let id = 1; id <= projectNum; id++) {
+      console.log(id)
+      db.query('UPDATE projects SET wave = $1 WHERE projectId = $2;', [
+        w,
+        id
+      ]);
+      w++;
+      if (w > waveNum) {
+        w = 1;
+      }
     }
   }
-
-  //table assignment -- this is just based on table num
-  // let t = 0;
-  // let count = 1;
-  // for (let i = 1; i < numProjects; i++) {
-  //   db.query('UPDATE projects SET tableName = $1 WHERE projectId = $2;', [
-  //     tablesCSV[t][0],
-  //     i
-  //   ]);
-  //   count++;
-  //   if (count > tableNum) {
-  //     count = 1;
-  //     t++;
-  //   }
-      
-  //table assignment -- this is just based the asusmption that given a list of 
-  //tables the projects should spread evenly amoung the tables
-  let t = 0;
-  for (let i = 1; i < numProjects; i++) {
-    db.query('UPDATE projects SET tableName = $1 WHERE projectId = $2;', [
-      tablesCSV[t][0],
-      i
-    ]);
-    t++;
-    if (t === tablesCSV.length) {
-      t = 0;
+        
+    //table assignment -- this is just based the asusmption that given a list of 
+    //tables the projects should spread evenly amoung the tables
+    let t = 0;
+    for (let i = 1; i < projectNum; i++) {
+      db.query('UPDATE projects SET tableName = $1 WHERE projectId = $2;', [
+        tablesCSV[t][0],
+        i
+      ]);
+      t++;
+      if (t === tablesCSV.length) {
+        t = 0;
+      }
     }
-  }
 
-  res.json("You successfully posted to projects");
+    res.json("You successfully posted to projects");
 });
 // ########### DATAENTRY END ###########
 
