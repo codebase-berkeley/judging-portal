@@ -146,8 +146,6 @@ class DataEntry extends Component {
         })
       }).then (r => r.json());
 
-      console.log(resProjects);
-      console.log(resAPIs);
       return length;
   }
 
@@ -212,7 +210,6 @@ class DataEntry extends Component {
         tablesCSV: list
       })
     }).then(r => r.json());
-    console.log(res);
     return tableLength;
   }
 

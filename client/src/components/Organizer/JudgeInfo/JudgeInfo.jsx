@@ -22,7 +22,6 @@ class JudgeInfo extends Component {
     this.routeToPrev = this.routeToPrev.bind(this);
     this.routeToNext = this.routeToNext.bind(this);
     this.assignJudges = this.assignJudges.bind(this);
-    this.postJudgeInfo = this.postJudgeInfo.bind(this);
 
   }
 
@@ -135,7 +134,7 @@ class JudgeInfo extends Component {
       }
   }
 
-  async postJudgeInfo() {
+  async postJudge() {
     try {
       const res = await fetch('/api/judgeinfo', {
         method: 'POST',
@@ -151,10 +150,6 @@ class JudgeInfo extends Component {
     } catch (error) {
       console.log("error");
     }
-  }
-
-  postJudge() {
-    this.postJudgeInfo().then(result => console.log(result));
   }
 
   routeToPrev() {
