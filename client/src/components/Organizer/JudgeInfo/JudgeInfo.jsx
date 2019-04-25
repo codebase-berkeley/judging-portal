@@ -173,7 +173,7 @@ class JudgeInfo extends Component {
       this.assignJudges();
     }
 
-    const path = "/project-breakdown";
+    const path = "/hacker-spreadsheet";
     this.props.history.push(path);
   }
 

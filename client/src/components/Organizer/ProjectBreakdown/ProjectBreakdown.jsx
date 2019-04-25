@@ -91,13 +91,13 @@ class ProjectBreakdown extends Component {
     }
 
     routeToPrev() {
-        const path = "/judge-info";
+        const path = "/hacker-spreadsheet";
         this.props.history.push(path);
       }
 
     routeToNext() {
-        const path = "/hacker-spreadsheet";
-        this.props.history.push(path);
+
+
     }
 
     render() {
