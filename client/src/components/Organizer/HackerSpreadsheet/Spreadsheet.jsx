@@ -13,20 +13,31 @@ class Spreadsheet extends Component {
 
     async componentDidMount() { 
         this.getProjectInfo().then(result => {
-            const projs = []; 
-            for (let i = 0; i < result.length; i++) {
-                projs[i] = [result[i].name, result[i].wave, result[i].tablename];
-            }
             this.setState({
-                projects: projs
+                projects: result.sort(this.compareWaveFunct)
             })
         });
     }
 
     async getProjectInfo() {
-        const res = await fetch('/api/projects');
+        const res = await fetch('/api/project-tables-waves');
         const resJson = res.json(); 
         return resJson;
+    }
+
+    compareWaveFunct(project1, project2) {
+        if (project1.wave < project2.wave) {
+            return -1; 
+        } else if (project1.wave > project2.wave) {
+            return 1;
+        } else {
+            if (project1.tablename > project2.tablename) {
+                return 1;
+            }
+            else {
+                return -1;
+            }
+        }
     }
 
     routeToPrev() {
@@ -38,9 +49,9 @@ class Spreadsheet extends Component {
         const projectEntries = (this.state.projects || []).map((item) => (
             <ul className="spread-entry">
                 <SpreadEntry 
-                name = {item[0]}
-                wave = {item[1]}
-                table = {item[2]}
+                name = {item.name}
+                wave = {item.wave}
+                table = {item.tablename}
                 />
             </ul>
 

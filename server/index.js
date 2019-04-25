@@ -20,6 +20,7 @@ app.get('/api/projects', async (req, res) => {
   }
 });
 
+
 app.post('/api/projects', async (req, res) => {
   const { projectCSV } = req.body;
   for (let i = 1; i < projectCSV.length; i++) {
@@ -30,7 +31,6 @@ app.post('/api/projects', async (req, res) => {
       project['Categories']
     ]);
   }
-
   res.json("You successfully posted to projects");
 });
 
@@ -67,6 +67,15 @@ app.put('/api/projects', async (req, res) => {
     }
   }
 });
+
+app.get('/api/project-tables-waves', async(req, res) => {
+  try {
+    const query = await db.query('SELECT name, wave, tableName FROM projects;');
+    res.send(query.rows);
+  } catch(error) {
+    console.log(error.stack);
+  }
+})
 
 // API endpoint for judge names for Judge Login
 app.get('/api/judgenames', async (req, res) => {
@@ -146,30 +155,21 @@ app.post('/api/lists', async (req, res) => {
   var i;
   for (i = 0; i < deleted.length; i++) {
     console.log("DELETING: " + deleted[i]);
-    db.query('DELETE FROM lists WHERE type=\'' + deleted[i][0] +'\' AND name=\'' + deleted[i][1]+'\';');
-    console.log('DELETE FROM lists WHERE type=\'' + deleted[i][0] +'\' AND name=\'' + deleted[i][1]+'\';');
+    db.query('DELETE FROM lists WHERE type=\'' + deleted[i][0] + '\' AND name=\'' + deleted[i][1] + '\';');
+    console.log('DELETE FROM lists WHERE type=\'' + deleted[i][0] + '\' AND name=\'' + deleted[i][1] + '\';');
   }
   for (i = 0; i < added.length; i++) {
     console.log("ADDING: " + added[i]);
-    db.query('INSERT INTO lists VALUES(\'' + added[i][0] + '\', \'' + added[i][1] +'\');');
-    console.log('INSERT INTO lists VALUES(\'' + added[i][0] + '\', \'' + added[i][1] +'\');');
+    db.query('INSERT INTO lists VALUES(\'' + added[i][0] + '\', \'' + added[i][1] + '\');');
+    console.log('INSERT INTO lists VALUES(\'' + added[i][0] + '\', \'' + added[i][1] + '\');');
   }
 
   res.json("Database has been updated");
 
 });
 
-app.get('/api/data', async (req, res) => {
-  try {
-    const query = await db.query('SELECT * FROM dataentry;');
-    res.send(query.rows);
-  } catch (error) {
-    console.log(error.stack);
-  }
-
-  res.json("You successfully posted to projects");
-});
 // ########### DATAENTRY END ###########
+
 
 app.get('/api/apis', async (req, res) => {
   try {
@@ -192,7 +192,7 @@ app.get('/api/judgeinfo', async (req, res) => {
 
 app.post('/api/judgeinfo', async (req, res) => {
   try {
-    const {info} = req.body;
+    const { info } = req.body;
     if (info.length > 1) {
       db.query('INSERT INTO judges(name, API) VALUES($1, $2)', [
         info[0],
@@ -203,7 +203,7 @@ app.post('/api/judgeinfo', async (req, res) => {
   } catch (error) {
     console.log(error.stack);
   }
-}); 
+});
 
 function getApiMapping(apisJSON, judgeJSON) {
   /**
@@ -216,7 +216,7 @@ function getApiMapping(apisJSON, judgeJSON) {
   var i;
   for (i = 0; i < apisJSON.length; i += 1) {
     const apiName = apisJSON[i]['api'];
-    apiMappings[apiName] = {index: 0, judges: []};
+    apiMappings[apiName] = { index: 0, judges: [] };
   }
 
   res.json("You successfully posted: ".concat(info));
@@ -314,7 +314,7 @@ app.post('/api/assignjudges', async (req, res) => {
 
 app.post('/api/deletejudge', async (req, res) => {
   try {
-    const {deleted} = req.body;
+    const { deleted } = req.body;
     if (deleted.length > 1) {
       db.query('DELETE FROM judges WHERE name=\'' + deleted[0] + '\' AND API=\'' + deleted[1] + '\';');
     }
@@ -324,6 +324,48 @@ app.post('/api/deletejudge', async (req, res) => {
   }
 
 })
+
+app.get('/api/scores', async (req, res) => {
+  try {
+    const query = await db.query('SELECT * FROM scores;');
+    res.send(query.rows);
+  } catch (error) {
+    console.log(error.stack);
+  }
+});
+
+
+app.get('/api/winners', async (req, res) => {
+  try {
+    const apis = await db.query('SELECT DISTINCT category FROM scores ORDER BY category;');
+    const apisJSON = apis.rows;
+    const winnersJSON = {};
+    let currCat, query;
+    for (let i = 0; i < apisJSON.length; i += 1) {
+      currCat = apisJSON[i].category;
+      query = await db.query('SELECT * FROM scores WHERE category = $1 ORDER BY score DESC;', [currCat]);
+      projects = query.rows;
+      winnersJSON[currCat] = [];
+
+      let currID, nameQuery, name, currJudgeID, judgeNameQuery, judgeName;
+      for (let j = 0; j < projects.length; j += 1) {
+        currID = projects[j].projectid;
+        nameQuery = await db.query('SELECT name FROM projects WHERE projectId = $1', [currID]);
+        name = nameQuery.rows[0].name;
+
+        currJudgeID = projects[j].judgeid;
+        judgeNameQuery = await db.query('SELECT name FROM judges WHERE judgeId = $1', [currJudgeID]);
+        judgeName = judgeNameQuery.rows[0].name;
+
+        winnersJSON[currCat] = winnersJSON[currCat].concat([{ projectname: name, judgename: judgeName, score: projects[j].score }]);
+      }
+    }
+    res.send(winnersJSON);
+
+  } catch (error) {
+    console.log(error.stack);
+  }
+});
 
 const port = process.env.PORT || 5000;
 app.listen(port);
