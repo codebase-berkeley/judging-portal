@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './PerCategory.css';
 
 class PerCategory extends Component {
     constructor(props) {

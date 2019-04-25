@@ -6,7 +6,6 @@ import backIcon from "./src/back_icon.png";
 import PerCategory from "./PerCategory.jsx";
 import "./ProjectInfo.css";
 
-
 class ProjectInfo extends Component{
     constructor(props) {
         super(props);
@@ -34,11 +33,12 @@ class ProjectInfo extends Component{
             judgeId: judgeId,
             projectId: projectId,
             scores: dict
+
         })
     }
 
     async updateScore() {
-        for (let key in this.state.scores) {
+        for (const key in this.state.scores) {
             this.putScore(key);
         }
     };
@@ -78,25 +78,27 @@ class ProjectInfo extends Component{
 
     render() {
         const cmp = Object.keys(this.state.scores).map((key) => (
-            <ul className="category-score">
                <PerCategory
                 category={key}
                 score={this.state.scores[key]}
                 changeScore={this.changeScore}
               />
+        ));
+        const cat = (this.props.location.state.api || []).map((item) => (
+            <ul>
+                <p className="category-list">{item}</p>
             </ul>
         ));
         return (
             <div className = "entirePage">
-                <button type="submit" onClick={this.routeToPrev}>
-                    <img type="image" className="backButton" src={backIcon}/>
-                </button>
+                <div className="submit">
+                    <img type="image" className="backButton" src={backIcon} onClick={this.routeToPrev}/>
+                    <div className = "projHeader">
+                        <p className = "projID"><b>ID:</b> {this.props.location.state.projectId}</p>
+                    </div>
+                </div>
 
                 <div className = "projInfo">
-                    <div className = "projHeader">
-                     <h className = "projTitle">{this.props.title}</h>
-                     <p className = "projID"><b>ID:</b> {this.props.location.state.projectId}</p>
-                    </div>
 
                     <div className = "projDetails">
                         <div className = "attribute-item">
@@ -112,7 +114,7 @@ class ProjectInfo extends Component{
                                 <img className="projinfo-icon" src = {apiIcon}></img>
                                 <h className="detail-header attribute-align-left">API</h>
                             </div>
-                            <p className="actual-info attribute-align-left">{this.props.location.state.api}</p>
+                            <p className="actual-info attribute-align-left">{cat}</p>
                         </div>
 
                         <div className = "attribute-item">
@@ -122,25 +124,21 @@ class ProjectInfo extends Component{
                             </div>
                            <p className="actual-info attribute-align-left">{this.props.location.state.tablename}</p>
                         </div>
-
                     </div>
-                
                 </div>
-                <div className="score-list">
-                    <div className="list">{cmp}</div>
+                <div className="list">{cmp}</div>
+                <div className="wrapper">
+                    <button
+                        className="button"
+                        type="submit"
+                        onClick={() => { this.updateScore();}}
+                        >
+                        SUBMIT
+                    </button>
                 </div>
-                <button
-                    className="button"
-                    type="submit"
-                    onClick={() => { this.updateScore();}}
-                    >
-                    SUBMIT
-                </button>
             </div>
-
         );
     }
-
 }
 
 export default ProjectInfo;
