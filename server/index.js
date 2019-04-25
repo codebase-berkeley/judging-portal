@@ -87,11 +87,24 @@ app.get('/api/judgenames', async (req, res) => {
     }
 });
 
-// endpoint to draw all rows of projects in the Scoring Overview page
-app.get('/api/toscore/judge/:judgeId', async (req, res) => {
+// endpoint to get scored projects in the Scoring Overview page
+app.get('/api/scored/judge/:judgeId', async (req, res) => {
   try {
     const { judgeId } = req.params;
-    const query = await db.query('SELECT DISTINCT ON (projects.projectId) projects.projectId, projects.name, projects.categories, projects.github, projects.tableName, projects.wave, filtered.score FROM projects INNER JOIN (SELECT * FROM scores WHERE scores.judgeId = $1) AS filtered ON projects.projectId=filtered.projectId;', [
+    const query = await db.query('SELECT DISTINCT ON (projects.projectId) projects.projectId, projects.name, projects.categories, projects.github, projects.tableName, projects.wave, filtered.score FROM projects INNER JOIN (SELECT * FROM scores WHERE scores.judgeId = $1 AND scores.score IS NOT NULL) AS filtered ON projects.projectId=filtered.projectId;', [
+      judgeId
+    ]);
+    res.send(query.rows);
+  } catch (error) {
+    console.log(error.stack);
+  }
+});
+
+// endpoint to get unscored projects in the Scoring Overview page
+app.get('/api/unscored/judge/:judgeId', async (req, res) => {
+  try {
+    const { judgeId } = req.params;
+    const query = await db.query('SELECT DISTINCT ON (projects.projectId) projects.projectId, projects.name, projects.categories, projects.github, projects.tableName, projects.wave, filtered.score FROM projects INNER JOIN (SELECT * FROM scores WHERE scores.judgeId = $1 AND scores.score IS NULL) AS filtered ON projects.projectId=filtered.projectId;', [
       judgeId
     ]);
     res.send(query.rows);
