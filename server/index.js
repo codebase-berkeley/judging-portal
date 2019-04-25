@@ -4,7 +4,7 @@ const path = require('path');
 var bodyParser = require('body-parser');
 const db = require('./db/index');
 
-const app = express
+const app = express();
 const cors = require('cors');
 
 app.use(cors());
@@ -39,10 +39,9 @@ app.put('/api/projects', async (req, res) => {
   if (tableNum * tablesCSV.length * waveNum < projectNum) {
     console.log("error: not enough capacity");
   } else {
-    //wave assignment
+    // wave assignment
     let w = 1;
     for (let id = 1; id <= projectNum; id++) {
-      console.log(id)
       db.query('UPDATE projects SET wave = $1 WHERE projectId = $2;', [
         w,
         id
@@ -52,6 +51,22 @@ app.put('/api/projects', async (req, res) => {
         w = 1;
       }
     }
+
+    // table assignment -- this is just based the asusmption that given a list of 
+    // tables the projects should spread evenly amoung the tables
+    let t = 0;
+    for (let i = 1; i < projectNum; i++) {
+      db.query('UPDATE projects SET tableName = $1 WHERE projectId = $2;', [
+        tablesCSV[t][0],
+        i
+      ]);
+      t++;
+      if (t === tablesCSV.length) {
+        t = 0;
+      }
+    }
+  }
+});
 
 // API endpoint for judge names for Judge Login
 app.get('/api/judgenames', async (req, res) => {
@@ -116,7 +131,6 @@ app.get('/api/lists', async (req, res) => {
 
 app.post('/api/lists', async (req, res) => {
   const {deleted, added } = req.body;
-  console.log(deleted);
   var i;
   for (i = 0; i < deleted.length; i++) {
     console.log("DELETING: " + deleted[i]);
@@ -140,22 +154,8 @@ app.get('/api/data', async (req, res) => {
   } catch (error) {
     console.log(error.stack);
   }
-        
-    //table assignment -- this is just based the asusmption that given a list of 
-    //tables the projects should spread evenly amoung the tables
-    let t = 0;
-    for (let i = 1; i < projectNum; i++) {
-      db.query('UPDATE projects SET tableName = $1 WHERE projectId = $2;', [
-        tablesCSV[t][0],
-        i
-      ]);
-      t++;
-      if (t === tablesCSV.length) {
-        t = 0;
-      }
-    }
 
-    res.json("You successfully posted to projects");
+  res.json("You successfully posted to projects");
 });
 // ########### DATAENTRY END ###########
 
@@ -208,28 +208,25 @@ function getApiMapping(apisJSON, judgeJSON) {
   }
 
   res.json("You successfully posted: ".concat(info));
-});
+}
 // ########### JUDGEINFO END ###########
 
 // API endpoint for judge names
 app.get('/api/judgenames', async (req, res) => {
-    try {
-      const query = await db.query('SELECT name FROM judges;');
-      res.send(query.rows);
-    } catch (error) {
-      console.log(error.stack);
-    }
-});
-  console.log(apiMappings);
+  try {
+    const query = await db.query('SELECT name FROM judges;');
+    res.send(query.rows);
+  } catch (error) {
+    console.log(error.stack);
+  }
 
   var j;
   for (j = 0; j < judgeJSON.length; j += 1) {
     const api = judgeJSON[j]['api'];
-    console.log(api);
     apiMappings[api].judges = apiMappings[api].judges.concat(judgeJSON[j]['judgeid']);
   }
   return apiMappings; 
-}
+});
 
 app.post('/api/assignjudges', async (req, res) => {
   /**
