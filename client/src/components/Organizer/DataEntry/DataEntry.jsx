@@ -174,7 +174,7 @@ class DataEntry extends Component {
     if (this.state.tablesReader != null) {
       results = Papa.parse(this.state.tablesReader.result);
       list = results.data;
-      tableLength =list.length;
+      tableLength = list.length;
     }
 
     const res = fetch('/api/projects', {
