@@ -8,11 +8,12 @@ class JudgeInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      curr_name: '',
+      currName: '',
       selected: '',
       info: [],
       options: [],
-      deleted: []
+      deleted: [],
+      reassignJudges: true
     };
     this.handleName = this.handleName.bind(this);
     this.addInfo = this.addInfo.bind(this);
@@ -20,7 +21,7 @@ class JudgeInfo extends Component {
     this._onSelect = this._onSelect.bind(this);
     this.routeToPrev = this.routeToPrev.bind(this);
     this.routeToNext = this.routeToNext.bind(this);
-
+    this.assignJudges = this.assignJudges.bind(this);
     this.postJudgeInfo = this.postJudgeInfo.bind(this);
 
   }
@@ -28,7 +29,6 @@ class JudgeInfo extends Component {
   async componentDidMount() {
     try {
       this.getJudgeInfo().then(result => {
-        console.log(result);
         if (result != null) {
           let i;
           let judgeinfo = [];
@@ -39,18 +39,16 @@ class JudgeInfo extends Component {
         }
         
         this.getAPI().then(result => {
-          console.log(result);
           if (result != null) {
             let i;
             const apis = [];
             for (i = 0; i < result.length; i++) { 
-              if(result[i].type != "General Category") {
-                apis[i] = result[i].name;
+              if(result[i].type != "GC") {
+                apis[i] = result[i].name.substring(5);
               }
             }
             apis.push('General Category');
             this.setState({ options: apis });
-            console.log(apis);
           }
         });
       });
@@ -71,16 +69,9 @@ class JudgeInfo extends Component {
   }
 
   async getAPI() {
-    // try {
       const res = await fetch(`/api/apis`);
-      console.log(res);
       const resJson = res.json();
-      console.log("api", resJson);
-      console.log(3);
       return resJson;
-    // } catch (error) {
-    //   console.log(error.stack);
-    // }
   }
 
   _onSelect(option) {
@@ -91,35 +82,55 @@ class JudgeInfo extends Component {
     this[event.target.name].bind(this)(index, event)
   }
 
-  removeTask(index) {
-    this.setState((prevState) => {
-      const del_info = prevState.info.slice();
-      const judge = del_info[index];
+  async removeTask(index) {
+    await this.setState((prevState) => {
+      const delInfo = prevState.info.slice();
+      const judge = delInfo[index];
 
-      del_info.splice(index, 1)
-      console.log(judge);
+      delInfo.splice(index, 1)
       return {
-        info: del_info,
-        deleted: prevState.deleted.concat([judge])
+        info: delInfo,
+        deleted: judge,
+        reassignJudges: true
       } 
     });
-    console.log(this.state.deleted);
+
+    try {
+      const res = await fetch('/api/deletejudge', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          deleted: this.state.deleted
+        })
+      });
+      const resJson = res.json();
+      return resJson;
+
+    } catch (error) {
+      console.log("error");
+    }
   }
 
   handleName(event) {
     this.setState({
-      curr_name: event.target.value
+      currName: event.target.value
     });
   }
 
   addInfo() {
-      if (this.state.curr_name !== '' && this.state.selected !== '') {
-        this.setState({
-          info: this.state.info.concat([
-            [this.state.curr_name, this.state.selected.label]
-          ]),
-          curr_name: '',
-          selected: ''
+      if (this.state.currName !== '' && this.state.selected !== '') {
+        this.setState((prevState) => {
+          const newInfo = prevState.info.concat([
+            [prevState.currName, prevState.selected.label]
+          ])
+          return {
+            reassignJudges: true, 
+            info: newInfo,
+            currName: '',
+            selected: ''
+        }
         });
       }
   }
@@ -132,8 +143,7 @@ class JudgeInfo extends Component {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          info: [this.state.curr_name, this.state.selected.label],
-          deleted: this.state.deleted
+          info: [this.state.currName, this.state.selected.label],
         })
       });
       const resJson = res.json();
@@ -152,9 +162,23 @@ class JudgeInfo extends Component {
     this.props.history.push(path);
   }
 
+  async assignJudges() {
+    try {
+      const res = await fetch('/api/assignjudges', {
+        method: 'POST',
+      });
+      return;
+    } catch (error) {
+      console.log("error");
+    }
+  }
+
   routeToNext() {
-    this.postJudgeInfo().then(result => console.log(result));
-    let path = "/project-breakdown";
+    if (this.state.reassignJudges) {
+      this.assignJudges();
+    }
+
+    const path = "/project-breakdown";
     this.props.history.push(path);
   }
 
@@ -185,7 +209,7 @@ class JudgeInfo extends Component {
               <input
                 className="judge-name-input"
                 placeholder="Judge Name"
-                value={this.state.curr_name}
+                value={this.state.currName}
                 onChange={this.handleName}
               />
 
@@ -202,7 +226,7 @@ class JudgeInfo extends Component {
               <button
                 className="button"
                 type="button"
-                onClick={(event) => { this.addInfo(); this.postJudge();}}
+                onClick={() => { this.addInfo(); this.postJudge();}}
               >
                 SUBMIT
               </button>

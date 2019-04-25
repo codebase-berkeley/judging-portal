@@ -125,7 +125,6 @@ class DataEntry extends Component {
           apiFinal.push(['GC', apiRaw[i]]);
         }
       }
-      console.log(apiFinal);
 
       const resProjects = fetch('/api/projects', {
         method: 'POST',

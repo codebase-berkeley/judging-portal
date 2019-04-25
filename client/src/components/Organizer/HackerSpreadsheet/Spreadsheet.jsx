@@ -6,9 +6,38 @@ class Spreadsheet extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            projects: [['SyncUp', 3, 250], ['Codeacademy', 2, 29], ['Github', 1, 50]]
+            projects: []
         };
         this.routeToPrev = this.routeToPrev.bind(this);
+    }
+
+    async componentDidMount() { 
+        this.getProjectInfo().then(result => {
+            this.setState({
+                projects: result.sort(this.compareWaveFunct)
+            })
+        });
+    }
+
+    async getProjectInfo() {
+        const res = await fetch('/api/project-tables-waves');
+        const resJson = res.json(); 
+        return resJson;
+    }
+
+    compareWaveFunct(project1, project2) {
+        if (project1.wave < project2.wave) {
+            return -1; 
+        } else if (project1.wave > project2.wave) {
+            return 1;
+        } else {
+            if (project1.tablename > project2.tablename) {
+                return 1;
+            }
+            else {
+                return -1;
+            }
+        }
     }
 
     routeToPrev() {
@@ -20,9 +49,9 @@ class Spreadsheet extends Component {
         const projectEntries = (this.state.projects || []).map((item) => (
             <ul className="spread-entry">
                 <SpreadEntry 
-                name = {item[0]}
-                wave = {item[1]}
-                table = {item[2]}
+                name = {item.name}
+                wave = {item.wave}
+                table = {item.tablename}
                 />
             </ul>
 
