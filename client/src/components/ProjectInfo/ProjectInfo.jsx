@@ -91,43 +91,52 @@ class ProjectInfo extends Component{
             </ul>
         ));
         return (
-            <div className = "entirePage">
+            <div className = "entire-page">
                 <div className="submit">
-                    <img type="image" className="backButton" src={backIcon} onClick={this.routeToPrev}/>
-                    <div className = "projHeader">
-                        <p className = "projID"><b>ID:</b> {this.props.location.state.projectId}</p>
+                    <button type="submit" className="back-button" onClick={this.routeToPrev}>
+                        <div className="arrow"></div>
+                        <div className="arrow white-arrow"></div>
+                        <h2 className="back-button-text">BACK</h2>
+                    </button>
+                    <div className="proj-header">
+                        <p className="proj-id"><b>ID:</b> {this.props.location.state.projectId}</p>
                     </div>
                 </div>
 
-                <div className = "projInfo">
+                <div className="info-and-scores">
+                    <div className = "proj-info">
 
-                    <div className = "projDetails">
-                        <div className = "attribute-item">
-                            <div className="head-and-icon">
-                                <img className="projinfo-icon" src = {teamIcon}></img>
-                                <h className="detail-header attribute-align-left">Team</h>
+                        <div className = "proj-details">
+                            <div className = "attribute-item">
+                                <div className="head-and-icon">
+                                    <img className="projinfo-icon" src ={teamIcon}></img>
+                                    <h className="detail-header">Team</h>
+                                </div>
+                                <p className="actual-info">{this.props.location.state.name}</p>
                             </div>
-                            <p className="actual-info attribute-align-left">{this.props.location.state.name}</p>
-                        </div>
 
-                        <div className = "attribute-item">
-                            <div className="head-and-icon">
-                                <img className="projinfo-icon" src = {apiIcon}></img>
-                                <h className="detail-header attribute-align-left">API</h>
+                            <div className = "attribute-item">
+                                <div className="head-and-icon">
+                                    <img className="projinfo-icon" src ={apiIcon}></img>
+                                    <h className="detail-header">API</h>
+                                </div>
+                                <p className="actual-info">{cat}</p>
                             </div>
-                            <p className="actual-info attribute-align-left">{cat}</p>
-                        </div>
 
-                        <div className = "attribute-item">
-                            <div className="head-and-icon">
-                                <img className="projinfo-icon" src = {tableIcon}></img>
-                                <h className="detail-header attribute-align-left">Table</h>
+                            <br />
+
+                            <div className = "attribute-item">
+                                <div className="head-and-icon">
+                                    <img className="projinfo-icon" src ={tableIcon}></img>
+                                    <h className="detail-header">Table</h>
+                                </div>
+                               <p className="actual-info">{this.props.location.state.tablename}</p>
                             </div>
-                           <p className="actual-info attribute-align-left">{this.props.location.state.tablename}</p>
                         </div>
                     </div>
+                    <div className="list">{cmp}</div>
                 </div>
-                <div className="list">{cmp}</div>
+                
                 <div className="wrapper">
                     <button
                         className="button"

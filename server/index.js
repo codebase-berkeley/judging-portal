@@ -41,13 +41,15 @@ app.get('/api/apis', async (req, res) => {
 });
 
 app.post('/api/projects', async (req, res) => {
+  db.query('DELETE FROM projects;');
   const { projectCSV } = req.body;
   for (let i = 1; i < projectCSV.length; i++) {
     const project = projectCSV[i];
-    db.query('INSERT INTO projects(name, github, categories) VALUES($1 ,$2, $3)', [
+    db.query('INSERT INTO projects(name, github, categories, projectId) VALUES($1 ,$2, $3, $4)', [
       project['Submission Title'],
       project['Submission Url'],
-      project['Categories']
+      project['Categories'], 
+      i
     ]);
   }
   res.json("You successfully posted to projects");
@@ -185,6 +187,7 @@ app.get('/api/judgeinfo', async (req, res) => {
 app.post('/api/judgeinfo', async (req, res) => {
   try {
     const { info } = req.body;
+    console.log(info);
     if (info.length > 1) {
       db.query('INSERT INTO judges(name, API) VALUES($1, $2)', [
         info[0],
@@ -207,9 +210,18 @@ function getApiMapping(apisJSON, judgeJSON) {
   let apiMappings = {};
   var i;
   for (i = 0; i < apisJSON.length; i += 1) {
-    const apiName = apisJSON[i]['api'];
+    const apiName = apisJSON[i].name;
     apiMappings[apiName] = { index: 0, judges: [] };
   }
+  apiMappings["General Category"] = {index: 0, judges: []};
+
+  var j;
+  for (j = 0; j < judgeJSON.length; j += 1) {
+    const api = judgeJSON[j]['api'];
+    console.log("api", api);
+    apiMappings[api].judges = apiMappings[api].judges.concat(judgeJSON[j].judgeid);
+  }
+  return apiMappings; 
 
 }
 // ########### JUDGEINFO END ###########
@@ -222,13 +234,6 @@ app.get('/api/judgenames', async (req, res) => {
   } catch (error) {
     console.log(error.stack);
   }
-
-  var j;
-  for (j = 0; j < judgeJSON.length; j += 1) {
-    const api = judgeJSON[j]['api'];
-    apiMappings[api].judges = apiMappings[api].judges.concat(judgeJSON[j]['judgeid']);
-  }
-  return apiMappings; 
 });
 
 app.post('/api/assignjudges', async (req, res) => {
@@ -249,7 +254,7 @@ app.post('/api/assignjudges', async (req, res) => {
     const projects = await db.query('SELECT * FROM projects;');
     const projectsJSON = projects.rows;
 
-    const apis = await db.query('SELECT * FROM apis;');
+    const apis = await db.query('SELECT * FROM apis WHERE type=$1;', ['API']);
     const apisJSON = apis.rows;
 
     let apiMappings = getApiMapping(apisJSON, judgeJSON);
@@ -280,7 +285,7 @@ app.post('/api/assignjudges', async (req, res) => {
             continue;
           } else {
             hasGC = true;
-            var currCatKey = 'GC';
+            var currCatKey = 'General Category';
           }
         } else {
           var currCatKey = currCat;
