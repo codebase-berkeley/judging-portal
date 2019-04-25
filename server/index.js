@@ -16,7 +16,7 @@ app.get('/api/projects', async (req, res) => {
     const query = await db.query('SELECT * FROM projects;');
     res.send(query.rows);
   } catch (error) {
-      console.log(error.stack);
+    console.log(error.stack);
   }
 });
 
