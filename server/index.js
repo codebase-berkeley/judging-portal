@@ -208,15 +208,15 @@ function getApiMapping(apisJSON, judgeJSON) {
   let apiMappings = {};
   var i;
   for (i = 0; i < apisJSON.length; i += 1) {
-    const apiName = apisJSON[i]['name'];
+    const apiName = apisJSON[i].name;
     apiMappings[apiName] = { index: 0, judges: [] };
   }
-  apiMappings["General Category"] = {index:0, judges: []};
+  apiMappings["General Category"] = {index: 0, judges: []};
 
   var j;
   for (j = 0; j < judgeJSON.length; j += 1) {
     const api = judgeJSON[j]['api'];
-    apiMappings[api].judges = apiMappings[api].judges.concat(judgeJSON[j]['judgeid']);
+    apiMappings[api].judges = apiMappings[api].judges.concat(judgeJSON[j].judgeid);
   }
   return apiMappings; 
 
@@ -251,7 +251,7 @@ app.post('/api/assignjudges', async (req, res) => {
     const projects = await db.query('SELECT * FROM projects;');
     const projectsJSON = projects.rows;
 
-    const apis = await db.query('SELECT * FROM apis WHERE type=$1;', ['API']);
+    const apis = await db.query('SELECT * FROM apis WHERE type="API";');
     const apisJSON = apis.rows;
 
     let apiMappings = getApiMapping(apisJSON, judgeJSON);
