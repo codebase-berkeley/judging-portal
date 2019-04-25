@@ -50,7 +50,7 @@ class JudgeInfo extends Component {
   async getJudgeInfo() {
     const res = await fetch('/api/judgeinfo');
     const resJson = res.json();
-    return resJson
+    return resJson;
   }
 
   async getAPI() {

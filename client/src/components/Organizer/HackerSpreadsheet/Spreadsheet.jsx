@@ -18,7 +18,7 @@ class Spreadsheet extends Component {
                 projs[i] = [result[i].name, result[i].wave, result[i].tablename];
             }
             this.setState({
-                projects: projs
+                projects: projs.sort(this.compareWaveFunct)
             })
         });
     }
@@ -27,6 +27,21 @@ class Spreadsheet extends Component {
         const res = await fetch('/api/projects');
         const resJson = res.json(); 
         return resJson;
+    }
+
+    compareWaveFunct(a, b) {
+        if (a[1] < b[1]) {
+            return -1 
+        } else if (a[1] > b[1]) {
+            return 1
+        } else {
+            if (a[2] > b[2]) {
+                return 1
+            }
+            else {
+                return -1
+            }
+        }
     }
 
     routeToPrev() {
