@@ -18,7 +18,7 @@ class ProjectBreakdown extends Component {
         const keys = [];
         const categories = await this.getCategories();
         for (let i = 0; i < categories.length; i += 1) {
-            const category = categories[i].category;
+            var category = categories[i].category;
             projectsJson[category] = {
                 scored: [],
                 unscored: []
@@ -56,37 +56,37 @@ class ProjectBreakdown extends Component {
     async getJudge(judgeid) {
         const res = await fetch('/api/judgename/' + judgeid);
         const resJson = res.json();
-        return resJson
+        return resJson;
     }
 
     async getCategories() {
         const res = await fetch('/api/categories');
         const resJson = res.json();
-        return resJson
+        return resJson;
     }
 
     async getScores(projectID) {
         const res = await fetch('/api/projectscore/' + projectID);
         const resJson = res.json();
-        return resJson
+        return resJson;
     }
 
     async getName(projectID) {
         const res = await fetch('/api/projectname/' + projectID);
         const resJson = res.json();
-        return resJson
+        return resJson;
     }
 
     async getProjects() {
         const res = await fetch('/api/projects');
         const resJson = res.json();
-        return resJson
+        return resJson;
     }
 
     async getAPIs() {
         const res = await fetch('/api/apis');
         const resJson = res.json();
-        return resJson
+        return resJson;
     }
 
     routeToPrev() {
@@ -116,24 +116,22 @@ class ProjectBreakdown extends Component {
             </div>
           );
       }
-      else {
-        const apiCategories = [];
-        for (let i = 0; i < this.state.keys.length; i+=1) {
-          apiCategories.push(<APICategory api={keys[i]} alldata={projects[keys[i]]} />);
-        }
-        return (
-          <div className="page-background" id="projBreakdown">
-              <div className="page-header">SCORING BREAKDOWN</div>
-              <div className="content-background">
-                <div className="api-category-box">{apiCategories}</div>
-                <div className= "buttons nav judge-button">
-                    <button type="button" className="button" onClick={this.routeToPrev}>PREV</button>
-                    <button type="button" className="button" onClick={this.routeToNext}>NEXT</button>
-                </div>
-              </div>
-          </div>
-        );
-      }
+    const apiCategories = [];
+    for (let i = 0; i < this.state.keys.length; i+=1) {
+        apiCategories.push(<APICategory api={keys[i]} alldata={projects[keys[i]]} />);
+    }
+    return (
+        <div className="page-background" id="projBreakdown">
+            <div className="page-header">SCORING BREAKDOWN</div>
+            <div className="content-background">
+            <div className="api-category-box">{apiCategories}</div>
+            <div className= "buttons nav judge-button">
+                <button type="button" className="button" onClick={this.routeToPrev}>PREV</button>
+                <button type="button" className="button" onClick={this.routeToNext}>NEXT</button>
+            </div>
+            </div>
+        </div>
+    );
     }
 }
 
