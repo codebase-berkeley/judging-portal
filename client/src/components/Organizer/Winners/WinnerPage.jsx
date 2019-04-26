@@ -16,6 +16,7 @@ class WinnerPage extends Component {
 
     async componentDidMount() {
         const winner = await this.getWinners();
+        console.log(winner);
         const buttons = [];
         const numCategories = Object.keys(winner).length;
         for (let i = 0; i < numCategories; i += 1) {
@@ -60,6 +61,7 @@ class WinnerPage extends Component {
 
     render() {
         const winner = this.state.winners;
+        console.log(this.state.winners);
         const allCategories = [];
         const numCategories = Object.keys(winner).length;
         for (let i = 0; i < numCategories; i += 1) {
@@ -81,7 +83,7 @@ class WinnerPage extends Component {
                 <div className="page-header">WINNERS</div>
                 <div className="w-content-background">
                     <div className="all-collapsible-categories">
-                        {console.log(allCategories)}
+                        {allCategories}
                     </div>
                 </div>
             </div>
