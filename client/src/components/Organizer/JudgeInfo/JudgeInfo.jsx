@@ -22,7 +22,8 @@ class JudgeInfo extends Component {
     this.routeToPrev = this.routeToPrev.bind(this);
     this.routeToNext = this.routeToNext.bind(this);
     this.assignJudges = this.assignJudges.bind(this);
-
+    this.containsAPI = this.containsAPI.bind(this);
+    this.allAPIsSelected = this.allAPIsSelected.bind(this);
   }
 
   async componentDidMount() {
@@ -43,7 +44,7 @@ class JudgeInfo extends Component {
             const apis = [];
             for (i = 0; i < result.length; i++) { 
               if(result[i].type !== "GC") {
-                apis[i] = result[i].name;
+                apis.push(result[i].name);
               }
             }
             apis.push('General Category');
@@ -169,12 +170,34 @@ class JudgeInfo extends Component {
   }
 
   routeToNext() {
-    if (this.state.reassignJudges) {
-      this.assignJudges();
+    if (this.allAPIsSelected()) {  
+      if (this.state.reassignJudges) {
+        this.assignJudges();
+      }
+      const path = "/hacker-spreadsheet";
+      this.props.history.push(path);
+    } else {
+      alert("Not all categories have been matched to a judge!");
     }
+  }
 
-    const path = "/project-breakdown";
-    this.props.history.push(path);
+  containsAPI(api) {
+    for (var i = 0; i < this.state.info.length; i++) {
+      const a = this.state.info[i][1];
+      if (a == api) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+   allAPIsSelected() {
+    for (var i = 0; i < this.state.options.length; i++) {
+      if (!this.containsAPI(this.state.options[i])) {
+        return false;
+      }
+    }
+    return true
   }
 
   render() {
