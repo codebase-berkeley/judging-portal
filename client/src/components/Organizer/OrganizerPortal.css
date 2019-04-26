@@ -373,25 +373,53 @@ ul {
     
 }
 
+.api-category-box {
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 95vw;
+    height: 70vh;
+    overflow-y: scroll;
+}
+
+.api-info {
+    display: block;
+    margin-bottom: 10px;
+    background-color: #F9F9F9;
+    height: 30vh;
+}
+
+.api-header {
+    background-color: #98D0EC;
+}
+
+.api-name {
+    text-align: left;
+    color: #0A7191;
+    font-size: 4vh;
+    font-weight: bold;
+    margin-left: 20px;
+    padding-top: 5px;
+    display: inline-block;
+}
+
 .scored-section {
     width: 50%;
     text-align: center;
+    height: 75%;
 }
 
 .unscored-section {
-    width:50%;
-}
-
-.scored-header {
-    text-align: left;
+    width: 50%;
+    height: 75%;
 }
 
 .content-breakdown {
     text-align: center;
     display: flex;
     flex-direction: row;
-    width:100vw;
-    height: 60vh;
+    height: 75%;
+    overflow: auto;
 }
 
 .breakdown-list {
@@ -402,7 +430,7 @@ ul {
 }
 
 .project-list {
-    width: 80%;
+    width: 90%;
     display: inline-block;
     background-color: #98D0EC;
 }
@@ -431,7 +459,6 @@ ul {
     display: inline-block;
     width: 50%;
     color: #0A7191;
-
 }
 
 .project-score {
@@ -456,15 +483,14 @@ ul {
     display: flex;
     flex-direction: row;
     border-bottom: 2px solid rgb(210, 211, 211);
-    width: 100%;
+    width: 90%;
     display: inline-block;
 }
 
 .headers {
     width: 100%;
-    margin-top: 2vh;
     display: inline-block;
-    color:#0A7191;
+    color: #0A7191;
     font-size: 3vh;
     font-weight: bold;
 }
@@ -472,6 +498,30 @@ ul {
 .scoring-header {
     display: inline-block;
     width: 50%;
+}
+
+.scoring-list {
+    height: 80%;
+    overflow: auto;
+}
+
+.dropdown-button {
+    margin-top: 15px;
+    margin-right: 5px;
+    font-family: 'Overpass', sans-serif;
+    color: #0A7191;
+    background-color: #98D0EC;
+    border: none;
+    float: right;
+    cursor: pointer;
+}
+
+.dropdown-button-shape {
+  	width: 0;
+  	height: 0;
+  	border-left: 10px solid transparent;
+  	border-right: 10px solid transparent;
+  	border-top: 20px solid #0A7191;
 }
 
 /********************* HACKER FACING SPREADSHEET ********************/
