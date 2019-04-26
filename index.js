@@ -62,9 +62,11 @@ app.put('/api/projects', async (req, res) => {
   if (tableNum * tablesCSV.length * waveNum < projectNum) {
     console.log("error: not enough capacity");
   } else {
+    console.log("entered put api projects");
     // wave assignment
     let w = 1;
     for (let id = 1; id <= projectNum; id++) {
+      console.log("wave id", id);
       db.query('UPDATE projects SET wave = $1 WHERE projectId = $2;', [
         w,
         id
@@ -79,6 +81,7 @@ app.put('/api/projects', async (req, res) => {
     // tables the projects should spread evenly amoung the tables
     let t = 0;
     for (let i = 1; i < projectNum; i++) {
+      console.log("table id", id);
       db.query('UPDATE projects SET tableName = $1 WHERE projectId = $2;', [
         tablesCSV[t][0],
         i
