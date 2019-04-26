@@ -12,6 +12,7 @@ class JudgeInfo extends Component {
       selected: '',
       info: [],
       options: [],
+      matchedAPIs: [],
       deleted: [],
       reassignJudges: true
     };
@@ -22,7 +23,8 @@ class JudgeInfo extends Component {
     this.routeToPrev = this.routeToPrev.bind(this);
     this.routeToNext = this.routeToNext.bind(this);
     this.assignJudges = this.assignJudges.bind(this);
-
+    this.containsAPI = this.containsAPI.bind(this);
+    this.allAPIsSelected = this.allAPIsSelected.bind(this);
   }
 
   async componentDidMount() {
@@ -31,10 +33,14 @@ class JudgeInfo extends Component {
         if (result != null) {
           let i;
           let judgeinfo = [];
+          let matched = [];
           for (i = 0; i < result.length; i++) { 
             judgeinfo[i] = [result[i].name, result[i].api];
+            if (matched.indexOf(result[i].api) == -1) {
+              matched.push(result[i].api);
+            }
           }
-          this.setState({ info: judgeinfo });
+          this.setState({ info: judgeinfo, matchedAPIs: matched });
         }
         
         this.getAPI().then(result => {
@@ -43,7 +49,7 @@ class JudgeInfo extends Component {
             const apis = [];
             for (i = 0; i < result.length; i++) { 
               if(result[i].type !== "GC") {
-                apis[i] = result[i].name;
+                apis.push(result[i].name);
               }
             }
             apis.push('General Category');
@@ -81,11 +87,29 @@ class JudgeInfo extends Component {
     this[event.target.name].bind(this)(index, event)
   }
 
+  containsAPI(api) {
+    for (var i = 0; i < this.state.info.length; i++) {
+      const a = this.state.info[i][1];
+      if (a == api) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  allAPIsSelected() {
+    for (var i = 0; i < this.state.options.length; i++) {
+      if (!this.containsAPI(this.state.options[i])) {
+        return false;
+      }
+    }
+    return true
+  }
+
   async removeTask(index) {
     await this.setState((prevState) => {
       const delInfo = prevState.info.slice();
       const judge = delInfo[index];
-
       delInfo.splice(index, 1)
       return {
         info: delInfo,
@@ -169,12 +193,13 @@ class JudgeInfo extends Component {
   }
 
   routeToNext() {
-    if (this.state.reassignJudges) {
-      this.assignJudges();
+    if (this.allAPIsSelected()) {
+      if (this.state.reassignJudges) {
+        this.assignJudges();
+      }
+      const path = "/hacker-spreadsheet";
+      this.props.history.push(path);
     }
-
-    const path = "/hacker-spreadsheet";
-    this.props.history.push(path);
   }
 
   render() {
@@ -193,6 +218,7 @@ class JudgeInfo extends Component {
       </ul>
     ))
 
+    console.log(this.state.matchedAPIs);
     return (
       <div className="page-background" id= "JudgeInfo">
         <div className="page-header">JUDGE INFORMATION</div>
