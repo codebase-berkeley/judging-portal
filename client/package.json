@@ -35,5 +35,9 @@
     "prettier": "^1.16.4",
     "pretty-quick": "^1.10.0"
   },
-  "proxy": "http://localhost:5000"
+  "proxy": {
+    "/api": {
+      "target": "http://localhost:5000"
+    }
+  }
 }
