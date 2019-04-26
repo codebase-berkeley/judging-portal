@@ -114,6 +114,8 @@ class ProjectInfo extends Component{
                                 <p className="actual-info">{this.props.location.state.name}</p>
                             </div>
 
+                            <br/>
+                            
                             <div className = "attribute-item">
                                 <div className="head-and-icon">
                                     <img className="projinfo-icon" src={apiIcon}></img>
@@ -135,7 +137,7 @@ class ProjectInfo extends Component{
                     </div>
                     <div className="list">{cmp}</div>
                 </div>
-                
+
                 <div className="wrapper">
                     <button
                         className="button"

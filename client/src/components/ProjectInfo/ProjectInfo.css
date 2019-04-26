@@ -92,7 +92,7 @@
     position: relative;
     display: flex;
     align-items: center;
-    width: 30vw;
+    width: 50vw;
 }
 
 .projinfo-icon {
@@ -113,9 +113,9 @@
     color: #0A7191;
     text-align: left;
     margin: auto;
-    padding-top: 25px;
+    padding-top: 20px;
     font-size: 3vh;
-    height: 75px;
+    height: 70px;
     overflow-y: scroll;
 }
 
