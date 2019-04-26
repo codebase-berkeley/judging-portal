@@ -148,7 +148,7 @@ class DataEntry extends Component {
       })
     })
 
-    return length, Promise.all([resProjects, resAPIS]);
+    return [length, Promise.all([resProjects, resAPIS])];
   }
 
   async getProjects() {
