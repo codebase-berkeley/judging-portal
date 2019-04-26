@@ -285,7 +285,6 @@ app.post('/api/assignjudges', async (req, res) => {
             if (apiIndex < 0) {
               apiIndex = apiJudges.length - 1;
             }
-            console.log("selecting the ", apiIndex, "th GC judge");
             await db.query('INSERT INTO scores(judgeID, projectID, category) VALUES ($1, $2, $3)', [
               apiJudges[apiIndex],
               currProj.projectid,
