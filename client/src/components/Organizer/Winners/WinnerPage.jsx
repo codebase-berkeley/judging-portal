@@ -83,7 +83,8 @@ class WinnerPage extends Component {
                 <div className="page-header">WINNERS</div>
                 <div className="w-content-background">
                     <div className="all-collapsible-categories">
-                        {allCategories}
+
+                        { allCategories }
                     </div>
                 </div>
             </div>

@@ -11,6 +11,14 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // ########### DATAENTRY START ###########
+
+/**
+ * @api {post} /api/apis add judging category to apis table
+ * @apiName PostApi
+ * @apiGroup Api
+ *
+ * @apiParam {apis} list of judging categories to add
+ */
 app.post('/api/apis', async (req, res) => {
   const { apis } = req.body;
   for (let i = 0; i < apis.length; i ++) {
@@ -41,13 +49,15 @@ app.get('/api/apis', async (req, res) => {
 });
 
 app.post('/api/projects', async (req, res) => {
+  db.query('DELETE FROM projects;');
   const { projectCSV } = req.body;
   for (let i = 1; i < projectCSV.length; i++) {
     const project = projectCSV[i];
-    db.query('INSERT INTO projects(name, github, categories) VALUES($1 ,$2, $3)', [
+    db.query('INSERT INTO projects(name, github, categories, projectId) VALUES($1 ,$2, $3, $4)', [
       project['Submission Title'],
       project['Submission Url'],
-      project['Categories']
+      project['Categories'], 
+      i
     ]);
   }
   res.json("You successfully posted to projects");
@@ -161,16 +171,6 @@ app.put('/api/scoreupdate/judge/:judgeId/project/:projectId/category/:category',
 });
 
 // ########### DATAENTRY END ###########
-
-
-app.get('/api/apis', async (req, res) => {
-  try {
-    const query = await db.query('SELECT * FROM apis;');
-    res.send(query.rows);
-  } catch (error) {
-    console.log(error.stack)
-  }
-});
 
 // ########### JUDGEINFO START ###########
 app.get('/api/judgeinfo', async (req, res) => {

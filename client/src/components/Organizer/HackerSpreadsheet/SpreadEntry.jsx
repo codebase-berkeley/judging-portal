@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import '../OrganizerPortal.css'; 
 
 class SpreadEntry extends Component {
-    constructor(props) { 
-        super(props); 
-    }
-
     render() {
         return (
             <div> 

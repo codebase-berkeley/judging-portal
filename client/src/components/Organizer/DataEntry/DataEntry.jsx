@@ -48,7 +48,7 @@ class DataEntry extends Component {
 
   changeTablesFileName(event) {
     const input = event.target.value;
-    let fileName = input.replace(/^.*[\\\/]/, '');
+    let fileName = input.replace(/^.*[\\/]/, '');
     if (fileName === '') {
       fileName = 'UPLOAD FILE';
     }
@@ -72,7 +72,7 @@ class DataEntry extends Component {
 
   changeProjectsFileName(event) {
     const input = event.target.value;
-    let fileName = input.replace(/^.*[\\\/]/, '');
+    let fileName = input.replace(/^.*[\\/]/, '');
     if (fileName === '') {
       fileName = 'UPLOAD FILE';
     }
@@ -82,78 +82,80 @@ class DataEntry extends Component {
   }
 
   postProjectsAPIS() {
-      if (this.state.projectCSVName === 'UPLOAD FILE') {
-        this.state.projectCSVName = '';
-      }
-  
-      let results;
-      const list = [];
-      let length;
-      const apiRaw = [];
-      if (this.state.projectsReader != null) {
-        results = Papa.parse(this.state.projectsReader.result);
-        length = results.data.length;
+    if (this.state.projectCSVName === 'UPLOAD FILE') {
+      this.setState({
+        projectCSVName: ''
+      })
+    }
 
-        for (let i = 1; i < length; i += 1) {
-          const projectDict = {};
-          const categories = [];
-          for (let n = 0; n < results.data[0].length; n += 1) {
-            const key = results.data[0][n];
-            const value = results.data[i][n];
-            if (key === 'Submission Title' || key === 'Submission Url') {
-              projectDict[key] = value;
+    let results;
+    const list = [];
+    let length;
+    const apiRaw = [];
+    if (this.state.projectsReader != null) {
+      results = Papa.parse(this.state.projectsReader.result);
+      length = results.data.length;
+
+      for (let i = 1; i < length; i += 1) {
+        const projectDict = {};
+        const categories = [];
+        for (let n = 0; n < results.data[0].length; n += 1) {
+          const key = results.data[0][n];
+          const value = results.data[i][n];
+          if (key === 'Submission Title' || key === 'Submission Url') {
+            projectDict[key] = value;
+          }
+          if (key.substring(0, 3) === 'API' || key.substring(0, 2) === 'GC') {
+            if (value !== 'FALSE') {
+              categories.push(key);
             }
-            if (key.substring(0, 3) === 'API' || key.substring(0, 2) === 'GC') {
-              if (value !== 'FALSE') {
-                categories.push(key);
-              }
-              if(!apiRaw.includes(key)) {
-                apiRaw.push(key);
-              }
+            if(!apiRaw.includes(key)) {
+              apiRaw.push(key);
             }
           }
-          projectDict.Categories = categories;
-          list[i] = projectDict;
         }
+        projectDict.Categories = categories;
+        list[i] = projectDict;
       }
-      
-      let apiFinal = [];
-      for (let i = 0; i < apiRaw.length; i++) {
-        if(apiRaw[i].substring(0, 3) === 'API') {
-          apiFinal.push(['API', apiRaw[i]]);
-        } else {
-          apiFinal.push(['GC', apiRaw[i]]);
-        }
+    }
+
+    let apiFinal = [];
+    for (let i = 0; i < apiRaw.length; i++) {
+      if(apiRaw[i].substring(0, 3) === 'API') {
+        apiFinal.push(['API', apiRaw[i]]);
+      } else {
+        apiFinal.push(['GC', apiRaw[i]]);
       }
+    }
 
-      const resProjects = fetch('/api/projects', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          projectCSV: list
-        })
-      }).then (r => r.json());
-  
-      const resAPIs = fetch('/api/apis', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          apis: apiFinal
-        })
-      }).then (r => r.json());
+    fetch('/api/projects', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        projectCSV: list
+      })
+    }).then (r => r.json());
 
-      return length;
+    fetch('/api/apis', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        apis: apiFinal
+      })
+    }).then (r => r.json());
+
+    return length;
   }
 
   async getProjects() {
     try {
-      const res = await fetch('api/projects'); 
-      const resJson = res.json(); 
-      return resJson; 
+      const res = await fetch('api/projects');
+      const resJson = res.json();
+      return resJson;
     } catch(error) {
       console.log(error.stack);
     }
@@ -186,19 +188,22 @@ class DataEntry extends Component {
 
   postTables(length) {
     if (this.state.tableCSVName === 'UPLOAD FILE') {
-      this.state.tableCSVName = '';
+      this.setState({
+        tableCSVName: ''
+      })
     }
 
     let results;
     let list;
     let tableLength;
+
     if (this.state.tablesReader != null) {
       results = Papa.parse(this.state.tablesReader.result);
       list = results.data;
       tableLength = list.length;
     }
 
-    const res = fetch('/api/projects', {
+    fetch('/api/projects', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'

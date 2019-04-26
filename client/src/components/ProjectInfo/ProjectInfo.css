@@ -1,13 +1,40 @@
-.projID {
-    margin-top: 5%;
-    margin-bottom: 5%;
-}
-.entirePage {
-    background-color: white;
-    color: #3b9bc2;
+.entire-page {
+    font-weight: bold;
+    color: #0A7191;
     height: 100%;
     width: 100%;
     text-align: left;
+}
+
+.back-button {
+    font-family: 'Overpass', sans-serif;
+    color: #0A7191;
+    position: relative;
+    background-color: white;
+    border: none;
+    margin: 5%;
+    margin-bottom: 5vh;
+    cursor: pointer;
+}
+
+.arrow {
+  width: 0;
+	height: 0;
+	border-top: 15px solid transparent;
+	border-right: 30px solid #0A7191;
+	border-bottom: 15px solid transparent;
+  position: absolute;
+}
+
+.white-arrow {
+  margin-left: 10px;
+	border-right: 30px solid white;
+}
+
+.back-button-text {
+  font-size: 20px;
+  float: left;
+  margin-left: 45px;
 }
 
 .submit {
@@ -18,14 +45,54 @@
     padding: 2vh 2vh;
 }
 
+.proj-header {
+    display: inline-block;
+    margin-right: 6.5%;
+    align-self: flex-end;
+}
+
+.proj-id {
+    color: #0A7191;
+    font-size: 20px;
+    width: auto;
+}
+
+.info-and-scores {
+    width: 85vw;
+    margin: auto;
+}
+
+.proj-info {
+    margin-top: 4vh;
+    text-align: center;
+    margin: auto;
+    background-color: #98D0EC;
+    border-radius: 5px;
+    overflow-y: scroll;
+    height: 50vh;
+}
+
+.proj-details {
+    position: relative;
+    top: 4%;
+    width: 100%;
+    left: 0%;
+}
+
 .attribute-item {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    height: 33%;
-    width: 100%;
-    padding: 2%;
+    height: 75px;
+    padding-left: 5%;
+}
+
+.head-and-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 30vw;
 }
 
 .projinfo-icon {
@@ -34,47 +101,23 @@
     position: relative;
 }
 
-.projHeader {
-    display: inline-block;
-    margin-right: 1rem;
-    padding-top: 1.8rem;
-    align-self: flex-end;
-}
-
-.projTitle{
-    font-size: 300%;
-    font-weight: bold;
-}
-.projID {
-    color: #8AC9E1;
-    font-size: 1.7rem;
-    width: auto;
-}
-
-.projDetails {
-    position: relative; 
-    top: 4%;
-    width: 100%;
-    left: 0%;
-}
-
-.projInfo {
-    position: relative;
-    margin-top: 4vh;
-    text-align: center;
-    width: auto;
-    height: auto;
-    padding-top: 3vh;
-    padding-left: 3.5rem;
-} 
-
 .detail-header {
     font-weight: bold;
-    font-size:5vh;
+    font-size: 5vh;
     position: relative;
-    padding-left: 3%;
+    padding-left: 15px;
+    display: inline-block;
 }
 
+.actual-info {
+    color: #0A7191;
+    text-align: left;
+    margin: auto;
+    padding-top: 25px;
+    font-size: 3vh;
+    height: 75px;
+    overflow-y: scroll;
+}
 
 .score {
     position: relative;
@@ -86,41 +129,15 @@
     left: 40%;
 }
 
-.actual-info {
-    position: relative;
-    text-align: left;
-    margin: auto;
-    font-size: 3vh;
-}
-
-.scoreInput {
-    text-align: center;
-    border: 3px solid #3b9bc2;
-    border-radius: 100%;
-    width: 10vh;
-    height:10vh;
-    z-index:0;
-}
-
-.head-and-icon {
-    position: relative;
-    display: flex;
-    align-items: center;
-    width: 30vw;
-}
-
-::placeholder {
-    font-size: 1.5vh;
-    color: #3b9bc2
-}
-
 .category-list {
+    color: #0A7191;
     font-size: 2vh;
+    overflow-y: scroll;
 }
 
 .list {
     height: auto;
-    margin-top: 3vh;
+    margin-top: 1vh;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -130,25 +147,11 @@
 }
 
 .wrapper {
-    margin-top: 4vh;
+    margin-top: 10px;
     position: relative;
     text-align: center;
 }
 
 .button {
     display: inline-block;
-}
-
-.backButton {
-    position: relative;
-    display: inline-block;
-    top: 3vh;
-    left: 3vh;
-    width: 12vw;
-    height: 12vw;
-    border:none;
-    background-color: transparent;
-    outline:none;
-    align-self: flex-start;
-    cursor:'pointer';
 }
