@@ -44,7 +44,7 @@ class JudgeInfo extends Component {
             const apis = [];
             for (i = 0; i < result.length; i++) { 
               if(result[i].type !== "GC") {
-                apis[i] = result[i].name;
+                apis.push(result[i].name);
               }
             }
             apis.push('General Category');
@@ -171,10 +171,10 @@ class JudgeInfo extends Component {
 
   routeToNext() {
     if (this.allAPIsSelected()) {
+      this.assignJudges();	      
       if (this.state.reassignJudges) {
         this.assignJudges();
       }
-  
       const path = "/hacker-spreadsheet";
       this.props.history.push(path);
     }
@@ -214,6 +214,8 @@ class JudgeInfo extends Component {
         />
       </ul>
     ))
+
+    console.group(this.state.info);
 
     return (
       <div className="page-background" id= "JudgeInfo">

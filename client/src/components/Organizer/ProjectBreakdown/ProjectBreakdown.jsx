@@ -100,7 +100,19 @@ class ProjectBreakdown extends Component {
     render() {
       const projects = this.state.projectsJson;
       const keys = this.state.keys;
-      if (this.state.keys.length === 0) {return null }
+      if (this.state.keys.length === 0) {
+        return (
+            <div className="page-background" id="projBreakdown">
+                <div className="page-header">SCORING BREAKDOWN</div>
+                <div className="content-background">
+                  <div className= "buttons nav judge-button">
+                      <button type="button" className="button" onClick={this.routeToPrev}>PREV</button>
+                      <button type="button" className="button" onClick={this.routeToNext}>NEXT</button>
+                  </div>
+                </div>
+            </div>
+          );
+      }
       else {
         const apiCategories = [];
         for (let i = 0; i < this.state.keys.length; i+=1) {
