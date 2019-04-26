@@ -176,6 +176,8 @@ class JudgeInfo extends Component {
       }
       const path = "/hacker-spreadsheet";
       this.props.history.push(path);
+    } else {
+      alert("Not all categories have been matched to a judge!");
     }
   }
 
@@ -213,7 +215,7 @@ class JudgeInfo extends Component {
         />
       </ul>
     ))
-    
+
     return (
       <div className="page-background" id= "JudgeInfo">
         <div className="page-header">JUDGE INFORMATION</div>

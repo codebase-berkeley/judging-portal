@@ -7,7 +7,7 @@ class ProjectBreakdown extends Component {
         super(props);
         this.state = {
           projectsJson: {},
-          keys: []
+          keys: [],
         };
         this.routeToPrev = this.routeToPrev.bind(this);
         this.routeToNext = this.routeToNext.bind(this);
@@ -25,7 +25,7 @@ class ProjectBreakdown extends Component {
             }
             keys.push(category);
         }
-
+        
         const projects = await this.getProjects();
         for (let j = 0; j < projects.length; j += 1) {
             const projectid = projects[j].projectid;
@@ -118,7 +118,6 @@ class ProjectBreakdown extends Component {
       }
       else {
         const apiCategories = [];
-        console.log(this.state.projectsJson);
         for (let i = 0; i < this.state.keys.length; i+=1) {
           apiCategories.push(<APICategory api={keys[i]} alldata={projects[keys[i]]} />);
         }
