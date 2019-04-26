@@ -2,7 +2,6 @@
   "name": "judging-portal-client",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://judging-portal.herokuapp.com",
   "dependencies": {
     "convert-csv-to-json": "0.0.14",
     "csv": "^5.1.1",
