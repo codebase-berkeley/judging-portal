@@ -279,6 +279,17 @@ app.post('/api/assignjudges', async (req, res) => {
            * assigns the category JSON key accordingly
            */
           if (hasGC) {
+            var currCatKey = 'General Category'
+            let apiJudges = apiMappings[currCatKey].judges;
+            let apiIndex = (apiMappings[currCatKey].index - 1) % apiJudges.length;
+            if (apiIndex < 0) {
+              apiIndex = apiJudges.length - 1;
+            }
+            await db.query('INSERT INTO scores(judgeID, projectID, category) VALUES ($1, $2, $3)', [
+              apiJudges[apiIndex],
+              currProj.projectid,
+              currCat
+            ]);
             continue;
           } else {
             hasGC = true;
