@@ -19,7 +19,6 @@ class ProjectBreakdown extends Component {
       }
     
     routeToNext() {
-        // this.postData().then(result => console.log(result));
         const path = "/hacker-spreadsheet"; 
         this.props.history.push(path);
     }

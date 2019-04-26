@@ -211,6 +211,7 @@ class JudgeInfo extends Component {
               <div className="judge-api-title">JUDGE API</div>
               <div className="judge-dropdown">
                 <Dropdown
+                  className="judge-drop"
                   options={this.state.options}
                   onChange={this._onSelect}
                   value={defaultOption}

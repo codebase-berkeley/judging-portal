@@ -10,7 +10,7 @@ class Home extends Component {
   }
 
   routeToOrganizer() {
-    const path = "/data-entry";
+    const path = "/navigation";
     this.props.history.push(path);
   }
 

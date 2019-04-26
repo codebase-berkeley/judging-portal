@@ -281,7 +281,7 @@ class DataEntry extends Component {
             </div>
 
             <div className="data-button nav">
-              <button className="button" type="submit" onClick={this.routeToNext}>NEXT</button>
+              <button className="button" type="submit" onClick={this.routeToNext}>JUDGE INFO</button>
             </div>
           </div>
         </div>
