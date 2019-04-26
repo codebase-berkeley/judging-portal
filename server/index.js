@@ -279,6 +279,17 @@ app.post('/api/assignjudges', async (req, res) => {
            * assigns the category JSON key accordingly
            */
           if (hasGC) {
+            var currCatKey = 'General Category'
+            let apiJudges = apiMappings[currCatKey].judges;
+            let apiIndex = (apiMappings[currCatKey].index - 1) % apiJudges.length;
+            if (apiIndex < 0) {
+              apiIndex = apiJudges.length - 1;
+            }
+            await db.query('INSERT INTO scores(judgeID, projectID, category) VALUES ($1, $2, $3)', [
+              apiJudges[apiIndex],
+              currProj.projectid,
+              currCat
+            ]);
             continue;
           } else {
             hasGC = true;
@@ -326,6 +337,45 @@ app.get('/api/scores', async (req, res) => {
     console.log(error.stack);
   }
 });
+
+app.get('/api/projectscore/:id',  async (req, res) => {
+  try {
+    const { id } = req.params;
+    const query = await db.query('SELECT * FROM scores WHERE projectID=' + id);
+    res.send(query.rows);
+  } catch (error) {
+    console.log(error.stack)
+  }
+})
+
+app.get('/api/categories', async (req, res) => {
+  try {
+    const query = await db.query('SELECT DISTINCT category FROM scores;');
+    res.send(query.rows);
+  } catch (error) {
+    console.log(error.stack);
+  }
+});
+
+app.get('/api/projectname/:id',  async (req, res) => {
+  try {
+    const { id } = req.params;
+    const query = await db.query('SELECT * FROM projects WHERE projectID=' + id);
+    res.send(query.rows);
+  } catch (error) {
+    console.log(error.stack)
+  }
+})
+
+app.get('/api/judgename/:id',  async (req, res) => {
+  try {
+    const { id } = req.params;
+    const query = await db.query('SELECT * FROM judges WHERE judgeId=' + id);
+    res.send(query.rows);
+  } catch (error) {
+    console.log(error.stack)
+  }
+})
 
 
 app.get('/api/winners', async (req, res) => {

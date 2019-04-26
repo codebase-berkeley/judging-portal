@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../OrganizerPortal.css';
+import Home from '../../../Assets/home.svg';
 
 const Papa = require('papaparse');
 
