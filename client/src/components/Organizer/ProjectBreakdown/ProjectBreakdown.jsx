@@ -105,6 +105,9 @@ class ProjectBreakdown extends Component {
             <div className="page-background" id="projBreakdown">
                 <div className="page-header">SCORING BREAKDOWN</div>
                 <div className="content-background">
+                    <div className="loading-page">
+                        <h1 className="loading-text">Loading...</h1>
+                    </div>
                   <div className= "buttons nav judge-button">
                       <button type="button" className="button" onClick={this.routeToPrev}>PREV</button>
                       <button type="button" className="button" onClick={this.routeToNext}>NEXT</button>
@@ -115,6 +118,7 @@ class ProjectBreakdown extends Component {
       }
       else {
         const apiCategories = [];
+        console.log(this.state.projectsJson);
         for (let i = 0; i < this.state.keys.length; i+=1) {
           apiCategories.push(<APICategory api={keys[i]} alldata={projects[keys[i]]} />);
         }

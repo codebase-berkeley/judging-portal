@@ -170,8 +170,7 @@ class JudgeInfo extends Component {
   }
 
   routeToNext() {
-    if (this.allAPIsSelected()) {
-      this.assignJudges();	      
+    if (this.allAPIsSelected()) {  
       if (this.state.reassignJudges) {
         this.assignJudges();
       }
@@ -214,9 +213,7 @@ class JudgeInfo extends Component {
         />
       </ul>
     ))
-
-    console.group(this.state.info);
-
+    
     return (
       <div className="page-background" id= "JudgeInfo">
         <div className="page-header">JUDGE INFORMATION</div>
