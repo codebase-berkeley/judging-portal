@@ -251,7 +251,7 @@ app.post('/api/assignjudges', async (req, res) => {
     const projects = await db.query('SELECT * FROM projects;');
     const projectsJSON = projects.rows;
 
-    const apis = await db.query('SELECT * FROM apis WHERE type="API";');
+    const apis = await db.query('SELECT * FROM apis WHERE type=$1;', ['API']);
     const apisJSON = apis.rows;
 
     let apiMappings = getApiMapping(apisJSON, judgeJSON);
@@ -279,6 +279,18 @@ app.post('/api/assignjudges', async (req, res) => {
            * assigns the category JSON key accordingly
            */
           if (hasGC) {
+            var currCatKey = 'General Category'
+            let apiJudges = apiMappings[currCatKey].judges;
+            let apiIndex = (apiMappings[currCatKey].index - 1) % apiJudges.length;
+            if (apiIndex < 0) {
+              apiIndex = apiJudges.length - 1;
+            }
+            console.log("selecting the ", apiIndex, "th GC judge");
+            await db.query('INSERT INTO scores(judgeID, projectID, category) VALUES ($1, $2, $3)', [
+              apiJudges[apiIndex],
+              currProj.projectid,
+              currCat
+            ]);
             continue;
           } else {
             hasGC = true;
@@ -332,6 +344,7 @@ app.get('/api/winners', async (req, res) => {
   try {
     const apis = await db.query('SELECT DISTINCT category FROM scores ORDER BY category;');
     const apisJSON = apis.rows;
+    console.log(apisJSON);
     const winnersJSON = {};
     let currCat, query;
     for (let i = 0; i < apisJSON.length; i += 1) {
