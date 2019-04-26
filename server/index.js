@@ -343,7 +343,6 @@ app.get('/api/winners', async (req, res) => {
   try {
     const apis = await db.query('SELECT DISTINCT category FROM scores ORDER BY category;');
     const apisJSON = apis.rows;
-    console.log(apisJSON);
     const winnersJSON = {};
     let currCat, query;
     for (let i = 0; i < apisJSON.length; i += 1) {
