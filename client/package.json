@@ -1,5 +1,5 @@
 {
-  "name": "judging-portal",
+  "name": "judging-portal-client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
