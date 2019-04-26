@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../OrganizerPortal.css';
-import APICategory from './APICategory';
+import ProjectItem from './ProjectItem';
 
 class ProjectBreakdown extends Component {
     constructor(props) {
@@ -90,11 +90,14 @@ class ProjectBreakdown extends Component {
     }
 
     routeToPrev() {
-        const path = "/hacker-spreadsheet";
+        const path = "/judge-info";
         this.props.history.push(path);
       }
-
+    
     routeToNext() {
+        // this.postData().then(result => console.log(result));
+        const path = "/hacker-spreadsheet"; 
+        this.props.history.push(path);
     }
 
     render() {
