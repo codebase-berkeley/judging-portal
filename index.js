@@ -103,12 +103,12 @@ app.get('/api/project-tables-waves', async(req, res) => {
 
 // API endpoint for judge names for Judge Login
 app.get('/api/judgenames', async (req, res) => {
-    try {
-      const query = await db.query('SELECT judgeId, name FROM judges;');
-      res.send(query.rows);
-    } catch (error) {
-      console.log(error.stack);
-    }
+  try {
+    const query = await db.query('SELECT judgeId, name FROM judges;');
+    res.send(query.rows);
+  } catch (error) {
+    console.log(error.stack);
+  }
 });
 
 // endpoint to get scored projects in the Scoring Overview page
@@ -348,7 +348,6 @@ app.get('/api/winners', async (req, res) => {
       }
     }
     res.send(winnersJSON);
-
   } catch (error) {
     console.log(error.stack);
   }
