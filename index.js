@@ -81,7 +81,7 @@ app.put('/api/projects', async (req, res) => {
     // tables the projects should spread evenly amoung the tables
     let t = 0;
     for (let i = 1; i < projectNum; i++) {
-      console.log("table id", id);
+      console.log("table id", i);
       db.query('UPDATE projects SET tableName = $1 WHERE projectId = $2;', [
         tablesCSV[t][0],
         i
@@ -92,6 +92,7 @@ app.put('/api/projects', async (req, res) => {
       }
     }
   }
+  res.json("Successfully assigned waves and tables");
 });
 
 app.get('/api/project-tables-waves', async(req, res) => {
