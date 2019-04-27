@@ -91,6 +91,7 @@ app.put('/api/projects', async (req, res) => {
       }
     }
   }
+  res.json("Successfully assigned waves and tables");
 });
 
 app.get('/api/project-tables-waves', async(req, res) => {
