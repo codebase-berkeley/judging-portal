@@ -68,7 +68,8 @@ app.put('/api/projects', async (req, res) => {
     // wave assignment
     let w = 1;
     for (let id = 1; id <= projectNum; id++) {
-      await db.query('UPDATE projects SET wave = $1 WHERE projectId = $2;', [        w,
+      await db.query('UPDATE projects SET wave = $1 WHERE projectId = $2;', [
+        w,
         id
       ]);
       w++;
