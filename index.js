@@ -64,7 +64,6 @@ app.put('/api/projects', async (req, res) => {
   if (tableNum * tablesCSV.length * waveNum < projectNum) {
     console.log("error: not enough capacity");
   } else {
-    console.log("entered put api projects");
     // wave assignment
     let w = 1;
     for (let id = 1; id <= projectNum; id++) {
