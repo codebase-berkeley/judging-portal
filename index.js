@@ -67,7 +67,7 @@ app.put('/api/projects', async (req, res) => {
     let w = 1;
     for (let id = 1; id <= projectNum; id++) {
       console.log("wave id", id);
-      db.query('UPDATE projects SET wave = $1 WHERE projectId = $2;', [
+      await db.query('UPDATE projects SET wave = $1 WHERE projectId = $2;', [
         w,
         id
       ]);
@@ -82,7 +82,7 @@ app.put('/api/projects', async (req, res) => {
     let t = 0;
     for (let i = 1; i < projectNum; i++) {
       console.log("table id", i);
-      db.query('UPDATE projects SET tableName = $1 WHERE projectId = $2;', [
+      await db.query('UPDATE projects SET tableName = $1 WHERE projectId = $2;', [
         tablesCSV[t][0],
         i
       ]);
