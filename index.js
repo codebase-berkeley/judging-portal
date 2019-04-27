@@ -62,11 +62,9 @@ app.put('/api/projects', async (req, res) => {
   if (tableNum * tablesCSV.length * waveNum < projectNum) {
     console.log("error: not enough capacity");
   } else {
-    console.log("entered put api projects");
     // wave assignment
     let w = 1;
     for (let id = 1; id <= projectNum; id++) {
-      console.log("wave id", id);
       await db.query('UPDATE projects SET wave = $1 WHERE projectId = $2;', [
         w,
         id
@@ -81,7 +79,6 @@ app.put('/api/projects', async (req, res) => {
     // tables the projects should spread evenly amoung the tables
     let t = 0;
     for (let i = 1; i < projectNum; i++) {
-      console.log("table id", i);
       await db.query('UPDATE projects SET tableName = $1 WHERE projectId = $2;', [
         tablesCSV[t][0],
         i
@@ -260,7 +257,6 @@ app.post('/api/assignjudges', async (req, res) => {
      * looping through projects to match judges
      */
     for (i = 0; i < projectsJSON.length; i += 1) {
-
       const currProj = projectsJSON[i];
       const categories = currProj.categories;
       let hasGC = false;
@@ -296,7 +292,7 @@ app.post('/api/assignjudges', async (req, res) => {
         ]);
       }
     }
-
+    res.json("Successfully assigned judges to projects.")
   } catch (error) {
     console.log(error.stack);
   }
