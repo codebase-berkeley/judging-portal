@@ -30,17 +30,17 @@ class Instructions extends Component {
     render() {
         return (
             <div className="instructions">
-                <div className = "instructions-content"> 
+                <div className = "instructions-content">
                     <header className="instructions-title">
                         INSTRUCTIONS
                     </header>
-                    <ul className="instructions-text">
-                        <li><p className="instruction">All projects can receive a score between 1 through 5</p></li>
-                        <li><p className="instruction">Once a project has received a score for all its respective categories, it will be marked as scored</p></li>
-                        <li><p className="instruction">Project scores can be changed even after it has been sorted as scored</p></li>
-                        <li><p className="instruction">Please score all projects</p></li>
-                    </ul>
-                    <button className="instructions-next" type="submit" onClick={this.routeToNext}>Got it!</button>
+                    <div className="instructions-text">
+                        <p className="instruction">All projects can receive a score between 1 through 5</p>
+                        <p className="instruction">Once a project has received a score for all its respective categories, it will be marked as scored</p>
+                        <p className="instruction">Project scores can be changed even after it has been sorted as scored</p>
+                        <p className="instruction">Please score all projects</p>
+                    </div>
+                    <button className="instructions-next" type="submit" onClick={this.routeToNext}>GOT IT!</button>
                 </div>
             </div>
         )
