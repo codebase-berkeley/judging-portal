@@ -1,7 +1,7 @@
 .scoring-view {
     font-family: 'Muli', sans-serif;
-    background-color: white;
-    color: #0A7191;
+    background-color: #98D0EC;
+    color: white;
     display: block;
     height: 100vh;
     padding-top: 10px;
@@ -9,7 +9,7 @@
 
 .score-button-box {
     height: 60px;
-    border-bottom: 1px solid #0A7191;
+    border-bottom: 1px solid white;
     margin: auto;
     padding: auto;
 }
@@ -19,7 +19,7 @@
     text-align: center;
     margin: auto;
     margin-top: 20px;
-    background-color: #0A7191;
+    background-color: white;
     padding: 3px 4px;
     font-size: 15px;
     width: 200px;
@@ -29,20 +29,22 @@
 
 .unscored {
     padding: 5px 5px;
-    font-size: 15px;
-    background-color: white;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #98D0EC;
     cursor: pointer;
-    color: #0A7191;
-    border: 1px solid #0A7191;
+    color: white;
+    border: 1px solid #98D0EC;
     width: 100px;
 }
 
 .scored {
     padding: 5px 5px;
-    font-size: 15px;
-    background-color: #0A7191;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: white;
     cursor: pointer;
-    color: white;
-    border: 1px solid #0A7191;
+    color: #98D0EC;
+    border: 1px solid white;
     width: 100px;
 }

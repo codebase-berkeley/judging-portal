@@ -51,8 +51,8 @@ class ScoringOverview extends Component {
             <div className="scoring-view">
                 <div className="score-button-box">
                     <div className="score-button">
-                        <button className={this.state.showUnscored ? "scored" : "unscored"} type="submit" onClick={this.fetchUnscored}>Unscored</button>
-                        <button className={this.state.showUnscored ? "unscored" : "scored"} type="submit" onClick={this.fetchScored}>  Scored  </button>
+                        <button className={this.state.showUnscored ? "scored" : "unscored"} type="submit" onClick={this.fetchUnscored}>UNSCORED</button>
+                        <button className={this.state.showUnscored ? "unscored" : "scored"} type="submit" onClick={this.fetchScored}>  SCORED  </button>
                     </div>
                 </div>
             <ul>
