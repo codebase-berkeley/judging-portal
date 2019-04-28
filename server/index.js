@@ -233,7 +233,7 @@ app.get('/api/judgenames', async (req, res) => {
     console.log(error.stack);
   }
 });
-rs
+
 app.post('/api/assignjudges', async (req, res) => {
   /**
    * pseudo:
