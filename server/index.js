@@ -20,6 +20,7 @@ app.use(bodyParser.json());
  * @apiParam {apis} list of judging categories to add
  */
 app.post('/api/apis', async (req, res) => {
+  db.query('DELETE FROM apis;');
   const { apis } = req.body;
   for (let i = 0; i < apis.length; i ++) {
     db.query('INSERT INTO apis(name, type) VALUES($1 ,$2)', [
@@ -49,7 +50,6 @@ app.get('/api/apis', async (req, res) => {
 });
 
 app.post('/api/projects', async (req, res) => {
-  db.query('DELETE FROM projects;');
   const { projectCSV } = req.body;
   for (let i = 1; i < projectCSV.length; i++) {
     const project = projectCSV[i];
