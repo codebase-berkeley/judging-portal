@@ -1,0 +1,406 @@
+@import url('https://fonts.googleapis.com/css?family=Overpass:400,700,900');
+
+/**************** JUDGE LOGIN ****************/
+
+.j-login-container {
+    font-family: 'Overpass', sans-serif;
+    height: 100vh;
+    width: 100%;
+    text-align: left;
+    display: inline-block;
+    justify-content: center;
+    align-items: center; 
+    flex-direction: column;
+    background-color: #F9F9F9;
+}
+
+.j-login-components {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+}
+
+.j-login-dropdown {
+    width: 70%;
+    margin-top: 4vh;
+    border: 2px solid #0A7191;
+    border-radius: 5px;
+
+}
+
+.j-login-button {
+    font-weight: bold;
+    font-size: 2.5vh;
+    color: white;
+    display: block;
+    align-content: center;
+    border-radius: 5px;
+    justify-content: center;
+    margin-top: 4vh;
+    border: none;
+    background-color: #0A7191;
+    width: 70%;
+    height: 7vh;
+    box-shadow: 0 0px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 3px 0 rgba(0, 0, 0, 0.19);
+}
+
+.Dropdown-control {
+    border: 0px;
+    color: #98D0EC;
+    background-color: #F9F9F9;
+}
+
+.headshot {
+    width: 30%;
+    display: block;
+    margin: auto;
+}
+
+/**************** INSTRUCTIONS ****************/
+
+html,
+body,
+div,
+p {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+.instructions {
+    font-family: 'Overpass', sans-serif;
+    position: relative;
+    background: #98D0EC;
+    height: 100vh;
+    width: 80%;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    padding-left: 10%;
+    padding-right: 10%
+}
+
+.instructions-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.instructions-title {
+    font-weight: bolder;
+    color: #0A7191;
+    font-size: 5vh;
+}
+
+.instructions-text {
+    display: block;
+    margin-top: 1vh;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: light;
+    text-align: left;
+}
+
+.instructions-next {
+    font-weight: bolder;
+    font-size: 2.5vh;
+    color: #98D0EC;
+    display: block;
+    align-content: center;
+    justify-content: center;
+    margin-top: 3vh;
+    border: none;
+    border-radius: 5px;
+    background-color: #0A7191;
+    width: 50%;
+    height: 6vh;
+    box-shadow: 0 0px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 3px 0 rgba(0, 0, 0, 0.19);
+}
+
+/**************** PROJECT INFO ****************/
+.entire-page {
+    font-family: 'Overpass', sans-serif;
+    font-weight: bold;
+    color: #0A7191;
+    height: 100%;
+    width: 100%;
+    text-align: left;
+}
+
+.back-button {
+    color: #0A7191;
+    position: relative;
+    background-color: white;
+    border: none;
+    margin: 5%;
+    margin-bottom: 5vh;
+    margin-left: 6%;
+    cursor: pointer;
+}
+
+.arrow {
+    width: 0;
+	height: 0;
+	border-top: 15px solid transparent;
+	border-right: 30px solid #0A7191;
+	border-bottom: 15px solid transparent;
+    position: absolute;
+}
+
+.white-arrow {
+    margin-left: 10px;
+    border-right: 30px solid white;
+}
+
+.back-button-text {
+    width: 100%;
+    font-size: 20px;
+    float: left;
+    margin-left: 2%;
+}
+
+.submit {
+    display: flex;
+    height: auto;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 2vh 2vh;
+}
+
+.proj-header {
+    display: inline-block;
+    margin-right: 6.5%;
+    align-self: flex-end;
+}
+
+.proj-id {
+    color: #0A7191;
+    font-size: 20px;
+    width: auto;
+}
+
+.info-and-scores {
+    width: 85vw;
+    margin: auto;
+}
+
+.proj-info {
+    margin-top: 4vh;
+    text-align: center;
+    margin: auto;
+    background-color: #98D0EC;
+    border-radius: 5px;
+    height: 40vh;
+    overflow: auto;
+}
+
+.proj-details {
+    position: relative;
+    top: 4%;
+    width: 100%;
+    left: 0%;
+}
+
+.attribute-item {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    padding-left: 5%;
+    margin-bottom: 6%;
+}
+
+.head-and-icon {
+    position: relative;
+    display: flex;
+    width: 30vw;
+}
+
+.projinfo-icon {
+    left: 0%;
+    top: 0%;
+    position: relative;
+    width: 40px;
+    height: 35px;
+}
+
+.detail-header {
+    font-weight: bold;
+    font-size: 3vh;
+    position: relative;
+    padding-left: 15px;
+    display: inline-block;
+}
+
+.actual-info {
+    color: #0A7191;
+    text-align: center;
+    width: 100%;
+    font-size: 2.5vh;
+}
+
+.score {
+    position: relative;
+    text-align: center;
+    width: 20vw;
+    height: 20vw;
+    z-index: 1;
+    bottom: 10%;
+    left: 40%;
+}
+
+.category-list {
+    color: #0A7191;
+    font-size: 2.5vh;
+}
+
+.list {
+    height: auto;
+    margin-top: 1vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-content: center;
+    text-align: center;
+}
+
+.wrapper {
+    margin-top: 10px;
+    position: relative;
+    text-align: center;
+}
+
+.button {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.category-score {
+    display: flex;
+    margin-top: 10px;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+    border: 3px solid #0A7191;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.t-category {
+    font-size: 25px;
+}
+
+.t-score {
+    display: inline-block;
+    margin-left: 0.8rem;
+}
+
+.score-input {
+    font-family: 'Overpass', sans-serif;
+    padding: 5px;
+    margin-right: 20px;
+    text-align: center;
+    width: 50px;
+    height: 20%;
+    cursor: text;
+    border: none;
+    color: #0A7191;
+    font-size: 4vh;
+}
+
+input[type="score"]::placeholder {
+    font-size: 4vh;
+    color: #0A7191;
+}
+
+/**************** SCORING OVERVIEW ****************/
+.scoring-view {
+    background-color: #98D0EC;
+    color: white;
+    display: block;
+    height: 100%;
+    overflow: auto;
+    padding-top: 10px;
+}
+
+.score-button-box {
+    height: 60px;
+    border-bottom: 0.5px solid #c8e6f4;
+    margin: auto;
+    padding: auto;
+}
+
+.score-button {
+    border-radius: 5px;
+    text-align: center;
+    margin: auto;
+    margin-top: 20px;
+    background-color: white;
+    padding: 3px 4px;
+    font-size: 15px;
+    width: 200px;
+    display: flex;
+    flex-direction: row;
+}
+
+.unscored {
+    padding: 5px 5px;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #98D0EC;
+    cursor: pointer;
+    color: white;
+    border: 1px solid #98D0EC;
+    width: 100px;
+}
+
+.scored {
+    padding: 5px 5px;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: white;
+    cursor: pointer;
+    color: #98D0EC;
+    border: 1px solid white;
+    width: 100px;
+}
+
+.projectcmp {
+    display: flex;
+    flex-basis: auto;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px solid #c8e6f4;
+    height: 65px;
+    text-align: left;
+}
+
+.project-text {
+    padding-left: 20px;
+}
+
+h2 {
+    margin: 0;
+}
+
+h3 {
+    margin: 2.5px;
+    margin-top: 10px;
+}
+
+p {
+    margin: 2.5px;
+    font-size: 12px;
+    color: white;
+}

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
-import './JudgeLogin.css';
-import headshot from '../../Assets/headshot.png' 
+import '../JudgePortal.css';
+import headshot from '../../../assets/headshot.png' 
 
 class JudgeLogin extends Component {
     constructor(props) {

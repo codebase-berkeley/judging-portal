@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import Dropdown from 'react-dropdown';
-import 'react-dropdown/style.css';
+import '../../../../node_modules/react-dropdown/style.css';
 import Judge from './Judge';
 import '../OrganizerPortal.css';
 import { Link } from 'react-router-dom';
-import Home from '../../../Assets/home.svg';
+import Home from '../../../assets/home.svg';
 
 class JudgeInfo extends Component {
   constructor(props) {
@@ -261,7 +261,9 @@ class JudgeInfo extends Component {
             <div className="judge-list">
               <div className="judge-list-name">NAME</div>
               <div className="judge-list-api">API</div>
-              <div className="list">{info}</div>
+              <div className="judge-list-scroll">
+                <div className="list">{info}</div>
+              </div>
             </div>
           </div>
 

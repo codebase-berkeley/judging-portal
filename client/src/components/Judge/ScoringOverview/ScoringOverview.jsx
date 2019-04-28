@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Project from './Project.jsx'
-import './ScoringOverview.css';
+import '../JudgePortal.css';
 
 class ScoringOverview extends Component {
   constructor(props) {

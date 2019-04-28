@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import teamIcon from "../../Assets/team.png";
-import apiIcon from "../../Assets/api.png";
-import tableIcon from "../../Assets/table.png";
+import teamIcon from "../../../assets/team.png";
+import apiIcon from "../../../assets/api.png";
+import tableIcon from "../../../assets/table.png";
 import PerCategory from "./PerCategory.jsx";
-import "./ProjectInfo.css";
+import "../JudgePortal.css";
 
 class ProjectInfo extends Component{
     constructor(props) {

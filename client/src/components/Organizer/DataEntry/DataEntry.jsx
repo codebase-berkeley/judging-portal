@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../OrganizerPortal.css';
-import Home from '../../../Assets/home.svg';
+import Home from '../../../assets/home.svg';
 import { Link } from 'react-router-dom';
 
 const Papa = require('papaparse');

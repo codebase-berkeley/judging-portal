@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import WinnerCollapsible from './WinnerCollapsible';
 import '../OrganizerPortal.css';
 import { Link } from 'react-router-dom';
-import Home from '../../../Assets/home.svg';
+import Home from '../../../assets/home.svg';
 
 class WinnerPage extends Component {
     constructor(props) {

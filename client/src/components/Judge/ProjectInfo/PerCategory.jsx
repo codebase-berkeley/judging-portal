@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './PerCategory.css';
+import '../JudgePortal.css';
 
 class PerCategory extends Component {
     constructor(props) {

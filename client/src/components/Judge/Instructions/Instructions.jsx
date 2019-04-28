@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import './Instructions.css';
-
-const instructions = ""
+import '../JudgePortal.css';
 
 class Instructions extends Component {
     constructor(props) {

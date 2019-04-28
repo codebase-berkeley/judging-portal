@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../OrganizerPortal.css'; 
 import SpreadEntry from './SpreadEntry'; 
 import { Link } from 'react-router-dom';
-import Home from '../../../Assets/home.svg';
+import Home from '../../../assets/home.svg';
 
 class Spreadsheet extends Component {
     constructor(props) {
@@ -79,7 +79,9 @@ class Spreadsheet extends Component {
                                 <div className="entries-list-name">PROJECT NAME</div>
                                 <div className="entries-list-wave">WAVE</div>
                                 <div className="entries-list-table">TABLE</div>
-                                <div className="entry-element">{projectEntries}</div>
+                                <div className="entries-scroll">
+                                    <div className="entry-element">{projectEntries}</div>
+                                </div>
                             </div>
                         </div>
                     </div>
