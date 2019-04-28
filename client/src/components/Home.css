@@ -2,7 +2,7 @@
 
 .home {
     font-family: 'Overpass', sans-serif;
-    height: 100vh; 
+    height: 100vh;
     width: 100vw;
     display: flex;
     justify-content: center;
@@ -40,6 +40,13 @@
     background-color: #98D0EC;
     margin-top: 3vh;
     border: solid;
+    cursor: pointer;
+    transition: color ease-in 100ms;
+}
+
+.h-button:hover {
+    color: #0A7191;
+
 }
 
 .home-title {
