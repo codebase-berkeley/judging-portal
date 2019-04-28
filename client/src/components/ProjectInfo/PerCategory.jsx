@@ -18,16 +18,16 @@ class PerCategory extends Component {
                 <div className="t-score">
                     {this.props.score === null ?
                         <input type="score"
-                            keyboardType = "phone-pad"
-                            className = "score-input"
-                            placeholder = "+"
+                            keyboardType="phone-pad"
+                            className="score-input"
+                            placeholder="+"
                             onChange={this.handleScore}
                         >
                         </input> :
                         <input type="score"
-                            keyboardType = "phone-pad"
-                            className = "score-input"
-                            placeholder = {this.props.score}
+                            keyboardType="phone-pad"
+                            className="score-input"
+                            placeholder={this.props.score}
                             onChange={this.handleScore}
                         >
                         </input>
