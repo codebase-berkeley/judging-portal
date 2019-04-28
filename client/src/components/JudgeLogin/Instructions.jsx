@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Instructions.css';
 
-const instructions = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+const instructions = ""
 
 class Instructions extends Component {
     constructor(props) {
@@ -34,9 +34,12 @@ class Instructions extends Component {
                     <header className="instructions-title">
                         INSTRUCTIONS
                     </header>
-                    <p className="instructions-text">
-                        {instructions}
-                    </p>
+                    <ul className="instructions-text">
+                        <li><p className="instruction">All projects can receive a score between 1 through 5</p></li>
+                        <li><p className="instruction">Once a project has received a score for all its respective categories, it will be marked as scored</p></li>
+                        <li><p className="instruction">Project scores can be changed even after it has been sorted as scored</p></li>
+                        <li><p className="instruction">Please score all projects</p></li>
+                    </ul>
                     <button className="instructions-next" type="submit" onClick={this.routeToNext}>Got it!</button>
                 </div>
             </div>

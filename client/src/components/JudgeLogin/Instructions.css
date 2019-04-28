@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Muli:regular,bold,light&subset=latin,latin-ext');
+@import url('https://fonts.googleapis.com/css?family=Overpass:400,700,900');
 
 html,
 body,
@@ -14,11 +14,11 @@ p {
 }
 
 .instructions {
-    font-family: 'Muli';
+    font-family: 'Overpass', sans-serif;
     position: relative; 
-    background: white;
+    background: #98D0EC;
     height: 100vh;
-    width: 70%;
+    width: 100%;
     display: inline-block;
     justify-content: center;
     align-items: center; 
@@ -34,15 +34,13 @@ p {
 }
 
 .instructions-title {
-    font-family: 'Muli', sans-serif;
     font-weight: bolder;
-    color: #3B9BC2;
+    color: #0A7191;
     font-size: 5vh;
 }
 
 .instructions-text {
     margin-top: 1vh;
-    font-family: 'Muli', sans-serif;
     font-weight: light;
     font-size: 2.5vh;
     color: black;
@@ -50,7 +48,6 @@ p {
 }
 
 .instructions-next {
-    font-family: 'Muli';
     font-weight: bolder;
     font-size: 2.5vh;
     color: white;
