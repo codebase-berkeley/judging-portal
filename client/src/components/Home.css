@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css?family=Muli:regular,bold,light&subset=latin,latin-ext');
+@import url('https://fonts.googleapis.com/css?family=Overpass');
 
 .home {
     font-family: 'Overpass', sans-serif;
-    height: 100vh; 
+    height: 100vh;
     width: 100vw;
     display: flex;
     justify-content: center;
@@ -12,17 +12,17 @@
     background-color: #98D0EC;
 }
 
-.container {
+.home-container {
     text-align: left;
     display: block;
+    width: 60%;
     margin-left: auto;
     margin-right: auto;
     align-content: center;
     justify-content: center;
 }
 
-.route-button {
-    font-family: 'Muli';
+.route-buttons {
     font-weight: bold;
     display: inline-block;
     align-content: center;
@@ -32,25 +32,29 @@
 .h-button {
     height: 30%;
     width: 100%;
-    margin: 2%;
     padding: 0.8rem;
-    display: block;
-    align-content: center;
-    justify-content: center;
     border-color: white;
-    border-radius: 0.7rem;
-    font-size: 1.7rem;
+    border-radius: 0.4rem;
+    font-size: 1rem;
     color: white;
     background-color: #98D0EC;
-    margin-top: 4vh;
+    margin-top: 3vh;
     border: solid;
+    cursor: pointer;
+    transition: color ease-in 100ms;
 }
 
-h1 {
+.h-button:hover {
     color: #0A7191;
+
 }
 
-p {
+.home-title {
+    color: #0A7191;
+    margin: auto;
+}
+
+.home-header {
     font-size: 1.4rem;
     color: white;
 }

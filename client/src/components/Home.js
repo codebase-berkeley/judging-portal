@@ -10,7 +10,7 @@ class Home extends Component {
   }
 
   routeToOrganizer() {
-    const path = "/data-entry";
+    const path = "/navigation";
     this.props.history.push(path);
   }
 
@@ -22,10 +22,10 @@ class Home extends Component {
   render() {
     return (
       <div className="home">
-        <div className="container">
-          <h1>Hi There!</h1>
-          <p>I am:</p>
-          <div className="route-button">
+        <div className="home-container">
+          <h1 className="home-title">Hi There!</h1>
+          <p className="home-header">I am:</p>
+          <div className="route-buttons">
             <button className="h-button" onClick={this.routeToOrganizer}>AN ORGANIZER</button>
             <button className="h-button" onClick={this.routeToJudge}>A JUDGE</button>
           </div>

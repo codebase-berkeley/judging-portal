@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import '../OrganizerPortal.css';
+import Home from '../../../assets/home.svg';
+import { Link } from 'react-router-dom';
 
 const Papa = require('papaparse');
 
@@ -233,6 +235,10 @@ class DataEntry extends Component {
     return (
       <div className="page-background" id ="DataEntry">
         <div className="page-header">
+          <div className="home-nav">
+            <img className="home-icon" src={Home}/>
+            <Link className="home-label" to='/navigation'>HOME</Link>
+          </div>
           DATA ENTRY
         </div>
 
@@ -279,11 +285,10 @@ class DataEntry extends Component {
               />
               <label htmlFor="projects-file" id="projects-file" >{this.state.projectCSVName}</label>
             </div>
-
-            <div className="data-button nav">
-              <button className="button" type="submit" onClick={this.routeToNext}>NEXT</button>
-            </div>
           </div>
+          <div className= "links data">
+              <Link className="next-judge" to='/judge-info' onClick={this.routeToNext}>JUDGE INFO ></Link>
+            </div>
         </div>
       </div>
     );

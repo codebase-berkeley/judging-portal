@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import Dropdown from 'react-dropdown';
-import 'react-dropdown/style.css';
+import '../../../../node_modules/react-dropdown/style.css';
 import Judge from './Judge';
 import '../OrganizerPortal.css';
+import { Link } from 'react-router-dom';
+import Home from '../../../assets/home.svg';
 
 class JudgeInfo extends Component {
   constructor(props) {
@@ -218,7 +220,12 @@ class JudgeInfo extends Component {
 
     return (
       <div className="page-background" id= "JudgeInfo">
-        <div className="page-header">JUDGE INFORMATION</div>
+        <div className="page-header">
+          <div className="home-nav">
+            <img className="home-icon" src={Home}/>
+            <Link className="home-label" to='/navigation'>HOME</Link>
+          </div>
+        JUDGE INFORMATION</div>
         <div className="content-background">
           <div className="judge-input-list">
             <div className="judge-input">
@@ -234,6 +241,7 @@ class JudgeInfo extends Component {
               <div className="judge-api-title">JUDGE API</div>
               <div className="judge-dropdown">
                 <Dropdown
+                  className="judge-drop"
                   options={this.state.options}
                   onChange={this._onSelect}
                   value={defaultOption}
@@ -253,13 +261,15 @@ class JudgeInfo extends Component {
             <div className="judge-list">
               <div className="judge-list-name">NAME</div>
               <div className="judge-list-api">API</div>
-              <div className="list">{info}</div>
+              <div className="judge-list-scroll">
+                <div className="list">{info}</div>
+              </div>
             </div>
           </div>
 
-          <div className= "buttons nav judge-button">
-            <button className="button" type="submit" onClick={this.routeToPrev}>PREV</button>
-            <button className="button" type="submit" onClick={this.routeToNext}>NEXT</button>
+          <div className= "links judgeinfo">
+            <Link className="nav prev" to='/data-entry' onClick={this.routeToPrev}>&#60; DATA ENTRY</Link>
+            <Link className="nav next" to='/project-breakdown' onClick={this.routeToNext}>SCORING BREAKDOWN ></Link>
           </div>
         </div>
       </div>

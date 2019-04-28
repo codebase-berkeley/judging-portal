@@ -1,5 +1,9 @@
+
 import React, { Component } from 'react';
 import '../OrganizerPortal.css';
+import ProjectItem from './ProjectItem';
+import { Link } from 'react-router-dom';
+import Home from '../../../assets/home.svg';
 import APICategory from './APICategory';
 
 class ProjectBreakdown extends Component {
@@ -29,7 +33,7 @@ class ProjectBreakdown extends Component {
             }
             keys.push(category);
             dButtons.push(
-                <button type="button" className="dropdown-button">
+                <button type="button" className="dropdown-button-proj">
                     <div className="dropdown-button-shape-down"></div> </button>
             );
         }
@@ -101,7 +105,7 @@ class ProjectBreakdown extends Component {
     async flipButtonUp(i) {
         await this.setState((prevState) => {
             const newButtons = prevState.buttons;
-            newButtons[i] = <button type="button" className="dropdown-button">
+            newButtons[i] = <button type="button" className="dropdown-button-proj">
                 <div className="dropdown-button-shape-up"></div> </button>
             return {
                 buttons: newButtons
@@ -112,7 +116,7 @@ class ProjectBreakdown extends Component {
     async flipButtonDown(i) {
         await this.setState((prevState) => {
             const newButtons = prevState.buttons;
-            newButtons[i] = <button type="button" className="dropdown-button">
+            newButtons[i] = <button type="button" className="dropdown-button-proj">
                 <div className="dropdown-button-shape-down"></div> </button>
             return {
                 buttons: newButtons
@@ -126,6 +130,8 @@ class ProjectBreakdown extends Component {
       }
 
     routeToNext() {
+        const path = "/hacker-spreadsheet"; 
+        this.props.history.push(path);
     }
 
     render() {
@@ -133,16 +139,22 @@ class ProjectBreakdown extends Component {
       const keys = this.state.keys;
       if (this.state.keys.length === 0) {
         return (
-            <div className="page-background" id="projBreakdown">
-                <div className="page-header">SCORING BREAKDOWN</div>
+            <div className="page-background" id= "projBreakdown">
+                <div className="page-header">
+                    <div className="home-nav">
+                        <img className="home-icon" src={Home}/>
+                        <Link className="home-label" to='/navigation'>HOME</Link>
+                    </div>
+                SCORING BREAKDOWN</div>
                 <div className="content-background">
                     <div className="loading-page">
                         <h1 className="loading-text">Loading...</h1>
                     </div>
-                  <div className= "buttons nav judge-button">
-                      <button type="button" className="button" onClick={this.routeToPrev}>PREV</button>
-                      <button type="button" className="button" onClick={this.routeToNext}>NEXT</button>
-                  </div>
+
+                    <div className= "links">
+                        <Link className="nav prev" to='/judge-info' onClick={this.routeToPrev}>&#60; JUDGE INFO</Link>
+                        <Link className="nav next" to='/hacker-spreadsheet' onClick={this.routeToNext}>HACKER SPREADSHEET ></Link>
+                    </div>
                 </div>
             </div>
           );

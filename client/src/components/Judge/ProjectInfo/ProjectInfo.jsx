@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import teamIcon from "./src/team_icon.png";
-import apiIcon from "./src/API_icon.png";
-import tableIcon from "./src/table_icon.png";
+import teamIcon from "../../../assets/team.png";
+import apiIcon from "../../../assets/api.png";
+import tableIcon from "../../../assets/table.png";
 import PerCategory from "./PerCategory.jsx";
-import "./ProjectInfo.css";
+import "../JudgePortal.css";
 
 class ProjectInfo extends Component{
     constructor(props) {
@@ -93,9 +93,7 @@ class ProjectInfo extends Component{
             <div className = "entire-page">
                 <div className="submit">
                     <button type="submit" className="back-button" onClick={this.routeToPrev}>
-                        <div className="arrow"></div>
-                        <div className="arrow white-arrow"></div>
-                        <h2 className="back-button-text">BACK</h2>
+                        <h2 className="back-button-text">&#60; BACK</h2>
                     </button>
                     <div className="proj-header">
                         <p className="proj-id"><b>ID:</b> {this.props.location.state.projectId}</p>
@@ -109,9 +107,9 @@ class ProjectInfo extends Component{
                             <div className = "attribute-item">
                                 <div className="head-and-icon">
                                     <img className="projinfo-icon" src={teamIcon}></img>
-                                    <h className="detail-header">Team</h>
+                                    <h className="detail-header">TEAM</h>
                                 </div>
-                                <p className="actual-info">{this.props.location.state.name}</p>
+                                <p className="team actual-info">{this.props.location.state.name}</p>
                             </div>
 
                             <br/>
@@ -124,12 +122,10 @@ class ProjectInfo extends Component{
                                 <p className="actual-info">{cat}</p>
                             </div>
 
-                            <br/>
-
                             <div className = "attribute-item">
                                 <div className="head-and-icon">
                                     <img className="projinfo-icon" src={tableIcon}></img>
-                                    <h className="detail-header">Table</h>
+                                    <h className="detail-header">TABLE</h>
                                 </div>
                                <p className="actual-info">{this.props.location.state.tablename}</p>
                             </div>

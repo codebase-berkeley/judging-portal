@@ -4,14 +4,14 @@ import { Route, Switch } from 'react-router-dom';
 import './App.css';
 
 import Home from './components/Home';
-import CategoryInput from './components/Organizer/CategoryInput/CategoryInput';
+import Navigation from './components/Organizer/Navigation/Navigation';
 import DataEntry from './components/Organizer/DataEntry/DataEntry';
 import JudgeInfo from './components/Organizer/JudgeInfo/JudgeInfo';
 import ProjectBreakdown from './components/Organizer/ProjectBreakdown/ProjectBreakdown';
-import JudgeLogin from './components/JudgeLogin/JudgeLogin';
-import Instructions from './components/JudgeLogin/Instructions';
-import ScoringOverview from './components/ScoringOverview/ScoringOverview';
-import ProjectInfo from './components/ProjectInfo/ProjectInfo';
+import JudgeLogin from './components/Judge/JudgeLogin/JudgeLogin';
+import Instructions from './components/Judge/Instructions/Instructions';
+import ScoringOverview from './components/Judge/ScoringOverview/ScoringOverview';
+import ProjectInfo from './components/Judge/ProjectInfo/ProjectInfo';
 import Spreadsheet from './components/Organizer/HackerSpreadsheet/Spreadsheet';
 import Winners from './components/Organizer/Winners/WinnerPage';
 
@@ -22,7 +22,7 @@ class App extends Component {
       <div className="App">
         <Switch>
           <Route exact path='/' component={Home} />
-          <Route path="/categories" component={CategoryInput} />
+          <Route path="/navigation" component={Navigation} />
           <Route path="/data-entry" component={DataEntry} />
           <Route path="/judge-info" component={JudgeInfo} />
           <Route path="/overview" component={ScoringOverview} />

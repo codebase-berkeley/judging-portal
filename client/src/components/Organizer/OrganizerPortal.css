@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Overpass');
+@import url('https://fonts.googleapis.com/css?family=Overpass:400,700,900');
 
 /**************** PAGE SETUP ****************/
 .page-background {
@@ -12,7 +12,7 @@
 }
 
 .page-header {
-    font-weight: bold;
+    font-weight: 700;
     color: #0A7191;
     text-align: left;
     font-size: 5vh;
@@ -39,6 +39,41 @@
     height: 70%;
 }
 
+/********************* HOME ICON ********************/
+.home-nav {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    height: 5%;
+    z-index: 2000;
+    margin-left: 80%;
+    margin-top: 2.5vh;
+}
+
+.home-icon {
+    position: relative;
+    width: 30px;
+    fill: white;
+}
+
+.home-label {
+    text-decoration: none;
+    padding-top: 5px;
+    margin-left: 5px;
+    font-size: 2.5vh;
+    font-weight: 700;
+    color: #0A7191;
+    text-align: center;
+}
+
+.home-label:hover {
+    text-decoration: underline;
+}
+
+.home-icon:hover {
+    fill: #232323;
+}
+
 /******************* BUTTONS ********************/
 .button {
     font-weight: bold;
@@ -55,14 +90,6 @@
     box-shadow: 3px 3px #cdcdcd;
     border-radius: 4px;
     margin: 2%;
-}
-
-.nav {
-    justify-content: center;
-    margin: auto;
-    display: flex;
-    flex-direction: row;
-    margin-top: 3vh;
 }
 
 .button:hover{
@@ -91,74 +118,53 @@
     outline: none;
 }
 
-/***************** CATEGORY INPUTS ****************/
-.category-lists {
-    margin: auto;
-    height: 80%;
-    width: 90vw;
-    display: flex;
-    flex-direction: row;
+/***************** ORG NAVIGATION ****************/
+.links {
+    position: absolute;
+    width: 100%;
 }
 
-.award-list {
-    margin-top: 2%;
+.prev:hover {
+    text-decoration: underline;
+}
+
+.next:hover {
+    text-decoration: underline;
+}
+/***************** NAVIGATION PAGE ****************/
+.nav-list {
+    width: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
     text-align: left;
-    width: 33%;
 }
 
-.award {
-    position: relative;
-    left: 4vw;
-    font-size: 22px;
-    color: #98D0EC;
-    width: 70%;
-    margin-right: 0;
+.nav-container {
+    width: 40%;
+    margin-right: auto;
+    margin-left: auto;
 }
 
-.award-list-name {
-    position: relative;
-    color: #0A7191;
-    left: 4.3vw;
-    display: inline-block;
+.nav-title {
+    padding-top: 40%;
+    text-align: left;
+    font-size: 8vh;
+    font-weight: 900;
+    color: white;
+}
+
+.nav-link {
+    text-decoration: none;
     font-size: 2.5vh;
-    font-weight: bolder;
-    padding: 2%;
-    padding-top: 5%;
+    font-weight: 700;
+    color: #0A7191;
+    margin-top: 10%;
+    transition: color ease-in 100ms;
 }
 
-.award-list-element {
-    display: flex;
-    flex-direction: row;
-    padding-right: 20px;
-}
-
-.award-list-field {
-    position: relative;
-    text-align: center;
-    width: 100%;
-}
-
-.award-list-input {
-    height: 4vh;
-    width: 70%;
-    font-size: 1.5vh;
-    border: none;
-    border-bottom: 2px solid #98D0EC;
-    border-top: 2px solid #98D0EC;
-}
-
-.award-list-input, textarea {
-    background-color: #F9F9F9;
-    padding-left: 2%;
-    margin-left: 5%;
-}
-
-.award-list-item {
-    width: 100%;
-}
-
-.category-button {
-    margin-top: 0;
+.nav-link:hover {
+    color: #232323;
 }
 
 /********************* DATA ENTRY ********************/
@@ -170,7 +176,7 @@
 .data-entry-contents {
     margin: auto;
     width: 80vw;
-    padding-top: 2.5vh;
+    padding-top: 10vh;
     margin-bottom: 3vh;
 }
 
@@ -186,19 +192,20 @@
 .data-element-title {
     margin: 10px;
     font-size: 2.5vh;
-    font-weight: bold;
+    font-weight: 700;
     color: #0A7191;
 }
 
 .data-entry-input{
     height: 4vh;
     width: 40%;
-    font-size: 1.5vh;
+    font-size: 1.8vh;
     border: none;
     border-bottom: 2px solid #98D0EC;
     border-top: 2px solid #98D0EC;
     background-color: #F9F9F9;
     padding-left: 2%;
+    color: #98D0EC;
 }
 
 .upload-file {
@@ -223,6 +230,22 @@
     padding: 2%;
 }
 
+.next-judge {
+    width: 100%;
+    text-decoration: none;
+    font-size: 2.5vh;
+    font-weight: 700;
+    color: #0A7191;
+}
+
+.next-judge:hover {
+    text-decoration: underline;
+}
+
+.data {
+    margin-top: 4vh;
+}
+
 /********************* JUDGE INFO ********************/
 .judge-input-list {
     margin: auto;
@@ -244,7 +267,7 @@
 .judge-name-title {
     margin-top: 2.5vh;
     margin-bottom: 1vh;
-    font-weight: bold;
+    font-weight: 700;
     color: #0A7191;
     font-size: 2.5vh;
     text-align: left;
@@ -253,18 +276,19 @@
 .judge-name-input {
     height: 4vh;
     width: 100%;
-    font-size: 1.5vh;
+    font-size: 1.8vh;
     border: none;
     border-bottom: 2px solid #98D0EC;
     border-top: 2px solid #98D0EC;
     padding-left: 2%;
     background-color: #F9F9F9;
+    color: #98D0EC;
 }
 
 .judge-api-title {
     margin-top: 3vh;
     margin-bottom: 1vh;
-    font-weight: bold;
+    font-weight: 700;
     color: #0A7191;
     font-size: 2.5vh;
     text-align: left;
@@ -277,18 +301,18 @@
 }
 
 .judge-list {
-    padding: 4%;
-    padding-top: 3%;
+    padding-left: 4%;
+    margin-top: 3%;
     position: relative;
     display: inline-block;
     align-content: center;
-    overflow: auto;
     width: 65%;
 }
 
 .judge-list-name {
+    position: relative;
     display: inline-block;
-    font-weight: bold;
+    font-weight: 700;
     color: #0A7191;
     background-color: #98D0EC;
     font-size: 2.5vh;
@@ -299,8 +323,9 @@
 }
 
 .judge-list-api {
+    position: relative;
     display: inline-block;
-    font-weight: bold;
+    font-weight: 700;
     color: #0A7191;
     background-color: #98D0EC;
     font-size: 2.5vh;
@@ -316,7 +341,7 @@ ul {
 }
 
 .judge-button {
-    margin-top: -4vh;
+    margin-top: -3vh;
 }
 
 .judge-item {
@@ -350,8 +375,40 @@ ul {
     padding: 0.5%;
 }
 
+.judge-drop {
+    border-bottom: 2px solid #98D0EC;
+    border-top: 2px solid #98D0EC;
+}
+
 .delete-button {
     background-color: #F9F9F9;
+}
+
+.prev {
+    width: 50%;
+    text-decoration: none;
+    font-size: 2.5vh;
+    font-weight: 700;
+    color: #0A7191;
+}
+
+.next {
+    width: 100%;
+    margin-left: 10%;
+    text-decoration: none;
+    font-size: 2.5vh;
+    font-weight: 700;
+    color: #0A7191;
+}
+
+.judgeinfo {
+    margin-top: 6vh;
+}
+
+.judge-list-scroll {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
 }
 
 /********************* PROJECT BREAKDOWN ********************/
@@ -369,15 +426,11 @@ ul {
     justify-content: center;
 }
 
-.loading-text {
-    
-}
-
 .api-category-box {
     display: inline-block;
     margin-top: 10px;
     margin-bottom: 10px;
-    width: 95vw;
+    width: 55vw;
     height: 70vh;
     overflow-y: scroll;
 }
@@ -395,7 +448,7 @@ ul {
 .api-name {
     text-align: left;
     color: #0A7191;
-    font-size: 4vh;
+    font-size: 3vh;
     font-weight: bold;
     margin-left: 20px;
     padding-top: 5px;
@@ -481,8 +534,8 @@ ul {
 .proj-item {
     display: flex;
     flex-direction: row;
-    border-bottom: 2px solid rgb(210, 211, 211);
-    width: 90%;
+    border-bottom: 2px solid #98D0EC;
+    width: 100%;
     display: inline-block;
 }
 
@@ -500,11 +553,13 @@ ul {
 }
 
 .scoring-list {
+    margin: auto;
+    width: 90%;
     height: 45vh;
     overflow: auto;
 }
 
-.dropdown-button {
+.dropdown-button-proj {
     margin-top: 15px;
     margin-right: 5px;
     font-family: 'Overpass', sans-serif;
@@ -518,9 +573,9 @@ ul {
 .dropdown-button-shape {
   	width: 0;
   	height: 0;
-  	border-left: 10px solid transparent;
-  	border-right: 10px solid transparent;
-  	border-top: 20px solid #0A7191;
+  	border-left: 8px solid transparent;
+  	border-right: 8px solid transparent;
+  	border-top: 10px solid #0A7191;
 }
 
 /********************* HACKER FACING SPREADSHEET ********************/
@@ -533,13 +588,8 @@ ul {
     height: 60vh;
 }
 
-#hackSpreadsheet {
-
-}
-
 .entry-element {
     display: inline-block;
-    /* overflow: auto; */
     width: 100%;
     height: 55vh;
     position: relative; 
@@ -585,7 +635,6 @@ ul {
     position: relative; 
     top: 10%;
     display: inline-block;
-    overflow: auto;
     width: 80%;
     height: 80%;
 }
@@ -593,22 +642,25 @@ ul {
 .entries-list-name {
     display: inline-block;
     text-align: center;
-    width: 33%;
+    width: 33.33%;
     color: #0A7191;
+    background-color: #98D0EC;
 }
 
 .entries-list-wave {
     display: inline-block;
     text-align: center;
-    width: 33%;
+    width: 33.33%;
     color: #0A7191;
+    background-color: #98D0EC;
 }
 
 .entries-list-table {
     display: inline-block;
     text-align: center;
-    width: 33%;
+    width: 33.33%;
     color: #0A7191;
+    background-color: #98D0EC;
 }
 
 .button-container-spread {
@@ -619,6 +671,16 @@ ul {
     margin-top: 8vh;
 }
 
+.spreadsheet {
+    margin-top: 16vh;
+}
+
+.entries-scroll {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
 /********************* Winners Page ********************/
 
 .all-collapsible-categories {
@@ -627,15 +689,15 @@ ul {
 
 .Collapsible {
     align-items: center;
-    font-size:3vh;
+    font-size: 3vh;
     padding-top: 2%;
     margin: 0 auto;
-    width:50vw;
+    width: 50vw;
 }
 
 .Collapsible__contentOuter{
     width: 95%;
-    font-size:2vh;
+    font-size: 2vh;
     margin: 0 auto;
 }
 
@@ -665,7 +727,7 @@ ul {
     text-align: center;
     display: flex;
     flex-direction: row;
-    width:100%;
+    width: 100%;
     height: 20vh;
 }
 
@@ -702,7 +764,7 @@ ul {
 }
 
 .dropdown-button {
-    margin-top: 5px;
+    margin-top: 2%;
     font-family: 'Overpass', sans-serif;
     color: #0A7191;
     background-color: #98D0EC;
@@ -714,15 +776,15 @@ ul {
 .dropdown-button-shape-down {
   	width: 0;
   	height: 0;
-  	border-left: 10px solid transparent;
-  	border-right: 10px solid transparent;
-  	border-top: 20px solid #0A7191;
+  	border-left: 8px solid transparent;
+  	border-right: 8px solid transparent;
+  	border-top: 15px solid #0A7191;
 }
 
 .dropdown-button-shape-up {
     width: 0;
     height: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-bottom: 20px solid #0A7191;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 15px solid #0A7191;
 }

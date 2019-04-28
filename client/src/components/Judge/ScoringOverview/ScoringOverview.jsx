@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Project from './Project.jsx'
-import './ScoringOverview.css';
+import '../JudgePortal.css';
 
 class ScoringOverview extends Component {
   constructor(props) {
@@ -51,8 +51,8 @@ class ScoringOverview extends Component {
             <div className="scoring-view">
                 <div className="score-button-box">
                     <div className="score-button">
-                        <button className={this.state.showUnscored ? "scored" : "unscored"} type="submit" onClick={this.fetchUnscored}>Unscored</button>
-                        <button className={this.state.showUnscored ? "unscored" : "scored"} type="submit" onClick={this.fetchScored}>  Scored  </button>
+                        <button className={this.state.showUnscored ? "scored" : "unscored"} type="submit" onClick={this.fetchUnscored}>UNSCORED</button>
+                        <button className={this.state.showUnscored ? "unscored" : "scored"} type="submit" onClick={this.fetchScored}>  SCORED  </button>
                     </div>
                 </div>
             <ul>

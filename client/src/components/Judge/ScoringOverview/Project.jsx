@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
-import './Project.css';
+import '../JudgePortal.css';
 
 class Project extends Component {
     render() {
