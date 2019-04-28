@@ -130,7 +130,7 @@ class ProjectBreakdown extends Component {
       }
 
     routeToNext() {
-        const path = "/hacker-spreadsheet"; 
+        const path = "/winners"; 
         this.props.history.push(path);
     }
 
@@ -168,9 +168,9 @@ class ProjectBreakdown extends Component {
             <div className="page-header">SCORING BREAKDOWN</div>
             <div className="content-background">
             <div className="api-category-box">{apiCategories}</div>
-            <div className= "buttons nav judge-button">
-                <button type="button" className="button" onClick={this.routeToPrev}>PREV</button>
-                <button type="button" className="button" onClick={this.routeToNext}>NEXT</button>
+            <div className= "links">
+                <Link className="nav prev" to='/hacker-spreadsheet' onClick={this.routeToPrev}>&#60; DATA ENTRY</Link>
+                <Link className="nav next" to='/winners' onClick={this.routeToNext}>SCORING BREAKDOWN ></Link>
             </div>
             </div>
         </div>
