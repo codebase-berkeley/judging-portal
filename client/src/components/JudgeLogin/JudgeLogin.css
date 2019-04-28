@@ -9,6 +9,7 @@
     justify-content: center;
     align-items: center; 
     flex-direction: column;
+    background-color: #F9F9F9;
 }
 
 .j-login-components {
@@ -22,8 +23,10 @@
 
 .j-login-dropdown {
     width: 70%;
-    padding: 2vh;
-    margin-top: 2vh;
+    margin-top: 4vh;
+    border: 2px solid #0A7191;
+    border-radius: 5px;
+
 }
 
 .j-login-button {
@@ -46,14 +49,6 @@
     border: 0px;
     color: #0A7191;
     background-color: #F9F9F9;
-}
-
-.j-login-password::-webkit-input-placeholder{
-    padding-left: 10px;
-}
-
-.j-login-password::-webkit-input-value {
-    padding-left: 10px;
 }
 
 .headshot {

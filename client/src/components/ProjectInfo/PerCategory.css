@@ -20,15 +20,16 @@
 }
 
 .score-input {
+    font-family: 'Overpass', sans-serif;
     padding: 5px;
     margin-right: 20px;
     text-align: center;
     width: 50px;
-    height: 50px;
+    height: 20%;
     cursor: text;
     border: none;
     color: #0A7191;
-    font-size: 45px;
+    font-size: 4vh;
 }
 
 input[type="score"]::placeholder {

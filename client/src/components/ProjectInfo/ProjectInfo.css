@@ -1,4 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Overpass:400,700,900');
+
 .entire-page {
+    font-family: 'Overpass', sans-serif;
     font-weight: bold;
     color: #0A7191;
     height: 100%;
@@ -7,13 +10,13 @@
 }
 
 .back-button {
-    font-family: 'Overpass', sans-serif;
     color: #0A7191;
     position: relative;
     background-color: white;
     border: none;
     margin: 5%;
     margin-bottom: 5vh;
+    margin-left: 6%;
     cursor: pointer;
 }
 
@@ -70,7 +73,7 @@
     background-color: #98D0EC;
     border-radius: 5px;
     overflow-y: scroll;
-    height: 50vh;
+    height: 40vh;
 }
 
 .proj-details {
@@ -100,11 +103,12 @@
     left: 0%;
     top: 0%;
     position: relative;
+    width: 40px;
 }
 
 .detail-header {
     font-weight: bold;
-    font-size: 5vh;
+    font-size: 3vh;
     position: relative;
     padding-left: 15px;
     display: inline-block;
@@ -115,8 +119,9 @@
     text-align: left;
     margin: auto;
     font-size: 3vh;
-    height: 75px;
+    height: 50%;
     overflow-y: scroll;
+    display: table-cell;
     vertical-align: middle;
 }
 
@@ -156,8 +161,4 @@
 .button {
     display: inline-block;
     cursor: pointer;
-}
-
-.team {
-    padding-top: 2%;
 }

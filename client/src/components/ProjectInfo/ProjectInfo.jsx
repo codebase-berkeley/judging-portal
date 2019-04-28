@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import teamIcon from "./src/team_icon.png";
-import apiIcon from "./src/API_icon.png";
-import tableIcon from "./src/table_icon.png";
+import teamIcon from "../../Assets/team.png";
+import apiIcon from "../../Assets/api.png";
+import tableIcon from "../../Assets/table.png";
 import PerCategory from "./PerCategory.jsx";
 import "./ProjectInfo.css";
 
@@ -107,7 +107,7 @@ class ProjectInfo extends Component{
                             <div className = "attribute-item">
                                 <div className="head-and-icon">
                                     <img className="projinfo-icon" src={teamIcon}></img>
-                                    <h className="detail-header">Team</h>
+                                    <h className="detail-header">TEAM</h>
                                 </div>
                                 <p className="team actual-info">{this.props.location.state.name}</p>
                             </div>
@@ -120,12 +120,10 @@ class ProjectInfo extends Component{
                                 <p className="actual-info">{cat}</p>
                             </div>
 
-                            <br/>
-
                             <div className = "attribute-item">
                                 <div className="head-and-icon">
                                     <img className="projinfo-icon" src={tableIcon}></img>
-                                    <h className="detail-header">Table</h>
+                                    <h className="detail-header">TABLE</h>
                                 </div>
                                <p className="actual-info">{this.props.location.state.tablename}</p>
                             </div>

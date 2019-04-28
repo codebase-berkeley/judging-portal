@@ -59,6 +59,7 @@ p {
     justify-content: center;
     margin-top: 3vh;
     border: none;
+    border-radius: 5px;
     background-color: #0A7191;
     width: 50%;
     height: 6vh;
