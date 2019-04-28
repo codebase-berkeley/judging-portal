@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import './JudgeLogin.css';
+import headshot from '../../Assets/headshot.png' 
 
 class JudgeLogin extends Component {
     constructor(props) {
@@ -72,24 +73,16 @@ class JudgeLogin extends Component {
         return (
             <div className="j-login-container">
                 <div className="j-login-components">
-                    <div className="j-login-title">CALHACKS 6.0</div>
+                    <div className="j-login-title"><img className="headshot" src={headshot}/></div>
 
                     <div className="j-login-dropdown">
                     <Dropdown
                     options={this.state.options}
                     onChange={this._onSelect}
                     value={defaultOption}
-                    placeholder="Name"
+                    placeholder="NAME"
                     />
                     </div>
-
-                    <input
-                    className="j-login-password"
-                    placeholder="Password"
-                    value={this.state.curr_password}
-                    onChange={this.handlePassword}
-                    type="password"
-                    />
 
                     <button
                     className="j-login-button"

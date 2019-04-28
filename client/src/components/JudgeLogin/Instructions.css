@@ -15,13 +15,15 @@ p {
 
 .instructions {
     font-family: 'Overpass', sans-serif;
-    position: relative; 
+    position: relative;
     background: #98D0EC;
     height: 100vh;
-    width: 100%;
+    width: 80%;
     display: inline-block;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
+    padding-left: 10%;
+    padding-right: 10%
 }
 
 .instructions-content {
@@ -30,7 +32,7 @@ p {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
 }
 
 .instructions-title {
@@ -40,10 +42,11 @@ p {
 }
 
 .instructions-text {
+    display: block;
     margin-top: 1vh;
+    margin-left: auto;
+    margin-right: auto;
     font-weight: light;
-    font-size: 2.5vh;
-    color: black;
     text-align: left;
 }
 
@@ -56,7 +59,7 @@ p {
     justify-content: center;
     margin-top: 3vh;
     border: none;
-    background-color: #3B9BC2;
+    background-color: #0A7191;
     width: 50%;
     height: 6vh;
     box-shadow: 0 0px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 3px 0 rgba(0, 0, 0, 0.19);
