@@ -1,6 +1,8 @@
 import React, { Component } from 'react'; 
 import '../OrganizerPortal.css'; 
 import SpreadEntry from './SpreadEntry'; 
+import { Link } from 'react-router-dom';
+import Home from '../../../Assets/home.svg';
 
 class Spreadsheet extends Component {
     constructor(props) {
@@ -9,7 +11,6 @@ class Spreadsheet extends Component {
             projects: []
         };
         this.routeToPrev = this.routeToPrev.bind(this);
-        this.routeToNext = this.routeToNext.bind(this);
     }
 
     async componentDidMount() { 
@@ -42,14 +43,14 @@ class Spreadsheet extends Component {
     }
 
     routeToPrev() {
-        const path = "/judge-info";
+        const path = "/project-breakdown";
         this.props.history.push(path);
     }
 
     routeToNext() {
-        const path = "/project-breakdown";
+        const path = "/winners";
         this.props.history.push(path);
-      }
+    }
 
     render() { 
         const projectEntries = (this.state.projects || []).map((item) => (
@@ -64,7 +65,12 @@ class Spreadsheet extends Component {
         ))
         return (
             <div className="page-background" id="hackSpreadsheet"> 
-                <div className="page-header">HACKER FACING SPREADSHEET</div>
+                <div className="page-header">
+                    <div className="home-nav">
+                        <img className="home-icon" src={Home}/>
+                        <Link className="home-label" to='/navigation'>HOME</Link>
+                    </div>
+                HACKER FACING SPREADSHEET</div>
                 <div className="content-background">
                     <div className="content-spreadsheet">
                         <div className="list-area">
@@ -76,10 +82,9 @@ class Spreadsheet extends Component {
                             </div>
                         </div>
                     </div>
-
-                    <div className= "button-container-spread">
-                        <button type="button" className="button" onClick={this.routeToPrev}>PREV</button>
-                        <button type="button" className="button" onClick={this.routeToNext}>NEXT</button>
+                    <div className= "links spreadsheet">
+                        <Link className="nav prev" to='/project-breakdown' onClick={this.routeToPrev}>&#60; SCORING BREAKDOWN</Link>
+                        <Link className="nav next" to='/winners' onClick={this.routeToNext}>WINNERS ></Link>
                     </div>
                 </div>
             </div>

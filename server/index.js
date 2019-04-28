@@ -338,45 +338,6 @@ app.get('/api/scores', async (req, res) => {
   }
 });
 
-app.get('/api/projectscore/:id',  async (req, res) => {
-  try {
-    const { id } = req.params;
-    const query = await db.query('SELECT * FROM scores WHERE projectID=' + id);
-    res.send(query.rows);
-  } catch (error) {
-    console.log(error.stack)
-  }
-})
-
-app.get('/api/categories', async (req, res) => {
-  try {
-    const query = await db.query('SELECT DISTINCT category FROM scores;');
-    res.send(query.rows);
-  } catch (error) {
-    console.log(error.stack);
-  }
-});
-
-app.get('/api/projectname/:id',  async (req, res) => {
-  try {
-    const { id } = req.params;
-    const query = await db.query('SELECT * FROM projects WHERE projectID=' + id);
-    res.send(query.rows);
-  } catch (error) {
-    console.log(error.stack)
-  }
-})
-
-app.get('/api/judgename/:id',  async (req, res) => {
-  try {
-    const { id } = req.params;
-    const query = await db.query('SELECT * FROM judges WHERE judgeId=' + id);
-    res.send(query.rows);
-  } catch (error) {
-    console.log(error.stack)
-  }
-})
-
 
 app.get('/api/winners', async (req, res) => {
   try {

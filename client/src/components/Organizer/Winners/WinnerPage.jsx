@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import WinnerCollapsible from './WinnerCollapsible';
 import '../OrganizerPortal.css';
+import { Link } from 'react-router-dom';
+import Home from '../../../Assets/home.svg';
 
 class WinnerPage extends Component {
     constructor(props) {
@@ -78,7 +80,12 @@ class WinnerPage extends Component {
         }
         return (
             <div className="page-background" id="">
-                <div className="page-header">WINNERS</div>
+                <div className="page-header">
+                    <div className="home-nav">
+                        <img className="home-icon" src={Home}/>
+                        <Link className="home-label" to='/navigation'>HOME</Link>
+                    </div>
+                WINNERS</div>
                 <div className="w-content-background">
                     <div className="all-collapsible-categories">
                         { allCategories }
