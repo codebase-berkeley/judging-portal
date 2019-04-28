@@ -11,6 +11,7 @@ class Spreadsheet extends Component {
             projects: []
         };
         this.routeToPrev = this.routeToPrev.bind(this);
+        this.routeToNext = this.routeToNext.bind(this);
     }
 
     async componentDidMount() { 
@@ -43,7 +44,7 @@ class Spreadsheet extends Component {
     }
 
     routeToPrev() {
-        const path = "/project-breakdown";
+        const path = "/judge-info";
         this.props.history.push(path);
     }
 
