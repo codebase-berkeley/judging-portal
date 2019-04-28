@@ -20,10 +20,10 @@ app.use(bodyParser.json());
  * @apiParam {apis} list of judging categories to add
  */
 app.post('/api/apis', async (req, res) => {
-  db.query('DELETE FROM apis;');
+  await db.query('DELETE FROM apis;');
   const { apis } = req.body;
   for (let i = 0; i < apis.length; i ++) {
-    db.query('INSERT INTO apis(name, type) VALUES($1 ,$2)', [
+    await db.query('INSERT INTO apis(name, type) VALUES($1 ,$2)', [
       apis[i][1],
       apis[i][0]
     ]);
@@ -50,11 +50,11 @@ app.get('/api/apis', async (req, res) => {
 });
 
 app.post('/api/projects', async (req, res) => {
-  db.query('DELETE FROM projects;');
+  await db.query('DELETE FROM projects;');
   const { projectCSV } = req.body;
   for (let i = 1; i < projectCSV.length; i++) {
     const project = projectCSV[i];
-    db.query('INSERT INTO projects(name, github, categories, projectId) VALUES($1 ,$2, $3, $4)', [
+    await db.query('INSERT INTO projects(name, github, categories, projectId) VALUES($1 ,$2, $3, $4)', [
       project['Submission Title'],
       project['Submission Url'],
       project['Categories'], 
@@ -72,7 +72,7 @@ app.put('/api/projects', async (req, res) => {
     // wave assignment
     let w = 1;
     for (let id = 1; id <= projectNum; id++) {
-      db.query('UPDATE projects SET wave = $1 WHERE projectId = $2;', [
+      await db.query('UPDATE projects SET wave = $1 WHERE projectId = $2;', [
         w,
         id
       ]);
@@ -86,7 +86,7 @@ app.put('/api/projects', async (req, res) => {
     // tables the projects should spread evenly amoung the tables
     let t = 0;
     for (let i = 1; i < projectNum; i++) {
-      db.query('UPDATE projects SET tableName = $1 WHERE projectId = $2;', [
+      await db.query('UPDATE projects SET tableName = $1 WHERE projectId = $2;', [
         tablesCSV[t][0],
         i
       ]);
@@ -162,7 +162,7 @@ app.get('/api/categories/judge/:judgeId/project/:projectId', async (req, res) =>
 app.put('/api/scoreupdate/judge/:judgeId/project/:projectId/category/:category', async (req, res) => {
   const { judgeId, projectId, category } = req.params;
   const { score } = req.body;
-  db.query('UPDATE scores SET score = $1 WHERE judgeId = $2 AND projectId = $3 AND category = $4;', [
+  await db.query('UPDATE scores SET score = $1 WHERE judgeId = $2 AND projectId = $3 AND category = $4;', [
     score,
     judgeId,
     projectId,
@@ -188,7 +188,7 @@ app.post('/api/judgeinfo', async (req, res) => {
     const { info } = req.body;
     console.log(info);
     if (info.length > 1) {
-      db.query('INSERT INTO judges(name, API) VALUES($1, $2)', [
+      await db.query('INSERT INTO judges(name, API) VALUES($1, $2)', [
         info[0],
         info[1]
       ]);
@@ -321,7 +321,7 @@ app.post('/api/deletejudge', async (req, res) => {
   try {
     const { deleted } = req.body;
     if (deleted.length > 1) {
-      db.query('DELETE FROM judges WHERE name=\'' + deleted[0] + '\' AND API=\'' + deleted[1] + '\';');
+      await db.query('DELETE FROM judges WHERE name=\'' + deleted[0] + '\' AND API=\'' + deleted[1] + '\';');
     }
     res.json("You successfully posted: ".concat(deleted));
   } catch (error) {
