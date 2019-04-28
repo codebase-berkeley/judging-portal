@@ -9,16 +9,10 @@ const cors = require('cors');
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 // ########### DATAENTRY START ###########
 
-/**
- * @api {post} /api/apis add judging category to apis table
- * @apiName PostApi
- * @apiGroup Api
- *
- * @apiParam {apis} list of judging categories to add
- */
 app.post('/api/apis', async (req, res) => {
   const { apis } = req.body;
   for (let i = 0; i < apis.length; i ++) {
@@ -71,7 +65,7 @@ app.put('/api/projects', async (req, res) => {
     // wave assignment
     let w = 1;
     for (let id = 1; id <= projectNum; id++) {
-      db.query('UPDATE projects SET wave = $1 WHERE projectId = $2;', [
+      await db.query('UPDATE projects SET wave = $1 WHERE projectId = $2;', [
         w,
         id
       ]);
@@ -85,7 +79,7 @@ app.put('/api/projects', async (req, res) => {
     // tables the projects should spread evenly amoung the tables
     let t = 0;
     for (let i = 1; i < projectNum; i++) {
-      db.query('UPDATE projects SET tableName = $1 WHERE projectId = $2;', [
+      await db.query('UPDATE projects SET tableName = $1 WHERE projectId = $2;', [
         tablesCSV[t][0],
         i
       ]);
@@ -95,6 +89,7 @@ app.put('/api/projects', async (req, res) => {
       }
     }
   }
+  res.json("Successfully assigned waves and tables");
 });
 
 app.get('/api/project-tables-waves', async(req, res) => {
@@ -108,12 +103,12 @@ app.get('/api/project-tables-waves', async(req, res) => {
 
 // API endpoint for judge names for Judge Login
 app.get('/api/judgenames', async (req, res) => {
-    try {
-      const query = await db.query('SELECT judgeId, name FROM judges;');
-      res.send(query.rows);
-    } catch (error) {
-      console.log(error.stack);
-    }
+  try {
+    const query = await db.query('SELECT judgeId, name FROM judges;');
+    res.send(query.rows);
+  } catch (error) {
+    console.log(error.stack);
+  }
 });
 
 // endpoint to get scored projects in the Scoring Overview page
@@ -262,7 +257,6 @@ app.post('/api/assignjudges', async (req, res) => {
      * looping through projects to match judges
      */
     for (i = 0; i < projectsJSON.length; i += 1) {
-
       const currProj = projectsJSON[i];
       const categories = currProj.categories;
       let hasGC = false;
@@ -279,17 +273,6 @@ app.post('/api/assignjudges', async (req, res) => {
            * assigns the category JSON key accordingly
            */
           if (hasGC) {
-            var currCatKey = 'General Category'
-            let apiJudges = apiMappings[currCatKey].judges;
-            let apiIndex = (apiMappings[currCatKey].index - 1) % apiJudges.length;
-            if (apiIndex < 0) {
-              apiIndex = apiJudges.length - 1;
-            }
-            await db.query('INSERT INTO scores(judgeID, projectID, category) VALUES ($1, $2, $3)', [
-              apiJudges[apiIndex],
-              currProj.projectid,
-              currCat
-            ]);
             continue;
           } else {
             hasGC = true;
@@ -309,7 +292,7 @@ app.post('/api/assignjudges', async (req, res) => {
         ]);
       }
     }
-
+    res.json("Successfully assigned judges to projects.")
   } catch (error) {
     console.log(error.stack);
   }
@@ -338,45 +321,6 @@ app.get('/api/scores', async (req, res) => {
   }
 });
 
-app.get('/api/projectscore/:id',  async (req, res) => {
-  try {
-    const { id } = req.params;
-    const query = await db.query('SELECT * FROM scores WHERE projectID=' + id);
-    res.send(query.rows);
-  } catch (error) {
-    console.log(error.stack)
-  }
-})
-
-app.get('/api/categories', async (req, res) => {
-  try {
-    const query = await db.query('SELECT DISTINCT category FROM scores;');
-    res.send(query.rows);
-  } catch (error) {
-    console.log(error.stack);
-  }
-});
-
-app.get('/api/projectname/:id',  async (req, res) => {
-  try {
-    const { id } = req.params;
-    const query = await db.query('SELECT * FROM projects WHERE projectID=' + id);
-    res.send(query.rows);
-  } catch (error) {
-    console.log(error.stack)
-  }
-})
-
-app.get('/api/judgename/:id',  async (req, res) => {
-  try {
-    const { id } = req.params;
-    const query = await db.query('SELECT * FROM judges WHERE judgeId=' + id);
-    res.send(query.rows);
-  } catch (error) {
-    console.log(error.stack)
-  }
-})
-
 
 app.get('/api/winners', async (req, res) => {
   try {
@@ -404,11 +348,12 @@ app.get('/api/winners', async (req, res) => {
       }
     }
     res.send(winnersJSON);
-
   } catch (error) {
     console.log(error.stack);
   }
 });
+
+// app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html')));
 
 const port = process.env.PORT || 5000;
 app.listen(port);
