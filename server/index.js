@@ -50,6 +50,7 @@ app.get('/api/apis', async (req, res) => {
 });
 
 app.post('/api/projects', async (req, res) => {
+  db.query('DELETE FROM projects;');
   const { projectCSV } = req.body;
   for (let i = 1; i < projectCSV.length; i++) {
     const project = projectCSV[i];
