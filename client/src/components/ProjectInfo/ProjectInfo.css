@@ -18,23 +18,24 @@
 }
 
 .arrow {
-  width: 0;
+    width: 0;
 	height: 0;
 	border-top: 15px solid transparent;
 	border-right: 30px solid #0A7191;
 	border-bottom: 15px solid transparent;
-  position: absolute;
+    position: absolute;
 }
 
 .white-arrow {
-  margin-left: 10px;
-	border-right: 30px solid white;
+    margin-left: 10px;
+    border-right: 30px solid white;
 }
 
 .back-button-text {
-  font-size: 20px;
-  float: left;
-  margin-left: 45px;
+    width: 100%;
+    font-size: 20px;
+    float: left;
+    margin-left: 2%;
 }
 
 .submit {
@@ -113,10 +114,10 @@
     color: #0A7191;
     text-align: left;
     margin: auto;
-    padding-top: 25px;
     font-size: 3vh;
     height: 75px;
     overflow-y: scroll;
+    vertical-align: middle;
 }
 
 .score {
@@ -155,4 +156,8 @@
 .button {
     display: inline-block;
     cursor: pointer;
+}
+
+.team {
+    padding-top: 2%;
 }

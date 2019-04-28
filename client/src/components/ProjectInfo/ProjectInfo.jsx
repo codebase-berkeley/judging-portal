@@ -93,9 +93,7 @@ class ProjectInfo extends Component{
             <div className = "entire-page">
                 <div className="submit">
                     <button type="submit" className="back-button" onClick={this.routeToPrev}>
-                        <div className="arrow"></div>
-                        <div className="arrow white-arrow"></div>
-                        <h2 className="back-button-text">BACK</h2>
+                        <h2 className="back-button-text">&#60; BACK</h2>
                     </button>
                     <div className="proj-header">
                         <p className="proj-id"><b>ID:</b> {this.props.location.state.projectId}</p>
@@ -111,7 +109,7 @@ class ProjectInfo extends Component{
                                     <img className="projinfo-icon" src={teamIcon}></img>
                                     <h className="detail-header">Team</h>
                                 </div>
-                                <p className="actual-info">{this.props.location.state.name}</p>
+                                <p className="team actual-info">{this.props.location.state.name}</p>
                             </div>
 
                             <div className = "attribute-item">
