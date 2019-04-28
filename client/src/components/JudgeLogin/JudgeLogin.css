@@ -26,23 +26,6 @@
     margin-top: 2vh;
 }
 
-.j-login-title {
-    font-weight: bolder;
-    color: #3B9BC2;
-    font-size: 4vh;
-    margin-bottom: 3vh;
-}
-
-.j-login-password {
-    border: none;
-    width: 70%;
-    color: #98d0ec;
-    margin-top: 2vh;
-    border: 2px solid #98d0ec;
-    border-radius: 0.4rem;
-    height: 5%;
-}
-
 .j-login-button {
     font-weight: bold;
     font-size: 2.5vh;
@@ -53,15 +36,15 @@
     justify-content: center;
     margin-top: 4vh;
     border: none;
-    background-color: #3B9BC2;
+    background-color: #0A7191;
     width: 70%;
-    height: 6vh;
+    height: 7vh;
     box-shadow: 0 0px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 3px 0 rgba(0, 0, 0, 0.19);
 }
 
 .Dropdown-control {
     border: 0px;
-    color: #98d0ec;
+    color: #0A7191;
     background-color: #F9F9F9;
 }
 
@@ -71,5 +54,11 @@
 
 .j-login-password::-webkit-input-value {
     padding-left: 10px;
+}
+
+.headshot {
+    width: 30%;
+    display: block;
+    margin: auto;
 }
 
