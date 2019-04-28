@@ -8,22 +8,30 @@ class ProjectBreakdown extends Component {
         this.state = {
           projectsJson: {},
           keys: [],
+          buttons: []
         };
         this.routeToPrev = this.routeToPrev.bind(this);
         this.routeToNext = this.routeToNext.bind(this);
+        this.flipButtonUp = this.flipButtonUp.bind(this);
+        this.flipButtonDown = this.flipButtonDown.bind(this);
     }
 
     async componentDidMount() {
         const projectsJson = {};
         const keys = [];
+        const dButtons = [];
         const categories = await this.getCategories();
         for (let i = 0; i < categories.length; i += 1) {
-            var category = categories[i].category;
+            const category = categories[i].category;
             projectsJson[category] = {
                 scored: [],
                 unscored: []
             }
             keys.push(category);
+            dButtons.push(
+                <button type="button" className="dropdown-button">
+                    <div className="dropdown-button-shape-down"></div> </button>
+            );
         }
         
         const projects = await this.getProjects();
@@ -49,8 +57,9 @@ class ProjectBreakdown extends Component {
 
         this.setState({
             projectsJson: projectsJson,
-            keys: keys
-        })
+            keys: keys,
+            buttons: dButtons
+        });
     }
 
     async getJudge(judgeid) {
@@ -89,6 +98,28 @@ class ProjectBreakdown extends Component {
         return resJson;
     }
 
+    async flipButtonUp(i) {
+        await this.setState((prevState) => {
+            const newButtons = prevState.buttons;
+            newButtons[i] = <button type="button" className="dropdown-button">
+                <div className="dropdown-button-shape-up"></div> </button>
+            return {
+                buttons: newButtons
+            }
+        });
+    }
+
+    async flipButtonDown(i) {
+        await this.setState((prevState) => {
+            const newButtons = prevState.buttons;
+            newButtons[i] = <button type="button" className="dropdown-button">
+                <div className="dropdown-button-shape-down"></div> </button>
+            return {
+                buttons: newButtons
+            }
+        });
+    }
+
     routeToPrev() {
         const path = "/hacker-spreadsheet";
         this.props.history.push(path);
@@ -118,7 +149,7 @@ class ProjectBreakdown extends Component {
       }
     const apiCategories = [];
     for (let i = 0; i < this.state.keys.length; i+=1) {
-        apiCategories.push(<APICategory api={keys[i]} alldata={projects[keys[i]]} />);
+        apiCategories.push(<APICategory button = {this.state.buttons[i]} index={i} flipButtonUp={this.flipButtonUp} flipButtonDown={this.flipButtonDown} api={keys[i]} alldata={projects[keys[i]]} />);
     }
     return (
         <div className="page-background" id="projBreakdown">
