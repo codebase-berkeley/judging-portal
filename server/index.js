@@ -186,7 +186,6 @@ app.get('/api/judgeinfo', async (req, res) => {
 app.post('/api/judgeinfo', async (req, res) => {
   try {
     const { info } = req.body;
-    console.log(info);
     if (info.length > 1) {
       await db.query('INSERT INTO judges(name, API) VALUES($1, $2)', [
         info[0],
