@@ -36,12 +36,14 @@ class JudgeLogin extends Component {
     }
 
     routeToNext() {
+        if (this.state.selected != '') {
         this.props.history.push({
             pathname: '/instructions',
             state: {
                 judgeId: this.state.judgeId
             }
         });
+    }
     }
 
     _onSelect(option) {
