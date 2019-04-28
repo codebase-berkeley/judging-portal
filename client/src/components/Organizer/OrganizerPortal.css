@@ -384,13 +384,12 @@ ul {
 
 .api-info {
     display: block;
-    margin-bottom: 10px;
     background-color: #F9F9F9;
-    height: 30vh;
 }
 
 .api-header {
     background-color: #98D0EC;
+    cursor: pointer;
 }
 
 .api-name {
