@@ -205,6 +205,7 @@
     border-top: 2px solid #98D0EC;
     background-color: #F9F9F9;
     padding-left: 2%;
+    color: #98D0EC;
 }
 
 .upload-file {
@@ -281,6 +282,7 @@
     border-top: 2px solid #98D0EC;
     padding-left: 2%;
     background-color: #F9F9F9;
+    color: #98D0EC;
 }
 
 .judge-api-title {
@@ -300,7 +302,7 @@
 
 .judge-list {
     padding-left: 4%;
-    padding-top: 3%;
+    margin-top: 3%;
     position: relative;
     display: inline-block;
     align-content: center;
@@ -309,6 +311,7 @@
 }
 
 .judge-list-name {
+    position: relative;
     display: inline-block;
     font-weight: 700;
     color: #0A7191;
@@ -321,6 +324,7 @@
 }
 
 .judge-list-api {
+    position: relative;
     display: inline-block;
     font-weight: 700;
     color: #0A7191;
@@ -485,7 +489,7 @@ ul {
 .proj-item {
     display: flex;
     flex-direction: row;
-    border-bottom: 2px solid rgb(210, 211, 211);
+    border-bottom: 2px solid #98D0EC;
     width: 100%;
     display: inline-block;
 }
@@ -569,22 +573,25 @@ ul {
 .entries-list-name {
     display: inline-block;
     text-align: center;
-    width: 33%;
+    width: 33.33%;
     color: #0A7191;
+    background-color: #98D0EC;
 }
 
 .entries-list-wave {
     display: inline-block;
     text-align: center;
-    width: 33%;
+    width: 33.33%;
     color: #0A7191;
+    background-color: #98D0EC;
 }
 
 .entries-list-table {
     display: inline-block;
     text-align: center;
-    width: 33%;
+    width: 33.33%;
     color: #0A7191;
+    background-color: #98D0EC;
 }
 
 .button-container-spread {
