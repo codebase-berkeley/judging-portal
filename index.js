@@ -82,12 +82,7 @@ app.put('/api/projects', async (req, res) => {
     // tables the projects should spread evenly amoung the tables
     let t = 0;
     for (let i = 1; i < projectNum; i++) {
-<<<<<<< HEAD
       await db.query('UPDATE projects SET tableName = $1 WHERE projectId = $2;', [
-=======
-      console.log("table id", i);
-      db.query('UPDATE projects SET tableName = $1 WHERE projectId = $2;', [
->>>>>>> res json api put projects
         tablesCSV[t][0],
         i
       ]);
