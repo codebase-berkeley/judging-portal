@@ -22,7 +22,7 @@ class ProjectBreakdown extends Component {
         const dButtons = [];
         const categories = await this.getCategories();
         for (let i = 0; i < categories.length; i += 1) {
-            var category = categories[i].category;
+            const category = categories[i].category;
             projectsJson[category] = {
                 scored: [],
                 unscored: []
