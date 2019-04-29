@@ -37,7 +37,7 @@ class JudgeLogin extends Component {
     }
 
     routeToNext() {
-        if (this.state.selected != '') {
+        if (this.state.selected !== '') {
         this.props.history.push({
             pathname: '/instructions',
             state: {
@@ -75,15 +75,17 @@ class JudgeLogin extends Component {
         return (
             <div className="j-login-container">
                 <div className="j-login-components">
-                    <div className="j-login-title"><img className="headshot" src={headshot}/></div>
+                    <div className="j-login-title">
+                        <img className="headshot" src={headshot} alt="headshot"/>
+                    </div>
 
                     <div className="j-login-dropdown">
-                    <Dropdown
-                    options={this.state.options}
-                    onChange={this._onSelect}
-                    value={defaultOption}
-                    placeholder="NAME"
-                    />
+                        <Dropdown
+                        options={this.state.options}
+                        onChange={this._onSelect}
+                        value={defaultOption}
+                        placeholder="NAME"
+                        />
                     </div>
 
                     <button

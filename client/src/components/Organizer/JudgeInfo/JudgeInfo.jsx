@@ -186,7 +186,7 @@ class JudgeInfo extends Component {
   containsAPI(api) {
     for (var i = 0; i < this.state.info.length; i++) {
       const a = this.state.info[i][1];
-      if (a == api) {
+      if (a === api) {
         return true;
       }
     }
@@ -222,7 +222,7 @@ class JudgeInfo extends Component {
       <div className="page-background" id= "JudgeInfo">
         <div className="page-header">
           <div className="home-nav">
-            <img className="home-icon" src={Home}/>
+            <img className="home-icon" src={Home} alt="home icon"/>
             <Link className="home-label" to='/navigation'>HOME</Link>
           </div>
         JUDGE INFORMATION</div>

@@ -238,7 +238,7 @@ class DataEntry extends Component {
       <div className="page-background" id="DataEntry">
         <div className="page-header">
           <div className="home-nav">
-            <img className="home-icon" src={Home}/>
+            <img className="home-icon" src={Home} alt="home icon"/>
             <Link className="home-label" to='/navigation'>HOME</Link>
           </div>
           DATA ENTRY
