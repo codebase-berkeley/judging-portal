@@ -169,7 +169,7 @@ class ProjectBreakdown extends Component {
             <div className="api-category-box">{apiCategories}</div>
             <div className= "links">
                 <Link className="nav prev" to='/hacker-spreadsheet' onClick={this.routeToPrev}>&#60; DATA ENTRY</Link>
-                <Link className="nav next" to='/winners' onClick={this.routeToNext}>SCORING BREAKDOWN ></Link>
+                <Link className="nav next" to='/winners' onClick={this.routeToNext}>WINNERS ></Link>
             </div>
             </div>
         </div>
