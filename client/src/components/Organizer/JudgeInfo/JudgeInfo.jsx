@@ -139,17 +139,21 @@ class JudgeInfo extends Component {
 
   async postJudge() {
     try {
-      const res = await fetch('/api/judgeinfo', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          info: [this.state.currName, this.state.selected.label],
-        })
-      });
-      const resJson = res.json();
-      return resJson;
+      if (this.state.currName !== '' && this.state.selected !== '') {
+        const res = await fetch('/api/judgeinfo', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            info: [this.state.currName, this.state.selected.label],
+          })
+        });
+        const resJson = res.json();
+        return resJson;
+      } else {
+        alert('error: please enter both a judge name and api!');
+      }
     } catch (error) {
       console.log("error");
     }
