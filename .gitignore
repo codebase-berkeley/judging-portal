@@ -2,15 +2,12 @@
 
 # dependencies
 /client/node_modules
-/server/node_modules
+/node_modules
 /.pnp
 .pnp.js
 
 # testing
 /coverage
-
-# production
-/build
 
 # misc
 .DS_Store
@@ -24,4 +21,3 @@ yarn-debug.log*
 yarn-error.log*
 
 package-lock.json
-node_modules

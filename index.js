@@ -9,16 +9,10 @@ const cors = require('cors');
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 // ########### DATAENTRY START ###########
 
-/**
- * @api {post} /api/apis add judging category to apis table
- * @apiName PostApi
- * @apiGroup Api
- *
- * @apiParam {apis} list of judging categories to add
- */
 app.post('/api/apis', async (req, res) => {
   await db.query('DELETE FROM apis;');
   const { apis } = req.body;
@@ -97,6 +91,7 @@ app.put('/api/projects', async (req, res) => {
       }
     }
   }
+  res.json("Successfully assigned waves and tables");
 });
 
 app.get('/api/project-tables-waves', async(req, res) => {
@@ -110,12 +105,12 @@ app.get('/api/project-tables-waves', async(req, res) => {
 
 // API endpoint for judge names for Judge Login
 app.get('/api/judgenames', async (req, res) => {
-    try {
-      const query = await db.query('SELECT judgeId, name FROM judges;');
-      res.send(query.rows);
-    } catch (error) {
-      console.log(error.stack);
-    }
+  try {
+    const query = await db.query('SELECT judgeId, name FROM judges;');
+    res.send(query.rows);
+  } catch (error) {
+    console.log(error.stack);
+  }
 });
 
 // endpoint to get scored projects in the Scoring Overview page
@@ -263,7 +258,6 @@ app.post('/api/assignjudges', async (req, res) => {
      * looping through projects to match judges
      */
     for (i = 0; i < projectsJSON.length; i += 1) {
-
       const currProj = projectsJSON[i];
       const categories = currProj.categories;
       let hasGC = false;
@@ -310,7 +304,7 @@ app.post('/api/assignjudges', async (req, res) => {
         ]);
       }
     }
-
+    res.json("Successfully assigned judges to projects.")
   } catch (error) {
     console.log(error.stack);
   }
@@ -405,11 +399,12 @@ app.get('/api/winners', async (req, res) => {
       }
     }
     res.send(winnersJSON);
-
   } catch (error) {
     console.log(error.stack);
   }
 });
+
+app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html')));
 
 const port = process.env.PORT || 5000;
 app.listen(port);

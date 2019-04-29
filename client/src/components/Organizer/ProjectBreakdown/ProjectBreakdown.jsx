@@ -1,7 +1,6 @@
 
 import React, { Component } from 'react';
 import '../OrganizerPortal.css';
-import ProjectItem from './ProjectItem';
 import { Link } from 'react-router-dom';
 import Home from '../../../assets/home.svg';
 import APICategory from './APICategory';
@@ -142,7 +141,7 @@ class ProjectBreakdown extends Component {
             <div className="page-background" id= "projBreakdown">
                 <div className="page-header">
                     <div className="home-nav">
-                        <img className="home-icon" src={Home}/>
+                        <img className="home-icon" src={Home} alt="home icon"/>
                         <Link className="home-label" to='/navigation'>HOME</Link>
                     </div>
                 SCORING BREAKDOWN</div>

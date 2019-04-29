@@ -130,7 +130,7 @@ class DataEntry extends Component {
       }
     }
 
-    fetch('/api/projects', {
+    const resProjects = fetch('/api/projects', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -138,9 +138,9 @@ class DataEntry extends Component {
       body: JSON.stringify({
         projectCSV: list
       })
-    }).then (r => r.json());
+    })
 
-    fetch('/api/apis', {
+    const resAPIS = fetch('/api/apis', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -148,9 +148,9 @@ class DataEntry extends Component {
       body: JSON.stringify({
         apis: apiFinal
       })
-    }).then (r => r.json());
+    })
 
-    return length;
+    return [length, Promise.all([resProjects, resAPIS])];
   }
 
   async getProjects() {
@@ -222,21 +222,23 @@ class DataEntry extends Component {
 
   routeToNext() {
     if (this.state.tableNum !== '' && this.state.waveNum !== '' && this.state.tableCSVName !== 'UPLOAD FILE') {
-      const projectLength = this.postProjectsAPIS();
-      const tableLength = this.postTables(projectLength);
-      if (this.state.tableNum * tableLength * this.state.waveNum < projectLength) {
-        alert('error: not enough capacity');
-      }
-      this.props.history.push('/judge-info');
+      const [ projectLength, projectsPromise ] = this.postProjectsAPIS();
+      projectsPromise.then(() => {
+        const tableLength = this.postTables(projectLength);
+        if (this.state.tableNum * tableLength * this.state.waveNum < projectLength) {
+          alert('error: not enough capacity');
+        }
+        this.props.history.push('/judge-info');
+      })
     }
   }
 
   render() {
     return (
-      <div className="page-background" id ="DataEntry">
+      <div className="page-background" id="DataEntry">
         <div className="page-header">
           <div className="home-nav">
-            <img className="home-icon" src={Home}/>
+            <img className="home-icon" src={Home} alt="home icon"/>
             <Link className="home-label" to='/navigation'>HOME</Link>
           </div>
           DATA ENTRY
