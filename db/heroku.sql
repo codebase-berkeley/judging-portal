@@ -1,7 +1,7 @@
+DROP TABLE scores;
 DROP TABLE judges;
 DROP TABLE projects;
 DROP TABLE apis;
-DROP TABLE scores;
 
 CREATE TABLE judges
 (
