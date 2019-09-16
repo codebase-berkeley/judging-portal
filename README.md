@@ -1,7 +1,5 @@
 ## Hackathon Judging Portal
 
-Built by CodeBase Mentored Team Spring of 2019.
-
 #### Deploy instructions
 ```
 heroku create <name-of-app>
